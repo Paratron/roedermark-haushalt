@@ -1,0 +1,90 @@
+# categories.yaml – Lebensnahe Kategorien für die UI
+# Jede Kategorie bildet Verwaltungs-/Produktpositionen auf verständliche Bereiche ab.
+# Regeln matchen auf node.path, node.code und label aus den extrahierten line_items.
+#
+# ⚠ Regeln müssen anhand der tatsächlichen Daten verfeinert werden!
+
+version: 1
+
+categories:
+  - id: kinderbetreuung
+    label: Kinderbetreuung
+    description: >-
+      Alle Aufwendungen und zugehörige Erträge rund um Kindertagesstätten,
+      Tagespflege sowie Zuschüsse/Beiträge in diesem Bereich.
+    color_hint: null
+    rules:
+      any:
+        - path_prefix: ["Teilhaushalt Soziales", "Kinder", "Kita"]
+        - label_regex: "(?i)kita|kindertages|tagespflege|krippe|hort|u3|u6"
+    exclusions:
+      any:
+        - label_regex: "(?i)schule"
+
+  - id: schulen
+    label: Schulen
+    description: >-
+      Aufwendungen und Erträge für Schulträgeraufgaben, Unterhaltung von Schulgebäuden,
+      Ausstattung und ggf. Zuschüsse.
+    rules:
+      any:
+        - label_regex: "(?i)schule|grundschule|weiterführend|sporthalle.*schule"
+
+  - id: strassen_verkehr
+    label: Straßen & Verkehr
+    description: >-
+      Unterhaltung/Neubau von Straßen, Wegen, Beleuchtung, Verkehrsanlagen und ggf. ÖPNV-Zuschüsse.
+    rules:
+      any:
+        - label_regex: "(?i)straße|wege|beleuchtung|verkehr|öpnv|bus|radweg|park"
+
+  - id: verwaltung
+    label: Verwaltung
+    description: >-
+      Allgemeine Verwaltung, zentrale Dienste, IT, Personalverwaltung, Gremien.
+    rules:
+      any:
+        - label_regex: "(?i)hauptamt|personal|it|organisation|bürgerservice|gremien|rathaus"
+
+  - id: kultur_sport
+    label: Kultur & Sport
+    description: >-
+      Kulturförderung, Veranstaltungen, Bibliothek, Vereine, Sportstätten.
+    rules:
+      any:
+        - label_regex: "(?i)kultur|bibliothek|museum|veranstaltung|sport|verein|halle|stadion"
+
+  - id: finanzen_schulden
+    label: Finanzen & Schulden
+    description: >-
+      Zinsen, Kredite, Kassenkredite, Rücklagenbewegungen sowie zentrale Finanzpositionen.
+    rules:
+      any:
+        - label_regex: "(?i)zins|kredit|darlehen|schulden|rücklage|kasse"
+
+  - id: sicherheit_ordnung
+    label: Sicherheit & Ordnung
+    description: >-
+      Feuerwehr, Ordnungsamt, Katastrophenschutz und ordnungsrechtliche Aufgaben.
+    rules:
+      any:
+        - label_regex: "(?i)feuerwehr|brand|ordnung|sicherheit|katastroph"
+
+  - id: steuern_abgaben
+    label: Steuern & Abgaben
+    description: >-
+      Gewerbe-/Grundsteuer, Umlagen, Gebühren und sonstige zentrale Abgaben/Erträge.
+    rules:
+      any:
+        - label_regex: "(?i)grundsteuer|gewerbesteuer|einkommensteuer|umsatzsteuer|umlage|gebühr"
+
+ui:
+  ordering:
+    - kinderbetreuung
+    - schulen
+    - strassen_verkehr
+    - sicherheit_ordnung
+    - kultur_sport
+    - verwaltung
+    - finanzen_schulden
+    - steuern_abgaben

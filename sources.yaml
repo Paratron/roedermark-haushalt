@@ -1,0 +1,219 @@
+# sources.yaml – Maschinenlesbare Dokumentquellen für die Fetch-Pipeline
+# Jedes Dokument hat: document_id, doc_type, years, url, priority
+#
+# doc_type:
+#   haushaltsplan_entwurf, haushaltsplan_beschluss, anpassungsbeschluss,
+#   nachtragshaushalt, jahresabschluss, gesamtabschluss,
+#   beteiligungsbericht, konsolidierung, haushaltsrede, praesentation,
+#   haushaltssatzung, bekanntmachung
+#
+# priority: primary (Zahlenquelle), secondary (Kontext/Beleg)
+
+version: 1
+
+documents:
+
+  # ── Haushaltspläne ──────────────────────────────────────────────────
+
+  - document_id: haushaltsplan_2026_entwurf
+    doc_type: haushaltsplan_entwurf
+    years: [2026]
+    priority: primary
+    url: https://roedermark.de/fileadmin/Stadt_und_Stadtverwaltung/Haushalt___Berichte/Haushaltsplan_HH_2026_Entwurf.pdf
+
+  - document_id: haushaltsplan_2024_2025_beschluss
+    doc_type: haushaltsplan_beschluss
+    years: [2024, 2025]
+    priority: primary
+    url: https://roedermark.de/fileadmin/Stadt_und_Stadtverwaltung/Haushalt___Berichte/Haushaltsplan_DHH_2024_2025_Beschluss_inkl._BeitrittsbeschlussKBR_FINAL.pdf
+
+  - document_id: haushaltsplan_2024_2025_entwurf
+    doc_type: haushaltsplan_entwurf
+    years: [2024, 2025]
+    priority: primary
+    url: https://roedermark.de/fileadmin/Stadt_und_Stadtverwaltung/Haushalt___Berichte/Haushaltsplan_DHH_2024_2025_Entwurf.pdf
+
+  - document_id: haushaltsplan_2023_entwurf
+    doc_type: haushaltsplan_entwurf
+    years: [2023]
+    priority: primary
+    url: https://roedermark.de/fileadmin/Stadt_und_Stadtverwaltung/Haushalt___Berichte/Haushaltsplan__Gesamt_2023_Entwurf_Endfassung.pdf
+
+  - document_id: haushaltsplan_2023_beschluss
+    doc_type: haushaltsplan_beschluss
+    years: [2023]
+    priority: primary
+    url: https://roedermark.de/fileadmin/Stadt_und_Stadtverwaltung/Haushalt___Berichte/Haushaltsplan_2023_BESCHLUSS_ENDFASSUNG.pdf
+
+  - document_id: haushaltsplan_2022_beschluss
+    doc_type: haushaltsplan_beschluss
+    years: [2022]
+    priority: primary
+    url: https://roedermark.de/fileadmin/Stadt_und_Stadtverwaltung/Haushalt___Berichte/Gesamt_Haushaltsplan_2022_BESCHLUSS.pdf
+
+  - document_id: haushaltsplan_2022_entwurf
+    doc_type: haushaltsplan_entwurf
+    years: [2022]
+    priority: primary
+    url: https://roedermark.de/fileadmin/Stadt_und_Stadtverwaltung/Haushalt___Berichte/Gesamt_Haushaltsplan_2022_ENTWURF_071221.pdf
+
+  - document_id: haushaltsplan_2020_2021_beschluss
+    doc_type: haushaltsplan_beschluss
+    years: [2020, 2021]
+    priority: primary
+    url: https://roedermark.de/fileadmin/Stadt_und_Stadtverwaltung/Haushalt___Berichte/GESAMT_HAUSHALT_2020_2021_BESCHLUSS.pdf
+
+  - document_id: haushaltsplan_2020_2021_anpassung
+    doc_type: anpassungsbeschluss
+    years: [2020, 2021]
+    priority: primary
+    url: https://roedermark.de/fileadmin/Stadt_und_Stadtverwaltung/Haushalt___Berichte/GESAMT_HAUSHALT_2020_2021___Anpassungsbeschluss.pdf
+
+  - document_id: haushaltsplan_2019
+    doc_type: haushaltsplan_beschluss
+    years: [2019]
+    priority: primary
+    url: https://roedermark.de/fileadmin/Stadt_und_Stadtverwaltung/Haushalt___Berichte/Haushaltsplan_2019.pdf
+
+  - document_id: haushaltsplan_2017_2018
+    doc_type: haushaltsplan_beschluss
+    years: [2017, 2018]
+    priority: primary
+    url: https://roedermark.de/fileadmin/Stadt_und_Stadtverwaltung/Haushalt___Berichte/Haushaltsplan17_18_Stand_16052017.pdf
+
+  # ── Jahresabschlüsse / Gesamtabschlüsse ─────────────────────────────
+
+  - document_id: jahresabschluss_2024
+    doc_type: jahresabschluss
+    years: [2024]
+    priority: primary
+    url: https://roedermark.de/fileadmin/Stadt_und_Stadtverwaltung/Haushalt___Berichte/Jahresabschluss_2024.pdf
+
+  - document_id: jahresabschluss_2023
+    doc_type: jahresabschluss
+    years: [2023]
+    priority: primary
+    url: https://roedermark.de/fileadmin/Stadt_und_Stadtverwaltung/Haushalt___Berichte/Jahresabschluss_2023_End.pdf
+
+  - document_id: jahresabschluss_2022
+    doc_type: jahresabschluss
+    years: [2022]
+    priority: primary
+    url: https://roedermark.de/fileadmin/Stadt_und_Stadtverwaltung/Haushalt___Berichte/Jahresabschluss_2022_End.pdf
+
+  - document_id: jahresabschluss_2020
+    doc_type: jahresabschluss
+    years: [2020]
+    priority: primary
+    url: https://www.rm-news.de/AM/2024/Jahresabschluss_2020_End.pdf
+
+  - document_id: gesamtabschluss_2022
+    doc_type: gesamtabschluss
+    years: [2022]
+    priority: primary
+    url: https://roedermark.de/fileadmin/Stadt_und_Stadtverwaltung/Haushalt___Berichte/Gesamtabschluss_2022.pdf
+
+  - document_id: gesamtabschluss_2021
+    doc_type: gesamtabschluss
+    years: [2021]
+    priority: primary
+    url: https://roedermark.de/fileadmin/Stadt_und_Stadtverwaltung/Haushalt___Berichte/Gesamtabschluss_2021.pdf
+
+  # ── Legacy-Dokumente ────────────────────────────────────────────────
+
+  - document_id: jahresabschluss_2017
+    doc_type: jahresabschluss
+    years: [2017]
+    priority: primary
+    url: https://roedermark.de/fileadmin/Roedermark/FB2/HH/Jahresabschluss_2017.pdf
+
+  - document_id: nachtragshaushalt_2015_2016
+    doc_type: nachtragshaushalt
+    years: [2015, 2016]
+    priority: primary
+    url: https://roedermark.de/fileadmin/Roedermark/FB2/HH/15_16/Nachtragshaushalt15_16.pdf
+
+  - document_id: haushaltssatzung_2020_2021
+    doc_type: haushaltssatzung
+    years: [2020, 2021]
+    priority: secondary
+    url: https://roedermark.de/fileadmin/Roedermark/BdB/Aktuelles/2020/KW25/Haushaltssatzung_PDF/Haushaltssatzung_und_Bekanntmachung_der_Haushaltssatzung.pdf
+
+  # ── Beteiligungsbericht / Konsolidierung ────────────────────────────
+
+  - document_id: beteiligungsbericht_2024
+    doc_type: beteiligungsbericht
+    years: [2024]
+    priority: secondary
+    url: https://roedermark.de/fileadmin/Stadt_und_Stadtverwaltung/Haushalt___Berichte/Beteiligungsbericht_2024.pdf
+
+  - document_id: konsolidierung_2013_2018
+    doc_type: konsolidierung
+    years: [2013, 2014, 2015, 2016, 2017, 2018]
+    priority: secondary
+    url: https://roedermark.de/fileadmin/Stadt_und_Stadtverwaltung/Haushalt___Berichte/Konsolidierung_Roedermark_2013-2018.pdf
+
+  # ── Haushaltsreden / Präsentationen (Kontext) ───────────────────────
+
+  - document_id: haushaltsrede_2026
+    doc_type: haushaltsrede
+    years: [2026]
+    priority: secondary
+    url: https://roedermark.de/fileadmin/Stadt_und_Stadtverwaltung/Haushalt___Berichte/Haushaltsrede_HH_2026.pdf
+
+  - document_id: haushaltsrede_2024_2025
+    doc_type: haushaltsrede
+    years: [2024, 2025]
+    priority: secondary
+    url: https://roedermark.de/fileadmin/Stadt_und_Stadtverwaltung/Haushalt___Berichte/Haushaltsrede_DHH_2024_2025.pdf
+
+  - document_id: haushaltsrede_2023
+    doc_type: haushaltsrede
+    years: [2023]
+    priority: secondary
+    url: https://roedermark.de/fileadmin/Stadt_und_Stadtverwaltung/Haushalt___Berichte/Haushaltsrede_Schuelner.pdf
+
+  - document_id: haushaltsrede_2022
+    doc_type: haushaltsrede
+    years: [2022]
+    priority: secondary
+    url: https://roedermark.de/fileadmin/Stadt_und_Stadtverwaltung/Haushalt___Berichte/2021-12-07_Haushaltsrede_2022.pdf
+
+  - document_id: haushaltsrede_2019
+    doc_type: haushaltsrede
+    years: [2019]
+    priority: secondary
+    url: https://roedermark.de/fileadmin/Stadt_und_Stadtverwaltung/Haushalt___Berichte/Haushaltsrede2019.pdf
+
+  - document_id: haushaltsrede_2017_2018
+    doc_type: haushaltsrede
+    years: [2017, 2018]
+    priority: secondary
+    url: https://roedermark.de/fileadmin/Stadt_und_Stadtverwaltung/Haushalt___Berichte/Haushaltsrede17_18.pdf
+
+  - document_id: praesentation_2017_2018
+    doc_type: praesentation
+    years: [2017, 2018]
+    priority: secondary
+    url: https://roedermark.de/fileadmin/Stadt_und_Stadtverwaltung/Haushalt___Berichte/Praesentation17_18.pdf
+
+# ── HTML-Startpunkte (für Discovery zusätzlicher Dokumente) ─────────
+
+startpages:
+  - url: https://roedermark.de/rathaus-politik/haushalt-und-berichte.html
+    purpose: Hauptübersicht – PDF-Links zu Haushaltsplänen, Jahresabschlüssen etc.
+
+  - url: https://www.roedermark.sitzung-online.de/public/
+    purpose: Bürger-/Ratsinformationssystem (ALLRIS) – fehlende Jahrgänge/Anlagen
+
+# ── Bekanntmachungen (HTML, nur Kontext/Belege) ────────────────────
+
+bekanntmachungen:
+  - url: https://roedermark.de/rathaus-politik/aktuelles/oeffentliche-bekanntmachungen/artikel-oeffentliche-bekanntmachungen/oeffentliche-bekanntmachungen-und-informationen-der-stadt-vom-15-juni-2023.html
+    context: "Haushaltssatzung 2023, Genehmigung, Auslegung"
+
+  - url: https://roedermark.de/rathaus-politik/aktuelles/oeffentliche-bekanntmachungen/artikel-oeffentliche-bekanntmachungen/oeffentliche-bekanntmachungen-vom-7-juni-2024.html
+    context: "Jahresabschluss 2022, Auslegungshinweise"
+
+  - url: https://roedermark.de/rathaus-politik/aktuelles/oeffentliche-bekanntmachungen/artikel-oeffentliche-bekanntmachungen/oeffentliche-bekanntmachungen-vom-12-juli-2024.html
+    context: "DHH 2024/2025 Bekanntmachung"

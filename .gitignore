@@ -1,0 +1,37 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+dist/
+build/
+.venv/
+venv/
+
+# Data (PDFs are large, don't commit)
+data/raw/*.pdf
+data/extracted/
+data/published/
+
+# Keep structure
+!data/raw/.gitkeep
+!data/extracted/.gitkeep
+!data/published/.gitkeep
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+*.swp
+*.swo
+
+# Node (frontend)
+node_modules/
+.next/
+.svelte-kit/
+
+# Env
+.env
+.env.local

@@ -1,0 +1,1 @@
+"""Rödermark-Haushalt Pipeline."""

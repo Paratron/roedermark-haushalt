@@ -1,0 +1,327 @@
+[
+  {
+    "document_id": "beteiligungsbericht_2024",
+    "doc_type": "beteiligungsbericht",
+    "years": [
+      2024
+    ],
+    "priority": "secondary",
+    "source_url": "https://roedermark.de/fileadmin/Stadt_und_Stadtverwaltung/Haushalt___Berichte/Beteiligungsbericht_2024.pdf",
+    "filename": "beteiligungsbericht_2024.pdf",
+    "sha256": "f740bbab4e08a22103400c3d9dfb47b909ea6da19381b68c8cc694d405a1d4c0",
+    "size_bytes": 104955,
+    "fetched_at": "2026-02-10T21:25:04.692896+00:00"
+  },
+  {
+    "document_id": "gesamtabschluss_2021",
+    "doc_type": "gesamtabschluss",
+    "years": [
+      2021
+    ],
+    "priority": "primary",
+    "source_url": "https://roedermark.de/fileadmin/Stadt_und_Stadtverwaltung/Haushalt___Berichte/Gesamtabschluss_2021.pdf",
+    "filename": "gesamtabschluss_2021.pdf",
+    "sha256": "c8c064f9297984350799d406f8fefa1907d5bcfaf8f42ba8f9b6009de91eb22e",
+    "size_bytes": 2647114,
+    "fetched_at": "2026-02-10T21:25:02.757994+00:00"
+  },
+  {
+    "document_id": "gesamtabschluss_2022",
+    "doc_type": "gesamtabschluss",
+    "years": [
+      2022
+    ],
+    "priority": "primary",
+    "source_url": "https://roedermark.de/fileadmin/Stadt_und_Stadtverwaltung/Haushalt___Berichte/Gesamtabschluss_2022.pdf",
+    "filename": "gesamtabschluss_2022.pdf",
+    "sha256": "661f9a07b6741f716f05c78c7d01aa9de55484909600930e11b8c0d31dba2047",
+    "size_bytes": 2421138,
+    "fetched_at": "2026-02-10T21:24:58.344216+00:00"
+  },
+  {
+    "document_id": "haushaltsplan_2017_2018",
+    "doc_type": "haushaltsplan_beschluss",
+    "years": [
+      2017,
+      2018
+    ],
+    "priority": "primary",
+    "source_url": "https://roedermark.de/fileadmin/Stadt_und_Stadtverwaltung/Haushalt___Berichte/Haushaltsplan17_18_Stand_16052017.pdf",
+    "filename": "haushaltsplan_2017_2018.pdf",
+    "sha256": "c02e407ec67e0f37f210b3e99ff675a6714386c081975f6f9df3a03e19f7bf51",
+    "size_bytes": 13798723,
+    "fetched_at": "2026-02-10T21:24:43.759085+00:00"
+  },
+  {
+    "document_id": "haushaltsplan_2019",
+    "doc_type": "haushaltsplan_beschluss",
+    "years": [
+      2019
+    ],
+    "priority": "primary",
+    "source_url": "https://roedermark.de/fileadmin/Stadt_und_Stadtverwaltung/Haushalt___Berichte/Haushaltsplan_2019.pdf",
+    "filename": "haushaltsplan_2019.pdf",
+    "sha256": "0c1f8895505039baf3c55cba78000afc1a8057f0e82a06a114e334463453af95",
+    "size_bytes": 15125541,
+    "fetched_at": "2026-02-10T21:24:32.255724+00:00"
+  },
+  {
+    "document_id": "haushaltsplan_2020_2021_anpassung",
+    "doc_type": "anpassungsbeschluss",
+    "years": [
+      2020,
+      2021
+    ],
+    "priority": "primary",
+    "source_url": "https://roedermark.de/fileadmin/Stadt_und_Stadtverwaltung/Haushalt___Berichte/GESAMT_HAUSHALT_2020_2021___Anpassungsbeschluss.pdf",
+    "filename": "haushaltsplan_2020_2021_anpassung.pdf",
+    "sha256": "29490d034e051de4937c3c78f541b6322da7114e7b3547dfef4defc70ae253b5",
+    "size_bytes": 12282770,
+    "fetched_at": "2026-02-10T21:24:21.245551+00:00"
+  },
+  {
+    "document_id": "haushaltsplan_2020_2021_beschluss",
+    "doc_type": "haushaltsplan_beschluss",
+    "years": [
+      2020,
+      2021
+    ],
+    "priority": "primary",
+    "source_url": "https://roedermark.de/fileadmin/Stadt_und_Stadtverwaltung/Haushalt___Berichte/GESAMT_HAUSHALT_2020_2021_BESCHLUSS.pdf",
+    "filename": "haushaltsplan_2020_2021_beschluss.pdf",
+    "sha256": "20d16b7eae1fc116fe1ec48aa505cb49b288a880d6c0036e9da05bcc3a173032",
+    "size_bytes": 11403774,
+    "fetched_at": "2026-02-10T21:24:11.488222+00:00"
+  },
+  {
+    "document_id": "haushaltsplan_2022_beschluss",
+    "doc_type": "haushaltsplan_beschluss",
+    "years": [
+      2022
+    ],
+    "priority": "primary",
+    "source_url": "https://roedermark.de/fileadmin/Stadt_und_Stadtverwaltung/Haushalt___Berichte/Gesamt_Haushaltsplan_2022_BESCHLUSS.pdf",
+    "filename": "haushaltsplan_2022_beschluss.pdf",
+    "sha256": "6d7d9d1e136715f447cada5257368712b5a2b0516baa713382b4c9b7f03338ec",
+    "size_bytes": 22650951,
+    "fetched_at": "2026-02-10T21:23:37.280450+00:00"
+  },
+  {
+    "document_id": "haushaltsplan_2022_entwurf",
+    "doc_type": "haushaltsplan_entwurf",
+    "years": [
+      2022
+    ],
+    "priority": "primary",
+    "source_url": "https://roedermark.de/fileadmin/Stadt_und_Stadtverwaltung/Haushalt___Berichte/Gesamt_Haushaltsplan_2022_ENTWURF_071221.pdf",
+    "filename": "haushaltsplan_2022_entwurf.pdf",
+    "sha256": "d4219c3a5a21d5744ec9685574b67b10262adb8b7846775658dffb1c9e72f149",
+    "size_bytes": 15975600,
+    "fetched_at": "2026-02-10T21:23:49.013399+00:00"
+  },
+  {
+    "document_id": "haushaltsplan_2023_beschluss",
+    "doc_type": "haushaltsplan_beschluss",
+    "years": [
+      2023
+    ],
+    "priority": "primary",
+    "source_url": "https://roedermark.de/fileadmin/Stadt_und_Stadtverwaltung/Haushalt___Berichte/Haushaltsplan_2023_BESCHLUSS_ENDFASSUNG.pdf",
+    "filename": "haushaltsplan_2023_beschluss.pdf",
+    "sha256": "1522c74c278051a70fccde1a98994e2d6a4322760dc177a8e2525a3126d72799",
+    "size_bytes": 13421607,
+    "fetched_at": "2026-02-10T21:23:22.656295+00:00"
+  },
+  {
+    "document_id": "haushaltsplan_2023_entwurf",
+    "doc_type": "haushaltsplan_entwurf",
+    "years": [
+      2023
+    ],
+    "priority": "primary",
+    "source_url": "https://roedermark.de/fileadmin/Stadt_und_Stadtverwaltung/Haushalt___Berichte/Haushaltsplan__Gesamt_2023_Entwurf_Endfassung.pdf",
+    "filename": "haushaltsplan_2023_entwurf.pdf",
+    "sha256": "7b153ab21c0c762579a25a5e2f16ae817919be5708b0e6773f31b031b1068960",
+    "size_bytes": 17619657,
+    "fetched_at": "2026-02-10T21:23:12.947865+00:00"
+  },
+  {
+    "document_id": "haushaltsplan_2024_2025_beschluss",
+    "doc_type": "haushaltsplan_beschluss",
+    "years": [
+      2024,
+      2025
+    ],
+    "priority": "primary",
+    "source_url": "https://roedermark.de/fileadmin/Stadt_und_Stadtverwaltung/Haushalt___Berichte/Haushaltsplan_DHH_2024_2025_Beschluss_inkl._BeitrittsbeschlussKBR_FINAL.pdf",
+    "filename": "haushaltsplan_2024_2025_beschluss.pdf",
+    "sha256": "29acb77f2a725502ffef49806def6efb8f960e1eafe65cb26909ec386a4923d9",
+    "size_bytes": 12405208,
+    "fetched_at": "2026-02-10T21:22:47.824501+00:00"
+  },
+  {
+    "document_id": "haushaltsplan_2024_2025_entwurf",
+    "doc_type": "haushaltsplan_entwurf",
+    "years": [
+      2024,
+      2025
+    ],
+    "priority": "primary",
+    "source_url": "https://roedermark.de/fileadmin/Stadt_und_Stadtverwaltung/Haushalt___Berichte/Haushaltsplan_DHH_2024_2025_Entwurf.pdf",
+    "filename": "haushaltsplan_2024_2025_entwurf.pdf",
+    "sha256": "84f0d5a0be419b772ce3ae025d63b0005b45a05e59557d38caca7134cbf72897",
+    "size_bytes": 11658250,
+    "fetched_at": "2026-02-10T21:23:01.149964+00:00"
+  },
+  {
+    "document_id": "haushaltsplan_2026_entwurf",
+    "doc_type": "haushaltsplan_entwurf",
+    "years": [
+      2026
+    ],
+    "priority": "primary",
+    "source_url": "https://roedermark.de/fileadmin/Stadt_und_Stadtverwaltung/Haushalt___Berichte/Haushaltsplan_HH_2026_Entwurf.pdf",
+    "filename": "haushaltsplan_2026_entwurf.pdf",
+    "sha256": "02116b891f1622644d6db3a5b120412c735dce01f59cbf5a95e3dbe63313582a",
+    "size_bytes": 12122817,
+    "fetched_at": "2026-02-10T21:22:36.888651+00:00"
+  },
+  {
+    "document_id": "haushaltsrede_2017_2018",
+    "doc_type": "haushaltsrede",
+    "years": [
+      2017,
+      2018
+    ],
+    "priority": "secondary",
+    "source_url": "https://roedermark.de/fileadmin/Stadt_und_Stadtverwaltung/Haushalt___Berichte/Haushaltsrede17_18.pdf",
+    "filename": "haushaltsrede_2017_2018.pdf",
+    "sha256": "37038984585a80a4f3af678d775bf90af027bf6a18fc773b93e2a245b214777f",
+    "size_bytes": 228086,
+    "fetched_at": "2026-02-10T21:25:15.532123+00:00"
+  },
+  {
+    "document_id": "haushaltsrede_2019",
+    "doc_type": "haushaltsrede",
+    "years": [
+      2019
+    ],
+    "priority": "secondary",
+    "source_url": "https://roedermark.de/fileadmin/Stadt_und_Stadtverwaltung/Haushalt___Berichte/Haushaltsrede2019.pdf",
+    "filename": "haushaltsrede_2019.pdf",
+    "sha256": "d692ba10e23aa140cd51cb6b1a09293d61be310b31ab05918f830595c5c1e548",
+    "size_bytes": 124359,
+    "fetched_at": "2026-02-10T21:25:14.042069+00:00"
+  },
+  {
+    "document_id": "haushaltsrede_2022",
+    "doc_type": "haushaltsrede",
+    "years": [
+      2022
+    ],
+    "priority": "secondary",
+    "source_url": "https://roedermark.de/fileadmin/Stadt_und_Stadtverwaltung/Haushalt___Berichte/2021-12-07_Haushaltsrede_2022.pdf",
+    "filename": "haushaltsrede_2022.pdf",
+    "sha256": "05389edafdf026ac0570953f071be88c0274b8fc532ca7ecee6b667121b30f2e",
+    "size_bytes": 107359,
+    "fetched_at": "2026-02-10T21:25:12.775189+00:00"
+  },
+  {
+    "document_id": "haushaltsrede_2023",
+    "doc_type": "haushaltsrede",
+    "years": [
+      2023
+    ],
+    "priority": "secondary",
+    "source_url": "https://roedermark.de/fileadmin/Stadt_und_Stadtverwaltung/Haushalt___Berichte/Haushaltsrede_Schuelner.pdf",
+    "filename": "haushaltsrede_2023.pdf",
+    "sha256": "a9726ff92ff187cb2888b87894f4ad2dac422cc4aa0264b6abb2172106daa020",
+    "size_bytes": 212785,
+    "fetched_at": "2026-02-10T21:25:11.450889+00:00"
+  },
+  {
+    "document_id": "haushaltsrede_2024_2025",
+    "doc_type": "haushaltsrede",
+    "years": [
+      2024,
+      2025
+    ],
+    "priority": "secondary",
+    "source_url": "https://roedermark.de/fileadmin/Stadt_und_Stadtverwaltung/Haushalt___Berichte/Haushaltsrede_DHH_2024_2025.pdf",
+    "filename": "haushaltsrede_2024_2025.pdf",
+    "sha256": "432f46b4fe4719b6766d2344a5cd6256e464b42a6389f0a38d288f9d9d5e7ff4",
+    "size_bytes": 104019,
+    "fetched_at": "2026-02-10T21:25:09.533088+00:00"
+  },
+  {
+    "document_id": "haushaltsrede_2026",
+    "doc_type": "haushaltsrede",
+    "years": [
+      2026
+    ],
+    "priority": "secondary",
+    "source_url": "https://roedermark.de/fileadmin/Stadt_und_Stadtverwaltung/Haushalt___Berichte/Haushaltsrede_HH_2026.pdf",
+    "filename": "haushaltsrede_2026.pdf",
+    "sha256": "279bc06c6912f9aceefac8046f68a5353f497271b26551f0399d34c786f1ecf6",
+    "size_bytes": 75912,
+    "fetched_at": "2026-02-10T21:25:08.124041+00:00"
+  },
+  {
+    "document_id": "jahresabschluss_2022",
+    "doc_type": "jahresabschluss",
+    "years": [
+      2022
+    ],
+    "priority": "primary",
+    "source_url": "https://roedermark.de/fileadmin/Stadt_und_Stadtverwaltung/Haushalt___Berichte/Jahresabschluss_2022_End.pdf",
+    "filename": "jahresabschluss_2022.pdf",
+    "sha256": "77a8b4a6d39ab2ec4d6ad004c90de344353f45b18d7b723608af46788183ad91",
+    "size_bytes": 5344763,
+    "fetched_at": "2026-02-10T21:24:55.036264+00:00"
+  },
+  {
+    "document_id": "jahresabschluss_2023",
+    "doc_type": "jahresabschluss",
+    "years": [
+      2023
+    ],
+    "priority": "primary",
+    "source_url": "https://roedermark.de/fileadmin/Stadt_und_Stadtverwaltung/Haushalt___Berichte/Jahresabschluss_2023_End.pdf",
+    "filename": "jahresabschluss_2023.pdf",
+    "sha256": "202f27adaac607d929c869242c0b6ccc8537ac6695919aebe5507a4a1baac485",
+    "size_bytes": 5410128,
+    "fetched_at": "2026-02-10T21:24:49.638544+00:00"
+  },
+  {
+    "document_id": "konsolidierung_2013_2018",
+    "doc_type": "konsolidierung",
+    "years": [
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018
+    ],
+    "priority": "secondary",
+    "source_url": "https://roedermark.de/fileadmin/Stadt_und_Stadtverwaltung/Haushalt___Berichte/Konsolidierung_Roedermark_2013-2018.pdf",
+    "filename": "konsolidierung_2013_2018.pdf",
+    "sha256": "41d8010feadd7d9f11d020b2762b89c4a7eb9e9d3b41c3dbbd7375542740bf88",
+    "size_bytes": 1525439,
+    "fetched_at": "2026-02-10T21:25:06.812328+00:00"
+  },
+  {
+    "document_id": "praesentation_2017_2018",
+    "doc_type": "praesentation",
+    "years": [
+      2017,
+      2018
+    ],
+    "priority": "secondary",
+    "source_url": "https://roedermark.de/fileadmin/Stadt_und_Stadtverwaltung/Haushalt___Berichte/Praesentation17_18.pdf",
+    "filename": "praesentation_2017_2018.pdf",
+    "sha256": "ece15bd2ce4f40ff08ef2cdc9181622154478a02009d8065f02e4d62cb0880d6",
+    "size_bytes": 1062065,
+    "fetched_at": "2026-02-10T21:25:17.474335+00:00"
+  }
+]

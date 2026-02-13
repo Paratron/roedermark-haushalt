@@ -1,0 +1,1183 @@
+{
+  "generated_at": "2026-02-12T11:43:20.211417+00:00",
+  "total_line_items": 23908,
+  "overview_line_items": 19466,
+  "detail_line_items": 4442,
+  "years": [
+    2015,
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025,
+    2026,
+    2027,
+    2028,
+    2029
+  ],
+  "documents": [
+    "gesamtabschluss_2021",
+    "gesamtabschluss_2022",
+    "haushaltsplan_2017_2018",
+    "haushaltsplan_2019",
+    "haushaltsplan_2020_2021_anpassung",
+    "haushaltsplan_2020_2021_beschluss",
+    "haushaltsplan_2022_beschluss",
+    "haushaltsplan_2022_entwurf",
+    "haushaltsplan_2023_beschluss",
+    "haushaltsplan_2023_entwurf",
+    "haushaltsplan_2024_2025_beschluss",
+    "haushaltsplan_2024_2025_entwurf",
+    "haushaltsplan_2026_entwurf",
+    "jahresabschluss_2020",
+    "jahresabschluss_2022",
+    "jahresabschluss_2023",
+    "jahresabschluss_2024"
+  ],
+  "ergebnishaushalt": {
+    "ordentliche_ertraege": [
+      {
+        "year": 2015,
+        "amount_type": "ist",
+        "amount": 46215387.0,
+        "label": "Ordentliche Erträge",
+        "document_id": "haushaltsplan_2017_2018"
+      },
+      {
+        "year": 2016,
+        "amount_type": "plan",
+        "amount": 49302898.0,
+        "label": "Ordentliche Erträge",
+        "document_id": "haushaltsplan_2017_2018"
+      },
+      {
+        "year": 2017,
+        "amount_type": "plan",
+        "amount": 56969536.0,
+        "label": "Ordentliche Erträge",
+        "document_id": "haushaltsplan_2017_2018"
+      },
+      {
+        "year": 2017,
+        "amount_type": "ist",
+        "amount": 58024287.0,
+        "label": "Ordentliche Erträge",
+        "document_id": "haushaltsplan_2019"
+      },
+      {
+        "year": 2018,
+        "amount_type": "plan",
+        "amount": 58584244.0,
+        "label": "Ordentliche Erträge",
+        "document_id": "haushaltsplan_2019"
+      },
+      {
+        "year": 2019,
+        "amount_type": "plan",
+        "amount": 62584352.0,
+        "label": "Ordentliche Erträge",
+        "document_id": "haushaltsplan_2020_2021_beschluss"
+      },
+      {
+        "year": 2021,
+        "amount_type": "plan",
+        "amount": 65089373.0,
+        "label": "Ordentliche Erträge",
+        "document_id": "haushaltsplan_2022_entwurf"
+      },
+      {
+        "year": 2018,
+        "amount_type": "ist",
+        "amount": 58413081.0,
+        "label": "Ordentliche Erträge",
+        "document_id": "haushaltsplan_2020_2021_beschluss"
+      },
+      {
+        "year": 2020,
+        "amount_type": "plan",
+        "amount": 66252307.24,
+        "label": "Ordentliche Erträge",
+        "document_id": "jahresabschluss_2020"
+      },
+      {
+        "year": 2022,
+        "amount_type": "plan",
+        "amount": 67263126.19,
+        "label": "Ordentliche Erträge",
+        "document_id": "jahresabschluss_2022"
+      },
+      {
+        "year": 2023,
+        "amount_type": "plan",
+        "amount": 77770275.74,
+        "label": "Ordentliche Erträge",
+        "document_id": "jahresabschluss_2023"
+      },
+      {
+        "year": 2024,
+        "amount_type": "plan",
+        "amount": 77350431.65,
+        "label": "Ordentliche Erträge",
+        "document_id": "jahresabschluss_2024"
+      },
+      {
+        "year": 2020,
+        "amount_type": "ist",
+        "amount": 68288586.24,
+        "label": "Ordentliche Erträge",
+        "document_id": "jahresabschluss_2020"
+      },
+      {
+        "year": 2021,
+        "amount_type": "ist",
+        "amount": 64028593.19,
+        "label": "Ordentliche Erträge",
+        "document_id": "jahresabschluss_2022"
+      },
+      {
+        "year": 2022,
+        "amount_type": "ist",
+        "amount": 70913613.43,
+        "label": "Ordentliche Erträge",
+        "document_id": "jahresabschluss_2023"
+      },
+      {
+        "year": 2024,
+        "amount_type": "ist",
+        "amount": 75345716.52,
+        "label": "Ordentliche Erträge",
+        "document_id": "jahresabschluss_2024"
+      },
+      {
+        "year": 2025,
+        "amount_type": "plan",
+        "amount": 87141598.0,
+        "label": "Ordentliche Erträge",
+        "document_id": "haushaltsplan_2026_entwurf"
+      },
+      {
+        "year": 2026,
+        "amount_type": "plan",
+        "amount": 92057965.0,
+        "label": "Ordentliche Erträge",
+        "document_id": "haushaltsplan_2026_entwurf"
+      },
+      {
+        "year": 2027,
+        "amount_type": "plan",
+        "amount": 95906643.0,
+        "label": "Ordentliche Erträge",
+        "document_id": "haushaltsplan_2026_entwurf"
+      },
+      {
+        "year": 2028,
+        "amount_type": "plan",
+        "amount": 96079768.0,
+        "label": "Ordentliche Erträge",
+        "document_id": "haushaltsplan_2026_entwurf"
+      },
+      {
+        "year": 2029,
+        "amount_type": "plan",
+        "amount": 99455755.0,
+        "label": "Ordentliche Erträge",
+        "document_id": "haushaltsplan_2026_entwurf"
+      },
+      {
+        "year": 2019,
+        "amount_type": "ist",
+        "amount": 62863587.87,
+        "label": "Ordentliche Erträge",
+        "document_id": "jahresabschluss_2020"
+      },
+      {
+        "year": 2023,
+        "amount_type": "ist",
+        "amount": 79349792.88,
+        "label": "Ordentliche Erträge",
+        "document_id": "jahresabschluss_2024"
+      }
+    ],
+    "ordentliche_aufwendungen": [
+      {
+        "year": 2020,
+        "amount_type": "ist",
+        "amount": 63834982.96,
+        "label": "Ordentliche Aufwendungen",
+        "document_id": "jahresabschluss_2020"
+      },
+      {
+        "year": 2021,
+        "amount_type": "ist",
+        "amount": 63179239.86,
+        "label": "Ordentliche Aufwendungen",
+        "document_id": "jahresabschluss_2022"
+      },
+      {
+        "year": 2022,
+        "amount_type": "ist",
+        "amount": 69728910.78,
+        "label": "Ordentliche Aufwendungen",
+        "document_id": "jahresabschluss_2023"
+      },
+      {
+        "year": 2015,
+        "amount_type": "ist",
+        "amount": 49055009.0,
+        "label": "Ordentliche Aufwendungen",
+        "document_id": "haushaltsplan_2017_2018"
+      },
+      {
+        "year": 2016,
+        "amount_type": "plan",
+        "amount": 51313786.0,
+        "label": "Ordentliche Aufwendungen",
+        "document_id": "haushaltsplan_2017_2018"
+      },
+      {
+        "year": 2017,
+        "amount_type": "plan",
+        "amount": 57100136.0,
+        "label": "Ordentliche Aufwendungen",
+        "document_id": "haushaltsplan_2017_2018"
+      },
+      {
+        "year": 2017,
+        "amount_type": "ist",
+        "amount": 57382138.0,
+        "label": "Ordentliche Aufwendungen",
+        "document_id": "haushaltsplan_2019"
+      },
+      {
+        "year": 2018,
+        "amount_type": "plan",
+        "amount": 58101917.0,
+        "label": "Ordentliche Aufwendungen",
+        "document_id": "haushaltsplan_2019"
+      },
+      {
+        "year": 2019,
+        "amount_type": "plan",
+        "amount": 63286842.0,
+        "label": "Ordentliche Aufwendungen",
+        "document_id": "haushaltsplan_2020_2021_beschluss"
+      },
+      {
+        "year": 2021,
+        "amount_type": "plan",
+        "amount": 65394990.0,
+        "label": "Ordentliche Aufwendungen",
+        "document_id": "haushaltsplan_2022_entwurf"
+      },
+      {
+        "year": 2018,
+        "amount_type": "ist",
+        "amount": 57972336.0,
+        "label": "Ordentliche Aufwendungen",
+        "document_id": "haushaltsplan_2020_2021_beschluss"
+      },
+      {
+        "year": 2020,
+        "amount_type": "plan",
+        "amount": 65894680.89,
+        "label": "Ordentliche Aufwendungen",
+        "document_id": "jahresabschluss_2020"
+      },
+      {
+        "year": 2022,
+        "amount_type": "plan",
+        "amount": 68492649.49,
+        "label": "Ordentliche Aufwendungen",
+        "document_id": "jahresabschluss_2022"
+      },
+      {
+        "year": 2023,
+        "amount_type": "plan",
+        "amount": 78879847.48,
+        "label": "Ordentliche Aufwendungen",
+        "document_id": "jahresabschluss_2023"
+      },
+      {
+        "year": 2024,
+        "amount_type": "plan",
+        "amount": 82375749.27,
+        "label": "Ordentliche Aufwendungen",
+        "document_id": "jahresabschluss_2024"
+      },
+      {
+        "year": 2024,
+        "amount_type": "ist",
+        "amount": 79741327.66,
+        "label": "Ordentliche Aufwendungen",
+        "document_id": "jahresabschluss_2024"
+      },
+      {
+        "year": 2025,
+        "amount_type": "plan",
+        "amount": 86316977.0,
+        "label": "Ordentliche Aufwendungen",
+        "document_id": "haushaltsplan_2026_entwurf"
+      },
+      {
+        "year": 2026,
+        "amount_type": "plan",
+        "amount": 105197705.0,
+        "label": "Ordentliche Aufwendungen",
+        "document_id": "haushaltsplan_2026_entwurf"
+      },
+      {
+        "year": 2027,
+        "amount_type": "plan",
+        "amount": 106517247.0,
+        "label": "Ordentliche Aufwendungen",
+        "document_id": "haushaltsplan_2026_entwurf"
+      },
+      {
+        "year": 2028,
+        "amount_type": "plan",
+        "amount": 108488196.0,
+        "label": "Ordentliche Aufwendungen",
+        "document_id": "haushaltsplan_2026_entwurf"
+      },
+      {
+        "year": 2029,
+        "amount_type": "plan",
+        "amount": 111679939.0,
+        "label": "Ordentliche Aufwendungen",
+        "document_id": "haushaltsplan_2026_entwurf"
+      },
+      {
+        "year": 2019,
+        "amount_type": "ist",
+        "amount": 61881055.4,
+        "label": "Ordentliche Aufwendungen",
+        "document_id": "jahresabschluss_2020"
+      },
+      {
+        "year": 2023,
+        "amount_type": "ist",
+        "amount": 78732352.93,
+        "label": "Ordentliche Aufwendungen",
+        "document_id": "jahresabschluss_2024"
+      }
+    ],
+    "ordentliches_ergebnis": [
+      {
+        "year": 2015,
+        "amount_type": "ist",
+        "amount": -3151661.0,
+        "label": "Ordentliches Ergebnis",
+        "document_id": "haushaltsplan_2017_2018"
+      },
+      {
+        "year": 2016,
+        "amount_type": "plan",
+        "amount": -2490087.0,
+        "label": "Ordentliches Ergebnis",
+        "document_id": "haushaltsplan_2017_2018"
+      },
+      {
+        "year": 2017,
+        "amount_type": "plan",
+        "amount": -872650.0,
+        "label": "Ordentliches Ergebnis",
+        "document_id": "haushaltsplan_2017_2018"
+      },
+      {
+        "year": 2017,
+        "amount_type": "ist",
+        "amount": 205903.0,
+        "label": "Ordentliches Ergebnis",
+        "document_id": "haushaltsplan_2019"
+      },
+      {
+        "year": 2018,
+        "amount_type": "plan",
+        "amount": 6877.0,
+        "label": "Ordentliches Ergebnis",
+        "document_id": "haushaltsplan_2019"
+      },
+      {
+        "year": 2019,
+        "amount_type": "plan",
+        "amount": 49610.0,
+        "label": "Ordentliches Ergebnis",
+        "document_id": "haushaltsplan_2020_2021_beschluss"
+      },
+      {
+        "year": 2021,
+        "amount_type": "plan",
+        "amount": -628467.0,
+        "label": "Ordentliches Ergebnis",
+        "document_id": "haushaltsplan_2022_entwurf"
+      },
+      {
+        "year": 2018,
+        "amount_type": "ist",
+        "amount": 96344.0,
+        "label": "Ordentliches Ergebnis",
+        "document_id": "haushaltsplan_2020_2021_beschluss"
+      },
+      {
+        "year": 2020,
+        "amount_type": "plan",
+        "amount": 21610.77,
+        "label": "Ordentliches Ergebnis",
+        "document_id": "jahresabschluss_2020"
+      },
+      {
+        "year": 2020,
+        "amount_type": "ist",
+        "amount": 3987746.24,
+        "label": "Ordentliches Ergebnis",
+        "document_id": "jahresabschluss_2020"
+      },
+      {
+        "year": 2021,
+        "amount_type": "ist",
+        "amount": 584991.87,
+        "label": "Ordentliches Ergebnis",
+        "document_id": "jahresabschluss_2022"
+      },
+      {
+        "year": 2022,
+        "amount_type": "plan",
+        "amount": -1442638.88,
+        "label": "Ordentliches Ergebnis",
+        "document_id": "jahresabschluss_2022"
+      },
+      {
+        "year": 2022,
+        "amount_type": "ist",
+        "amount": 848069.25,
+        "label": "Ordentliches Ergebnis",
+        "document_id": "jahresabschluss_2023"
+      },
+      {
+        "year": 2023,
+        "amount_type": "plan",
+        "amount": -1699587.32,
+        "label": "Ordentliches Ergebnis",
+        "document_id": "jahresabschluss_2023"
+      },
+      {
+        "year": 2024,
+        "amount_type": "plan",
+        "amount": -5523954.2,
+        "label": "Ordentliches Ergebnis",
+        "document_id": "jahresabschluss_2024"
+      },
+      {
+        "year": 2024,
+        "amount_type": "ist",
+        "amount": -4501435.93,
+        "label": "Ordentliches Ergebnis",
+        "document_id": "jahresabschluss_2024"
+      },
+      {
+        "year": 2025,
+        "amount_type": "plan",
+        "amount": 154434.0,
+        "label": "Ordentliches Ergebnis",
+        "document_id": "haushaltsplan_2026_entwurf"
+      },
+      {
+        "year": 2026,
+        "amount_type": "plan",
+        "amount": -13809905.0,
+        "label": "Ordentliches Ergebnis",
+        "document_id": "haushaltsplan_2026_entwurf"
+      },
+      {
+        "year": 2027,
+        "amount_type": "plan",
+        "amount": -11267751.0,
+        "label": "Ordentliches Ergebnis",
+        "document_id": "haushaltsplan_2026_entwurf"
+      },
+      {
+        "year": 2028,
+        "amount_type": "plan",
+        "amount": -13001836.0,
+        "label": "Ordentliches Ergebnis",
+        "document_id": "haushaltsplan_2026_entwurf"
+      },
+      {
+        "year": 2029,
+        "amount_type": "plan",
+        "amount": -12756213.0,
+        "label": "Ordentliches Ergebnis",
+        "document_id": "haushaltsplan_2026_entwurf"
+      },
+      {
+        "year": 2019,
+        "amount_type": "ist",
+        "amount": 726272.88,
+        "label": "Ordentliches Ergebnis",
+        "document_id": "jahresabschluss_2020"
+      },
+      {
+        "year": 2023,
+        "amount_type": "ist",
+        "amount": 118243.41,
+        "label": "Ordentliches Ergebnis",
+        "document_id": "jahresabschluss_2024"
+      }
+    ],
+    "jahresergebnis": [
+      {
+        "year": 2020,
+        "amount_type": "ist",
+        "amount": 4111977.26,
+        "label": "Jahresergebnis",
+        "document_id": "jahresabschluss_2020"
+      },
+      {
+        "year": 2021,
+        "amount_type": "ist",
+        "amount": 853570.86,
+        "label": "Jahresergebnis",
+        "document_id": "jahresabschluss_2022"
+      },
+      {
+        "year": 2022,
+        "amount_type": "ist",
+        "amount": 945501.98,
+        "label": "Jahresergebnis",
+        "document_id": "jahresabschluss_2023"
+      },
+      {
+        "year": 2015,
+        "amount_type": "ist",
+        "amount": -2339578.0,
+        "label": "Jahresergebnis",
+        "document_id": "haushaltsplan_2017_2018"
+      },
+      {
+        "year": 2016,
+        "amount_type": "plan",
+        "amount": -2291287.0,
+        "label": "Jahresergebnis",
+        "document_id": "haushaltsplan_2017_2018"
+      },
+      {
+        "year": 2017,
+        "amount_type": "plan",
+        "amount": -588850.0,
+        "label": "Jahresergebnis",
+        "document_id": "haushaltsplan_2017_2018"
+      },
+      {
+        "year": 2017,
+        "amount_type": "ist",
+        "amount": 1111499.0,
+        "label": "Jahresergebnis",
+        "document_id": "haushaltsplan_2019"
+      },
+      {
+        "year": 2018,
+        "amount_type": "plan",
+        "amount": 97677.0,
+        "label": "Jahresergebnis",
+        "document_id": "haushaltsplan_2019"
+      },
+      {
+        "year": 2019,
+        "amount_type": "plan",
+        "amount": 158410.0,
+        "label": "Jahresergebnis",
+        "document_id": "haushaltsplan_2020_2021_beschluss"
+      },
+      {
+        "year": 2020,
+        "amount_type": "plan",
+        "amount": 77863.38,
+        "label": "Jahresergebnis",
+        "document_id": "jahresabschluss_2020"
+      },
+      {
+        "year": 2021,
+        "amount_type": "plan",
+        "amount": -569867.0,
+        "label": "Jahresergebnis",
+        "document_id": "haushaltsplan_2022_entwurf"
+      },
+      {
+        "year": 2022,
+        "amount_type": "plan",
+        "amount": -1448666.76,
+        "label": "Jahresergebnis",
+        "document_id": "jahresabschluss_2022"
+      },
+      {
+        "year": 2018,
+        "amount_type": "ist",
+        "amount": 737397.0,
+        "label": "Jahresergebnis",
+        "document_id": "haushaltsplan_2020_2021_beschluss"
+      },
+      {
+        "year": 2023,
+        "amount_type": "plan",
+        "amount": -1647959.93,
+        "label": "Jahresergebnis",
+        "document_id": "jahresabschluss_2023"
+      },
+      {
+        "year": 2024,
+        "amount_type": "plan",
+        "amount": -5474808.29,
+        "label": "Jahresergebnis",
+        "document_id": "jahresabschluss_2024"
+      },
+      {
+        "year": 2024,
+        "amount_type": "ist",
+        "amount": -4862073.73,
+        "label": "Jahresergebnis",
+        "document_id": "jahresabschluss_2024"
+      },
+      {
+        "year": 2025,
+        "amount_type": "plan",
+        "amount": 213034.0,
+        "label": "Jahresergebnis",
+        "document_id": "haushaltsplan_2026_entwurf"
+      },
+      {
+        "year": 2026,
+        "amount_type": "plan",
+        "amount": -13751305.0,
+        "label": "Jahresergebnis",
+        "document_id": "haushaltsplan_2026_entwurf"
+      },
+      {
+        "year": 2027,
+        "amount_type": "plan",
+        "amount": -11209151.0,
+        "label": "Jahresergebnis",
+        "document_id": "haushaltsplan_2026_entwurf"
+      },
+      {
+        "year": 2028,
+        "amount_type": "plan",
+        "amount": -12943236.0,
+        "label": "Jahresergebnis",
+        "document_id": "haushaltsplan_2026_entwurf"
+      },
+      {
+        "year": 2029,
+        "amount_type": "plan",
+        "amount": -12697613.0,
+        "label": "Jahresergebnis",
+        "document_id": "haushaltsplan_2026_entwurf"
+      },
+      {
+        "year": 2019,
+        "amount_type": "ist",
+        "amount": 829423.67,
+        "label": "Jahresergebnis",
+        "document_id": "jahresabschluss_2020"
+      },
+      {
+        "year": 2023,
+        "amount_type": "ist",
+        "amount": 194997.8,
+        "label": "Jahresergebnis",
+        "document_id": "jahresabschluss_2024"
+      }
+    ]
+  },
+  "finanzhaushalt": {
+    "einzahlungen_lfd": [
+      {
+        "year": 2015,
+        "amount_type": "ist",
+        "amount": 13247266.0,
+        "label": "Einzahlungen lfd. Verwaltung",
+        "document_id": "haushaltsplan_2017_2018"
+      },
+      {
+        "year": 2016,
+        "amount_type": "plan",
+        "amount": 13694813.0,
+        "label": "Einzahlungen lfd. Verwaltung",
+        "document_id": "haushaltsplan_2017_2018"
+      },
+      {
+        "year": 2017,
+        "amount_type": "plan",
+        "amount": 15956664.0,
+        "label": "Einzahlungen lfd. Verwaltung",
+        "document_id": "haushaltsplan_2017_2018"
+      },
+      {
+        "year": 2017,
+        "amount_type": "ist",
+        "amount": 15031690.0,
+        "label": "Einzahlungen lfd. Verwaltung",
+        "document_id": "haushaltsplan_2019"
+      },
+      {
+        "year": 2018,
+        "amount_type": "plan",
+        "amount": 16292691.0,
+        "label": "Einzahlungen lfd. Verwaltung",
+        "document_id": "haushaltsplan_2019"
+      },
+      {
+        "year": 2018,
+        "amount_type": "ist",
+        "amount": 15990154.0,
+        "label": "Einzahlungen lfd. Verwaltung",
+        "document_id": "haushaltsplan_2020_2021_beschluss"
+      },
+      {
+        "year": 2019,
+        "amount_type": "plan",
+        "amount": 17212144.0,
+        "label": "Einzahlungen lfd. Verwaltung",
+        "document_id": "haushaltsplan_2020_2021_beschluss"
+      },
+      {
+        "year": 2020,
+        "amount_type": "plan",
+        "amount": 19525041.0,
+        "label": "Einzahlungen lfd. Verwaltung",
+        "document_id": "haushaltsplan_2020_2021_beschluss"
+      },
+      {
+        "year": 2020,
+        "amount_type": "ist",
+        "amount": 17390143.0,
+        "label": "Einzahlungen lfd. Verwaltung",
+        "document_id": "haushaltsplan_2022_entwurf"
+      },
+      {
+        "year": 2021,
+        "amount_type": "plan",
+        "amount": 20173610.0,
+        "label": "Einzahlungen lfd. Verwaltung",
+        "document_id": "haushaltsplan_2022_entwurf"
+      },
+      {
+        "year": 2021,
+        "amount_type": "ist",
+        "amount": 17873410.0,
+        "label": "Einzahlungen lfd. Verwaltung",
+        "document_id": "haushaltsplan_2023_entwurf"
+      },
+      {
+        "year": 2022,
+        "amount_type": "plan",
+        "amount": 20846287.0,
+        "label": "Einzahlungen lfd. Verwaltung",
+        "document_id": "haushaltsplan_2023_entwurf"
+      },
+      {
+        "year": 2022,
+        "amount_type": "ist",
+        "amount": 19106987.0,
+        "label": "Einzahlungen lfd. Verwaltung",
+        "document_id": "haushaltsplan_2024_2025_entwurf"
+      },
+      {
+        "year": 2023,
+        "amount_type": "plan",
+        "amount": 21738885.0,
+        "label": "Einzahlungen lfd. Verwaltung",
+        "document_id": "haushaltsplan_2024_2025_entwurf"
+      },
+      {
+        "year": 2024,
+        "amount_type": "plan",
+        "amount": 23529936.0,
+        "label": "Einzahlungen lfd. Verwaltung",
+        "document_id": "haushaltsplan_2024_2025_entwurf"
+      },
+      {
+        "year": 2024,
+        "amount_type": "ist",
+        "amount": 21755384.0,
+        "label": "Einzahlungen lfd. Verwaltung",
+        "document_id": "haushaltsplan_2026_entwurf"
+      },
+      {
+        "year": 2025,
+        "amount_type": "plan",
+        "amount": 23056635.0,
+        "label": "Einzahlungen lfd. Verwaltung",
+        "document_id": "haushaltsplan_2026_entwurf"
+      },
+      {
+        "year": 2026,
+        "amount_type": "plan",
+        "amount": 33275818.0,
+        "label": "Einzahlungen lfd. Verwaltung",
+        "document_id": "haushaltsplan_2026_entwurf"
+      },
+      {
+        "year": 2027,
+        "amount_type": "plan",
+        "amount": 34274093.0,
+        "label": "Einzahlungen lfd. Verwaltung",
+        "document_id": "haushaltsplan_2026_entwurf"
+      },
+      {
+        "year": 2028,
+        "amount_type": "plan",
+        "amount": 35302316.0,
+        "label": "Einzahlungen lfd. Verwaltung",
+        "document_id": "haushaltsplan_2026_entwurf"
+      },
+      {
+        "year": 2029,
+        "amount_type": "plan",
+        "amount": 36361386.0,
+        "label": "Einzahlungen lfd. Verwaltung",
+        "document_id": "haushaltsplan_2026_entwurf"
+      }
+    ],
+    "auszahlungen_lfd": [
+      {
+        "year": 2015,
+        "amount_type": "ist",
+        "amount": 434292.0,
+        "label": "Auszahlungen lfd. Verwaltung",
+        "document_id": "haushaltsplan_2017_2018"
+      },
+      {
+        "year": 2016,
+        "amount_type": "plan",
+        "amount": 187500.0,
+        "label": "Auszahlungen lfd. Verwaltung",
+        "document_id": "haushaltsplan_2017_2018"
+      },
+      {
+        "year": 2017,
+        "amount_type": "plan",
+        "amount": 88700.0,
+        "label": "Auszahlungen lfd. Verwaltung",
+        "document_id": "haushaltsplan_2017_2018"
+      },
+      {
+        "year": 2017,
+        "amount_type": "ist",
+        "amount": 515029.0,
+        "label": "Auszahlungen lfd. Verwaltung",
+        "document_id": "haushaltsplan_2019"
+      },
+      {
+        "year": 2018,
+        "amount_type": "plan",
+        "amount": 2086904.0,
+        "label": "Auszahlungen lfd. Verwaltung",
+        "document_id": "haushaltsplan_2019"
+      },
+      {
+        "year": 2020,
+        "amount_type": "plan",
+        "amount": 590056.0,
+        "label": "Auszahlungen lfd. Verwaltung",
+        "document_id": "haushaltsplan_2019"
+      },
+      {
+        "year": 2018,
+        "amount_type": "ist",
+        "amount": 160669.0,
+        "label": "Auszahlungen lfd. Verwaltung",
+        "document_id": "haushaltsplan_2020_2021_beschluss"
+      },
+      {
+        "year": 2019,
+        "amount_type": "plan",
+        "amount": 203856.0,
+        "label": "Auszahlungen lfd. Verwaltung",
+        "document_id": "haushaltsplan_2020_2021_beschluss"
+      },
+      {
+        "year": 2020,
+        "amount_type": "ist",
+        "amount": 664060.0,
+        "label": "Auszahlungen lfd. Verwaltung",
+        "document_id": "haushaltsplan_2022_entwurf"
+      },
+      {
+        "year": 2021,
+        "amount_type": "plan",
+        "amount": 1097306.0,
+        "label": "Auszahlungen lfd. Verwaltung",
+        "document_id": "haushaltsplan_2022_entwurf"
+      },
+      {
+        "year": 2021,
+        "amount_type": "ist",
+        "amount": 2198733.0,
+        "label": "Auszahlungen lfd. Verwaltung",
+        "document_id": "haushaltsplan_2023_entwurf"
+      },
+      {
+        "year": 2022,
+        "amount_type": "plan",
+        "amount": 1557356.0,
+        "label": "Auszahlungen lfd. Verwaltung",
+        "document_id": "haushaltsplan_2023_entwurf"
+      },
+      {
+        "year": 2022,
+        "amount_type": "ist",
+        "amount": 882441.0,
+        "label": "Auszahlungen lfd. Verwaltung",
+        "document_id": "haushaltsplan_2024_2025_entwurf"
+      },
+      {
+        "year": 2023,
+        "amount_type": "plan",
+        "amount": 2061056.0,
+        "label": "Auszahlungen lfd. Verwaltung",
+        "document_id": "haushaltsplan_2024_2025_entwurf"
+      },
+      {
+        "year": 2024,
+        "amount_type": "plan",
+        "amount": 1851356.0,
+        "label": "Auszahlungen lfd. Verwaltung",
+        "document_id": "haushaltsplan_2024_2025_entwurf"
+      },
+      {
+        "year": 2024,
+        "amount_type": "ist",
+        "amount": 1052974.0,
+        "label": "Auszahlungen lfd. Verwaltung",
+        "document_id": "haushaltsplan_2026_entwurf"
+      },
+      {
+        "year": 2025,
+        "amount_type": "plan",
+        "amount": 2237856.0,
+        "label": "Auszahlungen lfd. Verwaltung",
+        "document_id": "haushaltsplan_2026_entwurf"
+      },
+      {
+        "year": 2026,
+        "amount_type": "plan",
+        "amount": 2415356.0,
+        "label": "Auszahlungen lfd. Verwaltung",
+        "document_id": "haushaltsplan_2026_entwurf"
+      },
+      {
+        "year": 2027,
+        "amount_type": "plan",
+        "amount": 2554356.0,
+        "label": "Auszahlungen lfd. Verwaltung",
+        "document_id": "haushaltsplan_2026_entwurf"
+      },
+      {
+        "year": 2028,
+        "amount_type": "plan",
+        "amount": 1293356.0,
+        "label": "Auszahlungen lfd. Verwaltung",
+        "document_id": "haushaltsplan_2026_entwurf"
+      },
+      {
+        "year": 2029,
+        "amount_type": "plan",
+        "amount": 585356.0,
+        "label": "Auszahlungen lfd. Verwaltung",
+        "document_id": "haushaltsplan_2026_entwurf"
+      }
+    ],
+    "saldo_lfd": [
+      {
+        "year": 2016,
+        "amount_type": "plan",
+        "amount": -354273.0,
+        "label": "Saldo lfd. Verwaltung",
+        "document_id": "haushaltsplan_2017_2018"
+      },
+      {
+        "year": 2017,
+        "amount_type": "plan",
+        "amount": -3362194.0,
+        "label": "Saldo lfd. Verwaltung",
+        "document_id": "haushaltsplan_2017_2018"
+      },
+      {
+        "year": 2018,
+        "amount_type": "plan",
+        "amount": 112147.0,
+        "label": "Saldo lfd. Verwaltung",
+        "document_id": "haushaltsplan_2019"
+      },
+      {
+        "year": 2019,
+        "amount_type": "plan",
+        "amount": 2651363.0,
+        "label": "Saldo lfd. Verwaltung",
+        "document_id": "haushaltsplan_2020_2021_beschluss"
+      },
+      {
+        "year": 2020,
+        "amount_type": "plan",
+        "amount": 1209563.0,
+        "label": "Saldo lfd. Verwaltung",
+        "document_id": "haushaltsplan_2020_2021_beschluss"
+      },
+      {
+        "year": 2021,
+        "amount_type": "plan",
+        "amount": 2466587.0,
+        "label": "Saldo lfd. Verwaltung",
+        "document_id": "haushaltsplan_2022_entwurf"
+      },
+      {
+        "year": 2017,
+        "amount_type": "ist",
+        "amount": -1331852.0,
+        "label": "Saldo lfd. Verwaltung",
+        "document_id": "haushaltsplan_2019"
+      },
+      {
+        "year": 2018,
+        "amount_type": "ist",
+        "amount": 190370.0,
+        "label": "Saldo lfd. Verwaltung",
+        "document_id": "haushaltsplan_2020_2021_beschluss"
+      },
+      {
+        "year": 2022,
+        "amount_type": "plan",
+        "amount": 5657849.0,
+        "label": "Saldo lfd. Verwaltung",
+        "document_id": "haushaltsplan_2023_entwurf"
+      },
+      {
+        "year": 2023,
+        "amount_type": "plan",
+        "amount": 4324047.0,
+        "label": "Saldo lfd. Verwaltung",
+        "document_id": "haushaltsplan_2024_2025_entwurf"
+      },
+      {
+        "year": 2024,
+        "amount_type": "plan",
+        "amount": 11947414.0,
+        "label": "Saldo lfd. Verwaltung",
+        "document_id": "haushaltsplan_2024_2025_entwurf"
+      },
+      {
+        "year": 2020,
+        "amount_type": "ist",
+        "amount": -5394812.0,
+        "label": "Saldo lfd. Verwaltung",
+        "document_id": "haushaltsplan_2022_entwurf"
+      },
+      {
+        "year": 2021,
+        "amount_type": "ist",
+        "amount": 1893034.0,
+        "label": "Saldo lfd. Verwaltung",
+        "document_id": "haushaltsplan_2023_entwurf"
+      },
+      {
+        "year": 2022,
+        "amount_type": "ist",
+        "amount": -1186058.0,
+        "label": "Saldo lfd. Verwaltung",
+        "document_id": "haushaltsplan_2024_2025_entwurf"
+      },
+      {
+        "year": 2024,
+        "amount_type": "ist",
+        "amount": 7875634.0,
+        "label": "Saldo lfd. Verwaltung",
+        "document_id": "haushaltsplan_2026_entwurf"
+      },
+      {
+        "year": 2025,
+        "amount_type": "plan",
+        "amount": -345850.0,
+        "label": "Saldo lfd. Verwaltung",
+        "document_id": "haushaltsplan_2026_entwurf"
+      },
+      {
+        "year": 2026,
+        "amount_type": "plan",
+        "amount": 24985285.0,
+        "label": "Saldo lfd. Verwaltung",
+        "document_id": "haushaltsplan_2026_entwurf"
+      },
+      {
+        "year": 2027,
+        "amount_type": "plan",
+        "amount": 23278608.0,
+        "label": "Saldo lfd. Verwaltung",
+        "document_id": "haushaltsplan_2026_entwurf"
+      },
+      {
+        "year": 2028,
+        "amount_type": "plan",
+        "amount": 26466157.0,
+        "label": "Saldo lfd. Verwaltung",
+        "document_id": "haushaltsplan_2026_entwurf"
+      },
+      {
+        "year": 2029,
+        "amount_type": "plan",
+        "amount": 22358787.0,
+        "label": "Saldo lfd. Verwaltung",
+        "document_id": "haushaltsplan_2026_entwurf"
+      }
+    ]
+  },
+  "coverage": {
+    "2015_ist": 785,
+    "2016_plan": 780,
+    "2017_ist": 767,
+    "2017_plan": 275,
+    "2018_ist": 854,
+    "2018_plan": 797,
+    "2019_ist": 10,
+    "2019_plan": 1263,
+    "2020_ist": 881,
+    "2020_plan": 1015,
+    "2021_ist": 861,
+    "2021_plan": 1248,
+    "2022_ist": 883,
+    "2022_plan": 1224,
+    "2023_ist": 10,
+    "2023_plan": 1137,
+    "2024_ist": 848,
+    "2024_plan": 1078,
+    "2025_plan": 1220,
+    "2026_plan": 1082,
+    "2027_plan": 887,
+    "2028_plan": 887,
+    "2029_plan": 674
+  },
+  "ist_years": [
+    2015,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024
+  ],
+  "plan_only_years": [
+    2016,
+    2025,
+    2026,
+    2027,
+    2028,
+    2029
+  ],
+  "last_ist_year": 2024
+}

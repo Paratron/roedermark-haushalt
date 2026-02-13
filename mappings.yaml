@@ -1,0 +1,33 @@
+# mappings.yaml – Label-Synonyme und Normalisierungsregeln
+# Wird vom Normalize-Agent verwendet, um unterschiedliche Schreibweisen
+# auf einheitliche Bezeichnungen zu bringen.
+
+version: 1
+
+# Zahlenformat-Normalisierung
+number_formats:
+  - pattern: "T€"
+    multiplier: 1000
+    target_unit: EUR
+  - pattern: "Mio€"
+    multiplier: 1000000
+    target_unit: EUR
+  - pattern: "TEUR"
+    multiplier: 1000
+    target_unit: EUR
+  - pattern: "EUR"
+    multiplier: 1
+    target_unit: EUR
+  - pattern: "€"
+    multiplier: 1
+    target_unit: EUR
+
+# Label-Synonyme (werden beim Normalize-Schritt aufgelöst)
+# Format: original → normalized
+synonyms: {}
+  # Beispiel (aktivieren sobald echte Daten vorliegen):
+  # "Personalaufwendungen": "personalaufwand"
+  # "Aufwendungen f. Sach- u. Dienstleistungen": "sachaufwand"
+
+# Produkt-/Kontenstruktur-Hilfen (optional, später befüllen)
+structure_hints: {}
