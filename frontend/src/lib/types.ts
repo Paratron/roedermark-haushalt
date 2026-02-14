@@ -67,6 +67,55 @@ export interface SourceLink {
 	page: number | null;
 }
 
+/** Commentary from a Jahresabschluss Rechenschaftsbericht about investment deviations */
+export interface InvestmentCommentary {
+	document_id: string;
+	year: number;
+	category: string;
+	text: string;
+	items: { project: string; amount_eur?: number | null; plan_eur?: number | null; ist_eur?: number | null }[];
+	page_start: number;
+	page_end: number;
+}
+
+/** A classified investment entry from the pipeline */
+export interface ClassifiedInvestmentEntry {
+	key: string;
+	bezeichnung: string;
+	th_nr: number;
+	th_name: string;
+	entry_type: string;
+	thema: string;
+	ist_total: number;
+	plan_total: number;
+	years: number[];
+}
+
+/** Aggregated theme summary */
+export interface ThemaSummary {
+	thema: string;
+	label: string;
+	ausgaben_ist: number;
+	ausgaben_plan: number;
+	einnahmen_ist: number;
+	einnahmen_plan: number;
+	count_ausgaben: number;
+	count_einnahmen: number;
+}
+
+/** The full classification result */
+export interface InvestmentClassification {
+	meta: {
+		total_entries: number;
+		type_counts: Record<string, number>;
+		thema_counts: Record<string, number>;
+		type_labels: Record<string, string>;
+		thema_labels: Record<string, string>;
+	};
+	themen: ThemaSummary[];
+	entries: ClassifiedInvestmentEntry[];
+}
+
 export interface Summary {
 	generated_at: string;
 	total_line_items: number;

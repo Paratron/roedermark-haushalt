@@ -387,6 +387,36 @@ export function haushaltTypeLabelLong(type: HaushaltType): string {
 	}
 }
 
+// ─── Investment Commentary from Jahresabschlüsse ───
+
+import type { InvestmentCommentary, InvestmentClassification } from './types';
+
+/** Load investment commentary extracted from Rechenschaftsberichte */
+export async function loadInvestmentCommentary(
+	fetchFn: typeof fetch = fetch
+): Promise<InvestmentCommentary[]> {
+	try {
+		const res = await fetchFn('/data/investment_commentary.json');
+		if (!res.ok) return [];
+		return await res.json();
+	} catch {
+		return [];
+	}
+}
+
+/** Load the semantically classified investment entries */
+export async function loadInvestmentClassification(
+	fetchFn: typeof fetch = fetch
+): Promise<InvestmentClassification | null> {
+	try {
+		const res = await fetchFn('/data/investment_classification.json');
+		if (!res.ok) return null;
+		return await res.json();
+	} catch {
+		return null;
+	}
+}
+
 // ─── Provenance / Source Citation Utilities ───
 
 /** Short label for a document, e.g. "HH 2026 Entwurf" */

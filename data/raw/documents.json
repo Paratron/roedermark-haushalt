@@ -267,6 +267,19 @@
     "fetched_at": "2026-02-10T21:25:08.124041+00:00"
   },
   {
+    "document_id": "jahresabschluss_2020",
+    "doc_type": "jahresabschluss",
+    "years": [
+      2020
+    ],
+    "priority": "primary",
+    "source_url": "https://www.rm-news.de/AM/2024/Jahresabschluss_2020_End.pdf",
+    "filename": "jahresabschluss_2020.pdf",
+    "sha256": "71bd1a8d08c5590f83ac01e7ba9f54128c26a91036fe223bacb8852872ed6326",
+    "size_bytes": 4638925,
+    "fetched_at": "2026-02-10T21:25:08.124041+00:00"
+  },
+  {
     "document_id": "jahresabschluss_2022",
     "doc_type": "jahresabschluss",
     "years": [
@@ -291,6 +304,19 @@
     "sha256": "202f27adaac607d929c869242c0b6ccc8537ac6695919aebe5507a4a1baac485",
     "size_bytes": 5410128,
     "fetched_at": "2026-02-10T21:24:49.638544+00:00"
+  },
+  {
+    "document_id": "jahresabschluss_2024",
+    "doc_type": "jahresabschluss",
+    "years": [
+      2024
+    ],
+    "priority": "primary",
+    "source_url": "https://roedermark.de/fileadmin/Stadt_und_Stadtverwaltung/Haushalt___Berichte/Jahresabschluss_2024.pdf",
+    "filename": "jahresabschluss_2024.pdf",
+    "sha256": "5cf1a4c838274d0822f2a8fb7b1830407e1a924670c1083f7310abe0ed35d3d2",
+    "size_bytes": 4965469,
+    "fetched_at": "2026-02-10T21:25:08.124041+00:00"
   },
   {
     "document_id": "konsolidierung_2013_2018",

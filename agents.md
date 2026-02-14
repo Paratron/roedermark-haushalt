@@ -13,7 +13,7 @@ Ziel: Der Agent soll **selbstständig, reproduzierbar und nachvollziehbar** arbe
 * Jede Zahl muss auf ein konkretes Dokument + Seite referenzierbar sein.
 * Bevor neue Heuristiken eingeführt werden: bestehende Regeln prüfen.
 * Lieber unvollständig, aber korrekt, als vollständig mit Fehlern.
-* **Keine automatischen Builds** (`npm run build`) ausführen, es sei denn der User fordert es explizit an.
+* **Keine Builds ausführen** – weder `npm run build` noch `svelte-check` oder ähnliches. Builds sind Zeitverschwendung und werden ausschließlich vom User selbst angestoßen.
 
 ---
 

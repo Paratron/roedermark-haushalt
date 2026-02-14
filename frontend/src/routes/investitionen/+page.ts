@@ -1,11 +1,13 @@
-import { loadLineItems, loadSummary, loadDocuments, investitionItems } from '$lib/data';
+import { loadLineItems, loadSummary, loadDocuments, loadInvestmentCommentary, loadInvestmentClassification, investitionItems } from '$lib/data';
 import type { PageLoad } from './$types';
 
 export const load: PageLoad = async ({ fetch }) => {
-	const [allItems, summary, documents] = await Promise.all([
+	const [allItems, summary, documents, commentary, classification] = await Promise.all([
 		loadLineItems(fetch),
 		loadSummary(fetch),
-		loadDocuments(fetch)
+		loadDocuments(fetch),
+		loadInvestmentCommentary(fetch),
+		loadInvestmentClassification(fetch)
 	]);
 
 	const investments = investitionItems(allItems);
@@ -30,5 +32,5 @@ export const load: PageLoad = async ({ fetch }) => {
 		(a, b) => Number.parseFloat(a.nr) - Number.parseFloat(b.nr)
 	);
 
-	return { investments, summary, teilhaushalte, documents };
+	return { investments, summary, teilhaushalte, documents, commentary, classification };
 };
