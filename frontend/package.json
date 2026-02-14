@@ -23,6 +23,7 @@
 	},
 	"dependencies": {
 		"@lucide/svelte": "^0.563.1",
+		"@sveltejs/adapter-vercel": "^6.3.1",
 		"chart.js": "^4.5.1"
 	}
 }
