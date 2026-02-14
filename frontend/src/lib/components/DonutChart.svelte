@@ -20,12 +20,50 @@
 		onSliceClick?: (nr: string) => void;
 		/** Hide the built-in legend (use your own alongside) */
 		hideLegend?: boolean;
+		/** Per-segment colors for a thin outer ring. Length must match slices. */
+		outerRingColors?: string[];
+		/** Per-segment labels for the outer ring (shown in tooltip). Length must match slices. */
+		outerRingLabels?: string[];
 	}
 
-	let { title, slices, onSliceClick, hideLegend = false }: Props = $props();
+	let { title, slices, onSliceClick, hideLegend = false, outerRingColors, outerRingLabels }: Props = $props();
 
 	let canvasEl: HTMLCanvasElement;
 	let chart: Chart | undefined;
+	let tooltipEl!: HTMLDivElement;
+
+	function externalTooltipHandler(context: any) {
+		const { chart: c, tooltip } = context;
+		if (!tooltipEl) return;
+
+		if (tooltip.opacity === 0) {
+			tooltipEl.style.opacity = '0';
+			tooltipEl.style.pointerEvents = 'none';
+			return;
+		}
+
+		// Build content
+		const dataIndex = tooltip.dataPoints?.[0]?.dataIndex;
+		if (dataIndex == null) return;
+		const slice = slices[dataIndex];
+		if (!slice) return;
+
+		const pct = (slice.percent * 100).toFixed(1);
+		let html = `<div class="tt-line"><strong>${slice.category.label}</strong></div>`;
+		html += `<div class="tt-line">${formatAmount(slice.amount)} (${pct} %)</div>`;
+		if (outerRingLabels?.[dataIndex]) {
+			html += `<div class="tt-pflicht">${outerRingLabels[dataIndex]}</div>`;
+		}
+		tooltipEl.innerHTML = html;
+
+		// Position relative to chart canvas
+		const canvasRect = c.canvas.getBoundingClientRect();
+		const wrapperRect = c.canvas.closest('.donut-canvas-box')?.getBoundingClientRect() ?? canvasRect;
+
+		tooltipEl.style.opacity = '1';
+		tooltipEl.style.left = `${tooltip.caretX + (canvasRect.left - wrapperRect.left)}px`;
+		tooltipEl.style.top = `${tooltip.caretY + (canvasRect.top - wrapperRect.top)}px`;
+	}
 
 	function createChart() {
 		if (chart) {
@@ -38,20 +76,35 @@
 		const data = slices.map((s) => s.amount);
 		const colors = slices.map((s) => s.category.color);
 
+		const datasets: any[] = [];
+
+		// Thin outer ring (pflicht indicator)
+		if (outerRingColors) {
+			datasets.push({
+				data,
+				backgroundColor: outerRingColors,
+				borderColor: '#fff',
+				borderWidth: 1,
+				hoverOffset: 0,
+				weight: 0.1,
+			});
+		}
+
+		// Main donut
+		datasets.push({
+			data,
+			backgroundColor: colors,
+			borderColor: '#fff',
+			borderWidth: 2,
+			hoverBorderWidth: 3,
+			hoverOffset: 6,
+		});
+
 		chart = new Chart(canvasEl, {
 			type: 'doughnut',
 			data: {
 				labels,
-				datasets: [
-					{
-						data,
-						backgroundColor: colors,
-						borderColor: '#fff',
-						borderWidth: 2,
-						hoverBorderWidth: 3,
-						hoverOffset: 6,
-					},
-				],
+				datasets,
 			},
 			options: {
 				responsive: true,
@@ -62,20 +115,20 @@
 						display: false, // we render our own
 					},
 					tooltip: {
-						callbacks: {
-							label: (ctx) => {
-								const slice = slices[ctx.dataIndex];
-								if (!slice) return '';
-								const pct = (slice.percent * 100).toFixed(1);
-								return `${slice.category.label}: ${formatAmount(slice.amount)} (${pct} %)`;
-							},
+						enabled: false,
+						external: externalTooltipHandler,
+						filter: (tooltipItem) => {
+							return outerRingColors ? tooltipItem.datasetIndex === 1 : true;
 						},
 					},
 				},
 				onClick: (_event, elements) => {
 					if (elements.length > 0 && onSliceClick) {
-						const idx = elements[0].index;
-						onSliceClick(slices[idx].category.nr);
+						// Only respond to clicks on the main dataset
+						const main = outerRingColors
+							? elements.find(e => e.datasetIndex === 1)
+							: elements[0];
+						if (main) onSliceClick(slices[main.index].category.nr);
 					}
 				},
 			},
@@ -105,6 +158,7 @@
 				<span class="donut-center-label">Gesamt</span>
 				<span class="donut-center-amount">{formatAmount(total)}</span>
 			</div>
+			<div class="chart-tooltip" bind:this={tooltipEl}></div>
 		</div>
 		{#if !hideLegend}
 		<div class="donut-legend">
@@ -158,8 +212,8 @@
 	}
 	.donut-canvas-box {
 		position: relative;
-		width: 14rem;
-		height: 14rem;
+		width: 18rem;
+		height: 18rem;
 		flex-shrink: 0;
 	}
 	.donut-center {
@@ -230,5 +284,31 @@
 		min-width: 5rem;
 		text-align: right;
 		font-size: 0.75rem;
+	}
+
+	/* External HTML tooltip */
+	.chart-tooltip {
+		position: absolute;
+		opacity: 0;
+		pointer-events: none;
+		background: rgba(0, 0, 0, 0.8);
+		color: #fff;
+		border-radius: 0.375rem;
+		padding: 0.5rem 0.75rem;
+		font-size: 0.8125rem;
+		line-height: 1.5;
+		white-space: nowrap;
+		z-index: 50;
+		transform: translate(-50%, -110%);
+		transition: opacity 0.15s ease;
+		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+	}
+	:global(.tt-line) {
+		font-size: 0.8125rem;
+	}
+	:global(.tt-pflicht) {
+		font-size: 0.6875rem;
+		color: rgba(255, 255, 255, 0.7);
+		margin-top: 0.125rem;
 	}
 </style>

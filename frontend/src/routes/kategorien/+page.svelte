@@ -64,6 +64,35 @@
 	let taskSlices = $derived(buildTaskBreakdown(items, selectedYear, dataType));
 	let taskDonutSlices = $derived(taskSlicesToCategorySlices(taskSlices));
 
+	// ─── Pflicht border colors for donut segments ───
+	const PFLICHT_BORDER: Record<string, string> = {
+		pflicht: '#ef4444',
+		freiwillig: '#22c55e',
+		misch: '#f59e0b',
+	};
+
+	let pflichtRingColors = $derived(
+		taskSlices.map(s => PFLICHT_BORDER[s.task.pflicht] ?? '#fff')
+	);
+
+	// ─── Pflicht summary: aggregate by obligation type ───
+	let pflichtSummary = $derived.by(() => {
+		const totalAmount = taskSlices.reduce((sum, s) => sum + s.amount, 0);
+		const groups: { type: string; label: string; color: string; amount: number; percent: number }[] = [
+			{ type: 'pflicht', label: 'Pflichtaufgaben', color: 'var(--red-500, #ef4444)', amount: 0, percent: 0 },
+			{ type: 'misch', label: 'Pflicht + freiwillig', color: 'var(--amber-500, #f59e0b)', amount: 0, percent: 0 },
+			{ type: 'freiwillig', label: 'Freiwillige Leistungen', color: 'var(--green-500, #22c55e)', amount: 0, percent: 0 },
+		];
+		for (const s of taskSlices) {
+			const g = groups.find(g => g.type === s.task.pflicht);
+			if (g) g.amount += s.amount;
+		}
+		for (const g of groups) {
+			g.percent = totalAmount > 0 ? g.amount / totalAmount : 0;
+		}
+		return groups.filter(g => g.amount > 0);
+	});
+
 	// Previous year for comparison
 	let prevYear = $derived(allYears.includes(selectedYear - 1) ? selectedYear - 1 : null);
 	let prevDataType = $derived(prevYear ? bestDataType(items, prevYear) : 'plan' as const);
@@ -182,12 +211,26 @@
 <section class="section">
 	<div class="card card-padded">
 		<div class="donut-legend-layout">
-			<DonutChart
-				title="Ausgaben nach Aufgabenbereich {selectedYear}"
-				slices={taskDonutSlices}
-				onSliceClick={(id) => handleTaskClick(id)}
-				hideLegend
-			/>
+			<div class="donut-with-pflicht">
+				<DonutChart
+					title="Ausgaben nach Aufgabenbereich {selectedYear}"
+					slices={taskDonutSlices}
+					onSliceClick={(id) => handleTaskClick(id)}
+					hideLegend
+					outerRingColors={pflichtRingColors}
+					outerRingLabels={taskSlices.map(s => s.task.pflichtLabel)}
+				/>
+				<div class="pflicht-summary">
+					{#each pflichtSummary as g (g.type)}
+						<div class="pflicht-row">
+							<span class="pflicht-dot" style="background: {g.color}"></span>
+							<span class="pflicht-label">{g.label}</span>
+							<span class="pflicht-pct">{(g.percent * 100).toFixed(0)} %</span>
+							<span class="pflicht-amount">{formatAmount(g.amount)}</span>
+						</div>
+					{/each}
+				</div>
+			</div>
 			<TaskLegend
 				slices={taskSlices}
 				selectedId={selectedTaskId}
@@ -368,6 +411,46 @@
 			flex-direction: row;
 			align-items: flex-start;
 		}
+	}
+
+	/* Donut with pflicht summary */
+	.donut-with-pflicht {
+		flex-shrink: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 0.75rem;
+	}
+	.pflicht-summary {
+		display: flex;
+		flex-direction: column;
+		gap: 0.25rem;
+	}
+	.pflicht-row {
+		display: grid;
+		grid-template-columns: 0.625rem 1fr auto auto;
+		gap: 0.5rem;
+		align-items: center;
+		font-size: 0.8125rem;
+	}
+	.pflicht-dot {
+		width: 0.625rem;
+		height: 0.625rem;
+		border-radius: 2px;
+	}
+	.pflicht-label {
+		color: var(--gray-600);
+	}
+	.pflicht-pct {
+		font-weight: 600;
+		color: var(--gray-800);
+		text-align: right;
+		min-width: 2.5rem;
+	}
+	.pflicht-amount {
+		color: var(--gray-400);
+		text-align: right;
+		font-size: 0.75rem;
+		min-width: 5rem;
 	}
 
 	.col-right { text-align: right; }
