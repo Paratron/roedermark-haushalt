@@ -975,9 +975,13 @@
 	@media (max-width: 640px) {
 		.theme-row {
 			grid-template-columns: 1fr auto;
-			gap: 0.5rem;
+			grid-template-rows: auto auto;
+			gap: 0.25rem 0.5rem;
 		}
-		.theme-bar-area { display: none; }
+		.theme-bar-area {
+			grid-column: 1 / -1;
+			grid-row: 2;
+		}
 		.theme-amounts { min-width: auto; }
 		.amount-ist { font-size: 0.8125rem; }
 		.amount-plan { font-size: 0.6875rem; }
