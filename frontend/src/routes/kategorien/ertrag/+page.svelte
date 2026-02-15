@@ -195,31 +195,19 @@
 	</div>
 </section>
 
-<!-- Donut Charts -->
+<!-- Einnahmen: Donut + Detail -->
 <section class="section">
-	<div class="donut-grid">
-		<div class="card card-padded">
+	<h4 class="detail-title einnahmen-title">Einnahmen {selectedYear}</h4>
+	<div class="card card-padded donut-detail-row">
+		<div class="donut-col">
 			<DonutChart
 				title="Einnahmen {selectedYear}"
 				slices={revenueSlices}
 				onSliceClick={(nr) => handleSliceClick('einnahmen', nr)}
+				hideLegend
 			/>
 		</div>
-		<div class="card card-padded">
-			<DonutChart
-				title="Ausgaben {selectedYear}"
-				slices={expenseSlices}
-				onSliceClick={(nr) => handleSliceClick('ausgaben', nr)}
-			/>
-		</div>
-	</div>
-</section>
-
-<!-- Category Detail Tables -->
-<section class="section">
-	<div class="detail-grid">
-		<div>
-			<h4 class="detail-title einnahmen-title">Einnahmen im Detail</h4>
+		<div class="detail-col">
 			<div class="detail-table-wrap">
 				<table class="detail-table">
 					<thead>
@@ -265,9 +253,22 @@
 				</table>
 			</div>
 		</div>
+	</div>
+</section>
 
-		<div>
-			<h4 class="detail-title ausgaben-title">Ausgaben im Detail</h4>
+<!-- Ausgaben: Donut + Detail -->
+<section class="section">
+	<h4 class="detail-title ausgaben-title">Ausgaben {selectedYear}</h4>
+	<div class="card card-padded donut-detail-row">
+		<div class="donut-col">
+			<DonutChart
+				title="Ausgaben {selectedYear}"
+				slices={expenseSlices}
+				onSliceClick={(nr) => handleSliceClick('ausgaben', nr)}
+				hideLegend
+			/>
+		</div>
+		<div class="detail-col">
 			<div class="detail-table-wrap">
 				<table class="detail-table">
 					<thead>
@@ -458,21 +459,25 @@
 	}
 	:global(.view-toggle-icon) { width: 1rem; height: 1rem; }
 
-	.donut-grid {
-		display: grid; gap: 1.5rem;
-		grid-template-columns: 1fr;
+	.donut-detail-row {
+		display: flex;
+		flex-direction: column;
+		gap: 1.5rem;
 	}
 	@media (min-width: 900px) {
-		.donut-grid { grid-template-columns: 1fr 1fr; }
+		.donut-detail-row {
+			flex-direction: row;
+			align-items: flex-start;
+		}
+	}
+	.donut-col {
+		flex-shrink: 0;
+	}
+	.detail-col {
+		flex: 1;
+		min-width: 0;
 	}
 
-	.detail-grid {
-		display: grid; gap: 2rem;
-		grid-template-columns: 1fr;
-	}
-	@media (min-width: 900px) {
-		.detail-grid { grid-template-columns: 1fr 1fr; }
-	}
 	.detail-title {
 		margin-bottom: 0.75rem; font-size: 0.875rem; font-weight: 600;
 		padding-bottom: 0.5rem; border-bottom: 2px solid var(--gray-100);
