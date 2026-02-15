@@ -2,6 +2,7 @@
 	import type { TaskSlice } from '$lib/data';
 	import { formatAmount } from '$lib/format';
 	import ChangeIndicator from './ChangeIndicator.svelte';
+	import { Info } from '@lucide/svelte';
 
 	interface Props {
 		slices: TaskSlice[];
@@ -28,6 +29,11 @@
 </script>
 
 <div class="task-legend">
+	{#if !selectedId}
+		<div class="click-hint">
+			<Info size={14} /> Aufgabenbereich anklicken für detaillierte Aufschlüsselung
+		</div>
+	{/if}
 	<table class="legend-table">
 		<thead>
 			<tr>
@@ -109,7 +115,9 @@
 		color: var(--gray-700);
 	}
 	.legend-row:hover { background: var(--gray-50); }
+	.legend-row:hover .td-label { color: var(--brand-600, #2563eb); }
 	.legend-row.active { background: var(--brand-50, #f0f4ff); }
+	.legend-row.active .td-label { color: var(--brand-700, #1d4ed8); }
 	.legend-row td {
 		padding: 0.625rem 0.5rem;
 		white-space: nowrap;
@@ -159,4 +167,17 @@
 	.pflicht-pflicht { background: var(--red-50, #fef2f2); color: var(--red-700, #b91c1c); }
 	.pflicht-freiwillig { background: var(--green-50, #f0fdf4); color: var(--green-700, #15803d); }
 	.pflicht-misch { background: var(--amber-50, #fffbeb); color: var(--amber-700, #b45309); }
+
+	/* Click hint */
+	.click-hint {
+		display: flex;
+		align-items: center;
+		gap: 0.375rem;
+		font-size: 0.75rem;
+		color: var(--brand-600, #2563eb);
+		background: var(--brand-50, #eff6ff);
+		padding: 0.375rem 0.625rem;
+		border-radius: 0.375rem;
+		margin-bottom: 0.5rem;
+	}
 </style>

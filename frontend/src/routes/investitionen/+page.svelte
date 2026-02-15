@@ -886,6 +886,7 @@
 		border-left: 3px solid var(--brand-300, #93c5fd);
 		margin-left: 0.5rem;
 		padding-left: 0.5rem;
+		overflow-x: auto;
 	}
 	.entry-name {
 		font-size: 0.8125rem; color: var(--gray-700);
