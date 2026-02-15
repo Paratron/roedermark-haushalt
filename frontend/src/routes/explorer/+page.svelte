@@ -1,10 +1,25 @@
 <script lang="ts">
 	import type { PageData } from './$types';
 	import { formatAmount, amountTypeLabel, formatDocumentName } from '$lib/format';
-	import { haushaltTypeLabel } from '$lib/data';
+	import { haushaltTypeLabel, shortDocLabel } from '$lib/data';
+	import type { SourceLink } from '$lib/types';
+	import SourceCitation from '$lib/components/SourceCitation.svelte';
 	import { Search } from '@lucide/svelte';
 
 	let { data }: { data: PageData } = $props();
+
+	const docMap = new Map(data.documents.map(d => [d.document_id, d]));
+
+	function itemSourceLinks(item: { document_id: string; page: number | null }): SourceLink[] {
+		const doc = docMap.get(item.document_id);
+		if (!doc?.filename) return [];
+		const label = item.page
+			? `${shortDocLabel(item.document_id)}, S.\u00a0${item.page}`
+			: shortDocLabel(item.document_id);
+		const base = `/pdfs/${doc.filename}`;
+		const href = item.page ? `${base}#page=${item.page}` : base;
+		return [{ label, href, document_id: item.document_id, page: item.page }];
+	}
 
 	// Filters
 	let search = $state('');
@@ -214,8 +229,12 @@
 					<td class="haushalt-cell">
 						{haushaltTypeLabel(item.haushalt_type)}
 					</td>
-					<td class="source-cell" title={item.document_id}>
-						{#if item.page}S. {item.page}{/if}
+					<td class="source-cell">
+						<SourceCitation
+							description={item.bezeichnung}
+							links={itemSourceLinks(item)}
+							condensed
+						/>
 					</td>
 				</tr>
 			{/each}
@@ -266,5 +285,6 @@
 	.mono { white-space: nowrap; font-family: monospace; font-size: 0.75rem; color: var(--gray-500); }
 	.haushalt-cell { white-space: nowrap; text-align: center; font-size: 0.75rem; color: var(--gray-500); }
 	.source-cell { white-space: nowrap; font-size: 0.75rem; color: var(--gray-400); }
+	.truncate { max-width: 20rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 	.page-info { font-size: 0.875rem; color: var(--gray-500); }
 </style>

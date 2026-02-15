@@ -161,6 +161,9 @@
 		font-size: 0.75rem;
 		font-weight: 500;
 		color: var(--gray-500);
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
 	}
 	.popover-list {
 		display: flex;
