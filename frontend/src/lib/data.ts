@@ -417,6 +417,36 @@ export async function loadInvestmentClassification(
 	}
 }
 
+// ─── Hebesatz Data ───
+
+import type { HebesatzData } from './types';
+
+/** Load Grundsteuer B Hebesätze for Kreis Offenbach */
+export async function loadHebesaetzeGrundsteuerB(
+	fetchFn: typeof fetch = fetch
+): Promise<HebesatzData | null> {
+	try {
+		const res = await fetchFn('/data/hebesaetze_grundsteuer_b.json');
+		if (!res.ok) return null;
+		return await res.json();
+	} catch {
+		return null;
+	}
+}
+
+/** Load Gewerbesteuer Hebesätze for Kreis Offenbach */
+export async function loadHebesaetzeGewerbesteuer(
+	fetchFn: typeof fetch = fetch
+): Promise<HebesatzData | null> {
+	try {
+		const res = await fetchFn('/data/hebesaetze_gewerbesteuer.json');
+		if (!res.ok) return null;
+		return await res.json();
+	} catch {
+		return null;
+	}
+}
+
 // ─── Provenance / Source Citation Utilities ───
 
 /** Short label for a document, e.g. "HH 2026 Entwurf" */

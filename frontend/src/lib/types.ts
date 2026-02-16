@@ -142,3 +142,21 @@ export interface Summary {
 	/** The last year with Ist data – divider position for charts */
 	last_ist_year: number | null;
 }
+
+/** A single Hebesatz entry for one municipality and year */
+export interface HebesatzEntry {
+	kommune: string;
+	year: number;
+	hebesatz: number;
+	quelle: string;
+}
+
+/** Full Hebesatz dataset loaded from JSON */
+export interface HebesatzData {
+	meta: {
+		description: string;
+		unit: string;
+		note: string;
+	};
+	data: HebesatzEntry[];
+}

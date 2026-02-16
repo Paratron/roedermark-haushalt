@@ -13,6 +13,7 @@
 		{ href: '/finanzhaushalt', label: 'Finanzhaushalt' },
 		{ href: '/teilhaushalte', label: 'Teilhaushalte' },
 		{ href: '/investitionen', label: 'Investitionen' },
+		{ href: '/steuern', label: 'Steuern' },
 		{ href: '/schulden', label: 'Schulden & Zinsen' },
 		{ href: '/explorer', label: 'Explorer' },
 		{ href: '/quellen', label: 'Quellen' }
