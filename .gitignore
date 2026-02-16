@@ -10,6 +10,7 @@ venv/
 
 # Data (PDFs are large, don't commit)
 data/raw/*.pdf
+data/raw/**/*.pdf
 data/extracted/
 data/published/
 

@@ -197,6 +197,79 @@ documents:
     priority: secondary
     url: https://roedermark.de/fileadmin/Stadt_und_Stadtverwaltung/Haushalt___Berichte/Praesentation17_18.pdf
 
+# ── IHK Offenbach – Gemeindesteckbriefe ─────────────────────────────
+# Quelle: IHK Offenbach am Main, "Umfrage der IHK Offenbach"
+# Enthält: Hebesätze (GrSt A, GrSt B, Gewerbesteuer) + Einnahmen ab 2013,
+#          Bevölkerung, Kaufkraft-Index, Beschäftigte, Verarbeitendes Gewerbe,
+#          Tourismus, IHK-Unternehmen
+# Hinweis: Hebesätze ab 2025 wegen Grundsteuerreform nicht mit Vorjahren vergleichbar
+# Stand: Juni 2025, heruntergeladen: 2026-02-16
+
+ihk_gemeindesteckbriefe:
+  base_url: https://www.offenbach.ihk.de/fileadmin/offenbach/10_dokumente_geschaeftsfelder/10_standortpolitik/Gemeindesteckbriefe
+  local_dir: data/raw/ihk_gemeindesteckbriefe
+  overview_page: https://www.offenbach.ihk.de/standortpolitik/region-offenbach/zahlen-daten-fakten/gemeindesteckbriefe/
+  files:
+    - filename: Gemeindesteckbrief_Dietzenbach_2025.pdf
+      kommune: Dietzenbach
+      sha256: e24fd909b1660dc68bcd16a77d59f89634f68405fd3633daafa51e574de6d25d
+
+    - filename: Gemeindesteckbrief_Dreieich_2025.pdf
+      kommune: Dreieich
+      sha256: 3a201c61c0ce6efdf5bcabe88f0a3f4afcc4ef85edfe528ba8fd7b238a6b56a0
+
+    - filename: Gemeindesteckbrief_Egelsbach_2025.pdf
+      kommune: Egelsbach
+      sha256: 80722014658839cf1450bb23369000583206928785c70b942ca657095c58d09c
+
+    - filename: Gemeindesteckbrief_Hainburg_2025.pdf
+      kommune: Hainburg
+      sha256: 4a24037d358a96f3f0d6f3c24e640c1cbf9f935989c2da7ee034a3a79a1e1003
+
+    - filename: Gemeindesteckbrief_Heusenstamm_2025.pdf
+      kommune: Heusenstamm
+      sha256: 367043c1e1e25cab4698ff851952265f042f8e722d0f28b2b027c89b7bdca6ab
+
+    - filename: Gemeindesteckbrief_Langen_2025.pdf
+      kommune: Langen (Hessen)
+      sha256: 9c19e0e17a11ab97cd497fcb81544c08d1cb9aac9f2ea1ad62588b0a6d2493dd
+
+    - filename: Gemeindesteckbrief_Mainhausen_2025.pdf
+      kommune: Mainhausen
+      sha256: cad99919352926c5f33dcaa4be5d8e66b63a0b02772f37382a8f98182720b70b
+
+    - filename: Gemeindesteckbrief_Muehlheim_2025.pdf
+      kommune: Mühlheim am Main
+      sha256: 8c9d179bb9a79619ef9ef82f286249cb56fa5ce64ec87ae578b97054dde3cd7f
+
+    - filename: Gemeindesteckbrief_Neu-Isenburg_2025.pdf
+      kommune: Neu-Isenburg
+      sha256: e6cd50d6578b6ebf732e2aa1d5eaa0abab124d1c3939883febdc967de289bc24
+
+    - filename: Gemeindesteckbrief_Obertshausen_2025.pdf
+      kommune: Obertshausen
+      sha256: 318e8815d76f27786add6c875e4e36e77b6cc8f67fa4db129b231d35c8235d10
+
+    - filename: Gemeindesteckbrief_Offenbach_am_Main_2025.pdf
+      kommune: Offenbach am Main
+      sha256: 7e952035f879e0f5a2f9e93127fa854933cdf8671ffe349f616cd93b6bdafa6f
+
+    - filename: Gemeindesteckbrief_Rodgau_2025.pdf
+      kommune: Rodgau
+      sha256: 1ed09a638924c39bb8e2bc2f034a5506953d69342686366f858f599d26c66887
+
+    - filename: Gemeindesteckbrief_Roedermark_2025.pdf
+      kommune: Rödermark
+      sha256: 41d1dc31887632ae9b7def9c481507ff6522940b047126985f1ae86f87c83d74
+
+    - filename: Gemeindesteckbrief_Seligenstadt_2025.pdf
+      kommune: Seligenstadt
+      sha256: 8b2b11c6fae09fb8d55796c58bfc7a5d8a78f3d941415f157691d1db5e6844c9
+
+    - filename: Steckbrief_Kreis_Offenbach_2025.pdf
+      kommune: Kreis Offenbach
+      sha256: 38b3bbbb501c85cbdc4aecdc473acd7708da046706babd301d4c34fe48aaa7b3
+
 # ── HTML-Startpunkte (für Discovery zusätzlicher Dokumente) ─────────
 
 startpages:

@@ -18,6 +18,9 @@ fetch: ## Download all PDFs from sources.yaml → data/raw/
 fetch-force: ## Re-download all PDFs (overwrite existing)
 	$(PYTHON) -m pipeline.fetch.fetch --force
 
+fetch-hebesaetze: ## Hebesätze aus IHK-Steckbriefen + Haushaltssatzungen → frontend/static/data/
+	$(PYTHON) -m pipeline.fetch.fetch_hebesaetze
+
 parse: ## Extract tables/text from PDFs → data/extracted/
 	$(PYTHON) -m pipeline.parse.parse
 
