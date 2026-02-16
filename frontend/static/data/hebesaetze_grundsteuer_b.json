@@ -1,0 +1,1113 @@
+{
+  "meta": {
+    "description": "Grundsteuer B Hebesätze der Kommunen im Kreis Offenbach",
+    "unit": "Prozent",
+    "note": "Datenquellen: IHK Offenbach Gemeindesteckbriefe 2025 (Umfrage der IHK, alle Kommunen im Kreis Offenbach, 2013–2025) sowie Haushaltssatzungen der Stadt Rödermark."
+  },
+  "data": [
+    {
+      "kommune": "Dietzenbach",
+      "year": 2013,
+      "hebesatz": 500,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Dietzenbach_2025.pdf"
+    },
+    {
+      "kommune": "Dietzenbach",
+      "year": 2014,
+      "hebesatz": 500,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Dietzenbach_2025.pdf"
+    },
+    {
+      "kommune": "Dietzenbach",
+      "year": 2015,
+      "hebesatz": 600,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Dietzenbach_2025.pdf"
+    },
+    {
+      "kommune": "Dietzenbach",
+      "year": 2016,
+      "hebesatz": 600,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Dietzenbach_2025.pdf"
+    },
+    {
+      "kommune": "Dietzenbach",
+      "year": 2017,
+      "hebesatz": 600,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Dietzenbach_2025.pdf"
+    },
+    {
+      "kommune": "Dietzenbach",
+      "year": 2018,
+      "hebesatz": 600,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Dietzenbach_2025.pdf"
+    },
+    {
+      "kommune": "Dietzenbach",
+      "year": 2019,
+      "hebesatz": 600,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Dietzenbach_2025.pdf"
+    },
+    {
+      "kommune": "Dietzenbach",
+      "year": 2020,
+      "hebesatz": 600,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Dietzenbach_2025.pdf"
+    },
+    {
+      "kommune": "Dietzenbach",
+      "year": 2021,
+      "hebesatz": 600,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Dietzenbach_2025.pdf"
+    },
+    {
+      "kommune": "Dietzenbach",
+      "year": 2022,
+      "hebesatz": 800,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Dietzenbach_2025.pdf"
+    },
+    {
+      "kommune": "Dietzenbach",
+      "year": 2023,
+      "hebesatz": 800,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Dietzenbach_2025.pdf"
+    },
+    {
+      "kommune": "Dietzenbach",
+      "year": 2024,
+      "hebesatz": 800,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Dietzenbach_2025.pdf"
+    },
+    {
+      "kommune": "Dietzenbach",
+      "year": 2025,
+      "hebesatz": 950,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Dietzenbach_2025.pdf"
+    },
+    {
+      "kommune": "Dreieich",
+      "year": 2013,
+      "hebesatz": 370,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Dreieich_2025.pdf"
+    },
+    {
+      "kommune": "Dreieich",
+      "year": 2014,
+      "hebesatz": 370,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Dreieich_2025.pdf"
+    },
+    {
+      "kommune": "Dreieich",
+      "year": 2015,
+      "hebesatz": 500,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Dreieich_2025.pdf"
+    },
+    {
+      "kommune": "Dreieich",
+      "year": 2016,
+      "hebesatz": 500,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Dreieich_2025.pdf"
+    },
+    {
+      "kommune": "Dreieich",
+      "year": 2017,
+      "hebesatz": 500,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Dreieich_2025.pdf"
+    },
+    {
+      "kommune": "Dreieich",
+      "year": 2018,
+      "hebesatz": 500,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Dreieich_2025.pdf"
+    },
+    {
+      "kommune": "Dreieich",
+      "year": 2019,
+      "hebesatz": 500,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Dreieich_2025.pdf"
+    },
+    {
+      "kommune": "Dreieich",
+      "year": 2020,
+      "hebesatz": 500,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Dreieich_2025.pdf"
+    },
+    {
+      "kommune": "Dreieich",
+      "year": 2021,
+      "hebesatz": 500,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Dreieich_2025.pdf"
+    },
+    {
+      "kommune": "Dreieich",
+      "year": 2022,
+      "hebesatz": 500,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Dreieich_2025.pdf"
+    },
+    {
+      "kommune": "Dreieich",
+      "year": 2023,
+      "hebesatz": 500,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Dreieich_2025.pdf"
+    },
+    {
+      "kommune": "Dreieich",
+      "year": 2024,
+      "hebesatz": 500,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Dreieich_2025.pdf"
+    },
+    {
+      "kommune": "Dreieich",
+      "year": 2025,
+      "hebesatz": 708.93,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Dreieich_2025.pdf"
+    },
+    {
+      "kommune": "Egelsbach",
+      "year": 2013,
+      "hebesatz": 400,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Egelsbach_2025.pdf"
+    },
+    {
+      "kommune": "Egelsbach",
+      "year": 2014,
+      "hebesatz": 500,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Egelsbach_2025.pdf"
+    },
+    {
+      "kommune": "Egelsbach",
+      "year": 2015,
+      "hebesatz": 500,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Egelsbach_2025.pdf"
+    },
+    {
+      "kommune": "Egelsbach",
+      "year": 2016,
+      "hebesatz": 500,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Egelsbach_2025.pdf"
+    },
+    {
+      "kommune": "Egelsbach",
+      "year": 2017,
+      "hebesatz": 564,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Egelsbach_2025.pdf"
+    },
+    {
+      "kommune": "Egelsbach",
+      "year": 2018,
+      "hebesatz": 685,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Egelsbach_2025.pdf"
+    },
+    {
+      "kommune": "Egelsbach",
+      "year": 2019,
+      "hebesatz": 815,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Egelsbach_2025.pdf"
+    },
+    {
+      "kommune": "Egelsbach",
+      "year": 2020,
+      "hebesatz": 815,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Egelsbach_2025.pdf"
+    },
+    {
+      "kommune": "Egelsbach",
+      "year": 2021,
+      "hebesatz": 815,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Egelsbach_2025.pdf"
+    },
+    {
+      "kommune": "Egelsbach",
+      "year": 2022,
+      "hebesatz": 815,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Egelsbach_2025.pdf"
+    },
+    {
+      "kommune": "Egelsbach",
+      "year": 2023,
+      "hebesatz": 815,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Egelsbach_2025.pdf"
+    },
+    {
+      "kommune": "Egelsbach",
+      "year": 2024,
+      "hebesatz": 815,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Egelsbach_2025.pdf"
+    },
+    {
+      "kommune": "Egelsbach",
+      "year": 2025,
+      "hebesatz": 1066,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Egelsbach_2025.pdf"
+    },
+    {
+      "kommune": "Hainburg",
+      "year": 2013,
+      "hebesatz": 290,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Hainburg_2025.pdf"
+    },
+    {
+      "kommune": "Hainburg",
+      "year": 2014,
+      "hebesatz": 290,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Hainburg_2025.pdf"
+    },
+    {
+      "kommune": "Hainburg",
+      "year": 2015,
+      "hebesatz": 396,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Hainburg_2025.pdf"
+    },
+    {
+      "kommune": "Hainburg",
+      "year": 2016,
+      "hebesatz": 396,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Hainburg_2025.pdf"
+    },
+    {
+      "kommune": "Hainburg",
+      "year": 2017,
+      "hebesatz": 396,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Hainburg_2025.pdf"
+    },
+    {
+      "kommune": "Hainburg",
+      "year": 2018,
+      "hebesatz": 396,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Hainburg_2025.pdf"
+    },
+    {
+      "kommune": "Hainburg",
+      "year": 2019,
+      "hebesatz": 396,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Hainburg_2025.pdf"
+    },
+    {
+      "kommune": "Hainburg",
+      "year": 2020,
+      "hebesatz": 396,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Hainburg_2025.pdf"
+    },
+    {
+      "kommune": "Hainburg",
+      "year": 2021,
+      "hebesatz": 396,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Hainburg_2025.pdf"
+    },
+    {
+      "kommune": "Hainburg",
+      "year": 2022,
+      "hebesatz": 396,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Hainburg_2025.pdf"
+    },
+    {
+      "kommune": "Hainburg",
+      "year": 2023,
+      "hebesatz": 396,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Hainburg_2025.pdf"
+    },
+    {
+      "kommune": "Hainburg",
+      "year": 2024,
+      "hebesatz": 496,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Hainburg_2025.pdf"
+    },
+    {
+      "kommune": "Hainburg",
+      "year": 2025,
+      "hebesatz": 615,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Hainburg_2025.pdf"
+    },
+    {
+      "kommune": "Heusenstamm",
+      "year": 2013,
+      "hebesatz": 380,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Heusenstamm_2025.pdf"
+    },
+    {
+      "kommune": "Heusenstamm",
+      "year": 2014,
+      "hebesatz": 380,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Heusenstamm_2025.pdf"
+    },
+    {
+      "kommune": "Heusenstamm",
+      "year": 2015,
+      "hebesatz": 420,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Heusenstamm_2025.pdf"
+    },
+    {
+      "kommune": "Heusenstamm",
+      "year": 2016,
+      "hebesatz": 420,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Heusenstamm_2025.pdf"
+    },
+    {
+      "kommune": "Heusenstamm",
+      "year": 2017,
+      "hebesatz": 450,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Heusenstamm_2025.pdf"
+    },
+    {
+      "kommune": "Heusenstamm",
+      "year": 2018,
+      "hebesatz": 450,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Heusenstamm_2025.pdf"
+    },
+    {
+      "kommune": "Heusenstamm",
+      "year": 2019,
+      "hebesatz": 450,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Heusenstamm_2025.pdf"
+    },
+    {
+      "kommune": "Heusenstamm",
+      "year": 2020,
+      "hebesatz": 450,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Heusenstamm_2025.pdf"
+    },
+    {
+      "kommune": "Heusenstamm",
+      "year": 2021,
+      "hebesatz": 550,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Heusenstamm_2025.pdf"
+    },
+    {
+      "kommune": "Heusenstamm",
+      "year": 2022,
+      "hebesatz": 760,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Heusenstamm_2025.pdf"
+    },
+    {
+      "kommune": "Heusenstamm",
+      "year": 2023,
+      "hebesatz": 760,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Heusenstamm_2025.pdf"
+    },
+    {
+      "kommune": "Heusenstamm",
+      "year": 2024,
+      "hebesatz": 950,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Heusenstamm_2025.pdf"
+    },
+    {
+      "kommune": "Heusenstamm",
+      "year": 2025,
+      "hebesatz": 1327,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Heusenstamm_2025.pdf"
+    },
+    {
+      "kommune": "Langen",
+      "year": 2013,
+      "hebesatz": 450,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Langen_2025.pdf"
+    },
+    {
+      "kommune": "Langen",
+      "year": 2014,
+      "hebesatz": 450,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Langen_2025.pdf"
+    },
+    {
+      "kommune": "Langen",
+      "year": 2015,
+      "hebesatz": 500,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Langen_2025.pdf"
+    },
+    {
+      "kommune": "Langen",
+      "year": 2016,
+      "hebesatz": 550,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Langen_2025.pdf"
+    },
+    {
+      "kommune": "Langen",
+      "year": 2017,
+      "hebesatz": 600,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Langen_2025.pdf"
+    },
+    {
+      "kommune": "Langen",
+      "year": 2018,
+      "hebesatz": 650,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Langen_2025.pdf"
+    },
+    {
+      "kommune": "Langen",
+      "year": 2019,
+      "hebesatz": 675,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Langen_2025.pdf"
+    },
+    {
+      "kommune": "Langen",
+      "year": 2020,
+      "hebesatz": 675,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Langen_2025.pdf"
+    },
+    {
+      "kommune": "Langen",
+      "year": 2021,
+      "hebesatz": 860,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Langen_2025.pdf"
+    },
+    {
+      "kommune": "Langen",
+      "year": 2022,
+      "hebesatz": 855,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Langen_2025.pdf"
+    },
+    {
+      "kommune": "Langen",
+      "year": 2023,
+      "hebesatz": 850,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Langen_2025.pdf"
+    },
+    {
+      "kommune": "Langen",
+      "year": 2024,
+      "hebesatz": 850,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Langen_2025.pdf"
+    },
+    {
+      "kommune": "Langen",
+      "year": 2025,
+      "hebesatz": 1269,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Langen_2025.pdf"
+    },
+    {
+      "kommune": "Mainhausen",
+      "year": 2013,
+      "hebesatz": 290,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Mainhausen_2025.pdf"
+    },
+    {
+      "kommune": "Mainhausen",
+      "year": 2014,
+      "hebesatz": 290,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Mainhausen_2025.pdf"
+    },
+    {
+      "kommune": "Mainhausen",
+      "year": 2015,
+      "hebesatz": 359,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Mainhausen_2025.pdf"
+    },
+    {
+      "kommune": "Mainhausen",
+      "year": 2016,
+      "hebesatz": 359,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Mainhausen_2025.pdf"
+    },
+    {
+      "kommune": "Mainhausen",
+      "year": 2017,
+      "hebesatz": 394,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Mainhausen_2025.pdf"
+    },
+    {
+      "kommune": "Mainhausen",
+      "year": 2018,
+      "hebesatz": 394,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Mainhausen_2025.pdf"
+    },
+    {
+      "kommune": "Mainhausen",
+      "year": 2019,
+      "hebesatz": 394,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Mainhausen_2025.pdf"
+    },
+    {
+      "kommune": "Mainhausen",
+      "year": 2020,
+      "hebesatz": 394,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Mainhausen_2025.pdf"
+    },
+    {
+      "kommune": "Mainhausen",
+      "year": 2021,
+      "hebesatz": 394,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Mainhausen_2025.pdf"
+    },
+    {
+      "kommune": "Mainhausen",
+      "year": 2022,
+      "hebesatz": 394,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Mainhausen_2025.pdf"
+    },
+    {
+      "kommune": "Mainhausen",
+      "year": 2023,
+      "hebesatz": 494,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Mainhausen_2025.pdf"
+    },
+    {
+      "kommune": "Mainhausen",
+      "year": 2024,
+      "hebesatz": 494,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Mainhausen_2025.pdf"
+    },
+    {
+      "kommune": "Mainhausen",
+      "year": 2025,
+      "hebesatz": 800,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Mainhausen_2025.pdf"
+    },
+    {
+      "kommune": "Mühlheim am Main",
+      "year": 2013,
+      "hebesatz": 390,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Muehlheim_2025.pdf"
+    },
+    {
+      "kommune": "Mühlheim am Main",
+      "year": 2014,
+      "hebesatz": 450,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Muehlheim_2025.pdf"
+    },
+    {
+      "kommune": "Mühlheim am Main",
+      "year": 2015,
+      "hebesatz": 450,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Muehlheim_2025.pdf"
+    },
+    {
+      "kommune": "Mühlheim am Main",
+      "year": 2016,
+      "hebesatz": 450,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Muehlheim_2025.pdf"
+    },
+    {
+      "kommune": "Mühlheim am Main",
+      "year": 2017,
+      "hebesatz": 450,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Muehlheim_2025.pdf"
+    },
+    {
+      "kommune": "Mühlheim am Main",
+      "year": 2018,
+      "hebesatz": 450,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Muehlheim_2025.pdf"
+    },
+    {
+      "kommune": "Mühlheim am Main",
+      "year": 2019,
+      "hebesatz": 550,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Muehlheim_2025.pdf"
+    },
+    {
+      "kommune": "Mühlheim am Main",
+      "year": 2020,
+      "hebesatz": 650,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Muehlheim_2025.pdf"
+    },
+    {
+      "kommune": "Mühlheim am Main",
+      "year": 2021,
+      "hebesatz": 650,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Muehlheim_2025.pdf"
+    },
+    {
+      "kommune": "Mühlheim am Main",
+      "year": 2022,
+      "hebesatz": 650,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Muehlheim_2025.pdf"
+    },
+    {
+      "kommune": "Mühlheim am Main",
+      "year": 2023,
+      "hebesatz": 650,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Muehlheim_2025.pdf"
+    },
+    {
+      "kommune": "Mühlheim am Main",
+      "year": 2024,
+      "hebesatz": 800,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Muehlheim_2025.pdf"
+    },
+    {
+      "kommune": "Mühlheim am Main",
+      "year": 2025,
+      "hebesatz": 983.35,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Muehlheim_2025.pdf"
+    },
+    {
+      "kommune": "Neu-Isenburg",
+      "year": 2013,
+      "hebesatz": 250,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Neu-Isenburg_2025.pdf"
+    },
+    {
+      "kommune": "Neu-Isenburg",
+      "year": 2014,
+      "hebesatz": 250,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Neu-Isenburg_2025.pdf"
+    },
+    {
+      "kommune": "Neu-Isenburg",
+      "year": 2015,
+      "hebesatz": 250,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Neu-Isenburg_2025.pdf"
+    },
+    {
+      "kommune": "Neu-Isenburg",
+      "year": 2016,
+      "hebesatz": 320,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Neu-Isenburg_2025.pdf"
+    },
+    {
+      "kommune": "Neu-Isenburg",
+      "year": 2017,
+      "hebesatz": 350,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Neu-Isenburg_2025.pdf"
+    },
+    {
+      "kommune": "Neu-Isenburg",
+      "year": 2018,
+      "hebesatz": 350,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Neu-Isenburg_2025.pdf"
+    },
+    {
+      "kommune": "Neu-Isenburg",
+      "year": 2019,
+      "hebesatz": 350,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Neu-Isenburg_2025.pdf"
+    },
+    {
+      "kommune": "Neu-Isenburg",
+      "year": 2020,
+      "hebesatz": 350,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Neu-Isenburg_2025.pdf"
+    },
+    {
+      "kommune": "Neu-Isenburg",
+      "year": 2021,
+      "hebesatz": 350,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Neu-Isenburg_2025.pdf"
+    },
+    {
+      "kommune": "Neu-Isenburg",
+      "year": 2022,
+      "hebesatz": 350,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Neu-Isenburg_2025.pdf"
+    },
+    {
+      "kommune": "Neu-Isenburg",
+      "year": 2023,
+      "hebesatz": 350,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Neu-Isenburg_2025.pdf"
+    },
+    {
+      "kommune": "Neu-Isenburg",
+      "year": 2024,
+      "hebesatz": 350,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Neu-Isenburg_2025.pdf"
+    },
+    {
+      "kommune": "Neu-Isenburg",
+      "year": 2025,
+      "hebesatz": 472,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Neu-Isenburg_2025.pdf"
+    },
+    {
+      "kommune": "Obertshausen",
+      "year": 2013,
+      "hebesatz": 330,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Obertshausen_2025.pdf"
+    },
+    {
+      "kommune": "Obertshausen",
+      "year": 2014,
+      "hebesatz": 330,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Obertshausen_2025.pdf"
+    },
+    {
+      "kommune": "Obertshausen",
+      "year": 2015,
+      "hebesatz": 431,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Obertshausen_2025.pdf"
+    },
+    {
+      "kommune": "Obertshausen",
+      "year": 2016,
+      "hebesatz": 431,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Obertshausen_2025.pdf"
+    },
+    {
+      "kommune": "Obertshausen",
+      "year": 2017,
+      "hebesatz": 431,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Obertshausen_2025.pdf"
+    },
+    {
+      "kommune": "Obertshausen",
+      "year": 2018,
+      "hebesatz": 431,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Obertshausen_2025.pdf"
+    },
+    {
+      "kommune": "Obertshausen",
+      "year": 2019,
+      "hebesatz": 431,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Obertshausen_2025.pdf"
+    },
+    {
+      "kommune": "Obertshausen",
+      "year": 2020,
+      "hebesatz": 431,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Obertshausen_2025.pdf"
+    },
+    {
+      "kommune": "Obertshausen",
+      "year": 2021,
+      "hebesatz": 431,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Obertshausen_2025.pdf"
+    },
+    {
+      "kommune": "Obertshausen",
+      "year": 2022,
+      "hebesatz": 431,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Obertshausen_2025.pdf"
+    },
+    {
+      "kommune": "Obertshausen",
+      "year": 2023,
+      "hebesatz": 431,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Obertshausen_2025.pdf"
+    },
+    {
+      "kommune": "Obertshausen",
+      "year": 2024,
+      "hebesatz": 431,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Obertshausen_2025.pdf"
+    },
+    {
+      "kommune": "Obertshausen",
+      "year": 2025,
+      "hebesatz": 431,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Obertshausen_2025.pdf"
+    },
+    {
+      "kommune": "Offenbach am Main",
+      "year": 2013,
+      "hebesatz": 500,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Offenbach_am_Main_2025.pdf"
+    },
+    {
+      "kommune": "Offenbach am Main",
+      "year": 2014,
+      "hebesatz": 500,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Offenbach_am_Main_2025.pdf"
+    },
+    {
+      "kommune": "Offenbach am Main",
+      "year": 2015,
+      "hebesatz": 600,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Offenbach_am_Main_2025.pdf"
+    },
+    {
+      "kommune": "Offenbach am Main",
+      "year": 2016,
+      "hebesatz": 600,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Offenbach_am_Main_2025.pdf"
+    },
+    {
+      "kommune": "Offenbach am Main",
+      "year": 2017,
+      "hebesatz": 600,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Offenbach_am_Main_2025.pdf"
+    },
+    {
+      "kommune": "Offenbach am Main",
+      "year": 2018,
+      "hebesatz": 600,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Offenbach_am_Main_2025.pdf"
+    },
+    {
+      "kommune": "Offenbach am Main",
+      "year": 2019,
+      "hebesatz": 995,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Offenbach_am_Main_2025.pdf"
+    },
+    {
+      "kommune": "Offenbach am Main",
+      "year": 2020,
+      "hebesatz": 995,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Offenbach_am_Main_2025.pdf"
+    },
+    {
+      "kommune": "Offenbach am Main",
+      "year": 2021,
+      "hebesatz": 895,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Offenbach_am_Main_2025.pdf"
+    },
+    {
+      "kommune": "Offenbach am Main",
+      "year": 2022,
+      "hebesatz": 895,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Offenbach_am_Main_2025.pdf"
+    },
+    {
+      "kommune": "Offenbach am Main",
+      "year": 2023,
+      "hebesatz": 895,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Offenbach_am_Main_2025.pdf"
+    },
+    {
+      "kommune": "Offenbach am Main",
+      "year": 2024,
+      "hebesatz": 895,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Offenbach_am_Main_2025.pdf"
+    },
+    {
+      "kommune": "Offenbach am Main",
+      "year": 2025,
+      "hebesatz": 1230,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Offenbach_am_Main_2025.pdf"
+    },
+    {
+      "kommune": "Rodgau",
+      "year": 2013,
+      "hebesatz": 330,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Rodgau_2025.pdf"
+    },
+    {
+      "kommune": "Rodgau",
+      "year": 2014,
+      "hebesatz": 390,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Rodgau_2025.pdf"
+    },
+    {
+      "kommune": "Rodgau",
+      "year": 2015,
+      "hebesatz": 450,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Rodgau_2025.pdf"
+    },
+    {
+      "kommune": "Rodgau",
+      "year": 2016,
+      "hebesatz": 450,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Rodgau_2025.pdf"
+    },
+    {
+      "kommune": "Rodgau",
+      "year": 2017,
+      "hebesatz": 450,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Rodgau_2025.pdf"
+    },
+    {
+      "kommune": "Rodgau",
+      "year": 2018,
+      "hebesatz": 450,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Rodgau_2025.pdf"
+    },
+    {
+      "kommune": "Rodgau",
+      "year": 2019,
+      "hebesatz": 450,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Rodgau_2025.pdf"
+    },
+    {
+      "kommune": "Rodgau",
+      "year": 2020,
+      "hebesatz": 450,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Rodgau_2025.pdf"
+    },
+    {
+      "kommune": "Rodgau",
+      "year": 2021,
+      "hebesatz": 450,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Rodgau_2025.pdf"
+    },
+    {
+      "kommune": "Rodgau",
+      "year": 2022,
+      "hebesatz": 700,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Rodgau_2025.pdf"
+    },
+    {
+      "kommune": "Rodgau",
+      "year": 2023,
+      "hebesatz": 700,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Rodgau_2025.pdf"
+    },
+    {
+      "kommune": "Rodgau",
+      "year": 2024,
+      "hebesatz": 700,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Rodgau_2025.pdf"
+    },
+    {
+      "kommune": "Rodgau",
+      "year": 2025,
+      "hebesatz": 800,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Rodgau_2025.pdf"
+    },
+    {
+      "kommune": "Rödermark",
+      "year": 2013,
+      "hebesatz": 450,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Roedermark_2025.pdf"
+    },
+    {
+      "kommune": "Rödermark",
+      "year": 2014,
+      "hebesatz": 450,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Roedermark_2025.pdf"
+    },
+    {
+      "kommune": "Rödermark",
+      "year": 2015,
+      "hebesatz": 540,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Roedermark_2025.pdf"
+    },
+    {
+      "kommune": "Rödermark",
+      "year": 2016,
+      "hebesatz": 540,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Roedermark_2025.pdf"
+    },
+    {
+      "kommune": "Rödermark",
+      "year": 2017,
+      "hebesatz": 540,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Roedermark_2025.pdf"
+    },
+    {
+      "kommune": "Rödermark",
+      "year": 2018,
+      "hebesatz": 540,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Roedermark_2025.pdf"
+    },
+    {
+      "kommune": "Rödermark",
+      "year": 2019,
+      "hebesatz": 540,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Roedermark_2025.pdf"
+    },
+    {
+      "kommune": "Rödermark",
+      "year": 2020,
+      "hebesatz": 715,
+      "quelle": "Haushaltssatzung in Haushaltsplan 2020/2021 (Beschluss), S. 5"
+    },
+    {
+      "kommune": "Rödermark",
+      "year": 2021,
+      "hebesatz": 715,
+      "quelle": "Haushaltssatzung in Haushaltsplan 2020/2021 (Anpassung), S. 5"
+    },
+    {
+      "kommune": "Rödermark",
+      "year": 2022,
+      "hebesatz": 715,
+      "quelle": "Haushaltssatzung in Haushaltsplan 2022 (Entwurf), S. 5"
+    },
+    {
+      "kommune": "Rödermark",
+      "year": 2023,
+      "hebesatz": 715,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Roedermark_2025.pdf"
+    },
+    {
+      "kommune": "Rödermark",
+      "year": 2024,
+      "hebesatz": 715,
+      "quelle": "Haushaltssatzung in Haushaltsplan 2024/2025 (Entwurf), S. 5"
+    },
+    {
+      "kommune": "Rödermark",
+      "year": 2025,
+      "hebesatz": 990,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Roedermark_2025.pdf"
+    },
+    {
+      "kommune": "Rödermark",
+      "year": 2026,
+      "hebesatz": 990,
+      "quelle": "Haushaltssatzung in Haushaltsplan 2026 (Entwurf), S. 4"
+    },
+    {
+      "kommune": "Seligenstadt",
+      "year": 2012,
+      "hebesatz": 270,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Seligenstadt_2025.pdf"
+    },
+    {
+      "kommune": "Seligenstadt",
+      "year": 2013,
+      "hebesatz": 270,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Seligenstadt_2025.pdf"
+    },
+    {
+      "kommune": "Seligenstadt",
+      "year": 2014,
+      "hebesatz": 320,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Seligenstadt_2025.pdf"
+    },
+    {
+      "kommune": "Seligenstadt",
+      "year": 2015,
+      "hebesatz": 431,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Seligenstadt_2025.pdf"
+    },
+    {
+      "kommune": "Seligenstadt",
+      "year": 2016,
+      "hebesatz": 431,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Seligenstadt_2025.pdf"
+    },
+    {
+      "kommune": "Seligenstadt",
+      "year": 2017,
+      "hebesatz": 431,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Seligenstadt_2025.pdf"
+    },
+    {
+      "kommune": "Seligenstadt",
+      "year": 2018,
+      "hebesatz": 431,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Seligenstadt_2025.pdf"
+    },
+    {
+      "kommune": "Seligenstadt",
+      "year": 2019,
+      "hebesatz": 431,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Seligenstadt_2025.pdf"
+    },
+    {
+      "kommune": "Seligenstadt",
+      "year": 2020,
+      "hebesatz": 431,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Seligenstadt_2025.pdf"
+    },
+    {
+      "kommune": "Seligenstadt",
+      "year": 2021,
+      "hebesatz": 431,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Seligenstadt_2025.pdf"
+    },
+    {
+      "kommune": "Seligenstadt",
+      "year": 2022,
+      "hebesatz": 431,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Seligenstadt_2025.pdf"
+    },
+    {
+      "kommune": "Seligenstadt",
+      "year": 2023,
+      "hebesatz": 431,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Seligenstadt_2025.pdf"
+    },
+    {
+      "kommune": "Seligenstadt",
+      "year": 2024,
+      "hebesatz": 431,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Seligenstadt_2025.pdf"
+    },
+    {
+      "kommune": "Seligenstadt",
+      "year": 2025,
+      "hebesatz": 850,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Seligenstadt_2025.pdf"
+    }
+  ]
+}
