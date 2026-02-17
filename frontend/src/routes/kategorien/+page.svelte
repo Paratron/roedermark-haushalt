@@ -138,6 +138,10 @@
 		selectedTaskId ? taskSourceLinks(items, documents, selectedTaskId) : []
 	);
 
+	let drilldownHasNewItems = $derived(
+		drilldown.some((row) => !prevDrilldownMap.has(row.nr))
+	);
+
 	let selectedDrilldownSourceLinks = $derived(
 		selectedTaskId ? drilldownSourceLinks(items, documents, selectedTaskId, selectedYear) : []
 	);
@@ -288,7 +292,7 @@
 										{#if diff != null}
 											{diff >= 0 ? '+' : ''}{formatAmount(diff)}
 										{:else}
-											–
+											<span class="dd-new-badge">+ neu</span>
 										{/if}
 									</td>
 								{/if}
@@ -299,6 +303,24 @@
 				</div>
 			{:else}
 				<p class="drilldown-empty">Für diesen Aufgabenbereich liegen keine Produktdaten für {selectedYear} vor.</p>
+			{/if}
+
+			{#if selectedTaskId === 'bauen' && selectedYear >= 2026}
+				<div class="info-box info-box-amber" style="margin-top: 1rem">
+					<Info class="info-icon" />
+					<div>
+						<strong>Eingliederung der Kommunalen Betriebe (KBR):</strong>
+						Zum 01.01.2026 wurden die Kommunalen Betriebe Rödermark (Abwasser, Abfall, Bau- und Betriebshof, Gebäudemanagement)
+						in den städtischen Haushalt eingegliedert (Beschluss der StVV vom 17.06.2025).
+						Die starke Steigerung gegenüber Vorjahren ist daher <strong>keine echte Ausgabenerhöhung</strong>,
+						sondern eine Verlagerung aus dem ehemaligen Eigenbetrieb.
+						Positionen mit <span class="dd-new-badge">+ neu</span> existierten im Vorjahr noch nicht in diesem Teilhaushalt.
+					</div>
+				</div>
+			{:else if drilldownHasNewItems && prevYear}
+				<p class="dd-new-hint">
+					<span class="dd-new-badge">+ neu</span> = Produkt existierte {prevYear} noch nicht in diesem Aufgabenbereich.
+				</p>
 			{/if}
 		</div>
 		{#if selectedDrilldownSourceLinks.length > 0}
@@ -500,6 +522,21 @@
 	.dd-delta { color: var(--gray-400); font-size: 0.75rem; }
 	.dd-delta.is-up { color: var(--red-600, #dc2626); }
 	.dd-delta.is-down { color: var(--green-600, #16a34a); }
+	.dd-new-badge {
+		display: inline-block;
+		padding: 0.125rem 0.375rem;
+		background: var(--blue-50, #eff6ff);
+		color: var(--blue-600, #2563eb);
+		border-radius: 0.25rem;
+		font-size: 0.6875rem;
+		font-weight: 600;
+		white-space: nowrap;
+	}
+	.dd-new-hint {
+		margin-top: 0.75rem;
+		font-size: 0.8125rem;
+		color: var(--gray-400);
+	}
 	.drilldown-empty {
 		font-size: 0.8125rem; color: var(--gray-400); font-style: italic;
 		margin-top: 0.5rem;
