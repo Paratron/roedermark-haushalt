@@ -3,6 +3,7 @@
 	import { formatDocumentName, formatNumber } from '$lib/format';
 	import { FileText, Download, ExternalLink, CircleAlert } from '@lucide/svelte';
 	import AnchorHeading from '$lib/components/AnchorHeading.svelte';
+	import SocialMeta from '$lib/components/SocialMeta.svelte';
 
 	let { data }: { data: PageData } = $props();
 	const { summary } = data;
@@ -51,6 +52,12 @@
 		return labels[type] ?? type;
 	}
 </script>
+
+<SocialMeta
+	title="Datenquellen & Methodik"
+	description="Alle Daten stammen aus offiziellen PDF-Dokumenten der Stadt Rödermark. Jede Zahl ist auf das Quelldokument rückverfolgbar."
+	path="/quellen"
+/>
 
 <AnchorHeading level={2} id="datenquellen"><FileText /> Datenquellen</AnchorHeading>
 <p class="page-intro">

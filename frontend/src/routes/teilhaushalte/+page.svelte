@@ -7,6 +7,7 @@
 	import SourceCitation from '$lib/components/SourceCitation.svelte';
 	import HaushaltTable from '$lib/components/HaushaltTable.svelte';
 	import AnchorHeading from '$lib/components/AnchorHeading.svelte';
+	import SocialMeta from '$lib/components/SocialMeta.svelte';
 	import { Building2 } from '@lucide/svelte';
 	import { browser } from '$app/environment';
 
@@ -147,6 +148,12 @@
 		return result;
 	});
 </script>
+
+<SocialMeta
+	title="Teilhaushalte"
+	description="Teilergebnis- und Teilfinanzhaushalte nach Fachbereichen – Budgets für Verwaltung, Bildung, Soziales und mehr."
+	path="/teilhaushalte"
+/>
 
 <AnchorHeading level={2} id="teilhaushalte">
 	<Building2 /> Teilhaushalte

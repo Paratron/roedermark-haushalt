@@ -6,6 +6,7 @@
 	import { Landmark, Info, ChevronDown, ChevronRight, HandCoins, ExternalLink } from '@lucide/svelte';
 	import SourceCitation from '$lib/components/SourceCitation.svelte';
 	import AnchorHeading from '$lib/components/AnchorHeading.svelte';
+	import SocialMeta from '$lib/components/SocialMeta.svelte';
 	import { SvelteSet, SvelteMap } from 'svelte/reactivity';
 
 	let { data }: { data: PageData } = $props();
@@ -84,6 +85,12 @@
 
 	let planOnlySet = $derived(new Set(summary.plan_only_years));
 </script>
+
+<SocialMeta
+	title="Schulden & Zinsen"
+	description="Verschuldung der Stadt Rödermark – Kreditaufnahme, Tilgung und Zinsbelastung im Zeitverlauf seit 1986."
+	path="/schulden"
+/>
 
 <AnchorHeading level={2} id="schulden-zinsen">
 	<HandCoins /> Schulden &amp; Zinsen

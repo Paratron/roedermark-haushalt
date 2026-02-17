@@ -6,6 +6,7 @@
 	import SourceCitation from '$lib/components/SourceCitation.svelte';
 	import HaushaltTable from '$lib/components/HaushaltTable.svelte';
 	import AnchorHeading from '$lib/components/AnchorHeading.svelte';
+	import SocialMeta from '$lib/components/SocialMeta.svelte';
 	import { Coins, Info } from '@lucide/svelte';
 	import { browser } from '$app/environment';
 
@@ -126,6 +127,12 @@
 
 	let yearSourceLinks = $derived(sourceLinksPerYear(data.items, data.documents, 'finanzhaushalt'));
 </script>
+
+<SocialMeta
+	title="Finanzhaushalt"
+	description="Tatsächliche Zahlungsströme der Stadt Rödermark – Einzahlungen und Auszahlungen aus laufender Verwaltung und Investitionstätigkeit."
+	path="/finanzhaushalt"
+/>
 
 <AnchorHeading level={2} id="finanzhaushalt"><Coins /> Finanzhaushalt</AnchorHeading>
 <p class="page-intro">

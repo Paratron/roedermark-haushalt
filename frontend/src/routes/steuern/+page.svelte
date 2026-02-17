@@ -6,6 +6,7 @@
 	import DonutChart from '$lib/components/DonutChart.svelte';
 	import SourceCitation from '$lib/components/SourceCitation.svelte';
 	import AnchorHeading from '$lib/components/AnchorHeading.svelte';
+	import SocialMeta from '$lib/components/SocialMeta.svelte';
 	import { Receipt, Info, SlidersHorizontal } from '@lucide/svelte';
 	import { page } from '$app/stores';
 	import { goto } from '$app/navigation';
@@ -234,6 +235,12 @@
 			: 1
 	);
 </script>
+
+<SocialMeta
+	title="Steuereinnahmen"
+	description="Steuereinnahmen der Stadt Rödermark – Zusammensetzung, Hebesätze im Vergleich mit dem Kreis Offenbach und Entwicklung über die Jahre."
+	path="/steuern"
+/>
 
 <AnchorHeading level={2} id="steuereinnahmen"><Receipt /> Steuereinnahmen</AnchorHeading>
 <p class="page-intro">

@@ -6,6 +6,7 @@
 	import SourceCitation from '$lib/components/SourceCitation.svelte';
 	import HaushaltTable from '$lib/components/HaushaltTable.svelte';
 	import AnchorHeading from '$lib/components/AnchorHeading.svelte';
+	import SocialMeta from '$lib/components/SocialMeta.svelte';
 	import { ClipboardList, Info, ChevronsDown } from '@lucide/svelte';
 	import { browser } from '$app/environment';
 
@@ -146,6 +147,12 @@
 		tableEl?.scrollIntoView({ behavior: 'smooth', block: 'start' });
 	}
 </script>
+
+<SocialMeta
+	title="Ergebnishaushalt"
+	description="Ordentliche Erträge und Aufwendungen der Stadt Rödermark – Steuern, Zuweisungen, Personal- und Sachkosten im Jahresvergleich."
+	path="/ergebnishaushalt"
+/>
 
 <AnchorHeading level={2} id="ergebnishaushalt"><ClipboardList /> Ergebnishaushalt</AnchorHeading>
 <p class="page-intro">

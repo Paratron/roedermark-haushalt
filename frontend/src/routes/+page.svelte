@@ -3,7 +3,8 @@
 	import { formatMio, formatNumber } from '$lib/format';
 	import TimeSeriesChart from '$lib/components/TimeSeriesChart.svelte';
 	import AnchorHeading from '$lib/components/AnchorHeading.svelte';
-	import { Info, ClipboardList, Coins, Search, Building2, TrendingUp, Landmark, PieChart } from '@lucide/svelte';
+	import SocialMeta from '$lib/components/SocialMeta.svelte';
+	import { Info, ClipboardList, Coins, Search, Building2, TrendingUp, Landmark, PieChart, Receipt } from '@lucide/svelte';
 
 	let { data }: { data: PageData } = $props();
 	const { summary, documents } = data;
@@ -18,6 +19,12 @@
 	const ehErtraege = summary.ergebnishaushalt.ordentliche_ertraege;
 	const ehAufwendungen = summary.ergebnishaushalt.ordentliche_aufwendungen;
 </script>
+
+<SocialMeta
+	title="Haushalt Rödermark"
+	description="Die Haushaltsdaten der Stadt Rödermark – extrahiert aus den offiziellen PDF-Haushaltsplänen, aufbereitet für Transparenz und Vergleichbarkeit."
+	path="/"
+/>
 
 <!-- Hero Section -->
 <section class="hero">
@@ -91,6 +98,10 @@
 	<a href="/schulden" class="card card-padded link-card">
 		<h4 class="link-card-title"><Landmark class="link-card-icon" /> Schulden &amp; Zinsen</h4>
 		<p class="link-card-desc">Kreditaufnahme, Tilgung und Zinsbelastung der Stadt</p>
+	</a>
+	<a href="/steuern" class="card card-padded link-card">
+		<h4 class="link-card-title"><Receipt class="link-card-icon" /> Steuern & Hebesätze</h4>
+		<p class="link-card-desc">Grundsteuer, Gewerbesteuer und Hebesätze im Vergleich mit Nachbarkommunen</p>
 	</a>
 	<a href="/explorer" class="card card-padded link-card">
 		<h4 class="link-card-title"><Search class="link-card-icon" /> Explorer</h4>

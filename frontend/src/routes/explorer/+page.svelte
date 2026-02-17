@@ -5,6 +5,7 @@
 	import type { SourceLink } from '$lib/types';
 	import SourceCitation from '$lib/components/SourceCitation.svelte';
 	import AnchorHeading from '$lib/components/AnchorHeading.svelte';
+	import SocialMeta from '$lib/components/SocialMeta.svelte';
 	import { Search } from '@lucide/svelte';
 
 	let { data }: { data: PageData } = $props();
@@ -122,6 +123,12 @@
 		page = 0;
 	});
 </script>
+
+<SocialMeta
+	title="Daten-Explorer"
+	description="Alle Haushaltspositionen durchsuchen und filtern – Ergebnis- und Finanzhaushalt, Teilhaushalte und Investitionen."
+	path="/explorer"
+/>
 
 <AnchorHeading level={2} id="daten-explorer"><Search /> Daten-Explorer</AnchorHeading>
 <p class="page-intro">

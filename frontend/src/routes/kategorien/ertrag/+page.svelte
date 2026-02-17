@@ -16,6 +16,7 @@
 	import { PieChart, Info, TrendingUp, TrendingDown, Minus, List, LayoutGrid, Columns3 } from '@lucide/svelte';
 	import { browser } from '$app/environment';
 	import AnchorHeading from '$lib/components/AnchorHeading.svelte';
+	import SocialMeta from '$lib/components/SocialMeta.svelte';
 
 	let { data }: { data: PageData } = $props();
 
@@ -158,6 +159,12 @@
 		}
 	}
 </script>
+
+<SocialMeta
+	title="Einnahmen & Ausgaben (Ertragssicht)"
+	description="Die buchhalterische Aufschlüsselung nach den Positionen des Ergebnishaushalts – Einnahmen und Ausgaben im Detail."
+	path="/kategorien/ertrag"
+/>
 
 <AnchorHeading level={2} id="einnahmen-ausgaben"><PieChart /> Einnahmen & Ausgaben</AnchorHeading>
 <p class="page-intro">

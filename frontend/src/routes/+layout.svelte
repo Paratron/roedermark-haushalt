@@ -30,11 +30,6 @@
 	}
 </script>
 
-<svelte:head>
-	<title>Haushalt Rödermark – Kommunale Finanzdaten</title>
-	<meta name="description" content="Haushaltspläne der Stadt Rödermark transparent aufbereitet – Ergebnis- und Finanzhaushalt im Jahresvergleich." />
-</svelte:head>
-
 <div class="app-shell">
 	<!-- Header -->
 	<header class="app-header">

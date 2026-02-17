@@ -9,6 +9,7 @@
 	import { groupBy, sourceLinksFromItems, shortDocLabel } from '$lib/data';
 	import SourceCitation from '$lib/components/SourceCitation.svelte';
 	import AnchorHeading from '$lib/components/AnchorHeading.svelte';
+	import SocialMeta from '$lib/components/SocialMeta.svelte';
 	import { Coins, TrendingUp, TrendingDown, AlertTriangle, ChevronDown, ChevronRight, Info, BookOpen } from '@lucide/svelte';
 	import { SvelteSet, SvelteMap } from 'svelte/reactivity';
 
@@ -402,6 +403,12 @@
 		document.getElementById(`project-${key}`)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
 	}
 </script>
+
+<SocialMeta
+	title="Investitionen"
+	description="Wo investiert Rödermark – und woher kommt das Geld dafür? Investitionsausgaben nach Themen und Einzelprojekten."
+	path="/investitionen"
+/>
 
 <AnchorHeading level={2} id="investitionen">
 	<Coins /> Investitionen

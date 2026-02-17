@@ -18,6 +18,7 @@
 	import { PieChart, Info, LayoutGrid, Columns3, ChartPie, ChevronsDown } from '@lucide/svelte';
 	import { browser } from '$app/environment';
 	import AnchorHeading from '$lib/components/AnchorHeading.svelte';
+	import SocialMeta from '$lib/components/SocialMeta.svelte';
 
 	let { data }: { data: PageData } = $props();
 
@@ -175,7 +176,13 @@
 		if (id !== selectedTaskId) hintDismissed = false;
 		selectedTaskId = selectedTaskId === id ? null : id;
 	}
-</script> <AnchorHeading level={2} id="einnahmen-ausgaben"><ChartPie /> Einnahmen & Ausgaben</AnchorHeading> <p class="page-intro"> Wofür gibt die Stadt Rödermark Geld aus? Die Aufschlüsselung zeigt die Ausgaben nach Aufgabenbereichen – von Kinderbetreuung bis Feuerwehr. </p>
+</script> <SocialMeta
+	title="Einnahmen & Ausgaben"
+	description="Wofür gibt die Stadt Rödermark Geld aus? Die Aufschlüsselung zeigt die Ausgaben nach Aufgabenbereichen – von Kinderbetreuung bis Feuerwehr."
+	path="/kategorien"
+/>
+
+<AnchorHeading level={2} id="einnahmen-ausgaben"><ChartPie /> Einnahmen & Ausgaben</AnchorHeading> <p class="page-intro"> Wofür gibt die Stadt Rödermark Geld aus? Die Aufschlüsselung zeigt die Ausgaben nach Aufgabenbereichen – von Kinderbetreuung bis Feuerwehr. </p>
 <!-- View Toggle (navigation) -->
 <section class="section">
 	<div class="view-toggle">
