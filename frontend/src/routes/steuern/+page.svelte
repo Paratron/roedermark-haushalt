@@ -659,16 +659,20 @@
 	}
 	.bar-chart {
 		display: flex; flex-direction: column; gap: 0.375rem;
-		overflow-x: auto; -webkit-overflow-scrolling: touch;
 	}
 	.bar-row {
-		display: grid; grid-template-columns: 10rem 1fr 5rem; gap: 0.5rem; align-items: center;
-		min-width: 26rem;
+		display: grid; grid-template-columns: 6rem 1fr 4rem; gap: 0.25rem; align-items: center;
+	}
+	@media (min-width: 640px) {
+		.bar-row { grid-template-columns: 10rem 1fr 5rem; gap: 0.5rem; }
 	}
 	.bar-row-highlight { font-weight: 600; }
 	.bar-label {
-		font-size: 0.8125rem; color: var(--gray-600);
+		font-size: 0.6875rem; color: var(--gray-600);
 		overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+	}
+	@media (min-width: 640px) {
+		.bar-label { font-size: 0.8125rem; }
 	}
 	.bar-row-highlight .bar-label { color: var(--brand-700, #1d4ed8); }
 	.bar-track-h {
@@ -681,7 +685,10 @@
 	}
 	.bar-fill-highlight { background: var(--brand-500, #3b82f6); }
 	.bar-value {
-		font-size: 0.8125rem; color: var(--gray-600); text-align: right; white-space: nowrap;
+		font-size: 0.6875rem; color: var(--gray-600); text-align: right; white-space: nowrap;
+	}
+	@media (min-width: 640px) {
+		.bar-value { font-size: 0.8125rem; }
 	}
 	.bar-row-highlight .bar-value { color: var(--brand-700); font-weight: 700; }
 	.carried-year {
