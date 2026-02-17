@@ -5,7 +5,10 @@
 	import { formatAmount } from '$lib/format';
 	import DonutChart from '$lib/components/DonutChart.svelte';
 	import SourceCitation from '$lib/components/SourceCitation.svelte';
+	import AnchorHeading from '$lib/components/AnchorHeading.svelte';
 	import { Receipt, Info, SlidersHorizontal } from '@lucide/svelte';
+	import { page } from '$app/stores';
+	import { goto } from '$app/navigation';
 
 	/** Format a Hebesatz value: German locale. If forceDecimals is true, always show 2 decimal places. */
 	function fmtHS(v: number, forceDecimals = false): string {
@@ -28,10 +31,23 @@
 	// ─── State ───
 	let latestYear = $derived(taxYears[taxYears.length - 1] ?? 2026);
 	let selectedYear = $state(0);
-	// Initialize selectedYear once
+	// Initialize from query param or default to latest year
 	$effect(() => {
-		if (selectedYear === 0 && latestYear > 0) selectedYear = latestYear;
+		if (selectedYear !== 0) return;
+		const qYear = Number($page.url.searchParams.get('jahr'));
+		selectedYear = qYear && taxYears.includes(qYear) ? qYear : latestYear;
 	});
+
+	function setYear(y: number) {
+		selectedYear = y;
+		const url = new URL($page.url);
+		if (y === latestYear) {
+			url.searchParams.delete('jahr');
+		} else {
+			url.searchParams.set('jahr', String(y));
+		}
+		goto(url, { replaceState: true, noScroll: true, keepFocus: true });
+	}
 
 	// ─── Tax composition for selected year ───
 	let taxItems = $derived.by((): TaxItem[] => {
@@ -219,7 +235,7 @@
 	);
 </script>
 
-<h2 class="page-title"><Receipt class="page-icon" /> Steuereinnahmen</h2>
+<AnchorHeading level={2} id="steuereinnahmen"><Receipt /> Steuereinnahmen</AnchorHeading>
 <p class="page-intro">
 	Steuereinnahmen sind die wichtigste Einnahmequelle der Stadt Rödermark.
 	Hier siehst du die Zusammensetzung, Entwicklung und den Vergleich der Hebesätze mit anderen Kommunen im Kreis Offenbach.
@@ -229,7 +245,7 @@
 <section class="section">
 	<div class="year-selector">
 		<label for="year-select" class="field-label">Jahr auswählen</label>
-		<select id="year-select" bind:value={selectedYear} class="form-select form-select-compact">
+		<select id="year-select" value={selectedYear} onchange={(e) => setYear(Number(e.currentTarget.value))} class="form-select form-select-compact">
 			{#each [...taxYears].reverse() as y (y)}
 				<option value={y}>{y}</option>
 			{/each}
@@ -239,7 +255,7 @@
 
 <!-- Tax Composition: Donut + Table -->
 <section class="section">
-	<h3 class="section-title">Zusammensetzung der Steuereinnahmen {selectedYear}</h3>
+	<AnchorHeading level={3} id="zusammensetzung">Zusammensetzung der Steuereinnahmen {selectedYear}</AnchorHeading>
 	<div class="card card-padded donut-detail-row">
 		<div class="donut-col">
 			<DonutChart
@@ -283,7 +299,7 @@
 
 <!-- Hebesatz Development Rödermark -->
 <section class="section">
-	<h3 class="section-title">Hebesatz-Entwicklung Rödermark</h3>
+	<AnchorHeading level={3} id="hebesatz-entwicklung">Hebesatz-Entwicklung Rödermark</AnchorHeading>
 	<div class="hebesatz-history-grid">
 		<!-- Grundsteuer B History -->
 		<div class="card card-padded">
@@ -352,7 +368,7 @@
 
 <!-- Hebesatz Comparison -->
 <section class="section">
-	<h3 class="section-title">Hebesätze im Vergleich – Kreis Offenbach</h3>
+	<AnchorHeading level={3} id="hebesaetze-vergleich">Hebesätze im Vergleich – Kreis Offenbach</AnchorHeading>
 	<div class="comparison-grid">
 		<!-- Grundsteuer B -->
 		<div class="card card-padded">
@@ -403,7 +419,7 @@
 
 <!-- Simulator: What-if Slider -->
 <section class="section">
-	<h3 class="section-title"><SlidersHorizontal size={20} /> Was wäre wenn?</h3>
+	<AnchorHeading level={3} id="was-waere-wenn"><SlidersHorizontal /> Was wäre wenn?</AnchorHeading>
 	<p class="section-desc">
 		Verschiebe die Hebesätze, um zu sehen, wie sich die Steuereinnahmen {selectedYear} verändern würden.
 	</p>
@@ -491,7 +507,7 @@
 
 <!-- Tax Revenue Time Series -->
 <section class="section">
-	<h3 class="section-title">Steuereinnahmen im Zeitverlauf</h3>
+	<AnchorHeading level={3} id="zeitverlauf">Steuereinnahmen im Zeitverlauf</AnchorHeading>
 	<div class="card card-padded">
 		<div class="stacked-table-wrap">
 			<table class="detail-table">
@@ -529,18 +545,8 @@
 </section>
 
 <style>
-	.page-title {
-		display: flex; align-items: center; gap: 0.75rem;
-		margin-bottom: 1.5rem; font-size: 1.5rem; font-weight: 700; color: var(--gray-900);
-	}
-	:global(.page-icon) { width: 1.75rem; height: 1.75rem; }
 	.page-intro { margin-bottom: 2rem; max-width: 48rem; color: var(--gray-600); }
 	.section { margin-bottom: 2.5rem; }
-	.section-title {
-		display: flex; align-items: center; gap: 0.5rem;
-		font-size: 1.125rem; font-weight: 700; color: var(--gray-800);
-		margin-bottom: 1rem;
-	}
 	.section-desc {
 		font-size: 0.875rem; color: var(--gray-500); margin-bottom: 1rem; max-width: 48rem;
 	}
@@ -589,7 +595,7 @@
 	.detail-table td {
 		padding: 0.5rem; border-bottom: 1px solid var(--gray-50); white-space: nowrap;
 	}
-	.col-right { text-align: right; }
+	.col-right { text-align: right !important; }
 	.cat-dot {
 		display: inline-block; width: 0.625rem; height: 0.625rem;
 		border-radius: 0.125rem; margin-right: 0.375rem; vertical-align: middle;
@@ -603,9 +609,7 @@
 	/* Hebesatz history vertical bar chart */
 	.hebesatz-history-grid {
 		display: grid; gap: 1.5rem; grid-template-columns: 1fr;
-	}
-	@media (min-width: 768px) {
-		.hebesatz-history-grid { grid-template-columns: 1fr 1fr; }
+		min-width: 0;
 	}
 	.vbar-chart {
 		display: flex; align-items: flex-end; gap: 0.125rem;
@@ -613,7 +617,7 @@
 	}
 	.vbar-col {
 		display: flex; flex-direction: column; align-items: center;
-		flex: 1; min-width: 2rem;
+		flex: 1 1 0; min-width: 2rem;
 	}
 	.vbar-label {
 		font-size: 0.625rem; font-weight: 600; color: var(--gray-500);
@@ -628,7 +632,7 @@
 	.vbar-delta-up { color: var(--red-500, #ef4444); }
 	.vbar-delta-down { color: var(--green-500, #22c55e); }
 	.vbar-track {
-		width: 100%; max-width: 2.5rem; height: 8rem;
+		width: 100%; height: 8rem;
 		background: var(--gray-50); border-radius: 0.25rem 0.25rem 0 0;
 		display: flex; align-items: flex-end;
 	}
@@ -648,15 +652,18 @@
 	/* Comparison bars */
 	.comparison-grid {
 		display: grid; gap: 1.5rem; grid-template-columns: 1fr;
+		min-width: 0;
 	}
 	@media (min-width: 900px) {
 		.comparison-grid { grid-template-columns: 1fr 1fr; }
 	}
 	.bar-chart {
 		display: flex; flex-direction: column; gap: 0.375rem;
+		overflow-x: auto; -webkit-overflow-scrolling: touch;
 	}
 	.bar-row {
 		display: grid; grid-template-columns: 10rem 1fr 5rem; gap: 0.5rem; align-items: center;
+		min-width: 26rem;
 	}
 	.bar-row-highlight { font-weight: 600; }
 	.bar-label {
