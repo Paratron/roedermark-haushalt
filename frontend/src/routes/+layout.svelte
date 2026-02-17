@@ -1,5 +1,6 @@
 <script lang="ts">
 	import '../app.css';
+	import favicon from '$lib/assets/favicon.svg';
 	import { Landmark, Menu, X } from '@lucide/svelte';
 	import { page } from '$app/state';
 
@@ -29,6 +30,10 @@
 		mobileNavOpen = false;
 	}
 </script>
+
+<svelte:head>
+	<link rel="icon" href={favicon} type="image/svg+xml" />
+</svelte:head>
 
 <div class="app-shell">
 	<!-- Header -->
@@ -83,7 +88,7 @@
 				Datenquelle: <a href="https://www.roedermark.de" target="_blank" rel="noopener">Stadt Rödermark</a> – offizielle Haushaltspläne (PDF)
 			</p>
 			<p>
-				Keine offizielle Seite der Stadt. Alle Angaben ohne Gewähr. · <a href="/impressum">Impressum</a>
+				Keine offizielle Seite der Stadt. Alle Angaben ohne Gewähr. <a href="/impressum">Impressum</a>
 			</p>
 		</div>
 	</footer>
