@@ -1,11 +1,14 @@
 <script lang="ts">
 	import { tick, onMount } from 'svelte';
 	import { browser } from '$app/environment';
+	import { page } from '$app/stores';
+	import { goto } from '$app/navigation';
 	import type { PageData } from './$types';
 	import type { SourceLink, InvestmentCommentary, ThemaSummary } from '$lib/types';
 	import { formatAmount, formatEur, formatMio, formatNumber } from '$lib/format';
 	import { groupBy, sourceLinksFromItems, shortDocLabel } from '$lib/data';
 	import SourceCitation from '$lib/components/SourceCitation.svelte';
+	import AnchorHeading from '$lib/components/AnchorHeading.svelte';
 	import { Coins, TrendingUp, TrendingDown, AlertTriangle, ChevronDown, ChevronRight, Info, BookOpen } from '@lucide/svelte';
 	import { SvelteSet, SvelteMap } from 'svelte/reactivity';
 
@@ -20,42 +23,45 @@
 	// ─── Theme state ───
 	let selectedThema = $state<string | null>(null);
 
-	// ─── URL hash ↔ state sync ───
-	function parseHash(hash: string) {
-		const h = hash.replace(/^#/, '');
-		if (h.startsWith('projekt/')) {
-			return { tab: 'projekte' as Tab, projectKey: decodeURIComponent(h.slice('projekt/'.length)) };
+	// ─── URL query string ↔ state sync ───
+	function parseQuery(params: URLSearchParams) {
+		const tab = params.get('tab');
+		const projektKey = params.get('projekt');
+		if (projektKey) {
+			return { tab: 'projekte' as Tab, projectKey: projektKey };
 		}
-		if (h === 'projekte') {
+		if (tab === 'projekte') {
 			return { tab: 'projekte' as Tab, projectKey: null };
 		}
 		return { tab: 'themen' as Tab, projectKey: null };
 	}
 
-	function buildHash(tab: Tab, projectKey: string | null): string {
-		if (projectKey) return `#projekt/${encodeURIComponent(projectKey)}`;
-		if (tab === 'projekte') return '#projekte';
-		return '#themen';
-	}
-
-	function pushHash(tab: Tab, projectKey: string | null = null) {
-		if (!browser) return;
-		const hash = buildHash(tab, projectKey);
-		if (location.hash !== hash) {
-			history.pushState(null, '', hash);
+	function buildQuery(tab: Tab, projectKey: string | null): string {
+		const params = new URLSearchParams();
+		if (projectKey) {
+			params.set('tab', 'projekte');
+			params.set('projekt', projectKey);
+		} else if (tab === 'projekte') {
+			params.set('tab', 'projekte');
 		}
+		const qs = params.toString();
+		return qs ? `?${qs}` : location.pathname;
 	}
 
-	function replaceHash(tab: Tab, projectKey: string | null = null) {
+	function pushQuery(tab: Tab, projectKey: string | null = null) {
 		if (!browser) return;
-		const hash = buildHash(tab, projectKey);
-		if (location.hash !== hash) {
-			history.replaceState(null, '', hash);
-		}
+		const url = buildQuery(tab, projectKey);
+		goto(url, { replaceState: false, noScroll: true, keepFocus: true });
 	}
 
-	async function applyHash(hash: string) {
-		const { tab, projectKey } = parseHash(hash);
+	function replaceQuery(tab: Tab, projectKey: string | null = null) {
+		if (!browser) return;
+		const url = buildQuery(tab, projectKey);
+		goto(url, { replaceState: true, noScroll: true, keepFocus: true });
+	}
+
+	async function applyQuery(params: URLSearchParams) {
+		const { tab, projectKey } = parseQuery(params);
 		activeTab = tab;
 		if (projectKey) {
 			selectedThema = null;
@@ -78,12 +84,10 @@
 	}
 
 	onMount(() => {
-		if (location.hash) {
-			applyHash(location.hash);
+		const params = new URL(location.href).searchParams;
+		if (params.has('tab') || params.has('projekt')) {
+			applyQuery(params);
 		}
-		const onPopState = () => applyHash(location.hash);
-		window.addEventListener('popstate', onPopState);
-		return () => window.removeEventListener('popstate', onPopState);
 	});
 
 	// ─── Project view state ───
@@ -376,11 +380,11 @@
 		} else {
 			selectedThema = thema;
 		}
-		replaceHash('themen');
+		replaceQuery('themen');
 	}
 
 	async function goToProject(key: string) {
-		pushHash('projekte', key);
+		pushQuery('projekte', key);
 		selectedThema = null;
 		activeTab = 'projekte';
 		selectedTh = 'all';
@@ -399,9 +403,9 @@
 	}
 </script>
 
-<h2 class="page-title">
-	<Coins class="page-icon" /> Investitionen
-</h2>
+<AnchorHeading level={2} id="investitionen">
+	<Coins /> Investitionen
+</AnchorHeading>
 <p class="page-intro">
 	Wo investiert Rödermark – und woher kommt das Geld dafür?
 	Die Übersicht zeigt das gesamte Investitionsvolumen: Was bereits ausgegeben wurde (Ist bis {data.summary.last_ist_year})
@@ -435,10 +439,10 @@
 
 <!-- Tab Navigation -->
 <div class="tab-bar section">
-	<button class="tab-btn" class:active={activeTab === 'themen'} onclick={() => { activeTab = 'themen'; pushHash('themen'); }}>
+	<button class="tab-btn" class:active={activeTab === 'themen'} onclick={() => { activeTab = 'themen'; pushQuery('themen'); }}>
 		Themenübersicht
 	</button>
-	<button class="tab-btn" class:active={activeTab === 'projekte'} onclick={() => { activeTab = 'projekte'; pushHash('projekte'); }}>
+	<button class="tab-btn" class:active={activeTab === 'projekte'} onclick={() => { activeTab = 'projekte'; pushQuery('projekte'); }}>
 		Einzelprojekte
 	</button>
 </div>
@@ -448,9 +452,9 @@
 
 <!-- Wo wird investiert? -->
 <section class="section">
-	<h3 class="section-title">
+	<AnchorHeading level={3} id="wo-wird-investiert">
 		Wo wird investiert?
-	</h3>
+	</AnchorHeading>
 	<p class="section-sub">
 		Investitionsausgaben nach Thema – Klick für Details.
 		<span class="legend"><span class="legend-dot legend-ist"></span> bereits ausgegeben <span class="legend-dot legend-plan"></span> noch geplant</span>
@@ -545,9 +549,9 @@
 
 <!-- Woher kommt das Geld? -->
 <section class="section">
-	<h3 class="section-title">
+	<AnchorHeading level={3} id="finanzierung">
 		Woher kommt das Geld?
-	</h3>
+	</AnchorHeading>
 	<p class="section-sub">Wie Investitionen finanziert werden – aus Zuschüssen, Krediten, Verkäufen oder Beiträgen.</p>
 
 	<div class="finance-grid">
@@ -775,21 +779,8 @@
 
 <style>
 	/* Page layout */
-	.page-title {
-		display: flex; align-items: center; gap: 0.75rem;
-		margin-bottom: 1.5rem; font-size: 1.5rem; font-weight: 700; color: var(--gray-900);
-	}
-	:global(.page-icon) { width: 1.75rem; height: 1.75rem; }
 	.page-intro { margin-bottom: 2rem; max-width: 48rem; color: var(--gray-600); }
 	.section { margin-bottom: 2rem; }
-
-	/* Section titles */
-	.section-title {
-		display: flex; align-items: center; gap: 0.5rem;
-		font-size: 1.125rem; font-weight: 600; color: var(--gray-800);
-		margin-bottom: 1rem;
-	}
-	:global(.section-icon) { width: 1.25rem; height: 1.25rem; }
 
 	/* Tab bar */
 	.tab-bar {

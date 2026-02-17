@@ -2,6 +2,7 @@
 	import type { PageData } from './$types';
 	import { formatMio, formatNumber } from '$lib/format';
 	import TimeSeriesChart from '$lib/components/TimeSeriesChart.svelte';
+	import AnchorHeading from '$lib/components/AnchorHeading.svelte';
 	import { Info, ClipboardList, Coins, Search, Building2, TrendingUp, Landmark, PieChart } from '@lucide/svelte';
 
 	let { data }: { data: PageData } = $props();
@@ -28,7 +29,7 @@
 
 <!-- Ergebnishaushalt Overview -->
 <section class="section">
-	<h3 class="section-title">Ergebnishaushalt – Jahresergebnis</h3>
+	<AnchorHeading level={3} id="jahresergebnis">Ergebnishaushalt – Jahresergebnis</AnchorHeading>
 	<div class="card card-padded">
 		<TimeSeriesChart
 			title="Jahresergebnis (Erträge − Aufwendungen) · positiv = Überschuss, negativ = Defizit"
@@ -52,7 +53,7 @@
 
 <!-- Erträge vs Aufwendungen -->
 <section class="section">
-	<h3 class="section-title">Ordentliche Erträge vs. Aufwendungen</h3>
+	<AnchorHeading level={3} id="ertraege-aufwendungen">Ordentliche Erträge vs. Aufwendungen</AnchorHeading>
 	<div class="card card-padded">
 		<TimeSeriesChart
 			title="Ordentliche Erträge und Aufwendungen im Vergleich"
@@ -108,12 +109,6 @@
 	}
 	.section {
 		margin-bottom: 2.5rem;
-	}
-	.section-title {
-		margin-bottom: 1rem;
-		font-size: 1.25rem;
-		font-weight: 600;
-		color: var(--gray-800);
 	}
 	:global(.info-icon) {
 		margin-top: 0.125rem;

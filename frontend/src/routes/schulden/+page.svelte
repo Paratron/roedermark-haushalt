@@ -5,6 +5,7 @@
 	import TimeSeriesChart from '$lib/components/TimeSeriesChart.svelte';
 	import { Landmark, Info, ChevronDown, ChevronRight, HandCoins, ExternalLink } from '@lucide/svelte';
 	import SourceCitation from '$lib/components/SourceCitation.svelte';
+	import AnchorHeading from '$lib/components/AnchorHeading.svelte';
 	import { SvelteSet, SvelteMap } from 'svelte/reactivity';
 
 	let { data }: { data: PageData } = $props();
@@ -84,9 +85,9 @@
 	let planOnlySet = $derived(new Set(summary.plan_only_years));
 </script>
 
-<h2 class="page-title">
-	<HandCoins class="page-icon" /> Schulden &amp; Zinsen
-</h2>
+<AnchorHeading level={2} id="schulden-zinsen">
+	<HandCoins /> Schulden &amp; Zinsen
+</AnchorHeading>
 <p class="page-intro">
 	Wie hoch ist die Verschuldung der Stadt Rödermark? Diese Seite zeigt Kreditaufnahme, Tilgung
 	und Zinsbelastung im Zeitverlauf – basierend auf den Finanzhaushaltsdaten.
@@ -206,7 +207,7 @@
 
 <!-- Detail Table: TH14 Financing Projects -->
 <section>
-	<h3 class="section-heading">Einzelpositionen im Investitionsprogramm</h3>
+	<AnchorHeading level={3} id="einzelpositionen">Einzelpositionen im Investitionsprogramm</AnchorHeading>
 	<p class="section-sub">
 		{projects.length} Positionen aus dem Investitionsprogramm, die sich auf Kreditaufnahme, Tilgung und Darlehen beziehen.
 		Aufklappen für die Jahresdetails.
@@ -327,11 +328,6 @@
 </section>
 
 <style>
-	.page-title {
-		display: flex; align-items: center; gap: 0.75rem;
-		margin-bottom: 1.5rem; font-size: 1.5rem; font-weight: 700; color: var(--gray-900);
-	}
-	:global(.page-icon) { width: 1.75rem; height: 1.75rem; }
 	.page-intro { margin-bottom: 2rem; max-width: 48rem; color: var(--gray-600); }
 	.section { margin-bottom: 2rem; }
 	.section-lg { margin-bottom: 2.5rem; }
@@ -342,7 +338,6 @@
 		box-shadow: var(--shadow-sm); border: 1px solid var(--gray-100);
 	}
 	.chart-note { margin-top: 0.5rem; font-size: 0.75rem; color: var(--gray-400); }
-	.section-heading { margin-bottom: 0.5rem; font-size: 1.125rem; font-weight: 600; color: var(--gray-800); }
 	.section-sub { margin-bottom: 1rem; font-size: 0.875rem; color: var(--gray-500); }
 	.project-list { display: flex; flex-direction: column; gap: 0.5rem; }
 	.chevron { margin-top: 0.125rem; flex-shrink: 0; color: var(--gray-400); }

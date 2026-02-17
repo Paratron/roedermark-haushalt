@@ -6,6 +6,7 @@
 	import TimeSeriesChart from '$lib/components/TimeSeriesChart.svelte';
 	import SourceCitation from '$lib/components/SourceCitation.svelte';
 	import HaushaltTable from '$lib/components/HaushaltTable.svelte';
+	import AnchorHeading from '$lib/components/AnchorHeading.svelte';
 	import { Building2 } from '@lucide/svelte';
 	import { browser } from '$app/environment';
 
@@ -147,9 +148,9 @@
 	});
 </script>
 
-<h2 class="page-title">
-	<Building2 class="page-icon" /> Teilhaushalte
-</h2>
+<AnchorHeading level={2} id="teilhaushalte">
+	<Building2 /> Teilhaushalte
+</AnchorHeading>
 <p class="page-intro">
 	Teilergebnis- und Teilfinanzhaushalte nach Fachbereichen der Stadt Rödermark.
 	Jeder Teilhaushalt zeigt die budgetierten und tatsächlichen Erträge/Aufwendungen bzw. Ein-/Auszahlungen
@@ -244,11 +245,6 @@
 </section>
 
 <style>
-	.page-title {
-		display: flex; align-items: center; gap: 0.75rem;
-		margin-bottom: 1.5rem; font-size: 1.5rem; font-weight: 700; color: var(--gray-900);
-	}
-	:global(.page-icon) { width: 1.75rem; height: 1.75rem; }
 	.page-intro { margin-bottom: 2rem; max-width: 48rem; color: var(--gray-600); }
 	.section { margin-bottom: 2rem; }
 	.th-card {

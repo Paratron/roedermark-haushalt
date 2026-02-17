@@ -4,6 +4,7 @@
 	import { haushaltTypeLabel, shortDocLabel } from '$lib/data';
 	import type { SourceLink } from '$lib/types';
 	import SourceCitation from '$lib/components/SourceCitation.svelte';
+	import AnchorHeading from '$lib/components/AnchorHeading.svelte';
 	import { Search } from '@lucide/svelte';
 
 	let { data }: { data: PageData } = $props();
@@ -122,7 +123,7 @@
 	});
 </script>
 
-<h2 class="page-title"><Search class="page-icon" /> Daten-Explorer</h2>
+<AnchorHeading level={2} id="daten-explorer"><Search /> Daten-Explorer</AnchorHeading>
 <p class="page-intro">
 	Durchsuche und filtere alle {data.items.length.toLocaleString('de-DE')} Haushaltspositionen.
 </p>
@@ -252,11 +253,6 @@
 {/if}
 
 <style>
-	.page-title {
-		display: flex; align-items: center; gap: 0.75rem;
-		margin-bottom: 1.5rem; font-size: 1.5rem; font-weight: 700; color: var(--gray-900);
-	}
-	:global(.page-icon) { width: 1.75rem; height: 1.75rem; }
 	.page-intro { margin-bottom: 1.5rem; color: var(--gray-600); }
 	.section { margin-bottom: 1.5rem; }
 	.filter-label { display: block; font-size: 0.75rem; font-weight: 500; color: var(--gray-500); }

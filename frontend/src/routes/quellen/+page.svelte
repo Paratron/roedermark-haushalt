@@ -2,6 +2,7 @@
 	import type { PageData } from './$types';
 	import { formatDocumentName, formatNumber } from '$lib/format';
 	import { FileText, Download, ExternalLink, CircleAlert } from '@lucide/svelte';
+	import AnchorHeading from '$lib/components/AnchorHeading.svelte';
 
 	let { data }: { data: PageData } = $props();
 	const { summary } = data;
@@ -51,7 +52,7 @@
 	}
 </script>
 
-<h2 class="page-title"><FileText class="page-icon" /> Datenquellen</h2>
+<AnchorHeading level={2} id="datenquellen"><FileText /> Datenquellen</AnchorHeading>
 <p class="page-intro">
 	Alle Daten stammen aus offiziellen PDF-Dokumenten der Stadt Rödermark. Jede extrahierte Zahl
 	ist auf das Quelldokument und die Seitenzahl rückverfolgbar.
@@ -83,7 +84,7 @@
 
 <!-- Methodology -->
 <section class="card card-padded section">
-	<h3 class="method-heading">Methodik</h3>
+	<AnchorHeading level={3} id="methodik">Methodik</AnchorHeading>
 	<div class="method-steps">
 		<p>
 			<strong>1. Fetch:</strong> PDFs werden von der Website der Stadt Rödermark heruntergeladen
@@ -105,7 +106,7 @@
 
 <!-- Documents Table -->
 <section>
-	<h3 class="section-heading">Quelldokumente ({documents.length})</h3>
+	<AnchorHeading level={3} id="quelldokumente">Quelldokumente ({documents.length})</AnchorHeading>
 	<div class="doc-list">
 		{#each documents as doc}
 			{#if doc.missing}
@@ -175,7 +176,7 @@
 
 <!-- Disclaimer -->
 <section class="info-box info-box-amber disclaimer">
-	<h4 class="disclaimer-heading">⚠️ Hinweise</h4>
+	<AnchorHeading level={4} id="hinweise">⚠️ Hinweise</AnchorHeading>
 	<ul class="disclaimer-list">
 		<li>Dies ist <strong>keine offizielle Seite</strong> der Stadt Rödermark.</li>
 		<li>Alle Daten wurden automatisch aus PDFs extrahiert – Fehler sind möglich.</li>
@@ -185,19 +186,12 @@
 </section>
 
 <style>
-	.page-title {
-		display: flex; align-items: center; gap: 0.75rem;
-		margin-bottom: 1.5rem; font-size: 1.5rem; font-weight: 700; color: var(--gray-900);
-	}
-	:global(.page-icon) { width: 1.75rem; height: 1.75rem; }
 	.page-intro { margin-bottom: 2rem; max-width: 48rem; color: var(--gray-600); }
 	.section { margin-bottom: 2.5rem; }
-	.method-heading { margin-bottom: 0.75rem; font-size: 1.125rem; font-weight: 600; color: var(--gray-800); }
 	.method-steps { display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.875rem; color: var(--gray-600); }
 	.method-steps code {
 		background: var(--gray-100); padding: 0 0.25rem; border-radius: 0.25rem;
 	}
-	.section-heading { margin-bottom: 1rem; font-size: 1.125rem; font-weight: 600; color: var(--gray-800); }
 	.doc-list { display: flex; flex-direction: column; gap: 0.75rem; }
 	.doc-card { border-radius: 0.75rem; padding: 1rem; }
 	.doc-available {
@@ -246,7 +240,6 @@
 	}
 	.doc-link:hover { color: var(--brand-800); }
 	.disclaimer { margin-top: 2.5rem; }
-	.disclaimer-heading { font-weight: 500; color: var(--amber-800); }
 	.disclaimer-list {
 		margin-top: 0.5rem; padding-left: 1.25rem;
 		list-style: disc inside; display: flex; flex-direction: column; gap: 0.25rem;

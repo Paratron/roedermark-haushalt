@@ -17,6 +17,7 @@
 	import SourceCitation from '$lib/components/SourceCitation.svelte';
 	import { PieChart, Info, LayoutGrid, Columns3, ChartPie, ChevronsDown } from '@lucide/svelte';
 	import { browser } from '$app/environment';
+	import AnchorHeading from '$lib/components/AnchorHeading.svelte';
 
 	let { data }: { data: PageData } = $props();
 
@@ -174,7 +175,7 @@
 		if (id !== selectedTaskId) hintDismissed = false;
 		selectedTaskId = selectedTaskId === id ? null : id;
 	}
-</script> <h2 class="page-title"><ChartPie class="page-icon" /> Einnahmen & Ausgaben</h2> <p class="page-intro"> Wofür gibt die Stadt Rödermark Geld aus? Die Aufschlüsselung zeigt die Ausgaben nach Aufgabenbereichen – von Kinderbetreuung bis Feuerwehr. </p>
+</script> <AnchorHeading level={2} id="einnahmen-ausgaben"><ChartPie /> Einnahmen & Ausgaben</AnchorHeading> <p class="page-intro"> Wofür gibt die Stadt Rödermark Geld aus? Die Aufschlüsselung zeigt die Ausgaben nach Aufgabenbereichen – von Kinderbetreuung bis Feuerwehr. </p>
 <!-- View Toggle (navigation) -->
 <section class="section">
 	<div class="view-toggle">
@@ -347,11 +348,6 @@
 </section>
 
 <style>
-	.page-title {
-		display: flex; align-items: center; gap: 0.75rem;
-		margin-bottom: 1.5rem; font-size: 1.5rem; font-weight: 700; color: var(--gray-900);
-	}
-	:global(.page-icon) { width: 1.75rem; height: 1.75rem; }
 	.page-intro { margin-bottom: 2rem; max-width: 48rem; color: var(--gray-600); }
 	.section { margin-bottom: 2.5rem; }
 	.year-selector {

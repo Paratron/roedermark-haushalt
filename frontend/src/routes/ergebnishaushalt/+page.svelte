@@ -5,6 +5,7 @@
 	import TimeSeriesChart from '$lib/components/TimeSeriesChart.svelte';
 	import SourceCitation from '$lib/components/SourceCitation.svelte';
 	import HaushaltTable from '$lib/components/HaushaltTable.svelte';
+	import AnchorHeading from '$lib/components/AnchorHeading.svelte';
 	import { ClipboardList, Info, ChevronsDown } from '@lucide/svelte';
 	import { browser } from '$app/environment';
 
@@ -146,7 +147,7 @@
 	}
 </script>
 
-<h2 class="page-title"><ClipboardList class="page-icon" /> Ergebnishaushalt</h2>
+<AnchorHeading level={2} id="ergebnishaushalt"><ClipboardList /> Ergebnishaushalt</AnchorHeading>
 <p class="page-intro">
 	Der Ergebnishaushalt zeigt die ordentlichen Erträge (Steuern, Zuweisungen, Gebühren) und
 	Aufwendungen (Personal, Sach-, Transferaufwendungen) der Stadt Rödermark.
@@ -195,7 +196,7 @@
 
 <!-- Data Table -->
 <section bind:this={tableEl}>
-	<h3 class="table-title">Alle Positionen im Überblick</h3>
+	<AnchorHeading level={3} id="alle-positionen">Alle Positionen im Überblick</AnchorHeading>
 	<HaushaltTable
 		rows={pivotData}
 		{years}
@@ -216,19 +217,6 @@
 {/if}
 
 <style>
-	.page-title {
-		display: flex;
-		align-items: center;
-		gap: 0.75rem;
-		margin-bottom: 1.5rem;
-		font-size: 1.5rem;
-		font-weight: 700;
-		color: var(--gray-900);
-	}
-	:global(.page-icon) {
-		width: 1.75rem;
-		height: 1.75rem;
-	}
 	.page-intro {
 		margin-bottom: 2rem;
 		max-width: 48rem;
@@ -256,12 +244,6 @@
 		width: 1.25rem;
 		height: 1.25rem;
 		flex-shrink: 0;
-	}
-	.table-title {
-		margin-bottom: 1rem;
-		font-size: 1.125rem;
-		font-weight: 600;
-		color: var(--gray-800);
 	}
 
 	/* Sticky scroll-to-table hint */
