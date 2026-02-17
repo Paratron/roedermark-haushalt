@@ -83,7 +83,7 @@
 				Datenquelle: <a href="https://www.roedermark.de" target="_blank" rel="noopener">Stadt Rödermark</a> – offizielle Haushaltspläne (PDF)
 			</p>
 			<p>
-				Keine offizielle Seite der Stadt. Alle Angaben ohne Gewähr.
+				Keine offizielle Seite der Stadt. Alle Angaben ohne Gewähr. · <a href="/impressum">Impressum</a>
 			</p>
 		</div>
 	</footer>

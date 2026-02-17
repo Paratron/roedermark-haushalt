@@ -91,24 +91,43 @@
 
 <!-- Methodology -->
 <section class="card card-padded section">
-	<AnchorHeading level={3} id="methodik">Methodik</AnchorHeading>
+	<AnchorHeading level={3} id="methodik">Wie entstehen die Daten?</AnchorHeading>
 	<div class="method-steps">
 		<p>
-			<strong>1. Fetch:</strong> PDFs werden von der Website der Stadt Rödermark heruntergeladen
-			und mit SHA-256 Prüfsummen versioniert.
+			<strong>1. Dokumente sammeln:</strong> Die offiziellen Haushaltspläne und Jahresabschlüsse
+			werden als PDF von der Website der Stadt Rödermark heruntergeladen.
 		</p>
 		<p>
-			<strong>2. Parse:</strong> Tabellen werden mit pdfplumber extrahiert. Die Seitenbereiche
-			sind in <code>tables.yaml</code> definiert.
+			<strong>2. Zahlen auslesen:</strong> Ein Programm liest die Tabellen aus den PDFs automatisch aus –
+			ähnlich wie Copy & Paste, aber systematisch für jede Seite.
 		</p>
 		<p>
-			<strong>3. Normalize:</strong> Jahresdaten werden aus den Spaltenüberschriften erkannt,
-			Beträge von deutschem Zahlenformat in EUR konvertiert, und überlappende Daten dedupliziert.
+			<strong>3. Aufbereiten:</strong> Die ausgelesenen Zahlen werden bereinigt, den richtigen Jahren
+			zugeordnet und in ein einheitliches Format gebracht. Wenn dasselbe Jahr in mehreren Dokumenten
+			vorkommt, wird die aktuellste Quelle verwendet.
 		</p>
 		<p>
-			<strong>4. Publish:</strong> Export als CSV, Parquet und DuckDB für verschiedene Analysetools.
+			<strong>4. Bereitstellen:</strong> Die aufbereiteten Daten werden als Diagramme und Tabellen
+			auf dieser Website dargestellt. Jede Zahl lässt sich auf das Originaldokument und die
+			Seitenzahl zurückverfolgen.
 		</p>
 	</div>
+	<p class="method-note">
+		Die Haushaltspläne der Stadt Rödermark umfassen teils mehrere hundert Seiten pro Dokument.
+		Die Auswertung erfolgt daher automatisiert und teilweise KI-gestützt – als Einzelperson
+		wäre eine manuelle Erfassung dieser Datenmenge nicht zu bewerkstelligen.
+		Die Ergebnisse werden stichprobenartig geprüft, dennoch können Fehler nicht ausgeschlossen werden.
+	</p>
+</section>
+<!-- Disclaimer -->
+<section class="info-box info-box-amber disclaimer" style="margin-top: -1rem; margin-bottom: 2rem;">
+	<AnchorHeading level={4} id="hinweise">⚠️ Hinweise</AnchorHeading>
+	<ul class="disclaimer-list">
+		<li>Dies ist <strong>keine offizielle Seite</strong> der Stadt Rödermark, sondern ein privates Transparenzprojekt.</li>
+		<li>Alle Daten wurden <strong>automatisiert und teilweise KI-gestützt</strong> aus PDFs extrahiert – Fehler sind möglich.</li>
+		<li>Im Zweifelsfall gilt immer das <strong>Originaldokument</strong> (PDF).</li>
+		<li>Datenstand: {new Date(data.summary.generated_at).toLocaleDateString('de-DE')}</li>
+	</ul>
 </section>
 
 <!-- Documents Table -->
@@ -181,23 +200,18 @@
 	</div>
 </section>
 
-<!-- Disclaimer -->
-<section class="info-box info-box-amber disclaimer">
-	<AnchorHeading level={4} id="hinweise">⚠️ Hinweise</AnchorHeading>
-	<ul class="disclaimer-list">
-		<li>Dies ist <strong>keine offizielle Seite</strong> der Stadt Rödermark.</li>
-		<li>Alle Daten wurden automatisch aus PDFs extrahiert – Fehler sind möglich.</li>
-		<li>Im Zweifelsfall gilt immer das Originaldokument (PDF).</li>
-		<li>Stand der Pipeline: {new Date(data.summary.generated_at).toLocaleDateString('de-DE')}</li>
-	</ul>
-</section>
-
 <style>
 	.page-intro { margin-bottom: 2rem; max-width: 48rem; color: var(--gray-600); }
 	.section { margin-bottom: 2.5rem; }
 	.method-steps { display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.875rem; color: var(--gray-600); }
-	.method-steps code {
-		background: var(--gray-100); padding: 0 0.25rem; border-radius: 0.25rem;
+	.method-note {
+		margin-top: 1rem;
+		padding: 0.75rem 1rem;
+		background: var(--blue-50, #eff6ff);
+		border-left: 3px solid var(--blue-400, #60a5fa);
+		border-radius: 0.25rem;
+		font-size: 0.875rem;
+		color: var(--gray-600);
 	}
 	.doc-list { display: flex; flex-direction: column; gap: 0.75rem; }
 	.doc-card { border-radius: 0.75rem; padding: 1rem; }
