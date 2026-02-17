@@ -184,9 +184,7 @@ footer a:hover {
 	outline-offset: -1px;
 	margin-left: -1rem;
 	margin-right: -1rem;
-}
-.card:hover {
-	box-shadow: var(--shadow-md);
+	min-width: 0;
 }
 .card-padded {
 	padding: 1rem;
@@ -565,3 +563,5 @@ input[type="checkbox"] {
 	accent-color: var(--brand-600);
 	border-radius: 0.25rem;
 }
+
+
