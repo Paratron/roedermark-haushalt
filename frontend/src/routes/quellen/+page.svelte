@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { PageData } from './$types';
 	import { formatDocumentName, formatNumber } from '$lib/format';
-	import { FileText, Download, ExternalLink, CircleAlert } from '@lucide/svelte';
+	import { FileText, Download, ExternalLink, CircleAlert, Github } from '@lucide/svelte';
 	import AnchorHeading from '$lib/components/AnchorHeading.svelte';
 	import SocialMeta from '$lib/components/SocialMeta.svelte';
 
@@ -128,6 +128,23 @@
 		<li>Im Zweifelsfall gilt immer das <strong>Originaldokument</strong> (PDF).</li>
 		<li>Datenstand: {new Date(data.summary.generated_at).toLocaleDateString('de-DE')}</li>
 	</ul>
+</section>
+
+<!-- Open Source -->
+<section class="info-box info-box-brand open-source-box section">
+	<AnchorHeading level={4} id="open-source"><Github class="gh-icon" /> Open Source</AnchorHeading>
+	<p class="open-source-text">
+		Der gesamte Quellcode dieses Projekts – Pipeline und Website – ist frei verfügbar.
+		Du kannst ihn nutzen, um die Daten nachzuvollziehen oder das Projekt für deine eigene Kommune anzupassen.
+	</p>
+	<a
+		href="https://github.com/Paratron/roedermark-haushalt"
+		target="_blank"
+		rel="noopener"
+		class="gh-link"
+	>
+		<Github class="link-icon" /> github.com/Paratron/roedermark-haushalt
+	</a>
 </section>
 
 <!-- Documents Table -->
@@ -266,4 +283,19 @@
 		list-style: disc inside; display: flex; flex-direction: column; gap: 0.25rem;
 		font-size: 0.875rem; color: var(--amber-700);
 	}
+	.open-source-box {
+		background: var(--brand-50, #f0fdf4);
+		border: 1px solid var(--brand-200, #bbf7d0);
+		border-radius: 0.75rem;
+		padding: 1.25rem;
+	}
+	.open-source-text {
+		font-size: 0.875rem; color: var(--gray-600); margin-bottom: 0.75rem;
+	}
+	.gh-link {
+		display: inline-flex; align-items: center; gap: 0.375rem;
+		font-size: 0.875rem; font-weight: 500; color: var(--brand-700);
+	}
+	.gh-link:hover { color: var(--brand-900); }
+	:global(.gh-icon) { width: 1.125rem; height: 1.125rem; }
 </style>
