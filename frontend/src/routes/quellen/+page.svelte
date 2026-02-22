@@ -131,8 +131,8 @@
 </section>
 
 <!-- Open Source -->
-<section class="info-box info-box-brand open-source-box section">
-	<AnchorHeading level={4} id="open-source"><Github class="gh-icon" /> Open Source</AnchorHeading>
+<section class="info-box info-box-brand open-source-box section" style="display: block;">
+	<AnchorHeading level={4} id="open-source">Open Source</AnchorHeading>
 	<p class="open-source-text">
 		Der gesamte Quellcode dieses Projekts – Pipeline und Website – ist frei verfügbar.
 		Du kannst ihn nutzen, um die Daten nachzuvollziehen oder das Projekt für deine eigene Kommune anzupassen.
@@ -143,7 +143,7 @@
 		rel="noopener"
 		class="gh-link"
 	>
-		<Github class="link-icon" /> github.com/Paratron/roedermark-haushalt
+		https://github.com/Paratron/roedermark-haushalt
 	</a>
 </section>
 
