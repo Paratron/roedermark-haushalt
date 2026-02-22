@@ -184,6 +184,7 @@
 	title="Einnahmen & Ausgaben"
 	description="Wofür gibt die Stadt Rödermark Geld aus? Die Aufschlüsselung zeigt die Ausgaben nach Aufgabenbereichen – von Kinderbetreuung bis Feuerwehr."
 	path="/kategorien"
+	image="share-einnahmen-ausgaben.jpg"
 />
 
 <AnchorHeading level={2} id="einnahmen-ausgaben"><ChartPie /> Einnahmen & Ausgaben</AnchorHeading> <p class="page-intro"> Wofür gibt die Stadt Rödermark Geld aus? Die Aufschlüsselung zeigt die Ausgaben nach Aufgabenbereichen – von Kinderbetreuung bis Feuerwehr. </p>

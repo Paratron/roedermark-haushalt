@@ -240,6 +240,7 @@
 	title="Steuereinnahmen"
 	description="Steuereinnahmen der Stadt Rödermark – Zusammensetzung, Hebesätze im Vergleich mit dem Kreis Offenbach und Entwicklung über die Jahre."
 	path="/steuern"
+	image="share-steuer.jpg"
 />
 
 <AnchorHeading level={2} id="steuereinnahmen"><Receipt /> Steuereinnahmen</AnchorHeading>

@@ -90,6 +90,7 @@
 	title="Schulden & Zinsen"
 	description="Verschuldung der Stadt Rödermark – Kreditaufnahme, Tilgung und Zinsbelastung im Zeitverlauf seit 1986."
 	path="/schulden"
+	image="share-schulden.jpg"
 />
 
 <AnchorHeading level={2} id="schulden-zinsen">

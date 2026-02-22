@@ -408,6 +408,7 @@
 	title="Investitionen"
 	description="Wo investiert Rödermark – und woher kommt das Geld dafür? Investitionsausgaben nach Themen und Einzelprojekten."
 	path="/investitionen"
+	image="share-invest.jpg"
 />
 
 <AnchorHeading level={2} id="investitionen">
