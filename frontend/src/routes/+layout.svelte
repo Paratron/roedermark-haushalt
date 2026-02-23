@@ -33,6 +33,12 @@
 
 <svelte:head>
 	<link rel="icon" href={favicon} type="image/svg+xml" />
+	<!-- Privacy-friendly analytics by Plausible -->
+	<script async src="https://plausible.io/js/pa-DtvEoxH0qnYEd6zydQomh.js"></script>
+	<script>
+	window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
+	plausible.init()
+	</script>
 </svelte:head>
 
 <div class="app-shell">
