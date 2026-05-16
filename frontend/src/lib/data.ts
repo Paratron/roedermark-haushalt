@@ -1127,3 +1127,138 @@ export function drilldownSourceLinks(
 
 	return [];
 }
+
+// ─── Deckungslücken: Revenue vs. Expense per Task ───
+
+/** A single row in the coverage-gap analysis: one task category with revenue, expense, and gap */
+export interface DeckungslueckeSlice {
+	task: TaskCategory;
+	/** Total revenue (Erträge, Nr. 100) for this task's Teilhaushalte */
+	revenue: number;
+	/** Total expense (Aufwendungen, Nr. 190) for this task's Teilhaushalte */
+	expense: number;
+	/** Gap = expense - revenue (positive = city pays from general funds) */
+	gap: number;
+	/** Coverage ratio: revenue / expense (0–1) */
+	coverageRatio: number;
+}
+
+/**
+ * Build a coverage-gap analysis: revenue vs. expense per task category.
+ * For each TASK_CATEGORY, reads Nr. 100 (Summe Erträge) and Nr. 190 (Summe Aufwendungen)
+ * from the Teilergebnishaushalte to compute the funding gap.
+ *
+ * TH 14 sub-splits (Umlagen, Versorgung, Sonstige) are excluded because they are
+ * central finance positions without meaningful revenue/expense pairs per split.
+ */
+export function buildDeckungslueckenBreakdown(
+	items: LineItem[],
+	year: number,
+	preferredType: 'ist' | 'plan' = 'ist'
+): DeckungslueckeSlice[] {
+	const tehItems = items.filter(
+		(i) => i.haushalt_type === 'teilergebnishaushalt' && i.year === year
+	);
+
+	function getAmount(thNr: string, nr: string): number {
+		const matches = tehItems.filter((i) => {
+			const iThNr = i.teilhaushalt_nr?.replace('.0', '') ?? '';
+			return iThNr === thNr && i.nr === nr;
+		});
+		const ist = matches.find((m) => m.amount_type === 'ist');
+		const plan = matches.find((m) => m.amount_type === 'plan');
+		const item = preferredType === 'ist' ? (ist ?? plan) : (plan ?? ist);
+		return item ? Math.abs(item.amount) : 0;
+	}
+
+	const slices: DeckungslueckeSlice[] = [];
+
+	for (const task of TASK_CATEGORIES) {
+		// Skip TH14 sub-splits – they don't have own revenue/expense pairs
+		const isSpecialTh14 = task.thNrs.some((r) => r.startsWith('14_'));
+		if (isSpecialTh14) continue;
+
+		let revenue = 0;
+		let expense = 0;
+
+		for (const thRef of task.thNrs) {
+			revenue += getAmount(thRef, '100');
+			expense += getAmount(thRef, '190');
+		}
+
+		if (expense === 0 && revenue === 0) continue;
+
+		const gap = expense - revenue;
+		const coverageRatio = expense > 0 ? revenue / expense : 1;
+
+		slices.push({ task, revenue, expense, gap, coverageRatio });
+	}
+
+	// Sort by gap descending (largest underfunding first)
+	slices.sort((a, b) => b.gap - a.gap);
+	return slices;
+}
+
+/**
+ * Build a time series for the coverage gap of a specific task category.
+ * Returns year, revenue, expense, gap, and coverageRatio for each available year.
+ */
+export function deckungslueckeTimeSeries(
+	items: LineItem[],
+	taskId: string
+): { year: number; revenue: number; expense: number; gap: number; coverageRatio: number; amount_type: string; document_id: string }[] {
+	const task = TASK_CATEGORIES.find((t) => t.id === taskId);
+	if (!task) return [];
+
+	const isSpecialTh14 = task.thNrs.some((r) => r.startsWith('14_'));
+	if (isSpecialTh14) return [];
+
+	const tehItems = items.filter((i) => i.haushalt_type === 'teilergebnishaushalt');
+	const years = [...new Set(tehItems.map((i) => i.year))].sort((a, b) => a - b);
+
+	const results: { year: number; revenue: number; expense: number; gap: number; coverageRatio: number; amount_type: string; document_id: string }[] = [];
+
+	for (const year of years) {
+		const yearItems = tehItems.filter((i) => i.year === year);
+
+		function getBest(thNr: string, nr: string): { amount: number; type: string; doc: string } | null {
+			const matches = yearItems.filter((i) => {
+				const iThNr = i.teilhaushalt_nr?.replace('.0', '') ?? '';
+				return iThNr === thNr && i.nr === nr;
+			});
+			const ist = matches.find((m) => m.amount_type === 'ist');
+			const plan = matches.find((m) => m.amount_type === 'plan');
+			const item = ist ?? plan;
+			if (!item) return null;
+			return { amount: Math.abs(item.amount), type: item.amount_type, doc: item.document_id };
+		}
+
+		let totalRevenue = 0;
+		let totalExpense = 0;
+		let bestType = 'plan';
+		let bestDoc = '';
+
+		for (const thRef of task.thNrs) {
+			const rev = getBest(thRef, '100');
+			const exp = getBest(thRef, '190');
+			if (rev) {
+				totalRevenue += rev.amount;
+				if (rev.type === 'ist') bestType = 'ist';
+				if (!bestDoc) bestDoc = rev.doc;
+			}
+			if (exp) {
+				totalExpense += exp.amount;
+				if (exp.type === 'ist') bestType = 'ist';
+				if (!bestDoc) bestDoc = exp.doc;
+			}
+		}
+
+		if (totalExpense > 0 || totalRevenue > 0) {
+			const gap = totalExpense - totalRevenue;
+			const coverageRatio = totalExpense > 0 ? totalRevenue / totalExpense : 1;
+			results.push({ year, revenue: totalRevenue, expense: totalExpense, gap, coverageRatio, amount_type: bestType, document_id: bestDoc });
+		}
+	}
+
+	return results;
+}

@@ -121,6 +121,21 @@
 		selectedNr && subItemYear ? buildSubItems(items, selectedNr, subItemYear) : []
 	);
 
+	// Previous year sub-items for YoY comparison in konto detail
+	let prevSubItemYear = $derived.by(() => {
+		if (!subItemYear) return null;
+		const prev = subItemYear - 1;
+		return availableSubItemYears.includes(prev) ? prev : null;
+	});
+
+	let prevSubItemMap = $derived.by(() => {
+		if (!selectedNr || !prevSubItemYear) return new Map<string, number>();
+		const prevItems = buildSubItems(items, selectedNr, prevSubItemYear);
+		const map = new Map<string, number>();
+		for (const sub of prevItems) map.set(sub.konto, sub.amount);
+		return map;
+	});
+
 	let subItemSourceLinks = $derived(
 		selectedNr && subItemYear
 			? sourceLinksFromItems(
@@ -132,11 +147,14 @@
 			: []
 	);
 
-	// YoY change helper
+	// YoY change helper – only use overview (non-struktur) ergebnishaushalt items
 	function getYoYChange(nr: string, year: number): { diff: number; ratio: number } | null {
 		const prevYear = year - 1;
-		const currItems = items.filter((i) => i.nr === nr && i.year === year);
-		const prevItems = items.filter((i) => i.nr === nr && i.year === prevYear);
+		const overview = items.filter(
+			(i) => i.haushalt_type === 'ergebnishaushalt' && !i.table_id.startsWith('struktur_')
+		);
+		const currItems = overview.filter((i) => i.nr === nr && i.year === year);
+		const prevItems = overview.filter((i) => i.nr === nr && i.year === prevYear);
 
 		const curr = currItems.find((i) => i.amount_type === 'ist') ?? currItems.find((i) => i.amount_type === 'plan');
 		const prev = prevItems.find((i) => i.amount_type === 'ist') ?? prevItems.find((i) => i.amount_type === 'plan');
@@ -249,7 +267,8 @@
 											{:else}
 												<Minus class="change-icon" />
 											{/if}
-											{change.diff > 0 ? '+' : ''}{(change.ratio * 100).toFixed(1)} %
+											{change.diff > 0 ? '+' : ''}{formatAmount(change.diff)}
+											<span class="change-pct">({change.diff > 0 ? '+' : ''}{(change.ratio * 100).toFixed(1)} %)</span>
 										</span>
 									{:else}
 										<span class="change-na">–</span>
@@ -302,7 +321,7 @@
 								<td class="col-right">{(slice.percent * 100).toFixed(1)} %</td>
 								<td class="col-right hide-mobile">
 									{#if change}
-										<span class="change {change.diff > 0 ? 'change-up' : change.diff < 0 ? 'change-down' : ''}">
+										<span class="change {change.diff > 0 ? 'change-down' : change.diff < 0 ? 'change-up' : ''}">
 											{#if change.diff > 0}
 												<TrendingUp class="change-icon" />
 											{:else if change.diff < 0}
@@ -310,7 +329,8 @@
 											{:else}
 												<Minus class="change-icon" />
 											{/if}
-											{change.diff > 0 ? '+' : ''}{(change.ratio * 100).toFixed(1)} %
+											{change.diff > 0 ? '+' : ''}{formatAmount(change.diff)}
+											<span class="change-pct">({change.diff > 0 ? '+' : ''}{(change.ratio * 100).toFixed(1)} %)</span>
 										</span>
 									{:else}
 										<span class="change-na">–</span>
@@ -376,10 +396,16 @@
 								<th>Position</th>
 								<th class="col-right">Betrag</th>
 								<th class="col-right">Anteil</th>
+								{#if prevSubItemYear}
+									<th class="col-right hide-mobile">ggü. {prevSubItemYear}</th>
+								{/if}
 							</tr>
 						</thead>
 						<tbody>
 							{#each selectedSubItems as sub}
+								{@const prevAmt = prevSubItemMap.get(sub.konto)}
+								{@const diff = prevAmt != null ? sub.amount - prevAmt : null}
+								{@const ratio = prevAmt != null && prevAmt > 0 ? diff! / prevAmt : null}
 								<tr>
 									<td class="sub-item-label">
 										<span class="sub-item-konto">{sub.konto}</span>
@@ -387,6 +413,20 @@
 									</td>
 									<td class="col-right">{formatAmount(sub.amount)}</td>
 									<td class="col-right">{(sub.percent * 100).toFixed(1)} %</td>
+									{#if prevSubItemYear}
+										<td class="col-right hide-mobile">
+											{#if diff != null}
+												<span class="change {selectedSide === 'ausgaben' ? (diff > 0 ? 'change-down' : diff < 0 ? 'change-up' : '') : (diff > 0 ? 'change-up' : diff < 0 ? 'change-down' : '')}">
+													{diff > 0 ? '+' : ''}{formatAmount(diff)}
+													{#if ratio != null}
+														<span class="change-pct">({diff > 0 ? '+' : ''}{(ratio * 100).toFixed(1)} %)</span>
+													{/if}
+												</span>
+											{:else}
+												<span class="sub-new-badge">neu</span>
+											{/if}
+										</td>
+									{/if}
 								</tr>
 							{/each}
 						</tbody>
@@ -524,6 +564,7 @@
 	.change { display: inline-flex; align-items: center; gap: 0.25rem; font-size: 0.75rem; font-weight: 500; }
 	.change-up { color: var(--green-600); }
 	.change-down { color: var(--red-600); }
+	.change-pct { color: var(--gray-400); font-weight: 400; }
 	:global(.change-icon) { width: 0.875rem; height: 0.875rem; }
 	.change-na { color: var(--gray-300); }
 
@@ -574,6 +615,15 @@
 	.sub-item-konto {
 		display: inline-block; font-size: 0.6875rem; font-family: var(--font-mono, monospace);
 		color: var(--gray-400); margin-right: 0.5rem; min-width: 4rem;
+	}
+	.sub-new-badge {
+		display: inline-block;
+		padding: 0.0625rem 0.375rem;
+		background: var(--blue-50, #eff6ff);
+		color: var(--blue-600, #2563eb);
+		border-radius: 0.25rem;
+		font-size: 0.6875rem;
+		font-weight: 600;
 	}
 
 	:global(.info-icon) {

@@ -16,6 +16,8 @@
 		{ href: '/investitionen', label: 'Investitionen' },
 		{ href: '/steuern', label: 'Steuern' },
 		{ href: '/schulden', label: 'Schulden & Zinsen' },
+		//{ href: '/deckungsluecken', label: 'Deckungslücken' },
+		//{ href: '/kreisvergleich', label: 'Kreisvergleich' },
 		{ href: '/explorer', label: 'Explorer' },
 		{ href: '/quellen', label: 'Quellen' }
 	];
