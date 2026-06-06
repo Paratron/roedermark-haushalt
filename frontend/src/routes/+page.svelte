@@ -2,6 +2,7 @@
 	import type { PageData } from './$types';
 	import { formatMio, formatNumber } from '$lib/format';
 	import TimeSeriesChart from '$lib/components/TimeSeriesChart.svelte';
+	import StructuredData from '$lib/components/StructuredData.svelte';
 	import AnchorHeading from '$lib/components/AnchorHeading.svelte';
 	import SocialMeta from '$lib/components/SocialMeta.svelte';
 	import { Info, ClipboardList, Coins, Search, Building2, TrendingUp, Landmark, PieChart, Receipt } from '@lucide/svelte';
@@ -46,6 +47,11 @@
 			{lastIstYear}
 			valueColoring={true}
 		/>
+		<StructuredData
+			name="Jahresergebnis Stadt Rödermark"
+			description="Jährliches Ergebnis (Erträge minus Aufwendungen) der Stadt Rödermark. Positiv = Überschuss, negativ = Defizit."
+			series={ehJahresergebnis}
+		/>
 	</div>
     <br />
     <div class="info-box info-box-blue">
@@ -68,6 +74,12 @@
 			yLabel="Mio. €"
 			planOnlyYears={planOnlyYears}
 			{lastIstYear}
+			multiSeries={true}
+		/>
+		<StructuredData
+			name="Ordentliche Erträge und Aufwendungen Stadt Rödermark"
+			description="Vergleich der ordentlichen Erträge und Aufwendungen der Stadt Rödermark über die Jahre."
+			series={[...ehErtraege, ...ehAufwendungen]}
 			multiSeries={true}
 		/>
 	</div>
