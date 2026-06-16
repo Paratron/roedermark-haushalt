@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { PageData } from './$types';
-	import type { SourceLink, HskMassnahme, HskSaeule } from '$lib/types';
+	import type { SourceLink, HskMassnahme, HskSaeule, TimeSeriesPoint } from '$lib/types';
 	import type { CategorySlice } from '$lib/data';
 	import { formatAmount, formatMio } from '$lib/format';
 	import SourceCitation from '$lib/components/SourceCitation.svelte';
@@ -8,7 +8,8 @@
 	import SocialMeta from '$lib/components/SocialMeta.svelte';
 	import InfoPopover from '$lib/components/InfoPopover.svelte';
 	import DonutChart from '$lib/components/DonutChart.svelte';
-	import { ShieldCheck, TrendingUp, Scissors, Landmark, ChevronDown } from '@lucide/svelte';
+	import TimeSeriesChart from '$lib/components/TimeSeriesChart.svelte';
+	import { ShieldCheck, TrendingUp, TrendingDown, Scissors, Landmark, ChevronDown } from '@lucide/svelte';
 	import { SvelteSet } from 'svelte/reactivity';
 
 	let { data }: { data: PageData } = $props();
@@ -61,6 +62,20 @@
 	});
 	const investitionenSorted = $derived(
 		[...(hsk?.investitionen ?? [])].sort((a, b) => (a.summe ?? 0) - (b.summe ?? 0))
+	);
+
+	// Abbaupfad als Jahresergebnis-Serie für TimeSeriesChart (Balken). ergebnis_nach_hsk
+	// ist positiv = Fehlbetrag; wir drehen das Vorzeichen auf die Jahresergebnis-
+	// Konvention (Überschuss = positiv/grün, Defizit = negativ/rot) wie auf der Startseite.
+	const abbaupfadSeries: TimeSeriesPoint[] = $derived(
+		(hsk?.abbaupfad ?? []).map((r) => ({
+			year: r.year,
+			amount_type: 'plan',
+			amount: -(r.ergebnis_nach_hsk ?? 0),
+			label: 'Ergebnis nach HSK',
+			document_id: hsk?.source_document ?? '',
+			page: r.page
+		}))
 	);
 
 	// Wegfallende Investitionen thematisch nach Fachbereich gruppieren (Donut).
@@ -446,9 +461,13 @@
 	<!-- ── Header summary ── -->
 	<section class="kpi-grid section">
 		<div class="kpi-card">
-			<p class="kpi-label">Defizit 2026 (Entwurf)</p>
-			<p class="kpi-value">{formatMio(Number(n.defizit_entwurf_2026?.value ?? 0))}</p>
-			<p class="kpi-sub">ordentliches Ergebnis vor HSK</p>
+			<p class="kpi-label">Defizit 2026</p>
+			<p class="kpi-value kpi-flow">
+				{formatMio(Number(n.defizit_entwurf_2026?.value ?? 0))}
+				<span class="kpi-arrow">→</span>
+				<strong>{formatMio(Number(n.ordentliches_ergebnis_2026_nach_hsk?.value ?? 0))}</strong>
+			</p>
+			<p class="kpi-sub">ordentliches Ergebnis vor → nach HSK</p>
 		</div>
 		<div class="kpi-card">
 			<p class="kpi-label">Volumen 2026–2030</p>
@@ -595,6 +614,38 @@
 			{/each}
 		</div>
 	{/snippet}
+
+	<!-- ── Abbaupfad ── -->
+	<section class="section">
+		<AnchorHeading level={3} id="abbaupfad">
+			<TrendingDown /> Abbaupfad: Ergebnis nach HSK
+		</AnchorHeading>
+		<p class="pillar-total">
+			Auch nach allen {k?.anzahl_massnahmen} Maßnahmen bleibt 2026 ein Defizit von
+			{formatMio(Number(n.ordentliches_ergebnis_2026_nach_hsk?.value ?? 0))}. Das ordentliche
+			Ergebnis ist {n.ausgleich_ab_jahr?.text ?? 'ab 2029'} ausgeglichen, der aufgelaufene
+			Fehlbetrag wird {n.altfehlbetrag_getilgt?.text ?? 'bis 2030'} getilgt.
+		</p>
+		<div class="card card-padded">
+			<TimeSeriesChart
+				title="Ordentliches Ergebnis nach HSK · positiv = Überschuss, negativ = Defizit"
+				series={abbaupfadSeries}
+				yLabel="Mio. €"
+				chartType="bar"
+				valueColoring
+				planOnlyYears={years}
+			/>
+		</div>
+		{#if fullPdf}
+			<p class="invest-note">
+				<SourceCitation
+					description="Haushaltssicherungskonzept 2026, S. 11"
+					links={measureLinks(11)}
+					condensed
+				/>
+			</p>
+		{/if}
+	</section>
 
 	<!-- ── Pillar A: more income ── -->
 	<section class="section">
@@ -912,6 +963,18 @@
 		grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
 		gap: 1rem;
 		margin-top: 1rem;
+	}
+	.kpi-flow {
+		display: flex;
+		align-items: baseline;
+		gap: 0.1rem;
+		flex-wrap: wrap;
+		font-size: 1.15rem;
+	}
+	.kpi-arrow {
+		margin: 0 0.3rem;
+		color: var(--gray-400);
+		font-weight: 400;
 	}
 	.invest-flow {
 		font-size: 1.35rem;
