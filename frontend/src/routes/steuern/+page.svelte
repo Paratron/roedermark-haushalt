@@ -2,6 +2,7 @@
 	import type { PageData } from './$types';
 	import type { TaxItem, TaxTimeSeries } from './+page.ts';
 	import type { CategorySlice } from '$lib/data';
+	import type { SourceLink } from '$lib/types';
 	import { formatAmount } from '$lib/format';
 	import DonutChart from '$lib/components/DonutChart.svelte';
 	import SourceCitation from '$lib/components/SourceCitation.svelte';
@@ -117,19 +118,49 @@
 	// ─── Hebesatz comparison ───
 	// For each municipality, use the selected year's value if available,
 	// otherwise carry forward the latest prior year and tag it.
-	interface CompEntry { kommune: string; hebesatz: number; actualYear: number; carried: boolean }
+	interface CompEntry {
+		kommune: string;
+		hebesatz: number;
+		actualYear: number;
+		carried: boolean;
+		status?: 'beschlossen' | 'geplant' | 'abgelehnt';
+		quelle?: string;
+		quelle_url?: string;
+	}
 
 	function fillComparison(
-		data: { kommune: string; year: number; hebesatz: number }[],
+		data: {
+			kommune: string;
+			year: number;
+			hebesatz: number;
+			status?: 'beschlossen' | 'geplant' | 'abgelehnt';
+			quelle?: string;
+			quelle_url?: string;
+		}[],
 		targetYear: number
 	): CompEntry[] {
 		// Group by kommune, pick best entry ≤ targetYear
-		const byKommune = new Map<string, { hebesatz: number; year: number }>();
+		const byKommune = new Map<
+			string,
+			{
+				hebesatz: number;
+				year: number;
+				status?: 'beschlossen' | 'geplant' | 'abgelehnt';
+				quelle?: string;
+				quelle_url?: string;
+			}
+		>();
 		for (const d of data) {
 			if (d.year > targetYear) continue;
 			const prev = byKommune.get(d.kommune);
 			if (!prev || d.year > prev.year) {
-				byKommune.set(d.kommune, { hebesatz: d.hebesatz, year: d.year });
+				byKommune.set(d.kommune, {
+					hebesatz: d.hebesatz,
+					year: d.year,
+					status: d.status,
+					quelle: d.quelle,
+					quelle_url: d.quelle_url
+				});
 			}
 		}
 		return [...byKommune.entries()]
@@ -138,8 +169,24 @@
 				hebesatz: v.hebesatz,
 				actualYear: v.year,
 				carried: v.year !== targetYear,
+				status: v.status,
+				quelle: v.quelle,
+				quelle_url: v.quelle_url
 			}))
 			.sort((a, b) => b.hebesatz - a.hebesatz);
+	}
+
+	// Build the source link(s) for a comparison entry, for the Quelle popover.
+	function sourceLinks(entry: CompEntry): SourceLink[] {
+		if (!entry.quelle_url) return [];
+		return [
+			{
+				label: entry.quelle ?? 'Quelle',
+				href: entry.quelle_url,
+				document_id: '',
+				page: null
+			}
+		];
 	}
 
 	let grundsteuerBComparison = $derived.by(() => {
@@ -165,9 +212,17 @@
 
 	// ─── Hebesatz-Slider "Was wäre wenn?" ───
 	// Grundsteuer B
-	let roedermarkGrundsteuerB = $derived(
-		grundsteuerBComparison.find((d) => d.kommune === 'Rödermark')?.hebesatz ?? 650
-	);
+	// Basis für den Simulator ist der aktuell GÜLTIGE Hebesatz (nicht ein
+	// geplanter, noch nicht beschlossener Wert), denn die ausgewiesenen
+	// Einnahmen beruhen auf dem gültigen Satz. Daher geplante Einträge
+	// ausblenden und den jüngsten beschlossenen Satz ≤ Auswahljahr nehmen.
+	let roedermarkGrundsteuerB = $derived.by(() => {
+		if (!hebesaetzeGrundsteuerB) return 650;
+		const enacted = hebesaetzeGrundsteuerB.data
+			.filter((d) => d.kommune === 'Rödermark' && d.year <= selectedYear && d.status !== 'geplant')
+			.sort((a, b) => b.year - a.year);
+		return enacted[0]?.hebesatz ?? 650;
+	});
 	let grundsteuerBRevenue = $derived(
 		taxItems.find((t) => t.key === 'grundsteuer_b')?.amount ?? 0
 	);
@@ -396,17 +451,21 @@
 			<div class="bar-chart">
 				{#each grundsteuerBComparison as entry (entry.kommune)}
 					{@const isRoedermark = entry.kommune === 'Rödermark'}
-					<div class="bar-row" class:bar-row-highlight={isRoedermark} class:bar-row-carried={entry.carried}>
-						<span class="bar-label">{entry.kommune}{#if entry.carried}<span class="carried-year"> ({entry.actualYear})</span>{/if}</span>
+					<div class="bar-row" class:bar-row-highlight={isRoedermark}>
+						<span class="bar-label">{entry.kommune}{#if entry.carried}<span class="carried-year"> ({entry.actualYear})</span>{/if}{#if entry.status === 'geplant'}<span class="status-geplant"> (geplant)</span>{/if}</span>
 						<div class="bar-track-h">
 							<div
 								class="bar-fill"
 								class:bar-fill-highlight={isRoedermark}
-								class:bar-fill-carried={entry.carried}
 								style="width: {(entry.hebesatz / maxGrundsteuerB) * 100}%"
 							></div>
 						</div>
 					<span class="bar-value">{fmtHS(entry.hebesatz, grundsteuerBHasDecimals)} %</span>
+						<span class="bar-source">
+							{#if entry.quelle_url}
+								<SourceCitation condensed description={`${entry.kommune} ${entry.actualYear}`} links={sourceLinks(entry)} />
+							{/if}
+						</span>
 					</div>
 				{/each}
 			</div>
@@ -418,23 +477,32 @@
 			<div class="bar-chart">
 				{#each gewerbesteuerComparison as entry (entry.kommune)}
 					{@const isRoedermark = entry.kommune === 'Rödermark'}
-					<div class="bar-row" class:bar-row-highlight={isRoedermark} class:bar-row-carried={entry.carried}>
-						<span class="bar-label">{entry.kommune}{#if entry.carried}<span class="carried-year"> ({entry.actualYear})</span>{/if}</span>
+					<div class="bar-row" class:bar-row-highlight={isRoedermark}>
+						<span class="bar-label">{entry.kommune}{#if entry.carried}<span class="carried-year"> ({entry.actualYear})</span>{/if}{#if entry.status === 'geplant'}<span class="status-geplant"> (geplant)</span>{/if}</span>
 						<div class="bar-track-h">
 							<div
 								class="bar-fill"
 								class:bar-fill-highlight={isRoedermark}
-								class:bar-fill-carried={entry.carried}
 								style="width: {(entry.hebesatz / maxGewerbesteuer) * 100}%"
 							></div>
 						</div>
 					<span class="bar-value">{fmtHS(entry.hebesatz, gewerbesteuerHasDecimals)} %</span>
+						<span class="bar-source">
+							{#if entry.quelle_url}
+								<SourceCitation condensed description={`${entry.kommune} ${entry.actualYear}`} links={sourceLinks(entry)} />
+							{/if}
+						</span>
 					</div>
 				{/each}
 			</div>
 		</div>
 	</div>
-	<p class="data-note"><Info size={14} /> Datenquellen: <a href="https://www.offenbach.ihk.de/standortpolitik/region-offenbach/zahlen-daten-fakten/gemeindesteckbriefe/">IHK Offenbach Gemeindesteckbriefe</a> (Umfrage der IHK, alle Kommunen im Kreis Offenbach) sowie Haushaltssatzungen der Stadt Rödermark.</p>
+	<p class="comparison-legend">
+		<span class="legend-item"><span class="legend-swatch legend-swatch-carried"></span> (Jahr) = letzter bekannter Wert aus einem früheren Jahr, fortgeschrieben</span>
+		<span class="legend-item">(geplant) = vorgeschlagener, vom Stadtparlament noch nicht beschlossener Wert</span>
+	</p>
+	<p class="data-note"><Info size={14} /> Für Rödermark ist 1.327 % der im <a href="/hsk2026">Haushaltssicherungskonzept 2026</a> geplante Hebesatz (Schritt 1, noch nicht beschlossen). Aktuell gültig und Grundlage der ausgewiesenen Einnahmen sind 990 %.</p>
+	<p class="data-note"><Info size={14} /> Ein direkter Vergleich der Hebesätze allein sagt wenig über die tatsächliche Steuerbelastung aus: Mit der Grundsteuerreform 2025 wurden die Messbeträge neu berechnet, sodass gleiche Hebesätze in verschiedenen Jahren oder Gemeinden unterschiedliche Beträge ergeben können.</p>
 </section>
 
 <!-- Simulator: What-if Slider -->
@@ -720,10 +788,10 @@
 		display: flex; flex-direction: column; gap: 0.375rem;
 	}
 	.bar-row {
-		display: grid; grid-template-columns: 6rem 1fr 4rem; gap: 0.25rem; align-items: center;
+		display: grid; grid-template-columns: 6rem 1fr 4rem auto; gap: 0.25rem; align-items: center;
 	}
 	@media (min-width: 640px) {
-		.bar-row { grid-template-columns: 10rem 1fr 5rem; gap: 0.5rem; }
+		.bar-row { grid-template-columns: 10rem 1fr 5rem auto; gap: 0.5rem; }
 	}
 	.bar-row-highlight { font-weight: 600; }
 	.bar-label {
@@ -750,11 +818,24 @@
 		.bar-value { font-size: 0.8125rem; }
 	}
 	.bar-row-highlight .bar-value { color: var(--brand-700); font-weight: 700; }
+	.bar-source {
+		display: inline-flex; align-items: center; min-width: 1rem;
+	}
 	.carried-year {
 		font-size: 0.6875rem; font-weight: 400; color: var(--gray-400);
 	}
-	.bar-row-carried { opacity: 0.7; }
-	.bar-fill-carried { background: var(--gray-200); }
+	.status-geplant {
+		font-size: 0.6875rem; font-weight: 600; color: var(--amber-600, #d97706);
+	}
+	.comparison-legend {
+		display: flex; flex-wrap: wrap; gap: 0.25rem 1.25rem;
+		margin-top: 1rem; font-size: 0.75rem; color: var(--gray-500);
+	}
+	.legend-item { display: flex; align-items: center; gap: 0.375rem; }
+	.legend-swatch {
+		width: 0.75rem; height: 0.75rem; border-radius: 0.1875rem; flex-shrink: 0;
+	}
+	.legend-swatch-carried { background: var(--gray-200); }
 	.data-note {
 		display: flex; align-items: center; gap: 0.375rem;
 		margin-top: 0.75rem; font-size: 0.75rem; color: var(--gray-400); font-style: italic;

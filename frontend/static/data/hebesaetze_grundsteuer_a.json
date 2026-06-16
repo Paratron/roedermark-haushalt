@@ -2,7 +2,7 @@
   "meta": {
     "description": "Grundsteuer A Hebesätze der Kommunen im Kreis Offenbach",
     "unit": "Prozent",
-    "note": "Datenquellen: IHK Offenbach Gemeindesteckbriefe 2025 (Umfrage der IHK, alle Kommunen im Kreis Offenbach, 2013–2025) sowie Haushaltssatzungen der Stadt Rödermark."
+    "note": "Datenquellen: IHK Gießen-Friedberg, Hebesatzumfrage 2026 (Hebesätze ab 01.01.2026, Stand 29.05.2026) für die aktuellen 2026-Werte aller Kommunen im Kreis Offenbach; IHK Offenbach Gemeindesteckbriefe (Umfrage der IHK, 2013–2025) für die Vorjahre; Haushaltssatzungen der Stadt Rödermark sowie einzeln belegte Beschlussvorlagen für geplante Erhöhungen 2026 (siehe Quellenangabe je Eintrag)."
   },
   "data": [
     {
@@ -862,6 +862,14 @@
       "year": 2025,
       "hebesatz": 760,
       "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Rodgau_2025.pdf"
+    },
+    {
+      "kommune": "Rodgau",
+      "year": 2026,
+      "hebesatz": 760,
+      "quelle": "Beschlussvorlage DS-0134/2026 (Hebesatzsatzung), Entscheidung Stadtverordnetenversammlung 22.06.2026",
+      "status": "geplant",
+      "quelle_url": "https://www.rodgau.sitzung-online.de/public/vo020?VOLFDNR=1003031&refresh=false&TOLFDNR=1009607"
     },
     {
       "kommune": "Rödermark",

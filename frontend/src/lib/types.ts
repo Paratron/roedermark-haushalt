@@ -149,6 +149,10 @@ export interface HebesatzEntry {
 	year: number;
 	hebesatz: number;
 	quelle: string;
+	/** Adoption status for forward-looking (e.g. 2026) values */
+	status?: 'beschlossen' | 'geplant' | 'abgelehnt';
+	/** Optional public source URL backing this entry */
+	quelle_url?: string;
 }
 
 /** Full Hebesatz dataset loaded from JSON */
