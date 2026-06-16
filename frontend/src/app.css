@@ -220,6 +220,11 @@ footer a:hover {
 	border: 1px solid var(--amber-200);
 	color: var(--amber-900);
 }
+.info-box-green {
+	background: var(--green-100);
+	border: 1px solid var(--emerald-300);
+	color: var(--emerald-800);
+}
 
 /* ── 8. Badges / Pills ────────────────────────────────────── */
 .badge {

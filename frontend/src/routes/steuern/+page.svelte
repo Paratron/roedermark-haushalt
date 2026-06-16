@@ -7,7 +7,7 @@
 	import SourceCitation from '$lib/components/SourceCitation.svelte';
 	import AnchorHeading from '$lib/components/AnchorHeading.svelte';
 	import SocialMeta from '$lib/components/SocialMeta.svelte';
-	import { Receipt, Info, SlidersHorizontal } from '@lucide/svelte';
+	import { Receipt, Info, SlidersHorizontal, ShieldCheck, ArrowRight } from '@lucide/svelte';
 	import { page } from '$app/stores';
 	import { goto } from '$app/navigation';
 
@@ -248,6 +248,17 @@
 	Steuereinnahmen sind die wichtigste Einnahmequelle der Stadt Rödermark.
 	Hier siehst du die Zusammensetzung, Entwicklung und den Vergleich der Hebesätze mit anderen Kommunen im Kreis Offenbach.
 </p>
+
+<a href="/hsk2026" class="hsk-link-box">
+	<ShieldCheck class="hsk-link-icon" />
+	<div class="hsk-link-body">
+		<strong>Haushaltssicherungskonzept 2026</strong>
+		Die Grundsteuer B ist eine von 97 Maßnahmen. Sie macht rund 44 % des
+		Konsolidierungsvolumens aus, 56 % entfallen auf andere Maßnahmen. Wo die Stadt
+		mehr einnimmt und wo sie spart, zeigt die HSK-Seite.
+	</div>
+	<ArrowRight class="hsk-link-arrow" />
+</a>
 
 <!-- Year Selector -->
 <section class="section">
@@ -554,6 +565,45 @@
 
 <style>
 	.page-intro { margin-bottom: 2rem; max-width: 48rem; color: var(--gray-600); }
+
+	.hsk-link-box {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+		margin-bottom: 2rem;
+		padding: 1rem 1.25rem;
+		border-radius: 0.625rem;
+		background: var(--brand-50, #eff6ff);
+		border: 1px solid var(--brand-200, #bfdbfe);
+		color: var(--gray-700);
+		text-decoration: none;
+		font-size: 0.9rem;
+		line-height: 1.5;
+		transition: background 0.15s, border-color 0.15s;
+	}
+	.hsk-link-box:hover {
+		background: var(--brand-100, #dbeafe);
+		border-color: var(--brand-300, #93c5fd);
+	}
+	:global(.hsk-link-icon) {
+		flex-shrink: 0;
+		width: 1.75rem;
+		height: 1.75rem;
+		color: var(--brand-700);
+	}
+	.hsk-link-body strong {
+		color: var(--gray-900);
+	}
+	:global(.hsk-link-arrow) {
+		flex-shrink: 0;
+		width: 1.25rem;
+		height: 1.25rem;
+		color: var(--brand-700);
+		transition: transform 0.15s;
+	}
+	.hsk-link-box:hover :global(.hsk-link-arrow) {
+		transform: translateX(3px);
+	}
 	.section { margin-bottom: 2.5rem; }
 	.section-desc {
 		font-size: 0.875rem; color: var(--gray-500); margin-bottom: 1rem; max-width: 48rem;

@@ -187,6 +187,23 @@
     "fetched_at": "2026-02-10T21:22:36.888651+00:00"
   },
   {
+    "document_id": "haushaltssicherungskonzept_2026",
+    "doc_type": "haushaltssicherungskonzept",
+    "years": [
+      2026,
+      2027,
+      2028,
+      2029,
+      2030
+    ],
+    "priority": "primary",
+    "source_url": "https://roedermark.de/fileadmin/Stadt_und_Stadtverwaltung/Haushalt___Berichte/Haushaltssicherungskonzept2026.pdf",
+    "filename": "Haushaltssicherungskonzept2026.pdf",
+    "sha256": "a1d6c6aa1f59b1fb3d2560b60d5a0c5290cde43c5eaebe179907891225271b2b",
+    "size_bytes": 992806,
+    "fetched_at": "2026-06-15T00:00:00.000000+00:00"
+  },
+  {
     "document_id": "haushaltsrede_2017_2018",
     "doc_type": "haushaltsrede",
     "years": [

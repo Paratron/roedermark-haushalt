@@ -417,10 +417,20 @@ export async function loadInvestmentClassification(
 	}
 }
 
+/** Load the Haushaltssicherungskonzept 2026 dataset */
+export async function loadHsk(fetchFn: typeof fetch = fetch): Promise<HskData | null> {
+	try {
+		const res = await fetchFn('/data/hsk_2026.json');
+		if (!res.ok) return null;
+		return await res.json();
+	} catch {
+		return null;
+	}
+}
+
 // ─── Hebesatz Data ───
 
-import type { HebesatzData } from './types';
-
+import type { HebesatzData, HskData } from './types';
 /** Load Grundsteuer B Hebesätze for Kreis Offenbach */
 export async function loadHebesaetzeGrundsteuerB(
 	fetchFn: typeof fetch = fetch

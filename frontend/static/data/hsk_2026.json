@@ -1,0 +1,3276 @@
+{
+  "generated_at": "2026-06-15T19:25:33.769514+00:00",
+  "source_document": "haushaltssicherungskonzept_2026",
+  "source_file": "Haushaltssicherungskonzept2026.pdf",
+  "laufzeit": [
+    2026,
+    2030
+  ],
+  "genehmigungsfaehig": false,
+  "narrative": {
+    "defizit_entwurf_2026": {
+      "value": 13800000,
+      "text": "13,8 Mio. €",
+      "page": 3
+    },
+    "ordentliches_ergebnis_2026_vor_hsk": {
+      "value": 13209000,
+      "text": "13.209 T€",
+      "page": 8
+    },
+    "ordentliches_ergebnis_2026_nach_hsk": {
+      "value": 6328000,
+      "text": "6.328 T€",
+      "page": 8
+    },
+    "investitionen_2026_vorher": {
+      "value": 22557000,
+      "text": "22.557 T€",
+      "page": 9
+    },
+    "investitionen_2026_kuerzung": {
+      "value": 11987000,
+      "text": "11.987 T€",
+      "page": 9
+    },
+    "investitionen_2026_nachher": {
+      "value": 10569000,
+      "text": "10.569 T€",
+      "page": 9
+    },
+    "kreditaufnahme_2026_vorher": {
+      "value": 16319000,
+      "text": "16.319 T€",
+      "page": 9
+    },
+    "kreditaufnahme_2026_kuerzung": {
+      "value": 12043000,
+      "text": "12.043 T€",
+      "page": 9
+    },
+    "kreditaufnahme_2026_nachher": {
+      "value": 4276000,
+      "text": "4.276 T€",
+      "page": 9
+    },
+    "liquiditaet_31_12_2025": {
+      "value": 11128634,
+      "text": "11.128.634 €",
+      "page": 12
+    },
+    "ausgleich_ab_jahr": {
+      "value": 2029,
+      "text": "ab 2029",
+      "page": 11
+    },
+    "altfehlbetrag_getilgt": {
+      "value": 2030,
+      "text": "im Jahr 2030",
+      "page": 11
+    },
+    "kommunalberatung_termin": {
+      "value": "2026-06-25",
+      "text": "25.06.2026",
+      "page": 7
+    }
+  },
+  "kennzahlen": {
+    "konsolidierung_mit_grundsteuer_b": -60419064.76,
+    "konsolidierung_ohne_grundsteuer_b": -33701927.89,
+    "grundsteuer_b_summe": -26717136.87,
+    "grundsteuer_b_anteil": 0.4422,
+    "eigene_massnahmen_anteil": 0.5578,
+    "anzahl_massnahmen": 97
+  },
+  "abbaupfad": [
+    {
+      "year": 2026,
+      "defizit_aliste": 13209320.0,
+      "veraenderung_hsk": -6881155.0,
+      "ergebnis_nach_hsk": 6328165.0,
+      "liquiditaet": 4543496.0,
+      "saldo_aliste": null,
+      "saldo_hsk": null,
+      "page": 18
+    },
+    {
+      "year": 2027,
+      "defizit_aliste": 12536644.0,
+      "veraenderung_hsk": -7925404.0,
+      "ergebnis_nach_hsk": 4611240.0,
+      "liquiditaet": 1452100.0,
+      "saldo_aliste": -9112768.0,
+      "saldo_hsk": -2231612.0,
+      "page": 18
+    },
+    {
+      "year": 2028,
+      "defizit_aliste": 14273942.0,
+      "veraenderung_hsk": -12840854.0,
+      "ergebnis_nach_hsk": 1433087.0,
+      "liquiditaet": 1527704.0,
+      "saldo_aliste": -7550792.0,
+      "saldo_hsk": 196763.0,
+      "page": 18
+    },
+    {
+      "year": 2029,
+      "defizit_aliste": 14152914.0,
+      "veraenderung_hsk": -15045501.0,
+      "ergebnis_nach_hsk": -892587.0,
+      "liquiditaet": 3737319.0,
+      "saldo_aliste": -9287945.0,
+      "saldo_hsk": 3391280.0,
+      "page": 18
+    },
+    {
+      "year": 2030,
+      "defizit_aliste": 15244967.0,
+      "veraenderung_hsk": -17726150.0,
+      "ergebnis_nach_hsk": -2481183.0,
+      "liquiditaet": 7463624.0,
+      "saldo_aliste": -9166770.0,
+      "saldo_hsk": 5686902.0,
+      "page": 18
+    }
+  ],
+  "kategorien": [
+    {
+      "kategorie": "steuern",
+      "label": "Höhere Steuern",
+      "summe": -28999978.49,
+      "anzahl": 7
+    },
+    {
+      "kategorie": "personal",
+      "label": "Personal & Stellen",
+      "summe": -18970951.09,
+      "anzahl": 26
+    },
+    {
+      "kategorie": "gebaeude",
+      "label": "Gebäude & Unterhaltung",
+      "summe": -5614450.42,
+      "anzahl": 6
+    },
+    {
+      "kategorie": "leistungen",
+      "label": "Gekürzte Leistungen & Zuschüsse",
+      "summe": -2278684.23,
+      "anzahl": 11
+    },
+    {
+      "kategorie": "verwaltung",
+      "label": "Interne Sach- & Verwaltungskosten",
+      "summe": -2062418.91,
+      "anzahl": 25
+    },
+    {
+      "kategorie": "sonstige",
+      "label": "Sonstige Maßnahmen",
+      "summe": -1684150.04,
+      "anzahl": 16
+    },
+    {
+      "kategorie": "gebuehren",
+      "label": "Höhere Gebühren & Entgelte",
+      "summe": -808431.6,
+      "anzahl": 6
+    }
+  ],
+  "saeulen": {
+    "einnahmen": {
+      "summe": -28714353.52,
+      "anzahl": 18,
+      "werte": {
+        "2026": -3634000.0,
+        "2027": -3803459.83,
+        "2028": -7516922.12,
+        "2029": -6792672.12,
+        "2030": -6967299.46
+      },
+      "gruppen": [
+        {
+          "label": "Höhere Steuern",
+          "summe": -28999978.49,
+          "anzahl": 7,
+          "werte": {
+            "2026": -3317000.0,
+            "2027": -3385471.43,
+            "2028": -7096183.72,
+            "2029": -7096183.72,
+            "2030": -8105139.63
+          }
+        },
+        {
+          "label": "Höhere Gebühren & Entgelte",
+          "summe": -808431.6,
+          "anzahl": 6,
+          "werte": {
+            "2026": -70000.0,
+            "2027": -181170.4,
+            "2028": -183920.4,
+            "2029": -186670.4,
+            "2030": -186670.4
+          }
+        },
+        {
+          "label": "Sonstige Erträge",
+          "summe": 1094056.57,
+          "anzahl": 5,
+          "werte": {
+            "2026": -247000.0,
+            "2027": -236818.0,
+            "2028": -236818.0,
+            "2029": 490182.0,
+            "2030": 1324510.57
+          }
+        }
+      ]
+    },
+    "ausgaben": {
+      "summe": -31704711.26,
+      "anzahl": 79,
+      "werte": {
+        "2026": -3247155.38,
+        "2027": -4121944.41,
+        "2028": -5323932.35,
+        "2029": -8252828.84,
+        "2030": -10758850.34
+      },
+      "gruppen": [
+        {
+          "label": "Personal & Stellen",
+          "summe": -18970951.09,
+          "anzahl": 26,
+          "werte": {
+            "2026": -1861521.78,
+            "2027": -2384564.12,
+            "2028": -3116620.84,
+            "2029": -5718346.98,
+            "2030": -5889897.39
+          }
+        },
+        {
+          "label": "Gebäude & Unterhaltung",
+          "summe": -5614450.42,
+          "anzahl": 6,
+          "werte": {
+            "2026": -800400.0,
+            "2027": -773730.0,
+            "2028": -1093428.5,
+            "2029": -1437493.46,
+            "2030": -1509398.46
+          }
+        },
+        {
+          "label": "Sonstige Einsparungen",
+          "summe": -2778206.61,
+          "anzahl": 11,
+          "werte": {
+            "2026": -96879.54,
+            "2027": -327162.9,
+            "2028": -331719.03,
+            "2029": -336363.21,
+            "2030": -1686081.94
+          }
+        },
+        {
+          "label": "Gekürzte Leistungen & Zuschüsse",
+          "summe": -2278684.23,
+          "anzahl": 11,
+          "werte": {
+            "2026": -187202.12,
+            "2027": -197358.37,
+            "2028": -328521.68,
+            "2029": -326705.17,
+            "2030": -1238896.89
+          }
+        },
+        {
+          "label": "Interne Sach- & Verwaltungskosten",
+          "summe": -2062418.91,
+          "anzahl": 25,
+          "werte": {
+            "2026": -301151.94,
+            "2027": -439129.02,
+            "2028": -453642.3,
+            "2029": -433920.02,
+            "2030": -434575.66
+          }
+        }
+      ]
+    }
+  },
+  "massnahmen": [
+    {
+      "fb": "FB1",
+      "fb_label": "Zentrale Steuerung & Verwaltung",
+      "produkt": "01.1.01",
+      "massnahme": "Einmalmaßnahmen aus 2026 (Führungskräfteseminar)",
+      "kategorie": "sonstige",
+      "kategorie_label": "Sonstige Maßnahmen",
+      "art": "ausgabe",
+      "gruppe_label": "Sonstige Einsparungen",
+      "is_grundsteuer_b": false,
+      "hebesatzpunkte": 1.09,
+      "werte": {
+        "2026": 0.0,
+        "2027": -10100.0,
+        "2028": -10201.0,
+        "2029": -10303.01,
+        "2030": -10303.01
+      },
+      "summe": -40907.02,
+      "page": 13
+    },
+    {
+      "fb": "FB1",
+      "fb_label": "Zentrale Steuerung & Verwaltung",
+      "produkt": "01.1.01",
+      "massnahme": "Aufwendungen für Personaleinstellungen",
+      "kategorie": "personal",
+      "kategorie_label": "Personal & Stellen",
+      "art": "ausgabe",
+      "gruppe_label": "Personal & Stellen",
+      "is_grundsteuer_b": false,
+      "hebesatzpunkte": 2.16,
+      "werte": {
+        "2026": -20000.0,
+        "2027": -20600.0,
+        "2028": -21218.0,
+        "2029": -21854.54,
+        "2030": -22510.18
+      },
+      "summe": -106182.72,
+      "page": 13
+    },
+    {
+      "fb": "FB1",
+      "fb_label": "Zentrale Steuerung & Verwaltung",
+      "produkt": "01.1.02",
+      "massnahme": "Aufwendungen Belegschaftsveranstaltungen",
+      "kategorie": "leistungen",
+      "kategorie_label": "Gekürzte Leistungen & Zuschüsse",
+      "art": "ausgabe",
+      "gruppe_label": "Gekürzte Leistungen & Zuschüsse",
+      "is_grundsteuer_b": false,
+      "hebesatzpunkte": 0.54,
+      "werte": {
+        "2026": -5000.0,
+        "2027": -5450.0,
+        "2028": -5913.5,
+        "2029": -6390.91,
+        "2030": -6582.63
+      },
+      "summe": -29337.04,
+      "page": 13
+    },
+    {
+      "fb": "FB1",
+      "fb_label": "Zentrale Steuerung & Verwaltung",
+      "produkt": "01.3.01",
+      "massnahme": "Einmalmaßnahmen aus 2026 (Fortbildung neue Stadtverordnete)",
+      "kategorie": "verwaltung",
+      "kategorie_label": "Interne Sach- & Verwaltungskosten",
+      "art": "ausgabe",
+      "gruppe_label": "Interne Sach- & Verwaltungskosten",
+      "is_grundsteuer_b": false,
+      "hebesatzpunkte": 0.44,
+      "werte": {
+        "2026": 0.0,
+        "2027": -4040.0,
+        "2028": -4080.4,
+        "2029": -4121.2,
+        "2030": -4121.2
+      },
+      "summe": -16362.81,
+      "page": 13
+    },
+    {
+      "fb": "FB1",
+      "fb_label": "Zentrale Steuerung & Verwaltung",
+      "produkt": "01.5.01",
+      "massnahme": "Fortbildung Digitalisierung",
+      "kategorie": "verwaltung",
+      "kategorie_label": "Interne Sach- & Verwaltungskosten",
+      "art": "ausgabe",
+      "gruppe_label": "Interne Sach- & Verwaltungskosten",
+      "is_grundsteuer_b": false,
+      "hebesatzpunkte": 0.61,
+      "werte": {
+        "2026": -5672.85,
+        "2027": 3493.43,
+        "2028": -5941.64,
+        "2029": -6078.06,
+        "2030": -6078.06
+      },
+      "summe": -20277.18,
+      "page": 13
+    },
+    {
+      "fb": "FB1",
+      "fb_label": "Zentrale Steuerung & Verwaltung",
+      "produkt": "01.5.01",
+      "massnahme": "DV-Benutzerentgelte",
+      "kategorie": "verwaltung",
+      "kategorie_label": "Interne Sach- & Verwaltungskosten",
+      "art": "ausgabe",
+      "gruppe_label": "Interne Sach- & Verwaltungskosten",
+      "is_grundsteuer_b": false,
+      "hebesatzpunkte": 2.19,
+      "werte": {
+        "2026": -20272.71,
+        "2027": 0.0,
+        "2028": 0.0,
+        "2029": 0.0,
+        "2030": 0.0
+      },
+      "summe": -20272.71,
+      "page": 13
+    },
+    {
+      "fb": "FB1",
+      "fb_label": "Zentrale Steuerung & Verwaltung",
+      "produkt": "01.4.XX",
+      "massnahme": "Wartung EDV-Anlage",
+      "kategorie": "verwaltung",
+      "kategorie_label": "Interne Sach- & Verwaltungskosten",
+      "art": "ausgabe",
+      "gruppe_label": "Interne Sach- & Verwaltungskosten",
+      "is_grundsteuer_b": false,
+      "hebesatzpunkte": 0.75,
+      "werte": {
+        "2026": -7000.0,
+        "2027": -10000.0,
+        "2028": -10000.0,
+        "2029": -10000.0,
+        "2030": -10000.0
+      },
+      "summe": -47000.0,
+      "page": 13
+    },
+    {
+      "fb": "FB1",
+      "fb_label": "Zentrale Steuerung & Verwaltung",
+      "produkt": "01.4.XX",
+      "massnahme": "Rechts-u. Beratungskosten (DMS)",
+      "kategorie": "verwaltung",
+      "kategorie_label": "Interne Sach- & Verwaltungskosten",
+      "art": "ausgabe",
+      "gruppe_label": "Interne Sach- & Verwaltungskosten",
+      "is_grundsteuer_b": false,
+      "hebesatzpunkte": 5.39,
+      "werte": {
+        "2026": -50000.0,
+        "2027": 0.0,
+        "2028": 0.0,
+        "2029": 0.0,
+        "2030": 0.0
+      },
+      "summe": -50000.0,
+      "page": 13
+    },
+    {
+      "fb": "FB1",
+      "fb_label": "Zentrale Steuerung & Verwaltung",
+      "produkt": "01.4.02",
+      "massnahme": "Porto und Versand",
+      "kategorie": "verwaltung",
+      "kategorie_label": "Interne Sach- & Verwaltungskosten",
+      "art": "ausgabe",
+      "gruppe_label": "Interne Sach- & Verwaltungskosten",
+      "is_grundsteuer_b": false,
+      "hebesatzpunkte": 0.86,
+      "werte": {
+        "2026": -8005.0,
+        "2027": -8005.0,
+        "2028": -8005.0,
+        "2029": -8005.0,
+        "2030": -8005.0
+      },
+      "summe": -40025.0,
+      "page": 13
+    },
+    {
+      "fb": "FB1",
+      "fb_label": "Zentrale Steuerung & Verwaltung",
+      "produkt": "01.6.01",
+      "massnahme": "Veranstaltungen Wirtschaftsförderung",
+      "kategorie": "leistungen",
+      "kategorie_label": "Gekürzte Leistungen & Zuschüsse",
+      "art": "ausgabe",
+      "gruppe_label": "Gekürzte Leistungen & Zuschüsse",
+      "is_grundsteuer_b": false,
+      "hebesatzpunkte": 0.85,
+      "werte": {
+        "2026": -7857.2,
+        "2027": 0.0,
+        "2028": -8135.73,
+        "2029": -8277.09,
+        "2030": -8277.09
+      },
+      "summe": -32547.11,
+      "page": 13
+    },
+    {
+      "fb": "FB1",
+      "fb_label": "Zentrale Steuerung & Verwaltung",
+      "produkt": "01.6.01",
+      "massnahme": "Leitbildprojekte",
+      "kategorie": "leistungen",
+      "kategorie_label": "Gekürzte Leistungen & Zuschüsse",
+      "art": "ausgabe",
+      "gruppe_label": "Gekürzte Leistungen & Zuschüsse",
+      "is_grundsteuer_b": false,
+      "hebesatzpunkte": 0.11,
+      "werte": {
+        "2026": -1000.0,
+        "2027": -1010.0,
+        "2028": -1020.1,
+        "2029": -1030.3,
+        "2030": -1030.3
+      },
+      "summe": -5090.7,
+      "page": 13
+    },
+    {
+      "fb": "FB1",
+      "fb_label": "Zentrale Steuerung & Verwaltung",
+      "produkt": "01.6.01",
+      "massnahme": "Printmedien",
+      "kategorie": "verwaltung",
+      "kategorie_label": "Interne Sach- & Verwaltungskosten",
+      "art": "ausgabe",
+      "gruppe_label": "Interne Sach- & Verwaltungskosten",
+      "is_grundsteuer_b": false,
+      "hebesatzpunkte": 0.28,
+      "werte": {
+        "2026": -2628.72,
+        "2027": -2725.01,
+        "2028": -2822.25,
+        "2029": -2920.47,
+        "2030": -2920.47
+      },
+      "summe": -14016.92,
+      "page": 13
+    },
+    {
+      "fb": "FB1",
+      "fb_label": "Zentrale Steuerung & Verwaltung",
+      "produkt": null,
+      "massnahme": "1 Stelle FD 1.2",
+      "kategorie": "personal",
+      "kategorie_label": "Personal & Stellen",
+      "art": "ausgabe",
+      "gruppe_label": "Personal & Stellen",
+      "is_grundsteuer_b": false,
+      "hebesatzpunkte": 5.42,
+      "werte": {
+        "2026": -50243.82,
+        "2027": -103502.26,
+        "2028": -106607.33,
+        "2029": -109805.55,
+        "2030": -113099.71
+      },
+      "summe": -483258.66,
+      "page": 13
+    },
+    {
+      "fb": "FB2",
+      "fb_label": "Finanzen & Steuerverwaltung",
+      "produkt": null,
+      "massnahme": "Eine Stelle FB Finanzen wird nicht neu besetzt; Ende 09/2028",
+      "kategorie": "personal",
+      "kategorie_label": "Personal & Stellen",
+      "art": "ausgabe",
+      "gruppe_label": "Personal & Stellen",
+      "is_grundsteuer_b": false,
+      "hebesatzpunkte": 1.41,
+      "werte": {
+        "2026": 0.0,
+        "2027": 0.0,
+        "2028": -13039.71,
+        "2029": -53723.59,
+        "2030": -55335.3
+      },
+      "summe": -122098.6,
+      "page": 13
+    },
+    {
+      "fb": "FB2",
+      "fb_label": "Finanzen & Steuerverwaltung",
+      "produkt": "02.3.01",
+      "massnahme": "2 Stellen Steuerverwaltung (Sozialstaffel Gebühren Kitas)",
+      "kategorie": "personal",
+      "kategorie_label": "Personal & Stellen",
+      "art": "ausgabe",
+      "gruppe_label": "Personal & Stellen",
+      "is_grundsteuer_b": false,
+      "hebesatzpunkte": 14.49,
+      "werte": {
+        "2026": -134442.82,
+        "2027": -138476.1,
+        "2028": -142630.39,
+        "2029": -146909.3,
+        "2030": -151316.58
+      },
+      "summe": -713775.19,
+      "page": 13
+    },
+    {
+      "fb": "FB2",
+      "fb_label": "Finanzen & Steuerverwaltung",
+      "produkt": "02.3.01",
+      "massnahme": "Porto und Versand",
+      "kategorie": "verwaltung",
+      "kategorie_label": "Interne Sach- & Verwaltungskosten",
+      "art": "ausgabe",
+      "gruppe_label": "Interne Sach- & Verwaltungskosten",
+      "is_grundsteuer_b": false,
+      "hebesatzpunkte": 0.75,
+      "werte": {
+        "2026": -7000.0,
+        "2027": -7000.0,
+        "2028": -7000.0,
+        "2029": -7000.0,
+        "2030": -7000.0
+      },
+      "summe": -35000.0,
+      "page": 13
+    },
+    {
+      "fb": "FB3",
+      "fb_label": "Öffentliche Ordnung & Sicherheit",
+      "produkt": "03.1.01",
+      "massnahme": "Verwaltungsgebühren Öffentliche Ordnung",
+      "kategorie": "gebuehren",
+      "kategorie_label": "Höhere Gebühren & Entgelte",
+      "art": "einnahme",
+      "gruppe_label": "Höhere Gebühren & Entgelte",
+      "is_grundsteuer_b": false,
+      "hebesatzpunkte": 0.49,
+      "werte": {
+        "2026": -4500.0,
+        "2027": -4500.0,
+        "2028": -4500.0,
+        "2029": -4500.0,
+        "2030": -4500.0
+      },
+      "summe": -22500.0,
+      "page": 13
+    },
+    {
+      "fb": "FB3",
+      "fb_label": "Öffentliche Ordnung & Sicherheit",
+      "produkt": "03.1.01",
+      "massnahme": "Freiwilliger Polizeidienst",
+      "kategorie": "leistungen",
+      "kategorie_label": "Gekürzte Leistungen & Zuschüsse",
+      "art": "ausgabe",
+      "gruppe_label": "Gekürzte Leistungen & Zuschüsse",
+      "is_grundsteuer_b": false,
+      "hebesatzpunkte": 0.25,
+      "werte": {
+        "2026": -2344.92,
+        "2027": -2398.37,
+        "2028": -2452.35,
+        "2029": -2506.87,
+        "2030": -2506.87
+      },
+      "summe": -12209.38,
+      "page": 13
+    },
+    {
+      "fb": "FB3",
+      "fb_label": "Öffentliche Ordnung & Sicherheit",
+      "produkt": "03.1.01",
+      "massnahme": "Ordnungsbehördliche Bestattungen",
+      "kategorie": "sonstige",
+      "kategorie_label": "Sonstige Maßnahmen",
+      "art": "ausgabe",
+      "gruppe_label": "Sonstige Einsparungen",
+      "is_grundsteuer_b": false,
+      "hebesatzpunkte": 0.23,
+      "werte": {
+        "2026": -2096.95,
+        "2027": -2197.92,
+        "2028": -2299.9,
+        "2029": -2402.9,
+        "2030": -2402.9
+      },
+      "summe": -11400.57,
+      "page": 13
+    },
+    {
+      "fb": "FB3",
+      "fb_label": "Öffentliche Ordnung & Sicherheit",
+      "produkt": "03.1.01",
+      "massnahme": "Präventionsaufwand",
+      "kategorie": "leistungen",
+      "kategorie_label": "Gekürzte Leistungen & Zuschüsse",
+      "art": "ausgabe",
+      "gruppe_label": "Gekürzte Leistungen & Zuschüsse",
+      "is_grundsteuer_b": false,
+      "hebesatzpunkte": 0.43,
+      "werte": {
+        "2026": -4000.0,
+        "2027": -1500.0,
+        "2028": -4000.0,
+        "2029": -1500.0,
+        "2030": -1500.0
+      },
+      "summe": -12500.0,
+      "page": 13
+    },
+    {
+      "fb": "FB3",
+      "fb_label": "Öffentliche Ordnung & Sicherheit",
+      "produkt": "03.2.01",
+      "massnahme": "Wartung Verkehrsüberwachungsanlage",
+      "kategorie": "verwaltung",
+      "kategorie_label": "Interne Sach- & Verwaltungskosten",
+      "art": "ausgabe",
+      "gruppe_label": "Interne Sach- & Verwaltungskosten",
+      "is_grundsteuer_b": false,
+      "hebesatzpunkte": 0.89,
+      "werte": {
+        "2026": -8251.28,
+        "2027": -1483.76,
+        "2028": -1718.6,
+        "2029": -1955.79,
+        "2030": -1955.79
+      },
+      "summe": -15365.22,
+      "page": 13
+    },
+    {
+      "fb": "FB3",
+      "fb_label": "Öffentliche Ordnung & Sicherheit",
+      "produkt": "03.2.01",
+      "massnahme": "Bußgelder Verkehrsüberwachung",
+      "kategorie": "sonstige",
+      "kategorie_label": "Sonstige Maßnahmen",
+      "art": "einnahme",
+      "gruppe_label": "Sonstige Erträge",
+      "is_grundsteuer_b": false,
+      "hebesatzpunkte": 26.62,
+      "werte": {
+        "2026": -247000.0,
+        "2027": -247000.0,
+        "2028": -247000.0,
+        "2029": -247000.0,
+        "2030": -247000.0
+      },
+      "summe": -1235000.0,
+      "page": 13
+    },
+    {
+      "fb": "FB3",
+      "fb_label": "Öffentliche Ordnung & Sicherheit",
+      "produkt": "03.2.01",
+      "massnahme": "Verwaltungsgebühren Verkehr",
+      "kategorie": "gebuehren",
+      "kategorie_label": "Höhere Gebühren & Entgelte",
+      "art": "einnahme",
+      "gruppe_label": "Höhere Gebühren & Entgelte",
+      "is_grundsteuer_b": false,
+      "hebesatzpunkte": 4.31,
+      "werte": {
+        "2026": -40000.0,
+        "2027": -40000.0,
+        "2028": -40000.0,
+        "2029": -40000.0,
+        "2030": -40000.0
+      },
+      "summe": -200000.0,
+      "page": 13
+    },
+    {
+      "fb": "FB3",
+      "fb_label": "Öffentliche Ordnung & Sicherheit",
+      "produkt": "03.3.02",
+      "massnahme": "Verwaltungsgebühren Standesamt",
+      "kategorie": "gebuehren",
+      "kategorie_label": "Höhere Gebühren & Entgelte",
+      "art": "einnahme",
+      "gruppe_label": "Höhere Gebühren & Entgelte",
+      "is_grundsteuer_b": false,
+      "hebesatzpunkte": 2.75,
+      "werte": {
+        "2026": -25500.0,
+        "2027": -25500.0,
+        "2028": -25500.0,
+        "2029": -25500.0,
+        "2030": -25500.0
+      },
+      "summe": -127500.0,
+      "page": 13
+    },
+    {
+      "fb": "FB3",
+      "fb_label": "Öffentliche Ordnung & Sicherheit",
+      "produkt": null,
+      "massnahme": "Ordnungsamt (Gebäudekosten)",
+      "kategorie": "gebaeude",
+      "kategorie_label": "Gebäude & Unterhaltung",
+      "art": "ausgabe",
+      "gruppe_label": "Gebäude & Unterhaltung",
+      "is_grundsteuer_b": false,
+      "hebesatzpunkte": 4.04,
+      "werte": {
+        "2026": 0.0,
+        "2027": -37483.0,
+        "2028": -37856.0,
+        "2029": -38236.0,
+        "2030": -38236.0
+      },
+      "summe": -151811.0,
+      "page": 13
+    },
+    {
+      "fb": "FB3",
+      "fb_label": "Öffentliche Ordnung & Sicherheit",
+      "produkt": null,
+      "massnahme": "Opo 1",
+      "kategorie": "sonstige",
+      "kategorie_label": "Sonstige Maßnahmen",
+      "art": "ausgabe",
+      "gruppe_label": "Sonstige Einsparungen",
+      "is_grundsteuer_b": false,
+      "hebesatzpunkte": 5.01,
+      "werte": {
+        "2026": -46475.71,
+        "2027": -71804.98,
+        "2028": -73959.13,
+        "2029": -76177.9,
+        "2030": -78463.24
+      },
+      "summe": -346880.95,
+      "page": 13
+    },
+    {
+      "fb": "FB3",
+      "fb_label": "Öffentliche Ordnung & Sicherheit",
+      "produkt": null,
+      "massnahme": "NN Illegale Ablagerungen",
+      "kategorie": "personal",
+      "kategorie_label": "Personal & Stellen",
+      "art": "ausgabe",
+      "gruppe_label": "Personal & Stellen",
+      "is_grundsteuer_b": false,
+      "hebesatzpunkte": 3.62,
+      "werte": {
+        "2026": -33610.7,
+        "2027": -34619.02,
+        "2028": -35657.59,
+        "2029": -36727.32,
+        "2030": -37829.14
+      },
+      "summe": -178443.77,
+      "page": 13
+    },
+    {
+      "fb": "FB3",
+      "fb_label": "Öffentliche Ordnung & Sicherheit",
+      "produkt": null,
+      "massnahme": "NN FBl 3 (bis 30.4.26)",
+      "kategorie": "personal",
+      "kategorie_label": "Personal & Stellen",
+      "art": "ausgabe",
+      "gruppe_label": "Personal & Stellen",
+      "is_grundsteuer_b": false,
+      "hebesatzpunkte": 1.76,
+      "werte": {
+        "2026": -16333.68,
+        "2027": 0.0,
+        "2028": 0.0,
+        "2029": 0.0,
+        "2030": 0.0
+      },
+      "summe": -16333.68,
+      "page": 13
+    },
+    {
+      "fb": "FB3",
+      "fb_label": "Öffentliche Ordnung & Sicherheit",
+      "produkt": null,
+      "massnahme": "FBL Differenz zur Planung",
+      "kategorie": "personal",
+      "kategorie_label": "Personal & Stellen",
+      "art": "ausgabe",
+      "gruppe_label": "Personal & Stellen",
+      "is_grundsteuer_b": false,
+      "hebesatzpunkte": 0.41,
+      "werte": {
+        "2026": -3818.15,
+        "2027": 0.0,
+        "2028": 0.0,
+        "2029": 0.0,
+        "2030": 0.0
+      },
+      "summe": -3818.15,
+      "page": 13
+    },
+    {
+      "fb": "FB3",
+      "fb_label": "Öffentliche Ordnung & Sicherheit",
+      "produkt": null,
+      "massnahme": "NN OPo 2",
+      "kategorie": "personal",
+      "kategorie_label": "Personal & Stellen",
+      "art": "ausgabe",
+      "gruppe_label": "Personal & Stellen",
+      "is_grundsteuer_b": false,
+      "hebesatzpunkte": 3.27,
+      "werte": {
+        "2026": -30355.36,
+        "2027": -31266.02,
+        "2028": -32204.0,
+        "2029": -33170.12,
+        "2030": -34165.23
+      },
+      "summe": -161160.73,
+      "page": 13
+    },
+    {
+      "fb": "FB3",
+      "fb_label": "Öffentliche Ordnung & Sicherheit",
+      "produkt": null,
+      "massnahme": "NN OPo 3",
+      "kategorie": "personal",
+      "kategorie_label": "Personal & Stellen",
+      "art": "ausgabe",
+      "gruppe_label": "Personal & Stellen",
+      "is_grundsteuer_b": false,
+      "hebesatzpunkte": 7.29,
+      "werte": {
+        "2026": -67643.2,
+        "2027": -69672.5,
+        "2028": -71762.67,
+        "2029": -73915.55,
+        "2030": -76133.02
+      },
+      "summe": -359126.94,
+      "page": 13
+    },
+    {
+      "fb": "FB3",
+      "fb_label": "Öffentliche Ordnung & Sicherheit",
+      "produkt": null,
+      "massnahme": "OPo 4",
+      "kategorie": "sonstige",
+      "kategorie_label": "Sonstige Maßnahmen",
+      "art": "ausgabe",
+      "gruppe_label": "Sonstige Einsparungen",
+      "is_grundsteuer_b": false,
+      "hebesatzpunkte": 2.91,
+      "werte": {
+        "2026": -27006.88,
+        "2027": 0.0,
+        "2028": 0.0,
+        "2029": 0.0,
+        "2030": 0.0
+      },
+      "summe": -27006.88,
+      "page": 13
+    },
+    {
+      "fb": "FB3",
+      "fb_label": "Öffentliche Ordnung & Sicherheit",
+      "produkt": null,
+      "massnahme": "NN Bürgerbüro",
+      "kategorie": "personal",
+      "kategorie_label": "Personal & Stellen",
+      "art": "ausgabe",
+      "gruppe_label": "Personal & Stellen",
+      "is_grundsteuer_b": false,
+      "hebesatzpunkte": 1.76,
+      "werte": {
+        "2026": -16323.85,
+        "2027": -16813.57,
+        "2028": -17317.97,
+        "2029": -17837.51,
+        "2030": -18372.64
+      },
+      "summe": -86665.54,
+      "page": 13
+    },
+    {
+      "fb": "FB4",
+      "fb_label": "Kinder, Jugend, Schule & Soziales",
+      "produkt": null,
+      "massnahme": "Pauschale Reduzierung/PK Kitas wg. Fachkräftemangel",
+      "kategorie": "personal",
+      "kategorie_label": "Personal & Stellen",
+      "art": "ausgabe",
+      "gruppe_label": "Personal & Stellen",
+      "is_grundsteuer_b": false,
+      "hebesatzpunkte": 107.79,
+      "werte": {
+        "2026": -1000000.0,
+        "2027": -1030000.0,
+        "2028": -1060900.0,
+        "2029": -1092727.0,
+        "2030": -1125508.81
+      },
+      "summe": -5309135.81,
+      "page": 13
+    },
+    {
+      "fb": "FB4",
+      "fb_label": "Kinder, Jugend, Schule & Soziales",
+      "produkt": null,
+      "massnahme": "Reduzierung PK Kitas (weniger Kinder)",
+      "kategorie": "personal",
+      "kategorie_label": "Personal & Stellen",
+      "art": "ausgabe",
+      "gruppe_label": "Personal & Stellen",
+      "is_grundsteuer_b": false,
+      "hebesatzpunkte": 215.59,
+      "werte": {
+        "2026": 0.0,
+        "2027": 0.0,
+        "2028": 0.0,
+        "2029": -2000000.0,
+        "2030": -2060000.0
+      },
+      "summe": -4060000.0,
+      "page": 13
+    },
+    {
+      "fb": "FB4",
+      "fb_label": "Kinder, Jugend, Schule & Soziales",
+      "produkt": null,
+      "massnahme": "Kita Erträge (weniger Kinder)",
+      "kategorie": "sonstige",
+      "kategorie_label": "Sonstige Maßnahmen",
+      "art": "einnahme",
+      "gruppe_label": "Sonstige Erträge",
+      "is_grundsteuer_b": false,
+      "hebesatzpunkte": -78.37,
+      "werte": {
+        "2026": 0.0,
+        "2027": 0.0,
+        "2028": 0.0,
+        "2029": 727000.0,
+        "2030": 727000.0
+      },
+      "summe": 1454000.0,
+      "page": 13
+    },
+    {
+      "fb": "FB4",
+      "fb_label": "Kinder, Jugend, Schule & Soziales",
+      "produkt": null,
+      "massnahme": "Kita-Gebühren Erhöhung (aus Gebührenerhöhung 2025)",
+      "kategorie": "gebuehren",
+      "kategorie_label": "Höhere Gebühren & Entgelte",
+      "art": "einnahme",
+      "gruppe_label": "Höhere Gebühren & Entgelte",
+      "is_grundsteuer_b": false,
+      "hebesatzpunkte": 5.93,
+      "werte": {
+        "2026": 0.0,
+        "2027": -55000.0,
+        "2028": -57750.0,
+        "2029": -60500.0,
+        "2030": -60500.0
+      },
+      "summe": -233750.0,
+      "page": 13
+    },
+    {
+      "fb": "FB4",
+      "fb_label": "Kinder, Jugend, Schule & Soziales",
+      "produkt": "04.1.02",
+      "massnahme": "Zuweisungen Kreis für Einzelintegration",
+      "kategorie": "leistungen",
+      "kategorie_label": "Gekürzte Leistungen & Zuschüsse",
+      "art": "ausgabe",
+      "gruppe_label": "Gekürzte Leistungen & Zuschüsse",
+      "is_grundsteuer_b": false,
+      "hebesatzpunkte": 16.17,
+      "werte": {
+        "2026": -150000.0,
+        "2027": -150000.0,
+        "2028": -150000.0,
+        "2029": -150000.0,
+        "2030": -150000.0
+      },
+      "summe": -750000.0,
+      "page": 13
+    },
+    {
+      "fb": "FB4",
+      "fb_label": "Kinder, Jugend, Schule & Soziales",
+      "produkt": null,
+      "massnahme": "Spiele, Lernmittel, Arbeitsmaterial pro Einrichtung",
+      "kategorie": "sonstige",
+      "kategorie_label": "Sonstige Maßnahmen",
+      "art": "ausgabe",
+      "gruppe_label": "Sonstige Einsparungen",
+      "is_grundsteuer_b": false,
+      "hebesatzpunkte": 2.59,
+      "werte": {
+        "2026": 0.0,
+        "2027": -24000.0,
+        "2028": -24240.0,
+        "2029": -24482.4,
+        "2030": -24482.4
+      },
+      "summe": -97204.8,
+      "page": 13
+    },
+    {
+      "fb": "FB4",
+      "fb_label": "Kinder, Jugend, Schule & Soziales",
+      "produkt": null,
+      "massnahme": "Sachaufwand für Veranstaltungen",
+      "kategorie": "leistungen",
+      "kategorie_label": "Gekürzte Leistungen & Zuschüsse",
+      "art": "ausgabe",
+      "gruppe_label": "Gekürzte Leistungen & Zuschüsse",
+      "is_grundsteuer_b": false,
+      "hebesatzpunkte": 2.16,
+      "werte": {
+        "2026": 0.0,
+        "2027": -20000.0,
+        "2028": -20000.0,
+        "2029": -20000.0,
+        "2030": -20000.0
+      },
+      "summe": -80000.0,
+      "page": 13
+    },
+    {
+      "fb": "FB4",
+      "fb_label": "Kinder, Jugend, Schule & Soziales",
+      "produkt": "04.1.02",
+      "massnahme": "Kiga Taubhaus",
+      "kategorie": "sonstige",
+      "kategorie_label": "Sonstige Maßnahmen",
+      "art": "ausgabe",
+      "gruppe_label": "Sonstige Einsparungen",
+      "is_grundsteuer_b": false,
+      "hebesatzpunkte": 2.3,
+      "werte": {
+        "2026": -21300.0,
+        "2027": -51902.0,
+        "2028": -52421.0,
+        "2029": -52944.0,
+        "2030": -52944.0
+      },
+      "summe": -231511.0,
+      "page": 13
+    },
+    {
+      "fb": "FB4",
+      "fb_label": "Kinder, Jugend, Schule & Soziales",
+      "produkt": null,
+      "massnahme": "1 Stelle zu Soziale Stadt",
+      "kategorie": "personal",
+      "kategorie_label": "Personal & Stellen",
+      "art": "ausgabe",
+      "gruppe_label": "Personal & Stellen",
+      "is_grundsteuer_b": false,
+      "hebesatzpunkte": -7.2,
+      "werte": {
+        "2026": 66809.23,
+        "2027": 68813.51,
+        "2028": 70877.91,
+        "2029": 0.0,
+        "2030": 0.0
+      },
+      "summe": 206500.65,
+      "page": 13
+    },
+    {
+      "fb": "FB4",
+      "fb_label": "Kinder, Jugend, Schule & Soziales",
+      "produkt": null,
+      "massnahme": "1 Stelle nicht wiederbesetzen",
+      "kategorie": "personal",
+      "kategorie_label": "Personal & Stellen",
+      "art": "ausgabe",
+      "gruppe_label": "Personal & Stellen",
+      "is_grundsteuer_b": false,
+      "hebesatzpunkte": 11.04,
+      "werte": {
+        "2026": 0.0,
+        "2027": -102453.33,
+        "2028": -105526.93,
+        "2029": -108692.74,
+        "2030": -111953.52
+      },
+      "summe": -428626.51,
+      "page": 13
+    },
+    {
+      "fb": "FB4",
+      "fb_label": "Kinder, Jugend, Schule & Soziales",
+      "produkt": null,
+      "massnahme": "Zuschüsse freie Träger (weniger Kinder)",
+      "kategorie": "leistungen",
+      "kategorie_label": "Gekürzte Leistungen & Zuschüsse",
+      "art": "ausgabe",
+      "gruppe_label": "Gekürzte Leistungen & Zuschüsse",
+      "is_grundsteuer_b": false,
+      "hebesatzpunkte": 98.31,
+      "werte": {
+        "2026": 0.0,
+        "2027": 0.0,
+        "2028": 0.0,
+        "2029": 0.0,
+        "2030": -912000.0
+      },
+      "summe": -912000.0,
+      "page": 13
+    },
+    {
+      "fb": "FB4",
+      "fb_label": "Kinder, Jugend, Schule & Soziales",
+      "produkt": null,
+      "massnahme": "Schulkindbetreuung Erträge",
+      "kategorie": "sonstige",
+      "kategorie_label": "Sonstige Maßnahmen",
+      "art": "einnahme",
+      "gruppe_label": "Sonstige Erträge",
+      "is_grundsteuer_b": false,
+      "hebesatzpunkte": -36.04,
+      "werte": {
+        "2026": 0.0,
+        "2027": 0.0,
+        "2028": 0.0,
+        "2029": 0.0,
+        "2030": 334328.57
+      },
+      "summe": 334328.57,
+      "page": 13
+    },
+    {
+      "fb": "FB4",
+      "fb_label": "Kinder, Jugend, Schule & Soziales",
+      "produkt": null,
+      "massnahme": "Schulkindbetreuung Aufwand",
+      "kategorie": "sonstige",
+      "kategorie_label": "Sonstige Maßnahmen",
+      "art": "ausgabe",
+      "gruppe_label": "Sonstige Einsparungen",
+      "is_grundsteuer_b": false,
+      "hebesatzpunkte": 145.24,
+      "werte": {
+        "2026": 0.0,
+        "2027": 0.0,
+        "2028": 0.0,
+        "2029": 0.0,
+        "2030": -1347433.39
+      },
+      "summe": -1347433.39,
+      "page": 13
+    },
+    {
+      "fb": "FB4",
+      "fb_label": "Kinder, Jugend, Schule & Soziales",
+      "produkt": null,
+      "massnahme": "Schulkindbetreuung an Kreis (GIP)",
+      "kategorie": "sonstige",
+      "kategorie_label": "Sonstige Maßnahmen",
+      "art": "einnahme",
+      "gruppe_label": "Sonstige Erträge",
+      "is_grundsteuer_b": false,
+      "hebesatzpunkte": -53.9,
+      "werte": {
+        "2026": 0.0,
+        "2027": 0.0,
+        "2028": 0.0,
+        "2029": 0.0,
+        "2030": 500000.0
+      },
+      "summe": 500000.0,
+      "page": 13
+    },
+    {
+      "fb": "FB5",
+      "fb_label": "Kultur, Sport & Bäder",
+      "produkt": "05.2.03",
+      "massnahme": "Zuschuss Musikschule",
+      "kategorie": "leistungen",
+      "kategorie_label": "Gekürzte Leistungen & Zuschüsse",
+      "art": "ausgabe",
+      "gruppe_label": "Gekürzte Leistungen & Zuschüsse",
+      "is_grundsteuer_b": false,
+      "hebesatzpunkte": 12.94,
+      "werte": {
+        "2026": 0.0,
+        "2027": 0.0,
+        "2028": -120000.0,
+        "2029": -120000.0,
+        "2030": -120000.0
+      },
+      "summe": -360000.0,
+      "page": 14
+    },
+    {
+      "fb": "FB5",
+      "fb_label": "Kultur, Sport & Bäder",
+      "produkt": null,
+      "massnahme": "Benutzungsgebühren um 20 % erhöhen",
+      "kategorie": "gebuehren",
+      "kategorie_label": "Höhere Gebühren & Entgelte",
+      "art": "einnahme",
+      "gruppe_label": "Höhere Gebühren & Entgelte",
+      "is_grundsteuer_b": false,
+      "hebesatzpunkte": 3.49,
+      "werte": {
+        "2026": 0.0,
+        "2027": -32381.6,
+        "2028": -32381.6,
+        "2029": -32381.6,
+        "2030": -32381.6
+      },
+      "summe": -129526.4,
+      "page": 14
+    },
+    {
+      "fb": "FB5",
+      "fb_label": "Kultur, Sport & Bäder",
+      "produkt": null,
+      "massnahme": "Parkhausgebühren Tiefgarage Kulturhalle neues Konzept",
+      "kategorie": "gebuehren",
+      "kategorie_label": "Höhere Gebühren & Entgelte",
+      "art": "einnahme",
+      "gruppe_label": "Höhere Gebühren & Entgelte",
+      "is_grundsteuer_b": false,
+      "hebesatzpunkte": 2.56,
+      "werte": {
+        "2026": 0.0,
+        "2027": -23788.8,
+        "2028": -23788.8,
+        "2029": -23788.8,
+        "2030": -23788.8
+      },
+      "summe": -95155.2,
+      "page": 14
+    },
+    {
+      "fb": "FB5",
+      "fb_label": "Kultur, Sport & Bäder",
+      "produkt": null,
+      "massnahme": "Jägerhaus (Sachaufwand)",
+      "kategorie": "sonstige",
+      "kategorie_label": "Sonstige Maßnahmen",
+      "art": "ausgabe",
+      "gruppe_label": "Sonstige Einsparungen",
+      "is_grundsteuer_b": false,
+      "hebesatzpunkte": 0.95,
+      "werte": {
+        "2026": 0.0,
+        "2027": -8805.0,
+        "2028": -8858.0,
+        "2029": -8911.0,
+        "2030": -8911.0
+      },
+      "summe": -35485.0,
+      "page": 14
+    },
+    {
+      "fb": "FB5",
+      "fb_label": "Kultur, Sport & Bäder",
+      "produkt": null,
+      "massnahme": "FBl 5 1/2 Finanzierung (2026)",
+      "kategorie": "personal",
+      "kategorie_label": "Personal & Stellen",
+      "art": "ausgabe",
+      "gruppe_label": "Personal & Stellen",
+      "is_grundsteuer_b": false,
+      "hebesatzpunkte": 5.93,
+      "werte": {
+        "2026": -55007.83,
+        "2027": -19426.5,
+        "2028": -20009.29,
+        "2029": -20609.57,
+        "2030": -21227.86
+      },
+      "summe": -136281.05,
+      "page": 14
+    },
+    {
+      "fb": "FB5",
+      "fb_label": "Kultur, Sport & Bäder",
+      "produkt": null,
+      "massnahme": "1 Stelle bis 2029 zu Soziale Stadt",
+      "kategorie": "personal",
+      "kategorie_label": "Personal & Stellen",
+      "art": "ausgabe",
+      "gruppe_label": "Personal & Stellen",
+      "is_grundsteuer_b": false,
+      "hebesatzpunkte": 7.2,
+      "werte": {
+        "2026": -66809.23,
+        "2027": -68813.51,
+        "2028": -70877.91,
+        "2029": -73004.25,
+        "2030": -75194.38
+      },
+      "summe": -354699.28,
+      "page": 14
+    },
+    {
+      "fb": "FB5",
+      "fb_label": "Kultur, Sport & Bäder",
+      "produkt": null,
+      "massnahme": "1 Stelle von EG8 nach EG7",
+      "kategorie": "personal",
+      "kategorie_label": "Personal & Stellen",
+      "art": "ausgabe",
+      "gruppe_label": "Personal & Stellen",
+      "is_grundsteuer_b": false,
+      "hebesatzpunkte": 0.33,
+      "werte": {
+        "2026": -3090.09,
+        "2027": -3182.79,
+        "2028": -3278.28,
+        "2029": -3376.62,
+        "2030": -3477.92
+      },
+      "summe": -16405.71,
+      "page": 14
+    },
+    {
+      "fb": "FB5",
+      "fb_label": "Kultur, Sport & Bäder",
+      "produkt": null,
+      "massnahme": "NN Bäderbetrieb (EG5)",
+      "kategorie": "personal",
+      "kategorie_label": "Personal & Stellen",
+      "art": "ausgabe",
+      "gruppe_label": "Personal & Stellen",
+      "is_grundsteuer_b": false,
+      "hebesatzpunkte": 6.29,
+      "werte": {
+        "2026": -58308.1,
+        "2027": -60057.34,
+        "2028": -61859.06,
+        "2029": -63714.84,
+        "2030": -65626.28
+      },
+      "summe": -309565.62,
+      "page": 14
+    },
+    {
+      "fb": "FB5",
+      "fb_label": "Kultur, Sport & Bäder",
+      "produkt": null,
+      "massnahme": "1 NN Stelle für technischer Badehausleiter entfällt",
+      "kategorie": "personal",
+      "kategorie_label": "Personal & Stellen",
+      "art": "ausgabe",
+      "gruppe_label": "Personal & Stellen",
+      "is_grundsteuer_b": false,
+      "hebesatzpunkte": 7.99,
+      "werte": {
+        "2026": -74120.65,
+        "2027": -76344.27,
+        "2028": -78634.6,
+        "2029": -80993.64,
+        "2030": -83423.44
+      },
+      "summe": -393516.6,
+      "page": 14
+    },
+    {
+      "fb": "FB5",
+      "fb_label": "Kultur, Sport & Bäder",
+      "produkt": null,
+      "massnahme": "1 NN Stelle für technischer Badehausleiter (von EG 8 auf EG9a, NN Bade",
+      "kategorie": "personal",
+      "kategorie_label": "Personal & Stellen",
+      "art": "ausgabe",
+      "gruppe_label": "Personal & Stellen",
+      "is_grundsteuer_b": false,
+      "hebesatzpunkte": 0.76,
+      "werte": {
+        "2026": -7093.56,
+        "2027": -7306.37,
+        "2028": -7525.56,
+        "2029": -7751.32,
+        "2030": -7983.86
+      },
+      "summe": -37660.67,
+      "page": 14
+    },
+    {
+      "fb": "FB5",
+      "fb_label": "Kultur, Sport & Bäder",
+      "produkt": null,
+      "massnahme": "1 NN Azubi Badehaus",
+      "kategorie": "personal",
+      "kategorie_label": "Personal & Stellen",
+      "art": "ausgabe",
+      "gruppe_label": "Personal & Stellen",
+      "is_grundsteuer_b": false,
+      "hebesatzpunkte": 0.98,
+      "werte": {
+        "2026": -9106.38,
+        "2027": -9379.57,
+        "2028": -9660.96,
+        "2029": -9950.79,
+        "2030": -10249.31
+      },
+      "summe": -48347.01,
+      "page": 14
+    },
+    {
+      "fb": "FB6",
+      "fb_label": "Stadtentwicklung, Umwelt & Klima",
+      "produkt": "06.1.01",
+      "massnahme": "Planungen u. Gutachten",
+      "kategorie": "verwaltung",
+      "kategorie_label": "Interne Sach- & Verwaltungskosten",
+      "art": "ausgabe",
+      "gruppe_label": "Interne Sach- & Verwaltungskosten",
+      "is_grundsteuer_b": false,
+      "hebesatzpunkte": 2.98,
+      "werte": {
+        "2026": -27600.0,
+        "2027": -30000.0,
+        "2028": -30000.0,
+        "2029": -5000.0,
+        "2030": -5000.0
+      },
+      "summe": -97600.0,
+      "page": 14
+    },
+    {
+      "fb": "FB6",
+      "fb_label": "Stadtentwicklung, Umwelt & Klima",
+      "produkt": "06.4.02",
+      "massnahme": "DV-Benutzerentgelte",
+      "kategorie": "verwaltung",
+      "kategorie_label": "Interne Sach- & Verwaltungskosten",
+      "art": "ausgabe",
+      "gruppe_label": "Interne Sach- & Verwaltungskosten",
+      "is_grundsteuer_b": false,
+      "hebesatzpunkte": 0.93,
+      "werte": {
+        "2026": -8587.93,
+        "2027": -8673.81,
+        "2028": -8760.55,
+        "2029": -8848.16,
+        "2030": -8848.16
+      },
+      "summe": -43718.61,
+      "page": 14
+    },
+    {
+      "fb": "FB6",
+      "fb_label": "Stadtentwicklung, Umwelt & Klima",
+      "produkt": "06.4.03",
+      "massnahme": "DV-Benutzerentgelte",
+      "kategorie": "verwaltung",
+      "kategorie_label": "Interne Sach- & Verwaltungskosten",
+      "art": "ausgabe",
+      "gruppe_label": "Interne Sach- & Verwaltungskosten",
+      "is_grundsteuer_b": false,
+      "hebesatzpunkte": 1.57,
+      "werte": {
+        "2026": -14522.76,
+        "2027": -14667.99,
+        "2028": -14814.67,
+        "2029": -14962.82,
+        "2030": -14962.82
+      },
+      "summe": -73931.06,
+      "page": 14
+    },
+    {
+      "fb": "FB6",
+      "fb_label": "Stadtentwicklung, Umwelt & Klima",
+      "produkt": "06.4.03",
+      "massnahme": "Kommunale Wärmeplanung",
+      "kategorie": "verwaltung",
+      "kategorie_label": "Interne Sach- & Verwaltungskosten",
+      "art": "ausgabe",
+      "gruppe_label": "Interne Sach- & Verwaltungskosten",
+      "is_grundsteuer_b": false,
+      "hebesatzpunkte": 2.16,
+      "werte": {
+        "2026": -20000.0,
+        "2027": -20700.0,
+        "2028": -21407.0,
+        "2029": -22121.07,
+        "2030": -22121.07
+      },
+      "summe": -106349.14,
+      "page": 14
+    },
+    {
+      "fb": "FB6",
+      "fb_label": "Stadtentwicklung, Umwelt & Klima",
+      "produkt": "06.4.03",
+      "massnahme": "Öffentlichkeitsarbeit Klimaschutz",
+      "kategorie": "leistungen",
+      "kategorie_label": "Gekürzte Leistungen & Zuschüsse",
+      "art": "ausgabe",
+      "gruppe_label": "Gekürzte Leistungen & Zuschüsse",
+      "is_grundsteuer_b": false,
+      "hebesatzpunkte": 0.22,
+      "werte": {
+        "2026": -2000.0,
+        "2027": -2000.0,
+        "2028": -2000.0,
+        "2029": -2000.0,
+        "2030": -2000.0
+      },
+      "summe": -10000.0,
+      "page": 14
+    },
+    {
+      "fb": "FB6",
+      "fb_label": "Stadtentwicklung, Umwelt & Klima",
+      "produkt": "06.4.05",
+      "massnahme": "Grabenpflege Gewässer",
+      "kategorie": "gebaeude",
+      "kategorie_label": "Gebäude & Unterhaltung",
+      "art": "ausgabe",
+      "gruppe_label": "Gebäude & Unterhaltung",
+      "is_grundsteuer_b": false,
+      "hebesatzpunkte": 4.31,
+      "werte": {
+        "2026": -40000.0,
+        "2027": -41600.0,
+        "2028": -43216.0,
+        "2029": -44848.16,
+        "2030": -44848.16
+      },
+      "summe": -214512.32,
+      "page": 14
+    },
+    {
+      "fb": "FB6",
+      "fb_label": "Stadtentwicklung, Umwelt & Klima",
+      "produkt": null,
+      "massnahme": "FBL 1/2 Jahr",
+      "kategorie": "personal",
+      "kategorie_label": "Personal & Stellen",
+      "art": "ausgabe",
+      "gruppe_label": "Personal & Stellen",
+      "is_grundsteuer_b": false,
+      "hebesatzpunkte": 7.01,
+      "werte": {
+        "2026": -65012.77,
+        "2027": 0.0,
+        "2028": 0.0,
+        "2029": 0.0,
+        "2030": 0.0
+      },
+      "summe": -65012.77,
+      "page": 14
+    },
+    {
+      "fb": "FB7",
+      "fb_label": "Bauen, Tiefbau, Friedhof & Abfall",
+      "produkt": "07.1.01",
+      "massnahme": "DV-Benutzerentgelte",
+      "kategorie": "verwaltung",
+      "kategorie_label": "Interne Sach- & Verwaltungskosten",
+      "art": "ausgabe",
+      "gruppe_label": "Interne Sach- & Verwaltungskosten",
+      "is_grundsteuer_b": false,
+      "hebesatzpunkte": 2.49,
+      "werte": {
+        "2026": -23110.69,
+        "2027": -23341.8,
+        "2028": -23575.22,
+        "2029": -23810.97,
+        "2030": -23810.97
+      },
+      "summe": -117649.65,
+      "page": 14
+    },
+    {
+      "fb": "FB7",
+      "fb_label": "Bauen, Tiefbau, Friedhof & Abfall",
+      "produkt": "07.1.01",
+      "massnahme": "Brückensanierung",
+      "kategorie": "gebaeude",
+      "kategorie_label": "Gebäude & Unterhaltung",
+      "art": "ausgabe",
+      "gruppe_label": "Gebäude & Unterhaltung",
+      "is_grundsteuer_b": false,
+      "hebesatzpunkte": 2.16,
+      "werte": {
+        "2026": -20000.0,
+        "2027": -20000.0,
+        "2028": -20000.0,
+        "2029": -20000.0,
+        "2030": -20000.0
+      },
+      "summe": -100000.0,
+      "page": 14
+    },
+    {
+      "fb": "FB7",
+      "fb_label": "Bauen, Tiefbau, Friedhof & Abfall",
+      "produkt": "07.3.01",
+      "massnahme": "Öffentlichkeitsarbeit Abfall",
+      "kategorie": "leistungen",
+      "kategorie_label": "Gekürzte Leistungen & Zuschüsse",
+      "art": "ausgabe",
+      "gruppe_label": "Gekürzte Leistungen & Zuschüsse",
+      "is_grundsteuer_b": false,
+      "hebesatzpunkte": 1.62,
+      "werte": {
+        "2026": -15000.0,
+        "2027": -15000.0,
+        "2028": -15000.0,
+        "2029": -15000.0,
+        "2030": -15000.0
+      },
+      "summe": -75000.0,
+      "page": 14
+    },
+    {
+      "fb": "FB7",
+      "fb_label": "Bauen, Tiefbau, Friedhof & Abfall",
+      "produkt": "07.5.01",
+      "massnahme": "Mühlengrund 17 Reduzierung Erträge",
+      "kategorie": "sonstige",
+      "kategorie_label": "Sonstige Maßnahmen",
+      "art": "einnahme",
+      "gruppe_label": "Sonstige Erträge",
+      "is_grundsteuer_b": false,
+      "hebesatzpunkte": -1.1,
+      "werte": {
+        "2026": 0.0,
+        "2027": 10182.0,
+        "2028": 10182.0,
+        "2029": 10182.0,
+        "2030": 10182.0
+      },
+      "summe": 40728.0,
+      "page": 14
+    },
+    {
+      "fb": "FB7",
+      "fb_label": "Bauen, Tiefbau, Friedhof & Abfall",
+      "produkt": "07.5.01",
+      "massnahme": "Mühlengrund 17 Reduzierung Sachaufwand",
+      "kategorie": "sonstige",
+      "kategorie_label": "Sonstige Maßnahmen",
+      "art": "ausgabe",
+      "gruppe_label": "Sonstige Einsparungen",
+      "is_grundsteuer_b": false,
+      "hebesatzpunkte": 14.29,
+      "werte": {
+        "2026": 0.0,
+        "2027": -132563.0,
+        "2028": -133811.0,
+        "2029": -135071.0,
+        "2030": -135071.0
+      },
+      "summe": -536516.0,
+      "page": 14
+    },
+    {
+      "fb": "FB7",
+      "fb_label": "Bauen, Tiefbau, Friedhof & Abfall",
+      "produkt": "07.5.01",
+      "massnahme": "Schasser (Sachaufwand)",
+      "kategorie": "sonstige",
+      "kategorie_label": "Sonstige Maßnahmen",
+      "art": "ausgabe",
+      "gruppe_label": "Sonstige Einsparungen",
+      "is_grundsteuer_b": false,
+      "hebesatzpunkte": 2.46,
+      "werte": {
+        "2026": 0.0,
+        "2027": -22863.0,
+        "2028": -22991.0,
+        "2029": -23121.0,
+        "2030": -23121.0
+      },
+      "summe": -92096.0,
+      "page": 14
+    },
+    {
+      "fb": "FB7",
+      "fb_label": "Bauen, Tiefbau, Friedhof & Abfall",
+      "produkt": "07.5.01",
+      "massnahme": "Bachgasse (Sachaufwand)",
+      "kategorie": "sonstige",
+      "kategorie_label": "Sonstige Maßnahmen",
+      "art": "ausgabe",
+      "gruppe_label": "Sonstige Einsparungen",
+      "is_grundsteuer_b": false,
+      "hebesatzpunkte": 0.32,
+      "werte": {
+        "2026": 0.0,
+        "2027": -2927.0,
+        "2028": -2938.0,
+        "2029": -2950.0,
+        "2030": -2950.0
+      },
+      "summe": -11765.0,
+      "page": 14
+    },
+    {
+      "fb": "FB7",
+      "fb_label": "Bauen, Tiefbau, Friedhof & Abfall",
+      "produkt": null,
+      "massnahme": "2 NN Friedhofsgärtner",
+      "kategorie": "personal",
+      "kategorie_label": "Personal & Stellen",
+      "art": "ausgabe",
+      "gruppe_label": "Personal & Stellen",
+      "is_grundsteuer_b": false,
+      "hebesatzpunkte": 12.57,
+      "werte": {
+        "2026": -116616.2,
+        "2027": -120114.69,
+        "2028": -123718.13,
+        "2029": -127429.67,
+        "2030": -131252.56
+      },
+      "summe": -619131.24,
+      "page": 14
+    },
+    {
+      "fb": "FB7",
+      "fb_label": "Bauen, Tiefbau, Friedhof & Abfall",
+      "produkt": null,
+      "massnahme": "1 Stelle Abfall",
+      "kategorie": "personal",
+      "kategorie_label": "Personal & Stellen",
+      "art": "ausgabe",
+      "gruppe_label": "Personal & Stellen",
+      "is_grundsteuer_b": false,
+      "hebesatzpunkte": 9.74,
+      "werte": {
+        "2026": -90394.62,
+        "2027": -93106.46,
+        "2028": -95899.65,
+        "2029": -98776.64,
+        "2030": -101739.94
+      },
+      "summe": -479917.31,
+      "page": 14
+    },
+    {
+      "fb": "SB14",
+      "fb_label": "Steuern & Allgemeine Finanzwirtschaft",
+      "produkt": "14.1.01",
+      "massnahme": "Spielapparatesteuer",
+      "kategorie": "steuern",
+      "kategorie_label": "Höhere Steuern",
+      "art": "einnahme",
+      "gruppe_label": "Höhere Steuern",
+      "is_grundsteuer_b": false,
+      "hebesatzpunkte": 21.56,
+      "werte": {
+        "2026": -200000.0,
+        "2027": -200000.0,
+        "2028": -200000.0,
+        "2029": -200000.0,
+        "2030": -200000.0
+      },
+      "summe": -1000000.0,
+      "page": 14
+    },
+    {
+      "fb": "SB14",
+      "fb_label": "Steuern & Allgemeine Finanzwirtschaft",
+      "produkt": "14.1.01",
+      "massnahme": "Hundebestandaufnahme (+20% auf Hundesteuer)",
+      "kategorie": "steuern",
+      "kategorie_label": "Höhere Steuern",
+      "art": "einnahme",
+      "gruppe_label": "Höhere Steuern",
+      "is_grundsteuer_b": false,
+      "hebesatzpunkte": 4.48,
+      "werte": {
+        "2026": 0.0,
+        "2027": -41600.0,
+        "2028": -41600.0,
+        "2029": -41600.0,
+        "2030": -41600.0
+      },
+      "summe": -166400.0,
+      "page": 14
+    },
+    {
+      "fb": "SB14",
+      "fb_label": "Steuern & Allgemeine Finanzwirtschaft",
+      "produkt": "14.1.01",
+      "massnahme": "Grundsteuer A von 175% auf 900%",
+      "kategorie": "steuern",
+      "kategorie_label": "Höhere Steuern",
+      "art": "einnahme",
+      "gruppe_label": "Höhere Steuern",
+      "is_grundsteuer_b": false,
+      "hebesatzpunkte": 2.9,
+      "werte": {
+        "2026": 0.0,
+        "2027": -26871.43,
+        "2028": -26871.43,
+        "2029": -26871.43,
+        "2030": -26871.43
+      },
+      "summe": -107485.71,
+      "page": 14
+    },
+    {
+      "fb": "SB14",
+      "fb_label": "Steuern & Allgemeine Finanzwirtschaft",
+      "produkt": "14.1.02",
+      "massnahme": "Aufwendungen für Dienstjubiläen",
+      "kategorie": "personal",
+      "kategorie_label": "Personal & Stellen",
+      "art": "ausgabe",
+      "gruppe_label": "Personal & Stellen",
+      "is_grundsteuer_b": false,
+      "hebesatzpunkte": 1.08,
+      "werte": {
+        "2026": -10000.0,
+        "2027": -10300.0,
+        "2028": -10609.0,
+        "2029": -10927.27,
+        "2030": -11255.09
+      },
+      "summe": -53091.36,
+      "page": 14
+    },
+    {
+      "fb": "SB14",
+      "fb_label": "Steuern & Allgemeine Finanzwirtschaft",
+      "produkt": null,
+      "massnahme": "Gewerbesteuer",
+      "kategorie": "steuern",
+      "kategorie_label": "Höhere Steuern",
+      "art": "einnahme",
+      "gruppe_label": "Höhere Steuern",
+      "is_grundsteuer_b": false,
+      "hebesatzpunkte": 126.74,
+      "werte": {
+        "2026": 0.0,
+        "2027": 0.0,
+        "2028": 0.0,
+        "2029": 0.0,
+        "2030": -1175768.0
+      },
+      "summe": -1175768.0,
+      "page": 14
+    },
+    {
+      "fb": "SB14",
+      "fb_label": "Steuern & Allgemeine Finanzwirtschaft",
+      "produkt": null,
+      "massnahme": "Gewerbesteuerumlage",
+      "kategorie": "steuern",
+      "kategorie_label": "Höhere Steuern",
+      "art": "einnahme",
+      "gruppe_label": "Höhere Steuern",
+      "is_grundsteuer_b": false,
+      "hebesatzpunkte": -11.09,
+      "werte": {
+        "2026": 0.0,
+        "2027": 0.0,
+        "2028": 0.0,
+        "2029": 0.0,
+        "2030": 102879.7
+      },
+      "summe": 102879.7,
+      "page": 14
+    },
+    {
+      "fb": "SB14",
+      "fb_label": "Steuern & Allgemeine Finanzwirtschaft",
+      "produkt": null,
+      "massnahme": "Heimatumlage",
+      "kategorie": "steuern",
+      "kategorie_label": "Höhere Steuern",
+      "art": "einnahme",
+      "gruppe_label": "Höhere Steuern",
+      "is_grundsteuer_b": false,
+      "hebesatzpunkte": -6.89,
+      "werte": {
+        "2026": 0.0,
+        "2027": 0.0,
+        "2028": 0.0,
+        "2029": 0.0,
+        "2030": 63932.39
+      },
+      "summe": 63932.39,
+      "page": 14
+    },
+    {
+      "fb": "ALLE",
+      "fb_label": "Alle Fachbereiche (Querschnitt)",
+      "produkt": "ALLE",
+      "massnahme": "Erstmals angemeldete IT-Schulungen",
+      "kategorie": "verwaltung",
+      "kategorie_label": "Interne Sach- & Verwaltungskosten",
+      "art": "ausgabe",
+      "gruppe_label": "Interne Sach- & Verwaltungskosten",
+      "is_grundsteuer_b": false,
+      "hebesatzpunkte": 10.62,
+      "werte": {
+        "2026": -98500.0,
+        "2027": -99485.08,
+        "2028": -100479.97,
+        "2029": -101484.73,
+        "2030": -101484.73
+      },
+      "summe": -501434.51,
+      "page": 14
+    },
+    {
+      "fb": "ALLE",
+      "fb_label": "Alle Fachbereiche (Querschnitt)",
+      "produkt": "ALLE",
+      "massnahme": "Aufwand für Aus- und Weiterbildung",
+      "kategorie": "verwaltung",
+      "kategorie_label": "Interne Sach- & Verwaltungskosten",
+      "art": "ausgabe",
+      "gruppe_label": "Interne Sach- & Verwaltungskosten",
+      "is_grundsteuer_b": false,
+      "hebesatzpunkte": 2.22,
+      "werte": {
+        "2026": 0.0,
+        "2027": -20600.0,
+        "2028": -21218.0,
+        "2029": -21854.54,
+        "2030": -22510.18
+      },
+      "summe": -86182.72,
+      "page": 14
+    },
+    {
+      "fb": "ALLE",
+      "fb_label": "Alle Fachbereiche (Querschnitt)",
+      "produkt": "ALLE",
+      "massnahme": "Aufwend. für Büromaterial und Drucksachen reduzieren",
+      "kategorie": "verwaltung",
+      "kategorie_label": "Interne Sach- & Verwaltungskosten",
+      "art": "ausgabe",
+      "gruppe_label": "Interne Sach- & Verwaltungskosten",
+      "is_grundsteuer_b": false,
+      "hebesatzpunkte": 2.72,
+      "werte": {
+        "2026": 0.0,
+        "2027": -25250.0,
+        "2028": -25502.5,
+        "2029": -25757.53,
+        "2030": -25757.53
+      },
+      "summe": -102267.55,
+      "page": 14
+    },
+    {
+      "fb": "ALLE",
+      "fb_label": "Alle Fachbereiche (Querschnitt)",
+      "produkt": "ALLE",
+      "massnahme": "Verbrauchsmaterial",
+      "kategorie": "verwaltung",
+      "kategorie_label": "Interne Sach- & Verwaltungskosten",
+      "art": "ausgabe",
+      "gruppe_label": "Interne Sach- & Verwaltungskosten",
+      "is_grundsteuer_b": false,
+      "hebesatzpunkte": 2.72,
+      "werte": {
+        "2026": 0.0,
+        "2027": -25250.0,
+        "2028": -25502.5,
+        "2029": -25757.53,
+        "2030": -25757.53
+      },
+      "summe": -102267.55,
+      "page": 14
+    },
+    {
+      "fb": "ALLE",
+      "fb_label": "Alle Fachbereiche (Querschnitt)",
+      "produkt": "ALLE",
+      "massnahme": "sonstiger Materialaufwand",
+      "kategorie": "verwaltung",
+      "kategorie_label": "Interne Sach- & Verwaltungskosten",
+      "art": "ausgabe",
+      "gruppe_label": "Interne Sach- & Verwaltungskosten",
+      "is_grundsteuer_b": false,
+      "hebesatzpunkte": 1.09,
+      "werte": {
+        "2026": 0.0,
+        "2027": -10100.0,
+        "2028": -10201.0,
+        "2029": -10303.01,
+        "2030": -10303.01
+      },
+      "summe": -40907.02,
+      "page": 14
+    },
+    {
+      "fb": "ALLE",
+      "fb_label": "Alle Fachbereiche (Querschnitt)",
+      "produkt": "ALLE",
+      "massnahme": "Honoraraufwand",
+      "kategorie": "verwaltung",
+      "kategorie_label": "Interne Sach- & Verwaltungskosten",
+      "art": "ausgabe",
+      "gruppe_label": "Interne Sach- & Verwaltungskosten",
+      "is_grundsteuer_b": false,
+      "hebesatzpunkte": 1.09,
+      "werte": {
+        "2026": 0.0,
+        "2027": -10100.0,
+        "2028": -10201.0,
+        "2029": -10303.01,
+        "2030": -10303.01
+      },
+      "summe": -40907.02,
+      "page": 14
+    },
+    {
+      "fb": "ALLE",
+      "fb_label": "Alle Fachbereiche (Querschnitt)",
+      "produkt": "ALLE",
+      "massnahme": "Aufwand für den Betrieb",
+      "kategorie": "verwaltung",
+      "kategorie_label": "Interne Sach- & Verwaltungskosten",
+      "art": "ausgabe",
+      "gruppe_label": "Interne Sach- & Verwaltungskosten",
+      "is_grundsteuer_b": false,
+      "hebesatzpunkte": 1.63,
+      "werte": {
+        "2026": 0.0,
+        "2027": -15150.0,
+        "2028": -15301.5,
+        "2029": -15454.52,
+        "2030": -15454.52
+      },
+      "summe": -61360.53,
+      "page": 14
+    },
+    {
+      "fb": "ALLE",
+      "fb_label": "Alle Fachbereiche (Querschnitt)",
+      "produkt": "ALLE",
+      "massnahme": "Aufw. Betriebswirtschaftliche Beratungen",
+      "kategorie": "verwaltung",
+      "kategorie_label": "Interne Sach- & Verwaltungskosten",
+      "art": "ausgabe",
+      "gruppe_label": "Interne Sach- & Verwaltungskosten",
+      "is_grundsteuer_b": false,
+      "hebesatzpunkte": 2.18,
+      "werte": {
+        "2026": 0.0,
+        "2027": -20200.0,
+        "2028": -20402.0,
+        "2029": -20606.02,
+        "2030": -20606.02
+      },
+      "summe": -81814.04,
+      "page": 14
+    },
+    {
+      "fb": "ALLE",
+      "fb_label": "Alle Fachbereiche (Querschnitt)",
+      "produkt": "ALLE",
+      "massnahme": "Zeitungen und Fachliteratur",
+      "kategorie": "verwaltung",
+      "kategorie_label": "Interne Sach- & Verwaltungskosten",
+      "art": "ausgabe",
+      "gruppe_label": "Interne Sach- & Verwaltungskosten",
+      "is_grundsteuer_b": false,
+      "hebesatzpunkte": 1.09,
+      "werte": {
+        "2026": 0.0,
+        "2027": -10100.0,
+        "2028": -10201.0,
+        "2029": -10303.01,
+        "2030": -10303.01
+      },
+      "summe": -40907.02,
+      "page": 14
+    },
+    {
+      "fb": "ALLE",
+      "fb_label": "Alle Fachbereiche (Querschnitt)",
+      "produkt": "ALLE",
+      "massnahme": "Kosten Präsenz im Internet",
+      "kategorie": "verwaltung",
+      "kategorie_label": "Interne Sach- & Verwaltungskosten",
+      "art": "ausgabe",
+      "gruppe_label": "Interne Sach- & Verwaltungskosten",
+      "is_grundsteuer_b": false,
+      "hebesatzpunkte": 2.72,
+      "werte": {
+        "2026": 0.0,
+        "2027": -25250.0,
+        "2028": -25502.5,
+        "2029": -25757.53,
+        "2030": -25757.53
+      },
+      "summe": -102267.55,
+      "page": 14
+    },
+    {
+      "fb": "ALLE",
+      "fb_label": "Alle Fachbereiche (Querschnitt)",
+      "produkt": "ALLE",
+      "massnahme": "Aufwand für Fortbildung",
+      "kategorie": "verwaltung",
+      "kategorie_label": "Interne Sach- & Verwaltungskosten",
+      "art": "ausgabe",
+      "gruppe_label": "Interne Sach- & Verwaltungskosten",
+      "is_grundsteuer_b": false,
+      "hebesatzpunkte": 5.44,
+      "werte": {
+        "2026": 0.0,
+        "2027": -50500.0,
+        "2028": -51005.0,
+        "2029": -51515.05,
+        "2030": -51515.05
+      },
+      "summe": -204535.1,
+      "page": 14
+    },
+    {
+      "fb": "ALLE",
+      "fb_label": "Alle Fachbereiche (Querschnitt)",
+      "produkt": "ALLE",
+      "massnahme": "PK durch Austritte",
+      "kategorie": "personal",
+      "kategorie_label": "Personal & Stellen",
+      "art": "ausgabe",
+      "gruppe_label": "Personal & Stellen",
+      "is_grundsteuer_b": false,
+      "hebesatzpunkte": 47.21,
+      "werte": {
+        "2026": 0.0,
+        "2027": -437943.33,
+        "2028": -1098561.72,
+        "2029": -1526449.15,
+        "2030": -1572242.62
+      },
+      "summe": -4635196.82,
+      "page": 14
+    },
+    {
+      "fb": "ALLE",
+      "fb_label": "Alle Fachbereiche (Querschnitt)",
+      "produkt": "ALLE",
+      "massnahme": "Reduzierung AfA",
+      "kategorie": "gebaeude",
+      "kategorie_label": "Gebäude & Unterhaltung",
+      "art": "ausgabe",
+      "gruppe_label": "Gebäude & Unterhaltung",
+      "is_grundsteuer_b": false,
+      "hebesatzpunkte": 17.51,
+      "werte": {
+        "2026": 0.0,
+        "2027": -162397.0,
+        "2028": -146177.0,
+        "2029": -176377.0,
+        "2030": -248282.0
+      },
+      "summe": -733233.0,
+      "page": 14
+    },
+    {
+      "fb": "ALLE",
+      "fb_label": "Alle Fachbereiche (Querschnitt)",
+      "produkt": "ALLE",
+      "massnahme": "Schließdienst Halle Urb/Rathäuser/Tiefgarage/Kulturhalle/Kelter",
+      "kategorie": "gebaeude",
+      "kategorie_label": "Gebäude & Unterhaltung",
+      "art": "ausgabe",
+      "gruppe_label": "Gebäude & Unterhaltung",
+      "is_grundsteuer_b": false,
+      "hebesatzpunkte": 10.24,
+      "werte": {
+        "2026": -95000.0,
+        "2027": -95000.0,
+        "2028": -95000.0,
+        "2029": -95000.0,
+        "2030": -95000.0
+      },
+      "summe": -475000.0,
+      "page": 14
+    },
+    {
+      "fb": "ALLE",
+      "fb_label": "Alle Fachbereiche (Querschnitt)",
+      "produkt": "ALLE",
+      "massnahme": "Bauliche Unterhaltung allgemein",
+      "kategorie": "gebaeude",
+      "kategorie_label": "Gebäude & Unterhaltung",
+      "art": "ausgabe",
+      "gruppe_label": "Gebäude & Unterhaltung",
+      "is_grundsteuer_b": false,
+      "hebesatzpunkte": 69.57,
+      "werte": {
+        "2026": -645400.0,
+        "2027": -417250.0,
+        "2028": -751179.5,
+        "2029": -1063032.3,
+        "2030": -1063032.3
+      },
+      "summe": -3939894.1,
+      "page": 14
+    },
+    {
+      "fb": "SB14",
+      "fb_label": "Steuern & Allgemeine Finanzwirtschaft",
+      "produkt": "14.1.01",
+      "massnahme": "Erhöhung Hebesatz Grundsteuer B",
+      "kategorie": "steuern",
+      "kategorie_label": "Höhere Steuern",
+      "art": "einnahme",
+      "gruppe_label": "Höhere Steuern",
+      "is_grundsteuer_b": true,
+      "hebesatzpunkte": null,
+      "werte": {
+        "2026": -3117000.0,
+        "2027": -3117000.0,
+        "2028": -6827712.29,
+        "2029": -6827712.29,
+        "2030": -6827712.29
+      },
+      "summe": -26717136.87,
+      "page": 15
+    }
+  ],
+  "totals": {
+    "ordentliches_ergebnis_aliste": {
+      "values": [
+        13209320.08,
+        12536643.75,
+        14273941.66,
+        14152913.95,
+        15244967.07
+      ],
+      "summe": 69417786.51,
+      "page": 13
+    },
+    "summe_ohne_grundsteuer_b": {
+      "values": [
+        -3764155.37,
+        -4808404.22,
+        -6013142.17,
+        -8217788.64,
+        -10898437.49
+      ],
+      "summe": -33701927.89,
+      "page": 15
+    },
+    "summe_mit_grundsteuer_b": {
+      "values": [
+        -6881155.37,
+        -7925404.22,
+        -12840854.46,
+        -15045500.93,
+        -17726149.78
+      ],
+      "summe": -60419064.76,
+      "page": 15
+    },
+    "neues_ordentliches_ergebnis": {
+      "values": [
+        6328164.71,
+        4611239.53,
+        1433087.2,
+        -892586.99,
+        -2481182.71
+      ],
+      "summe": 8998721.75,
+      "page": 15
+    },
+    "ao_ergebnis_entwurf": {
+      "values": [
+        -58600.0,
+        -58600.0,
+        -58600.0,
+        -58600.0,
+        -58600.0
+      ],
+      "summe": -293000.0,
+      "page": 15
+    },
+    "verkaeufe": [
+      {
+        "bezeichnung": "Verkauf Mühlengrund 17",
+        "values": [
+          null,
+          -1530542.0,
+          null,
+          null,
+          null
+        ],
+        "summe": -1530542.0,
+        "page": 15
+      },
+      {
+        "bezeichnung": "Verkauf Schasser, Ordnungsamt, etc.",
+        "values": [
+          null,
+          null,
+          -522402.0,
+          null,
+          null
+        ],
+        "summe": -522402.0,
+        "page": 15
+      },
+      {
+        "bezeichnung": "Verkauf Jägerhaus",
+        "values": [
+          null,
+          -24279.0,
+          null,
+          null,
+          null
+        ],
+        "summe": -24279.0,
+        "page": 15
+      },
+      {
+        "bezeichnung": "Verkauf unrentable Wohnhäuser",
+        "values": [
+          null,
+          null,
+          null,
+          null,
+          -1200000.0
+        ],
+        "summe": -1200000.0,
+        "page": 15
+      }
+    ],
+    "ao_ergebnis_nach_hsk": {
+      "values": [
+        -58600.0,
+        -1613421.0,
+        -581002.0,
+        -58600.0,
+        -1258600.0
+      ],
+      "summe": -3570223.0,
+      "page": 15
+    }
+  },
+  "investitionen": [
+    {
+      "fb": "FB1",
+      "fb_label": "Zentrale Steuerung & Verwaltung",
+      "code": "1-4-011K",
+      "name": "Lizenzen/Softwareanschaffungen IT-Dienste",
+      "werte": {
+        "2026": -250000.0,
+        "2027": 250000.0,
+        "2028": null,
+        "2029": null
+      },
+      "summe": 0.0,
+      "page": 10
+    },
+    {
+      "fb": "FB1",
+      "fb_label": "Zentrale Steuerung & Verwaltung",
+      "code": "1-6-04K",
+      "name": "Umsetzung von Leitbildprojekten",
+      "werte": {
+        "2026": -10000.0,
+        "2027": -10000.0,
+        "2028": -10000.0,
+        "2029": -10000.0
+      },
+      "summe": -40000.0,
+      "page": 10
+    },
+    {
+      "fb": "FB3",
+      "fb_label": "Öffentliche Ordnung & Sicherheit",
+      "code": "3-3-11K",
+      "name": "Erweiterung, Um- u. Ausbau Friedhof Ober-Roden",
+      "werte": {
+        "2026": -85000.0,
+        "2027": -30000.0,
+        "2028": -85000.0,
+        "2029": -55000.0
+      },
+      "summe": -255000.0,
+      "page": 10
+    },
+    {
+      "fb": "FB3",
+      "fb_label": "Öffentliche Ordnung & Sicherheit",
+      "code": "3-3-21K",
+      "name": "Erweiterung, Um- und Ausbau Friedhof Urberach",
+      "werte": {
+        "2026": -34000.0,
+        "2027": -20000.0,
+        "2028": -44000.0,
+        "2029": -4000.0
+      },
+      "summe": -102000.0,
+      "page": 10
+    },
+    {
+      "fb": "FB3",
+      "fb_label": "Öffentliche Ordnung & Sicherheit",
+      "code": "3-4-03K",
+      "name": "Umbau Bürgerservice",
+      "werte": {
+        "2026": -50000.0,
+        "2027": 25000.0,
+        "2028": null,
+        "2029": null
+      },
+      "summe": -25000.0,
+      "page": 10
+    },
+    {
+      "fb": "FB3",
+      "fb_label": "Öffentliche Ordnung & Sicherheit",
+      "code": "3-5-12K",
+      "name": "Bewegl. Anlagevermögen Feuerwehr Ober-Roden",
+      "werte": {
+        "2026": -34500.0,
+        "2027": -60500.0,
+        "2028": 60500.0,
+        "2029": null
+      },
+      "summe": -34500.0,
+      "page": 10
+    },
+    {
+      "fb": "FB3",
+      "fb_label": "Öffentliche Ordnung & Sicherheit",
+      "code": "3-5-13K",
+      "name": "Anschaffung v. Fahrzeugen Feuerwehr Ober-Roden",
+      "werte": {
+        "2026": -650000.0,
+        "2027": -280000.0,
+        "2028": null,
+        "2029": null
+      },
+      "summe": -930000.0,
+      "page": 10
+    },
+    {
+      "fb": "FB3",
+      "fb_label": "Öffentliche Ordnung & Sicherheit",
+      "code": "3-5-19K",
+      "name": "Planung/Umbau Feuerwehr Rödermark Ober-Roden",
+      "werte": {
+        "2026": -300000.0,
+        "2027": -1300000.0,
+        "2028": -2000000.0,
+        "2029": null
+      },
+      "summe": -3600000.0,
+      "page": 10
+    },
+    {
+      "fb": "FB3",
+      "fb_label": "Öffentliche Ordnung & Sicherheit",
+      "code": "3-5-22K",
+      "name": "Bewegl. Anlagevermögen Feuerwehr Urberach",
+      "werte": {
+        "2026": -8100.0,
+        "2027": -42500.0,
+        "2028": null,
+        "2029": null
+      },
+      "summe": -50600.0,
+      "page": 10
+    },
+    {
+      "fb": "FB3",
+      "fb_label": "Öffentliche Ordnung & Sicherheit",
+      "code": "3-5-23K",
+      "name": "Anschaffung v. Fahrzeugen Feuerwehr Urberach",
+      "werte": {
+        "2026": -100000.0,
+        "2027": null,
+        "2028": null,
+        "2029": null
+      },
+      "summe": -100000.0,
+      "page": 10
+    },
+    {
+      "fb": "FB3",
+      "fb_label": "Öffentliche Ordnung & Sicherheit",
+      "code": "3-5-28K",
+      "name": "Dachsanierung restliche Dächer Feuerwehr Urberach",
+      "werte": {
+        "2026": -250000.0,
+        "2027": 250000.0,
+        "2028": null,
+        "2029": null
+      },
+      "summe": 0.0,
+      "page": 10
+    },
+    {
+      "fb": "FB4",
+      "fb_label": "Kinder, Jugend, Schule & Soziales",
+      "code": "4-1-05K",
+      "name": "Neuausstattungen Gruppenräume Kitas",
+      "werte": {
+        "2026": -13000.0,
+        "2027": -3000.0,
+        "2028": -4000.0,
+        "2029": null
+      },
+      "summe": -20000.0,
+      "page": 10
+    },
+    {
+      "fb": "FB4",
+      "fb_label": "Kinder, Jugend, Schule & Soziales",
+      "code": "4-1-09K",
+      "name": "Maßnahmen zur Kita Betreuung",
+      "werte": {
+        "2026": -200000.0,
+        "2027": null,
+        "2028": null,
+        "2029": null
+      },
+      "summe": -200000.0,
+      "page": 10
+    },
+    {
+      "fb": "FB4",
+      "fb_label": "Kinder, Jugend, Schule & Soziales",
+      "code": "4-1-50K",
+      "name": "Bewegl. Anlagevermögen Kita V Im Taubhaus",
+      "werte": {
+        "2026": -15000.0,
+        "2027": -3700.0,
+        "2028": -3700.0,
+        "2029": null
+      },
+      "summe": -22400.0,
+      "page": 10
+    },
+    {
+      "fb": "FB4",
+      "fb_label": "Kinder, Jugend, Schule & Soziales",
+      "code": "4-1-52K",
+      "name": "Außengelände Kita V Im Taubhaus",
+      "werte": {
+        "2026": -5000.0,
+        "2027": -5000.0,
+        "2028": -5000.0,
+        "2029": -5000.0
+      },
+      "summe": -20000.0,
+      "page": 10
+    },
+    {
+      "fb": "FB4",
+      "fb_label": "Kinder, Jugend, Schule & Soziales",
+      "code": "4-1-55K",
+      "name": "Sanierung/Neubau Kita Taubhaus",
+      "werte": {
+        "2026": -1000000.0,
+        "2027": -2000000.0,
+        "2028": -2000000.0,
+        "2029": null
+      },
+      "summe": -5000000.0,
+      "page": 10
+    },
+    {
+      "fb": "FB4",
+      "fb_label": "Kinder, Jugend, Schule & Soziales",
+      "code": "4-1-72K",
+      "name": "Außengelände Kita VII Liebigstraße",
+      "werte": {
+        "2026": -34000.0,
+        "2027": null,
+        "2028": null,
+        "2029": null
+      },
+      "summe": -34000.0,
+      "page": 10
+    },
+    {
+      "fb": "FB4",
+      "fb_label": "Kinder, Jugend, Schule & Soziales",
+      "code": "4-1-9943K",
+      "name": "Außengelände Kita Sonnenschein",
+      "werte": {
+        "2026": 1000.0,
+        "2027": null,
+        "2028": null,
+        "2029": null
+      },
+      "summe": 1000.0,
+      "page": 10
+    },
+    {
+      "fb": "FB4",
+      "fb_label": "Kinder, Jugend, Schule & Soziales",
+      "code": "4-2-09K",
+      "name": "Außengelände JUZ Ober-Roden",
+      "werte": {
+        "2026": -30000.0,
+        "2027": -5000.0,
+        "2028": -4000.0,
+        "2029": null
+      },
+      "summe": -39000.0,
+      "page": 10
+    },
+    {
+      "fb": "FB4",
+      "fb_label": "Kinder, Jugend, Schule & Soziales",
+      "code": "4-2-10K",
+      "name": "Bewegl. Anlagevermögen JUZ ORo",
+      "werte": {
+        "2026": -1500.0,
+        "2027": -1500.0,
+        "2028": -1500.0,
+        "2029": null
+      },
+      "summe": -4500.0,
+      "page": 10
+    },
+    {
+      "fb": "FB4",
+      "fb_label": "Kinder, Jugend, Schule & Soziales",
+      "code": "4-3-40K",
+      "name": "Investitionskostenzuschüsse Sozialwohnungen",
+      "werte": {
+        "2026": -130000.0,
+        "2027": null,
+        "2028": null,
+        "2029": null
+      },
+      "summe": -130000.0,
+      "page": 10
+    },
+    {
+      "fb": "FB4",
+      "fb_label": "Kinder, Jugend, Schule & Soziales",
+      "code": "4-4-15K",
+      "name": "Erweiterung/Neubau Mensa Schule an den Linden",
+      "werte": {
+        "2026": -1700000.0,
+        "2027": -600000.0,
+        "2028": 2300000.0,
+        "2029": null
+      },
+      "summe": 0.0,
+      "page": 10
+    },
+    {
+      "fb": "FB4",
+      "fb_label": "Kinder, Jugend, Schule & Soziales",
+      "code": "4-4-30K",
+      "name": "ISEK - Alte Wache",
+      "werte": {
+        "2026": -1500000.0,
+        "2027": -1650000.0,
+        "2028": -3150000.0,
+        "2029": null
+      },
+      "summe": -6300000.0,
+      "page": 10
+    },
+    {
+      "fb": "FB5",
+      "fb_label": "Kultur, Sport & Bäder",
+      "code": "5-1-10K",
+      "name": "Bewegliches Anlagevermögen Kulturhalle",
+      "werte": {
+        "2026": -27000.0,
+        "2027": -12000.0,
+        "2028": -41000.0,
+        "2029": -12000.0
+      },
+      "summe": -92000.0,
+      "page": 10
+    },
+    {
+      "fb": "FB5",
+      "fb_label": "Kultur, Sport & Bäder",
+      "code": "5-1-14K",
+      "name": "Ertüchtigung Lüftungsanlage Kulturhalle",
+      "werte": {
+        "2026": -500000.0,
+        "2027": 500000.0,
+        "2028": null,
+        "2029": null
+      },
+      "summe": 0.0,
+      "page": 10
+    },
+    {
+      "fb": "FB5",
+      "fb_label": "Kultur, Sport & Bäder",
+      "code": "5-1-15E",
+      "name": "Zuschuss Beleuchtungssystem Kulturhalle/Tiefgarage",
+      "werte": {
+        "2026": 650000.0,
+        "2027": -650000.0,
+        "2028": null,
+        "2029": null
+      },
+      "summe": 0.0,
+      "page": 10
+    },
+    {
+      "fb": "FB5",
+      "fb_label": "Kultur, Sport & Bäder",
+      "code": "5-1-15K",
+      "name": "Beleuchtungssystem Kulturhalle und Tiefgarage",
+      "werte": {
+        "2026": -1000000.0,
+        "2027": 1000000.0,
+        "2028": null,
+        "2029": null
+      },
+      "summe": 0.0,
+      "page": 10
+    },
+    {
+      "fb": "FB5",
+      "fb_label": "Kultur, Sport & Bäder",
+      "code": "5-3-02K",
+      "name": "Büroausstattung Badehaus",
+      "werte": {
+        "2026": 600.0,
+        "2027": null,
+        "2028": null,
+        "2029": null
+      },
+      "summe": 600.0,
+      "page": 10
+    },
+    {
+      "fb": "FB5",
+      "fb_label": "Kultur, Sport & Bäder",
+      "code": "5-3-03K",
+      "name": "Bewegliches Anlagevermögen Badehaus",
+      "werte": {
+        "2026": -20000.0,
+        "2027": null,
+        "2028": null,
+        "2029": null
+      },
+      "summe": -20000.0,
+      "page": 10
+    },
+    {
+      "fb": "FB5",
+      "fb_label": "Kultur, Sport & Bäder",
+      "code": "5-3-04K",
+      "name": "Maßnahmen z. Erhaltung der Funktionalität Badehaus",
+      "werte": {
+        "2026": -200000.0,
+        "2027": -30000.0,
+        "2028": null,
+        "2029": null
+      },
+      "summe": -230000.0,
+      "page": 10
+    },
+    {
+      "fb": "FB5",
+      "fb_label": "Kultur, Sport & Bäder",
+      "code": "5-3-10K",
+      "name": "Sanierung Sauna",
+      "werte": {
+        "2026": -750000.0,
+        "2027": null,
+        "2028": null,
+        "2029": null
+      },
+      "summe": -750000.0,
+      "page": 10
+    },
+    {
+      "fb": "FB6",
+      "fb_label": "Stadtentwicklung, Umwelt & Klima",
+      "code": "6-1-02K",
+      "name": "Büroausstattung FB",
+      "werte": {
+        "2026": 6.0,
+        "2027": -8500.0,
+        "2028": null,
+        "2029": null
+      },
+      "summe": -8494.0,
+      "page": 10
+    },
+    {
+      "fb": "FB6",
+      "fb_label": "Stadtentwicklung, Umwelt & Klima",
+      "code": "6-1-043K",
+      "name": "Parkplatz Dieburger Str 29/31",
+      "werte": {
+        "2026": -200000.0,
+        "2027": null,
+        "2028": null,
+        "2029": null
+      },
+      "summe": -200000.0,
+      "page": 10
+    },
+    {
+      "fb": "FB6",
+      "fb_label": "Stadtentwicklung, Umwelt & Klima",
+      "code": "6-4-022K",
+      "name": "Erricht., Um- u. Ausbau Jugendpl./Freizeitanlagen",
+      "werte": {
+        "2026": -5000.0,
+        "2027": -5000.0,
+        "2028": -15000.0,
+        "2029": -15000.0
+      },
+      "summe": -40000.0,
+      "page": 10
+    },
+    {
+      "fb": "FB6",
+      "fb_label": "Stadtentwicklung, Umwelt & Klima",
+      "code": "6-4-02K",
+      "name": "Errichtung, Um- und Ausbau Spiel-/Bolzplätze",
+      "werte": {
+        "2026": -70000.0,
+        "2027": -20000.0,
+        "2028": -50000.0,
+        "2029": -50000.0
+      },
+      "summe": -190000.0,
+      "page": 10
+    },
+    {
+      "fb": "FB6",
+      "fb_label": "Stadtentwicklung, Umwelt & Klima",
+      "code": "6-4-031K",
+      "name": "Grundhafte Erneuerung von Baumstandorten",
+      "werte": {
+        "2026": -20000.0,
+        "2027": -50000.0,
+        "2028": -50000.0,
+        "2029": null
+      },
+      "summe": -120000.0,
+      "page": 10
+    },
+    {
+      "fb": "FB6",
+      "fb_label": "Stadtentwicklung, Umwelt & Klima",
+      "code": "6-4-05K",
+      "name": "Naturschutzrechtliche Auslgeichsmaßnahmen",
+      "werte": {
+        "2026": -20000.0,
+        "2027": -10000.0,
+        "2028": -10000.0,
+        "2029": null
+      },
+      "summe": -40000.0,
+      "page": 10
+    },
+    {
+      "fb": "FB6",
+      "fb_label": "Stadtentwicklung, Umwelt & Klima",
+      "code": "6-4-07K",
+      "name": "Investitionen in nachhaltige Mobilität",
+      "werte": {
+        "2026": -5000.0,
+        "2027": -5000.0,
+        "2028": -10000.0,
+        "2029": -10000.0
+      },
+      "summe": -30000.0,
+      "page": 10
+    },
+    {
+      "fb": "FB6",
+      "fb_label": "Stadtentwicklung, Umwelt & Klima",
+      "code": "6-4-09K",
+      "name": "Förderung umweltfr. Maßnahmen an Gebäuden/Grundst.",
+      "werte": {
+        "2026": -25000.0,
+        "2027": -25000.0,
+        "2028": -25000.0,
+        "2029": -25000.0
+      },
+      "summe": -100000.0,
+      "page": 10
+    },
+    {
+      "fb": "FB6",
+      "fb_label": "Stadtentwicklung, Umwelt & Klima",
+      "code": "6-4-11K",
+      "name": "Maßnahmenumsetzung Starkregengefährdungsanalyse",
+      "werte": {
+        "2026": -20000.0,
+        "2027": -20000.0,
+        "2028": -50000.0,
+        "2029": -50000.0
+      },
+      "summe": -140000.0,
+      "page": 10
+    },
+    {
+      "fb": "FB6",
+      "fb_label": "Stadtentwicklung, Umwelt & Klima",
+      "code": "6-4-24K",
+      "name": "Programm 100 Wilde Bäche",
+      "werte": {
+        "2026": -50000.0,
+        "2027": -50000.0,
+        "2028": null,
+        "2029": null
+      },
+      "summe": -100000.0,
+      "page": 10
+    },
+    {
+      "fb": "FB6",
+      "fb_label": "Stadtentwicklung, Umwelt & Klima",
+      "code": "6-4-40E",
+      "name": "Förderung Maßnahmen Waldwege",
+      "werte": {
+        "2026": 5000.0,
+        "2027": 5000.0,
+        "2028": 5000.0,
+        "2029": 5000.0
+      },
+      "summe": 20000.0,
+      "page": 10
+    },
+    {
+      "fb": "FB6",
+      "fb_label": "Stadtentwicklung, Umwelt & Klima",
+      "code": "6-4-40K",
+      "name": "Maßnahmen Waldwege",
+      "werte": {
+        "2026": -24990.0,
+        "2027": -24990.0,
+        "2028": -24990.0,
+        "2029": -24990.0
+      },
+      "summe": -99960.0,
+      "page": 10
+    },
+    {
+      "fb": "FB6",
+      "fb_label": "Stadtentwicklung, Umwelt & Klima",
+      "code": "6-4-061K",
+      "name": "Maßnahmen natürlicher Klimaschutz in Kommunen",
+      "werte": {
+        "2026": 10000.0,
+        "2027": null,
+        "2028": null,
+        "2029": null
+      },
+      "summe": 10000.0,
+      "page": 10
+    },
+    {
+      "fb": "FB6",
+      "fb_label": "Stadtentwicklung, Umwelt & Klima",
+      "code": "6-SH-M02K",
+      "name": "Stadtumbaumanagement",
+      "werte": {
+        "2026": -30000.0,
+        "2027": -30000.0,
+        "2028": -30000.0,
+        "2029": -20000.0
+      },
+      "summe": -110000.0,
+      "page": 10
+    },
+    {
+      "fb": "FB6",
+      "fb_label": "Stadtentwicklung, Umwelt & Klima",
+      "code": "6-SH-M05K",
+      "name": "Öffentlichkeitsarbeit, Partizipation",
+      "werte": {
+        "2026": -5000.0,
+        "2027": -5000.0,
+        "2028": -5000.0,
+        "2029": -5000.0
+      },
+      "summe": -20000.0,
+      "page": 10
+    },
+    {
+      "fb": "FB6",
+      "fb_label": "Stadtentwicklung, Umwelt & Klima",
+      "code": "6-SH-M07K",
+      "name": "Anreizprogramm",
+      "werte": {
+        "2026": -15000.0,
+        "2027": -20000.0,
+        "2028": -20000.0,
+        "2029": -20000.0
+      },
+      "summe": -75000.0,
+      "page": 10
+    },
+    {
+      "fb": "FB6",
+      "fb_label": "Stadtentwicklung, Umwelt & Klima",
+      "code": "6-SH-M18K",
+      "name": "Umgestaltung Dieburger Straße",
+      "werte": {
+        "2026": -150000.0,
+        "2027": -500000.0,
+        "2028": null,
+        "2029": null
+      },
+      "summe": -650000.0,
+      "page": 10
+    },
+    {
+      "fb": "FB6",
+      "fb_label": "Stadtentwicklung, Umwelt & Klima",
+      "code": "6-SH-M19K",
+      "name": "Spielplatz Gartenstraße",
+      "werte": {
+        "2026": -250000.0,
+        "2027": 250000.0,
+        "2028": null,
+        "2029": null
+      },
+      "summe": 0.0,
+      "page": 10
+    },
+    {
+      "fb": "FB6",
+      "fb_label": "Stadtentwicklung, Umwelt & Klima",
+      "code": "6-SH-M31K",
+      "name": "Freiflächen Ortskern",
+      "werte": {
+        "2026": -10000.0,
+        "2027": -500000.0,
+        "2028": -500000.0,
+        "2029": null
+      },
+      "summe": -1010000.0,
+      "page": 10
+    },
+    {
+      "fb": "FB6",
+      "fb_label": "Stadtentwicklung, Umwelt & Klima",
+      "code": "6-ZS-M02K",
+      "name": "Stadtgrünmanagement",
+      "werte": {
+        "2026": -90000.0,
+        "2027": -40000.0,
+        "2028": null,
+        "2029": null
+      },
+      "summe": -130000.0,
+      "page": 10
+    },
+    {
+      "fb": "FB6",
+      "fb_label": "Stadtentwicklung, Umwelt & Klima",
+      "code": "6-ZS-M04K",
+      "name": "Öffentlichkeitsarbeit/Partizipation",
+      "werte": {
+        "2026": -7500.0,
+        "2027": -5000.0,
+        "2028": -7500.0,
+        "2029": -7500.0
+      },
+      "summe": -27500.0,
+      "page": 10
+    },
+    {
+      "fb": "FB6",
+      "fb_label": "Stadtentwicklung, Umwelt & Klima",
+      "code": "6-ZS-M07K",
+      "name": "Spielplatz Mühlengrund, Quartierstreff",
+      "werte": {
+        "2026": -400000.0,
+        "2027": -100000.0,
+        "2028": null,
+        "2029": null
+      },
+      "summe": -500000.0,
+      "page": 10
+    },
+    {
+      "fb": "FB6",
+      "fb_label": "Stadtentwicklung, Umwelt & Klima",
+      "code": "6-ZS-M13BK",
+      "name": "Farmhaus",
+      "werte": {
+        "2026": -300000.0,
+        "2027": -150000.0,
+        "2028": null,
+        "2029": null
+      },
+      "summe": -450000.0,
+      "page": 10
+    },
+    {
+      "fb": "FB6",
+      "fb_label": "Stadtentwicklung, Umwelt & Klima",
+      "code": "6-ZS-M13CE",
+      "name": "Farmhaus - Zuschuss Nabu",
+      "werte": {
+        "2026": -100000.0,
+        "2027": null,
+        "2028": null,
+        "2029": null
+      },
+      "summe": -100000.0,
+      "page": 10
+    },
+    {
+      "fb": "FB6",
+      "fb_label": "Stadtentwicklung, Umwelt & Klima",
+      "code": "6-ZS-M16K",
+      "name": "Anreizprogramm",
+      "werte": {
+        "2026": -5000.0,
+        "2027": -5000.0,
+        "2028": -5000.0,
+        "2029": -5000.0
+      },
+      "summe": -20000.0,
+      "page": 10
+    },
+    {
+      "fb": "FB6",
+      "fb_label": "Stadtentwicklung, Umwelt & Klima",
+      "code": "6-ZS-M17K",
+      "name": "Initiative Wertvoller Vorgarten",
+      "werte": {
+        "2026": -10000.0,
+        "2027": null,
+        "2028": null,
+        "2029": null
+      },
+      "summe": -10000.0,
+      "page": 10
+    },
+    {
+      "fb": "FB6",
+      "fb_label": "Stadtentwicklung, Umwelt & Klima",
+      "code": "6-ZS-M21K",
+      "name": "Grünstrukturen, Verbindungswege",
+      "werte": {
+        "2026": -50000.0,
+        "2027": null,
+        "2028": null,
+        "2029": null
+      },
+      "summe": -50000.0,
+      "page": 10
+    }
+  ]
+}

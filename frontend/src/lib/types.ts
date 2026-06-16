@@ -160,3 +160,109 @@ export interface HebesatzData {
 	};
 	data: HebesatzEntry[];
 }
+
+// ─── Haushaltssicherungskonzept (HSK) 2026 ───
+
+/** A single year on the consolidation path (Abbaupfad, Anlage 3) */
+export interface HskAbbaupfadEntry {
+	year: number;
+	defizit_aliste: number | null;
+	veraenderung_hsk: number | null;
+	ergebnis_nach_hsk: number | null;
+	liquiditaet: number | null;
+	saldo_aliste: number | null;
+	saldo_hsk: number | null;
+	page: number;
+}
+
+/** A single consolidation measure (Anlage 1) */
+export interface HskMassnahme {
+	fb: string;
+	fb_label: string;
+	produkt: string | null;
+	massnahme: string;
+	kategorie: string;
+	kategorie_label: string;
+	art: 'einnahme' | 'ausgabe';
+	gruppe_label: string;
+	is_grundsteuer_b: boolean;
+	hebesatzpunkte: number | null;
+	werte: Record<string, number | null>;
+	summe: number | null;
+	page: number;
+}
+
+/** Aggregated citizen-facing category */
+export interface HskKategorie {
+	kategorie: string;
+	label: string;
+	summe: number;
+	anzahl: number;
+}
+
+/** A group of measures within a pillar (revenue or expense side) */
+export interface HskSaeuleGruppe {
+	label: string;
+	summe: number;
+	anzahl: number;
+	werte: Record<string, number>;
+}
+
+/** One pillar: the revenue side (einnahmen) or the expense side (ausgaben) */
+export interface HskSaeule {
+	summe: number;
+	anzahl: number;
+	werte: Record<string, number>;
+	gruppen: HskSaeuleGruppe[];
+}
+
+/** Both pillars of the consolidation: where the city earns more vs. saves */
+export interface HskSaeulen {
+	einnahmen: HskSaeule;
+	ausgaben: HskSaeule;
+}
+
+/** A single investment that was cut/shifted (Änderungsliste, page 10) */
+export interface HskInvestition {
+	fb: string;
+	fb_label: string;
+	code: string;
+	name: string;
+	werte: Record<string, number | null>;
+	summe: number;
+	page: number;
+}
+
+/** A narrative fact with a page reference back into the PDF */
+export interface HskNarrativeFact {
+	value: number | string;
+	text: string;
+	page: number;
+}
+
+/** The full HSK 2026 dataset loaded from hsk_2026.json */
+export interface HskData {
+	generated_at: string;
+	source_document: string;
+	source_file: string;
+	laufzeit: [number, number];
+	genehmigungsfaehig: boolean;
+	narrative: Record<string, HskNarrativeFact>;
+	kennzahlen: {
+		konsolidierung_mit_grundsteuer_b: number | null;
+		konsolidierung_ohne_grundsteuer_b: number | null;
+		grundsteuer_b_summe: number | null;
+		grundsteuer_b_anteil: number | null;
+		eigene_massnahmen_anteil: number | null;
+		anzahl_massnahmen: number;
+	};
+	abbaupfad: HskAbbaupfadEntry[];
+	kategorien: HskKategorie[];
+	saeulen: HskSaeulen;
+	massnahmen: HskMassnahme[];
+	totals: {
+		verkaeufe?: { bezeichnung: string; values: (number | null)[]; summe: number | null; page: number }[];
+		[key: string]: unknown;
+	};
+	investitionen: HskInvestition[];
+}

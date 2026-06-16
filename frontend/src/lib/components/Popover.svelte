@@ -26,6 +26,17 @@
 	let popoverEl: HTMLDivElement | undefined = $state();
 	let popoverStyle = $state('');
 
+	/** Render the panel on <body> so it escapes any sticky/overflow stacking
+	 *  context of an ancestor (e.g. a sticky table cell). */
+	function portal(node: HTMLElement) {
+		document.body.appendChild(node);
+		return {
+			destroy() {
+				node.parentNode?.removeChild(node);
+			}
+		};
+	}
+
 	let open = $derived(getOpenId() === instanceId);
 
 	function position() {
@@ -85,6 +96,7 @@
 		class="popover"
 		bind:this={popoverEl}
 		style={popoverStyle}
+		use:portal
 	>
 		{@render children()}
 	</div>

@@ -1,9 +1,8 @@
-.PHONY: setup fetch parse normalize validate publish clean help
+.PHONY: setup fetch parse parse-hsk normalize validate publish clean help
 
 VENV   := .venv
 PYTHON := $(VENV)/bin/python
 PIP    := $(VENV)/bin/pip
-
 help: ## Show this help
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | \
 		awk 'BEGIN {FS = ":.*?## "}; {printf "  \033[36m%-15s\033[0m %s\n", $$1, $$2}'
@@ -23,6 +22,9 @@ fetch-hebesaetze: ## Hebesätze aus IHK-Steckbriefen + Haushaltssatzungen → fr
 
 parse: ## Extract tables/text from PDFs → data/extracted/
 	$(PYTHON) -m pipeline.parse.parse
+
+parse-hsk: ## Extract Haushaltssicherungskonzept 2026 → hsk_2026.json
+	$(PYTHON) -m pipeline.parse.parse_hsk
 
 normalize: ## Normalize extracted CSVs → unified line_items
 	$(PYTHON) -m pipeline.normalize.normalize
