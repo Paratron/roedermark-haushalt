@@ -462,7 +462,7 @@
 		<p>
 			<strong>Stand 16.06.2026:</strong> Das Haushaltssicherungskonzept ist
 			<strong>noch nicht genehmigt</strong> und befindet sich derzeit in Überarbeitung.<br />Die hier
-			gezeigten Zahlen können sich daher noch ändern.
+			gezeigten Zahlen können sich daher noch ändern. Diese Seite wird aktualisiert, sobald neuere Daten vorliegen.
 		</p>
 	</div>
 
