@@ -16,7 +16,7 @@
 		{ href: '/investitionen', label: 'Investitionen' },
 		{ href: '/steuern', label: 'Steuern' },
 		{ href: '/schulden', label: 'Schulden & Zinsen' },
-		//{ href: '/hsk2026', label: 'Haushaltssicherung' },
+		{ href: '/hsk2026', label: 'Haushaltssicherung 2026' },
 		//{ href: '/deckungsluecken', label: 'Deckungslücken' },
 		//{ href: '/kreisvergleich', label: 'Kreisvergleich' },
 		{ href: '/explorer', label: 'Explorer' },

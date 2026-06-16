@@ -9,6 +9,7 @@
 
 	let { data }: { data: PageData } = $props();
 	const { summary, documents } = data;
+	const hsk = $derived(data.hsk);
 
 	// Ist vs Plan year ranges
 	const istYears = summary.ist_years;
@@ -35,23 +36,24 @@
 	</p>
 </section>
 
-<!--
 
-	<a href="/hsk2026" class="hsk-banner">
-		<div class="hsk-banner-icon"><ShieldCheck /></div>
-		<div class="hsk-banner-body">
-			<div class="hsk-banner-kicker">Haushaltssicherungskonzept {hsk.laufzeit[0]}–{hsk.laufzeit[1]}</div>
-			<h3 class="hsk-banner-title">Wie Rödermark seinen Haushalt sanieren will</h3>
-			<p class="hsk-banner-text">
-				{hsk.kennzahlen.anzahl_massnahmen} Maßnahmen mit einem Volumen von
-				<strong>{formatMio(Math.abs(hsk.kennzahlen.konsolidierung_mit_grundsteuer_b ?? 0))}</strong>
-				sollen den Haushalt bis 2029 ausgleichen. Wo die Stadt mehr einnimmt und wo sie spart –
-				mit Quelle für jede Zahl.
-			</p>
-			<span class="hsk-banner-cta">Zum HSK 2026 <ArrowRight class="hsk-cta-icon" /></span>
-		</div>
-	</a>
--->
+	{#if hsk}
+		<a href="/hsk2026" class="hsk-banner">
+			<div class="hsk-banner-icon"><ShieldCheck /></div>
+			<div class="hsk-banner-body">
+				<div class="hsk-banner-kicker">Haushaltssicherungskonzept {hsk.laufzeit[0]}–{hsk.laufzeit[1]}</div>
+				<h3 class="hsk-banner-title">Wie Rödermark seinen Haushalt sanieren will</h3>
+				<p class="hsk-banner-text">
+					{hsk.kennzahlen.anzahl_massnahmen} Maßnahmen mit einem Volumen von
+					<strong>{formatMio(Math.abs(hsk.kennzahlen.konsolidierung_mit_grundsteuer_b ?? 0))}</strong>
+					sollen den Haushalt bis 2029 ausgleichen. Wo die Stadt mehr einnimmt und wo sie spart –
+					mit Quelle für jede Zahl.
+				</p>
+				<span class="hsk-banner-cta">Zum HSK 2026 <ArrowRight class="hsk-cta-icon" /></span>
+			</div>
+		</a>
+	{/if}
+
 
 <!-- Ergebnishaushalt Overview -->
 <section class="section">

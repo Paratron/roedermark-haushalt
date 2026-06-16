@@ -458,6 +458,14 @@
 		für jede Zahl.
 	</p>
 
+	<div class="info-box info-box-amber section" style="padding-top: 0.75em">
+		<p>
+			<strong>Stand 16.06.2026:</strong> Das Haushaltssicherungskonzept ist
+			<strong>noch nicht genehmigt</strong> und befindet sich derzeit in Überarbeitung.<br />Die hier
+			gezeigten Zahlen können sich daher noch ändern.
+		</p>
+	</div>
+
 	<!-- ── Header summary ── -->
 	<section class="kpi-grid section">
 		<div class="kpi-card">
@@ -783,11 +791,10 @@
 	<!-- ── Stand des Verfahrens ── -->
 	<section class="section">
 		<div class="info-box info-box-amber">
-			<p>
-				<strong>Stand des Verfahrens.</strong>
-				Das Haushaltssicherungskonzept ist nach aktuellem Stand noch nicht genehmigt. Eine
-				Beratung mit der Kommunalaufsicht ist für den 25.06.2026 vorgesehen.
-			</p>
+				<strong>Stand des Verfahrens (16.06.2026).</strong>
+				Das Haushaltssicherungskonzept ist nach aktuellem Stand <strong>noch nicht genehmigt</strong>
+				und befindet sich in Überarbeitung. Eine Beratung mit der Kommunalaufsicht war für den
+				25.06.2026 vorgesehen.
 		</div>
 	</section>
 
