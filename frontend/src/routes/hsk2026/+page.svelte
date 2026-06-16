@@ -439,7 +439,6 @@
 	title="Haushaltssicherungskonzept 2026"
 	description="Wie Rödermark seinen Haushalt sanieren will: 97 Maßnahmen über 2026–2030 – wo die Stadt mehr einnimmt und wo sie spart, mit Quelle für jede Zahl."
 	path="/hsk2026"
-	image="share-default.jpg"
 />
 
 <AnchorHeading level={2} id="haushaltssicherungskonzept-2026">
