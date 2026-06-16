@@ -8,7 +8,7 @@
 	import { Info, ClipboardList, Coins, Search, Building2, TrendingUp, Landmark, PieChart, Receipt, ShieldCheck, ArrowRight } from '@lucide/svelte';
 
 	let { data }: { data: PageData } = $props();
-	const { summary, documents, hsk } = data;
+	const { summary, documents } = data;
 
 	// Ist vs Plan year ranges
 	const istYears = summary.ist_years;
@@ -35,8 +35,8 @@
 	</p>
 </section>
 
-{#if hsk}
-	<!-- HSK 2026 Highlight -->
+<!--
+
 	<a href="/hsk2026" class="hsk-banner">
 		<div class="hsk-banner-icon"><ShieldCheck /></div>
 		<div class="hsk-banner-body">
@@ -51,7 +51,7 @@
 			<span class="hsk-banner-cta">Zum HSK 2026 <ArrowRight class="hsk-cta-icon" /></span>
 		</div>
 	</a>
-{/if}
+-->
 
 <!-- Ergebnishaushalt Overview -->
 <section class="section">

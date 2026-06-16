@@ -249,6 +249,7 @@
 	Hier siehst du die Zusammensetzung, Entwicklung und den Vergleich der Hebesätze mit anderen Kommunen im Kreis Offenbach.
 </p>
 
+<!--
 <a href="/hsk2026" class="hsk-link-box">
 	<ShieldCheck class="hsk-link-icon" />
 	<div class="hsk-link-body">
@@ -258,7 +259,7 @@
 		mehr einnimmt und wo sie spart, zeigt die HSK-Seite.
 	</div>
 	<ArrowRight class="hsk-link-arrow" />
-</a>
+</a>-->
 
 <!-- Year Selector -->
 <section class="section">
