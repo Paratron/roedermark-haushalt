@@ -503,7 +503,7 @@
 		<span class="num-neg">negative</span> belasten ihn (z. B. wegbrechende Erträge).
 	</p>
 
-	{#snippet pillar(saeule: HskSaeule)}
+{#snippet pillar(saeule: HskSaeule)}
 		<div class="groups">
 			{#each saeule.gruppen as g (g.label)}
 				<div class="group">
@@ -1020,4 +1020,5 @@
 		font-size: 0.85rem;
 		color: var(--gray-500);
 	}
+
 </style>
