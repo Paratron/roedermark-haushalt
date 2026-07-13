@@ -708,6 +708,84 @@
       "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Neu-Isenburg_2025.pdf"
     },
     {
+      "kommune": "Obertshausen",
+      "year": 2013,
+      "hebesatz": 330,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Obertshausen_2025.pdf"
+    },
+    {
+      "kommune": "Obertshausen",
+      "year": 2014,
+      "hebesatz": 330,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Obertshausen_2025.pdf"
+    },
+    {
+      "kommune": "Obertshausen",
+      "year": 2015,
+      "hebesatz": 431,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Obertshausen_2025.pdf"
+    },
+    {
+      "kommune": "Obertshausen",
+      "year": 2016,
+      "hebesatz": 431,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Obertshausen_2025.pdf"
+    },
+    {
+      "kommune": "Obertshausen",
+      "year": 2017,
+      "hebesatz": 431,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Obertshausen_2025.pdf"
+    },
+    {
+      "kommune": "Obertshausen",
+      "year": 2018,
+      "hebesatz": 431,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Obertshausen_2025.pdf"
+    },
+    {
+      "kommune": "Obertshausen",
+      "year": 2019,
+      "hebesatz": 431,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Obertshausen_2025.pdf"
+    },
+    {
+      "kommune": "Obertshausen",
+      "year": 2020,
+      "hebesatz": 431,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Obertshausen_2025.pdf"
+    },
+    {
+      "kommune": "Obertshausen",
+      "year": 2021,
+      "hebesatz": 431,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Obertshausen_2025.pdf"
+    },
+    {
+      "kommune": "Obertshausen",
+      "year": 2022,
+      "hebesatz": 431,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Obertshausen_2025.pdf"
+    },
+    {
+      "kommune": "Obertshausen",
+      "year": 2023,
+      "hebesatz": 431,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Obertshausen_2025.pdf"
+    },
+    {
+      "kommune": "Obertshausen",
+      "year": 2024,
+      "hebesatz": 431,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Obertshausen_2025.pdf"
+    },
+    {
+      "kommune": "Obertshausen",
+      "year": 2025,
+      "hebesatz": 431,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Obertshausen_2025.pdf"
+    },
+    {
       "kommune": "Offenbach am Main",
       "year": 2013,
       "hebesatz": 250,
@@ -952,8 +1030,10 @@
     {
       "kommune": "Rödermark",
       "year": 2026,
-      "hebesatz": 175,
-      "quelle": "Haushaltssatzung in Haushaltsplan 2026 (Entwurf), S. 4"
+      "hebesatz": 900,
+      "quelle": "Beschluss der Stadtverordnetenversammlung (Juni 2026), rückwirkend zum 01.01.2026 von 175 auf 900 %",
+      "status": "beschlossen",
+      "quelle_url": "https://www.rheinmainverlag.de/2026/06/25/die-grundsteuer-in-roedermark-geht-weiter-rauf/"
     },
     {
       "kommune": "Seligenstadt",

@@ -189,21 +189,11 @@
 		];
 	}
 
-	let grundsteuerBComparison = $derived.by(() => {
-		if (!hebesaetzeGrundsteuerB) return [] as CompEntry[];
-		return fillComparison(hebesaetzeGrundsteuerB.data, selectedYear);
-	});
-
 	let gewerbesteuerComparison = $derived.by(() => {
 		if (!hebesaetzeGewerbesteuer) return [] as CompEntry[];
 		return fillComparison(hebesaetzeGewerbesteuer.data, selectedYear);
 	});
 
-	let maxGrundsteuerB = $derived(
-		grundsteuerBComparison.length > 0
-			? Math.max(...grundsteuerBComparison.map((d) => d.hebesatz))
-			: 1
-	);
 	let maxGewerbesteuer = $derived(
 		gewerbesteuerComparison.length > 0
 			? Math.max(...gewerbesteuerComparison.map((d) => d.hebesatz))
@@ -264,13 +254,6 @@
 	let gewerbesteuerDiff = $derived(simulatedGewerbesteuer - gewerbesteuerRevenue);
 
 	// ─── Time series: Rödermark Hebesatz history ───
-	let roedermarkGrundsteuerBHistory = $derived(
-		hebesaetzeGrundsteuerB
-			? hebesaetzeGrundsteuerB.data
-					.filter((d) => d.kommune === 'Rödermark')
-					.sort((a, b) => a.year - b.year)
-			: []
-	);
 	let roedermarkGewerbesteuerHistory = $derived(
 		hebesaetzeGewerbesteuer
 			? hebesaetzeGewerbesteuer.data
@@ -279,11 +262,6 @@
 			: []
 	);
 
-	let maxHistGrundsteuerB = $derived(
-		roedermarkGrundsteuerBHistory.length > 0
-			? Math.max(...roedermarkGrundsteuerBHistory.map((d) => d.hebesatz))
-			: 1
-	);
 	let maxHistGewerbesteuer = $derived(
 		roedermarkGewerbesteuerHistory.length > 0
 			? Math.max(...roedermarkGewerbesteuerHistory.map((d) => d.hebesatz))
@@ -372,42 +350,23 @@
 	</div>
 </section>
 
-<!-- Hebesatz Development Rödermark -->
+<!-- Grundsteuer B: ausgelagert nach /grundsteuer -->
 <section class="section">
-	<AnchorHeading level={3} id="hebesatz-entwicklung">Hebesatz-Entwicklung Rödermark</AnchorHeading>
-	<div class="hebesatz-history-grid">
-		<!-- Grundsteuer B History -->
-		<div class="card card-padded">
-			<h4 class="card-subtitle">Grundsteuer B</h4>
-			<div class="vbar-chart">
-				{#each roedermarkGrundsteuerBHistory as entry, i (entry.year)}
-					{@const prev = i > 0 ? roedermarkGrundsteuerBHistory[i - 1] : null}
-					{@const changed = prev && prev.hebesatz !== entry.hebesatz}
-					{@const went_up = changed && entry.hebesatz > (prev?.hebesatz ?? 0)}
-					{@const went_down = changed && entry.hebesatz < (prev?.hebesatz ?? 0)}
-					<div class="vbar-col">
-						{#if changed}
-							<span class="vbar-delta" class:vbar-delta-up={went_up} class:vbar-delta-down={went_down}>
-								{went_up ? '▲' : '▼'}{Math.abs(entry.hebesatz - (prev?.hebesatz ?? 0))}
-							</span>
-						{/if}
-						<span class="vbar-label" class:vbar-label-up={went_up} class:vbar-label-down={went_down}>
-							{fmtHS(entry.hebesatz, grundsteuerBHasDecimals)}
-						</span>
-						<div class="vbar-track">
-							<div
-								class="vbar-fill"
-								class:vbar-fill-up={went_up}
-								class:vbar-fill-down={went_down}
-								style="height: {(entry.hebesatz / maxHistGrundsteuerB) * 100}%"
-							></div>
-						</div>
-						<span class="vbar-year">{entry.year}</span>
-					</div>
-				{/each}
-			</div>
+	<a href="/grundsteuer" class="hsk-link-box">
+		<Info class="hsk-link-icon" />
+		<div class="hsk-link-body">
+			<strong>Grundsteuer B: Mechanik, Entwicklung und Kreisvergleich</strong>
+			Wie die Grundsteuer funktioniert, wie sich Rödermarks Hebesatz entwickelt hat und warum der
+			Hebesatz allein wenig über die tatsächliche Belastung aussagt – auf einer eigenen Seite.
 		</div>
-		<!-- Gewerbesteuer History -->
+		<ArrowRight class="hsk-link-arrow" />
+	</a>
+</section>
+
+<!-- Hebesatz Development Rödermark: Gewerbesteuer -->
+<section class="section">
+	<AnchorHeading level={3} id="hebesatz-entwicklung">Hebesatz-Entwicklung Rödermark – Gewerbesteuer</AnchorHeading>
+	<div class="hebesatz-history-grid">
 		<div class="card card-padded">
 			<h4 class="card-subtitle">Gewerbesteuer</h4>
 			<div class="vbar-chart">
@@ -441,68 +400,36 @@
 	</div>
 </section>
 
-<!-- Hebesatz Comparison -->
+<!-- Hebesatz Comparison: Gewerbesteuer -->
 <section class="section">
-	<AnchorHeading level={3} id="hebesaetze-vergleich">Hebesätze im Vergleich – Kreis Offenbach</AnchorHeading>
-	<div class="comparison-grid">
-		<!-- Grundsteuer B -->
-		<div class="card card-padded">
-			<h4 class="card-subtitle">Grundsteuer B</h4>
-			<div class="bar-chart">
-				{#each grundsteuerBComparison as entry (entry.kommune)}
-					{@const isRoedermark = entry.kommune === 'Rödermark'}
-					<div class="bar-row" class:bar-row-highlight={isRoedermark}>
-						<span class="bar-label">{entry.kommune}{#if entry.carried}<span class="carried-year"> ({entry.actualYear})</span>{/if}{#if entry.status === 'geplant'}<span class="status-geplant"> (geplant)</span>{/if}</span>
-						<div class="bar-track-h">
-							<div
-								class="bar-fill"
-								class:bar-fill-highlight={isRoedermark}
-								style="width: {(entry.hebesatz / maxGrundsteuerB) * 100}%"
-							></div>
-						</div>
-					<span class="bar-value">{fmtHS(entry.hebesatz, grundsteuerBHasDecimals)} %</span>
-						<span class="bar-source">
-							{#if entry.quelle_url}
-								<SourceCitation condensed description={`${entry.kommune} ${entry.actualYear}`} links={sourceLinks(entry)} />
-							{/if}
-						</span>
+	<AnchorHeading level={3} id="hebesaetze-vergleich">Gewerbesteuer im Vergleich – Kreis Offenbach</AnchorHeading>
+	<div class="card card-padded">
+		<div class="bar-chart">
+			{#each gewerbesteuerComparison as entry (entry.kommune)}
+				{@const isRoedermark = entry.kommune === 'Rödermark'}
+				<div class="bar-row" class:bar-row-highlight={isRoedermark}>
+					<span class="bar-label">{entry.kommune}{#if entry.carried}<span class="carried-year"> ({entry.actualYear})</span>{/if}{#if entry.status === 'geplant'}<span class="status-geplant"> (geplant)</span>{/if}</span>
+					<div class="bar-track-h">
+						<div
+							class="bar-fill"
+							class:bar-fill-highlight={isRoedermark}
+							style="width: {(entry.hebesatz / maxGewerbesteuer) * 100}%"
+						></div>
 					</div>
-				{/each}
-			</div>
-		</div>
-
-		<!-- Gewerbesteuer -->
-		<div class="card card-padded">
-			<h4 class="card-subtitle">Gewerbesteuer</h4>
-			<div class="bar-chart">
-				{#each gewerbesteuerComparison as entry (entry.kommune)}
-					{@const isRoedermark = entry.kommune === 'Rödermark'}
-					<div class="bar-row" class:bar-row-highlight={isRoedermark}>
-						<span class="bar-label">{entry.kommune}{#if entry.carried}<span class="carried-year"> ({entry.actualYear})</span>{/if}{#if entry.status === 'geplant'}<span class="status-geplant"> (geplant)</span>{/if}</span>
-						<div class="bar-track-h">
-							<div
-								class="bar-fill"
-								class:bar-fill-highlight={isRoedermark}
-								style="width: {(entry.hebesatz / maxGewerbesteuer) * 100}%"
-							></div>
-						</div>
-					<span class="bar-value">{fmtHS(entry.hebesatz, gewerbesteuerHasDecimals)} %</span>
-						<span class="bar-source">
-							{#if entry.quelle_url}
-								<SourceCitation condensed description={`${entry.kommune} ${entry.actualYear}`} links={sourceLinks(entry)} />
-							{/if}
-						</span>
-					</div>
-				{/each}
-			</div>
+				<span class="bar-value">{fmtHS(entry.hebesatz, gewerbesteuerHasDecimals)} %</span>
+					<span class="bar-source">
+						{#if entry.quelle_url}
+							<SourceCitation condensed description={`${entry.kommune} ${entry.actualYear}`} links={sourceLinks(entry)} />
+						{/if}
+					</span>
+				</div>
+			{/each}
 		</div>
 	</div>
 	<p class="comparison-legend">
 		<span class="legend-item"><span class="legend-swatch legend-swatch-carried"></span> (Jahr) = letzter bekannter Wert aus einem früheren Jahr, fortgeschrieben</span>
 		<span class="legend-item">(geplant) = vorgeschlagener, vom Stadtparlament noch nicht beschlossener Wert</span>
 	</p>
-	<p class="data-note"><Info size={14} /> Für Rödermark ist 1.327 % der im <a href="/hsk2026">Haushaltssicherungskonzept 2026</a> geplante Hebesatz (Schritt 1, noch nicht beschlossen). Aktuell gültig und Grundlage der ausgewiesenen Einnahmen sind 990 %.</p>
-	<p class="data-note"><Info size={14} /> Ein direkter Vergleich der Hebesätze allein sagt wenig über die tatsächliche Steuerbelastung aus: Mit der Grundsteuerreform 2025 wurden die Messbeträge neu berechnet, sodass gleiche Hebesätze in verschiedenen Jahren oder Gemeinden unterschiedliche Beträge ergeben können.</p>
 </section>
 
 <!-- Simulator: What-if Slider -->
@@ -777,13 +704,6 @@
 	}
 
 	/* Comparison bars */
-	.comparison-grid {
-		display: grid; gap: 1.5rem; grid-template-columns: 1fr;
-		min-width: 0;
-	}
-	@media (min-width: 900px) {
-		.comparison-grid { grid-template-columns: 1fr 1fr; }
-	}
 	.bar-chart {
 		display: flex; flex-direction: column; gap: 0.375rem;
 	}
@@ -836,10 +756,6 @@
 		width: 0.75rem; height: 0.75rem; border-radius: 0.1875rem; flex-shrink: 0;
 	}
 	.legend-swatch-carried { background: var(--gray-200); }
-	.data-note {
-		display: flex; align-items: center; gap: 0.375rem;
-		margin-top: 0.75rem; font-size: 0.75rem; color: var(--gray-400); font-style: italic;
-	}
 
 	/* Simulator */
 	.simulator-grid {

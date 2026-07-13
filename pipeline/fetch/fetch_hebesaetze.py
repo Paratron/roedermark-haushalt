@@ -43,9 +43,15 @@ OUTPUT_DIR = ROOT_DIR / "frontend" / "static" / "data"
 MANUAL_ROWS: list[dict] = [
     {
         "kommune": "Rödermark", "year": 2026,
-        "hebesatz": 1327, "tax_type": "grundsteuer_b", "status": "geplant",
-        "quelle": "Haushaltssicherungskonzept 2026, S. 15 (Maßnahme „Erhöhung Hebesatz Grundsteuer B“, Schritt 1); aktuell gültig sind 990 %",
-        "quelle_url": "/pdfs/Haushaltssicherungskonzept2026.pdf#page=15",
+        "hebesatz": 1327, "tax_type": "grundsteuer_b", "status": "beschlossen",
+        "quelle": "Beschluss der Stadtverordnetenversammlung (Juni 2026, namentlich 20:16), rückwirkend zum 01.01.2026 von 990 auf 1.327 %; HSK-Maßnahme „Erhöhung Hebesatz Grundsteuer B“ Schritt 1",
+        "quelle_url": "https://www.rheinmainverlag.de/2026/06/25/die-grundsteuer-in-roedermark-geht-weiter-rauf/",
+    },
+    {
+        "kommune": "Rödermark", "year": 2026,
+        "hebesatz": 900, "tax_type": "grundsteuer_a", "status": "beschlossen",
+        "quelle": "Beschluss der Stadtverordnetenversammlung (Juni 2026), rückwirkend zum 01.01.2026 von 175 auf 900 %",
+        "quelle_url": "https://www.rheinmainverlag.de/2026/06/25/die-grundsteuer-in-roedermark-geht-weiter-rauf/",
     },
     {
         "kommune": "Rödermark", "year": 2026,
