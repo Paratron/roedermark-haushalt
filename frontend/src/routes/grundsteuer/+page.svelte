@@ -795,10 +795,13 @@
 		kommen, müsste Rödermark seine Gewerbesteuer auf rund das {gewFaktor}-Fache steigern. Von
 		jedem zusätzlichen Euro bliebe zudem nur ein Teil hier: Die Gewerbesteuerumlage geht an Bund
 		und Land, mit der Steuerkraft wächst später die Kreisumlage, die Schlüsselzuweisungen
-		sinken. Und es bräuchte Flächen, die eine gewachsene Wohnstadt kaum hat, plus Firmen, die
-		in dieser Wirtschaftslage überhaupt <a href="#gewerbe-ansiedeln">kommen wollen</a>.
-		Realistisch heißt das: Bestandspflege statt Ansiedlungs-Träume, vielleicht interkommunale
-		Gewerbegebiete mit den Nachbarn. Das wirkt in Jahrzehnten. Nicht in Haushaltsjahren.
+		sinken. Und es hätte einen Preis: Flächen hat eine gewachsene Wohnstadt kaum. Eine
+		Verdopplung des Gewerbes hieße neue Gewerbegebiete auf heutigen Feldern und Grünflächen, zu
+		Lasten von Natur und Stadtbild, und damit genau der Wohnqualität, für die viele überhaupt
+		hier wohnen. Dazu bräuchte es Firmen, die in dieser Wirtschaftslage überhaupt
+		<a href="#gewerbe-ansiedeln">kommen wollen</a>. Realistisch heißt das: Bestandspflege statt
+		Ansiedlungs-Träume, vielleicht interkommunale Gewerbegebiete mit den Nachbarn. Das wirkt in
+		Jahrzehnten. Nicht in Haushaltsjahren.
 	</p>
 	<p class="explainer-prose">
 		<strong>Der größte Hebel liegt nicht im Rathaus:</strong> Die Kreisumlage hängt an den
