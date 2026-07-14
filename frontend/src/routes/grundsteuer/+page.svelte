@@ -39,8 +39,8 @@
 	// (identisch zur Steuern-Seite: EkSt grün, GewSt amber, GrSt blau).
 	const MIX_SEGMENTE = [
 		{ key: 'einkommensteuer', label: 'Einkommensteuer-Anteil', color: '#10b981' },
-		{ key: 'gewerbesteuer', label: 'Gewerbesteuer', color: '#f59e0b' },
 		{ key: 'grundsteuer', label: 'Grundsteuer A+B', color: '#3b82f6' },
+		{ key: 'gewerbesteuer', label: 'Gewerbesteuer', color: '#f59e0b' },
 		{ key: 'sonstige', label: 'Sonstige (u. a. Umsatzsteuer-Anteil)', color: '#d1d5db' }
 	] as const;
 	let mixRoedermark = $derived(data.steuermix.find((r) => r.kommune === 'Rödermark'));
@@ -51,6 +51,9 @@
 			: 0
 	);
 
+	// HSK-Abbaupfad: Restdefizit je Jahr nach allen Maßnahmen (positiv = Minus).
+	let hskRest = $derived(new Map(data.hsk.abbaupfad.map((r) => [r.jahr, r.rest])));
+
 	const toc = [
 		{ id: 'bundesvergleich', label: '2,5-mal so viel wie ganz Deutschland?' },
 		{ id: 'musterhaus', label: 'Was zahle ich im Vergleich zu den Nachbarn?' },
@@ -58,6 +61,7 @@
 		{ id: 'stadtkasse', label: 'Warum so ein hoher Hebesatz?' },
 		{ id: 'gewerbe-ansiedeln', label: 'Warum nicht einfach Gewerbe ansiedeln?' },
 		{ id: 'gewerbesteuer-erhoehen', label: 'Warum nicht die Gewerbesteuer erhöhen?' },
+		{ id: 'grundsteuer-c', label: 'Warum keine Grundsteuer C?' },
 		{ id: 'verschwendung', label: 'Wird im Rathaus Geld verschwendet?' },
 		{ id: 'eppertshausen', label: 'Warum zahlt Eppertshausen nur 480 %?' },
 		{ id: 'hessen-schnitt', label: 'Der Hessen-Schnitt ist doch 400 %?' },
@@ -65,6 +69,8 @@
 		{ id: 'entwicklung', label: 'Wie kam es zur Erhöhung?' },
 		{ id: 'erhoehung-2025', label: 'Gab es 2025 nicht schon eine Erhöhung?' },
 		{ id: 'zu-einfach', label: 'Macht es sich die Stadt zu einfach?' },
+		{ id: 'nicht-ausgeglichen', label: 'Trotzdem nicht ausgeglichen?' },
+		{ id: 'weiter-rauf', label: 'War es das jetzt?' },
 		{ id: 'was-tun', label: 'Was kann man überhaupt tun?' },
 		{ id: 'rechner', label: 'Was heißt das für mich konkret?' },
 		{ id: 'tabelle', label: 'Alle Zahlen im Überblick' },
@@ -207,9 +213,13 @@
 	<p class="explainer-prose">
 		Der Hintergrund: Jede Stadt muss an ihren Landkreis zahlen. <strong>Kreisumlage</strong>
 		(für Jugendamt und Soziales) und <strong>Schulumlage</strong> (für die Schulgebäude). Keine
-		Verhandlung, keine Wahl: Der Kreis setzt fest, die Stadt überweist. Und der Kreis Offenbach
-		gehört zu den höchstverschuldeten Landkreisen Deutschlands. Entsprechend fett ist die
-		Rechnung:
+		Verhandlung, keine Wahl: Der Kreis setzt fest, die Stadt überweist. Warum die Rechnung so hoch
+		ist? Über die Hälfte des Kreishaushalts sind gesetzlich vorgeschriebene Sozialleistungen. Die
+		größten Brocken: Eingliederungshilfe für Menschen mit Behinderung, Unterkunftskosten und
+		Kinder- und Jugendhilfe. Zusammen 2026 rund 516&nbsp;Mio.&nbsp;€, doppelt so viel wie 2019.
+		Diese Aufgaben schreiben Bund und Land vor, finanzieren sie aber nur zum Teil. Rund
+		230&nbsp;Mio.&nbsp;€ bleiben am Kreis hängen, der sie über die Umlagen bei seinen Städten
+		holt:
 	</p>
 	<div class="umlagen-grid section-sm">
 		<div class="kpi-card">
@@ -237,6 +247,15 @@
 		{fmtEurMio(data.umlagen.erstesJahrSumme)} ({data.umlagen.erstesJahr}) auf
 		{fmtEurMio(data.umlagen.summe)} heute. <strong>Die Stadtverordneten können dagegen genau
 		nichts tun.</strong> Sie dürfen nur bezahlen.
+	</p>
+	<p class="explainer-prose">
+		Und das ist kein Offenbacher Sonderfall, sondern ein regionales Muster. Die Nachbarkreise
+		stecken in derselben Zange: Darmstadt-Dieburg beschloss für 2025/26 einen Doppelhaushalt mit
+		knapp 38&nbsp;Mio.&nbsp;€ Defizit, trotz 33&nbsp;Mio.&nbsp;€ Einsparungen, und erhöhte die
+		Schulumlage. Groß-Gerau hob die Umlagen sogar um 7,5&nbsp;Prozentpunkte an; die Bürgermeister
+		protestierten mit einem parteiübergreifenden Brandbrief unter dem Motto „Es reicht!“. Am Ende
+		bleibt den Städten überall dieselbe Wahl: freiwillige Leistungen kürzen oder die Grundsteuer
+		anheben. Rödermark ist da kein Ausreißer, sondern Teil einer Welle.
 	</p>
 	<p class="explainer-prose">
 		Und der Rest? Ist größtenteils verplant, bevor irgendwer Wünsche äußern darf. Denn als
@@ -389,15 +408,56 @@
 		weit und breit.
 	</p>
 	<p class="explainer-prose">
-		Dazu kommen zwei Risiken. <strong>Firmen sind mobil, Häuser nicht:</strong> Wer den Satz auf
-		einer kleinen, beweglichen Basis überreizt, riskiert genau die Betriebe, die man halten
-		will. Und <strong>Gewerbesteuer ist unzuverlässig</strong>, das zeigt Rödermark gerade
-		selbst: 2023 kamen noch 18,9&nbsp;Mio.&nbsp;€ herein, 2024 nur noch 16,8. Für 2026 plant
-		die Stadt mit 17,8&nbsp;Mio.&nbsp;€, zwei Millionen <em>weniger</em> als der Ansatz fürs
-		Vorjahr, <em>trotz</em> des höheren Hebesatzes. Die Kommunalaufsicht verlangt für das
-		Sparprogramm aber planbare Einnahmen. Und die stabilste Steuer, die eine Stadt hat, ist
-		nun mal die Grundsteuer. Genau deshalb trifft es am Ende die Grundbesitzer:
-		<strong>nicht, weil es fair ist, sondern weil sie nicht weglaufen können.</strong>
+		Dazu kommen zwei Risiken. Erstens ist die Gewerbesteuer-Basis klein: Ein sehr hoher Satz auf
+		wenige Betriebe kann Unternehmen zur Abwanderung bewegen und damit gerade die Einnahmen
+		gefährden, die man sichern will. Zweitens schwankt die Gewerbesteuer stark, das zeigt
+		Rödermark gerade selbst: 2023 kamen noch 18,9&nbsp;Mio.&nbsp;€ herein, 2024 nur noch 16,8.
+		Für 2026 plant die Stadt mit 17,8&nbsp;Mio.&nbsp;€, zwei Millionen <em>weniger</em> als der
+		Ansatz fürs Vorjahr, <em>trotz</em> des höheren Hebesatzes. Für das Sparprogramm <strong>verlangt
+		die Kommunalaufsicht aber planbare Einnahmen</strong>. Die Grundsteuer schwankt kaum und ist damit
+		die verlässlichste Einnahmequelle, die die Stadt hat. Das ist der Grund, warum ein großer
+		Teil der Konsolidierung über die Grundsteuer läuft und nicht über die Gewerbesteuer.
+	</p>
+</section>
+
+<!-- F6b: Grundsteuer C -->
+<section class="section">
+	<AnchorHeading level={3} id="grundsteuer-c">Warum keine Grundsteuer C für unbebaute Grundstücke?</AnchorHeading>
+	<p class="answer-lead">
+		Rechtlich möglich, ja. Nur träfe das laut Prüfung der Verwaltung fast nur private
+		Grundstückseigentümer, nicht die Spekulanten, von denen oft die Rede ist. Und am Haushaltsloch
+		ändert die Summe nichts.
+	</p>
+	<p class="explainer-prose">
+		Die Grundsteuer C erlaubt seit dem Steuerjahr 2025 einen höheren Satz für baureife, aber
+		unbebaute Grundstücke. Wer Bauland jahrelang liegen lässt, zahlt drauf. Ihr Zweck ist nicht
+		die Stadtkasse, sondern Druck: bauen oder verkaufen.
+	</p>
+	<p class="explainer-prose">
+		In Rödermark war die Idee schon zweimal auf dem Tisch. Erstmals im November 2023 ließ eine
+		Fraktion per Prüfauftrag untersuchen, ob die Stadt die Grundsteuer C einführen soll. Der
+		Bericht der Verwaltung (April 2024) fiel überraschend aus: Von den infrage kommenden
+		Grundstücken sind 99 in privater Hand, nur 7 gehören Unternehmen. Es wären also vor allem
+		private Eigentümer betroffen, die ihr Grundstück wegen hoher Baukosten und Zinsen vielleicht
+		gerade nicht bebauen können, nicht in erster Linie Spekulanten. Der Hessische Städtetag riet
+		wegen des „geringen zu erwartenden Aufkommens und der damit verknüpften niedrigen
+		Lenkungswirkung" von einer Einführung ab. Der Doppelhaushalt 2024/2025 setzte trotzdem
+		vorsorglich 60.000&nbsp;€ an, falls sie doch beschlossen wird. Beschlossen wurde sie nicht,
+		im Plan 2026 steht der Ansatz auf null.
+	</p>
+	<p class="explainer-prose">
+		Zweiter Anlauf: In derselben Sitzung, in der die Stadtverordnetenversammlung im Juni 2026 die
+		Erhöhung auf 1.327&nbsp;% beschloss, brachte dieselbe Fraktion die Grundsteuer C erneut ein,
+		diesmal konkret mit dem Fünffachen des einheitlichen Hebesatzes, rückwirkend zum 01.01.2026,
+		damit nicht allein die Grundsteuer B die Mehrbelastung trägt. Rechnerisch wären das rund
+		120.000&nbsp;€ im Jahr, gemessen an {fmtEurMio(data.hsk.stufe1Mehr)} aus dem
+		Grundsteuer-B-Schritt weniger als ein Fünfundzwanzigstel. Der Antrag wurde im Ausschuss
+		gestoppt und in der Versammlung selbst zurückgezogen.
+	</p>
+	<p class="explainer-prose">
+		Als Signal an säumige Bauherren bleibt die Grundsteuer C eine legitime Idee. Nur sind es laut
+		der städtischen Prüfung eben überwiegend private Eigentümer, die getroffen würden, nicht
+		Grundstücks-Sammler. Und am Loch im Haushalt ändert die Summe nichts.
 	</p>
 </section>
 
@@ -405,22 +465,29 @@
 <section class="section">
 	<AnchorHeading level={3} id="verschwendung">Wird im Rathaus Geld verschwendet?</AnchorHeading>
 	<p class="answer-lead">
-		Die Zahlen liefern dafür keinen Beleg. Die großen Kostentreiber liegen außerhalb des
-		Rathauses. Ein Freifahrtschein ist das trotzdem nicht.
+		Nein, dafür liefern die Zahlen keinen Beleg. Die großen Kostentreiber liegen außerhalb des
+		Rathauses.
 	</p>
 	<p class="explainer-prose">
 		Die Belege stehen oben: Die <a href="#umlagen">Rechnung vom Kreis</a> frisst mehr, als die
 		ganze Grundsteuer einbringt. Die <a href="#stadtkasse">Gewerbesteuer-Basis</a> ist dünn. Und
-		<a href="#hessen-schnitt">der ganze Kreis</a> hat dieselben hohen Sätze. Ein
+		<a href="#hessen-schnitt">der ganze Kreis</a> liegt im Schnitt bei rund
+		{(Math.round(data.avgHebesatz2026 / 10) * 10).toLocaleString('de-DE')}&nbsp;%. Ein
 		Rödermark-Verschwendungsproblem sähe anders aus. Dazu kommt: Der Großteil der Ausgaben ist
-		Pflicht. Freiwillig leistet sich die Stadt nur wenig: Vereinsförderung, Kulturbüro,
-		Bücherei, Badehaus.
+		gesetzliche Pflicht. Frei entscheiden kann die Stadt nur über einen kleinen Rest.
 	</p>
 	<p class="explainer-prose">
-		Aber Achtung, kein Freifahrtschein: <strong>Für Ausgabendisziplin, für die Abfederung der
-		Erhöhung und für ehrliche Kommunikation bleibt die Lokalpolitik voll
-		verantwortlich.</strong> Das darf und soll man kritisch begleiten. Prüfen Sie selbst nach:
-		Auf dieser Website steht jede Position des Haushalts: nach
+		Genau dieser Rest ist der eigentliche Spielraum: freiwillige Leistungen wie Vereinsförderung,
+		Kulturbüro, Bücherei oder Badehaus. Hier müssen Parteien und Bürger gemeinsam abwägen, was
+		der Stadt wie viel wert ist und worauf man notfalls verzichten kann. Nur eine Illusion
+		sollte niemand haben: Sparen allein rettet diesen Haushalt nicht. Der komplette Bereich
+		Kultur, Sport und Vereine kostet die Stadt unterm Strich rund 5,2&nbsp;Mio.&nbsp;€ im Jahr.
+		Das Defizit: 13,8&nbsp;Mio. Selbst wer alles streicht, die Büchereien schließt, das Badehaus
+		zusperrt und jeden Vereins-Euro kürzt, bliebe mit über 8&nbsp;Mio. im Minus. Rödermark wäre
+		dann eine Stadt ohne alles, mit fast demselben Loch.
+	</p>
+	<p class="explainer-prose">
+		Prüfen Sie selbst nach: Auf dieser Website steht jede Position des Haushalts: nach
 		<a href="/kategorien">Lebensbereichen</a>, nach <a href="/teilhaushalte">Teilhaushalten</a>,
 		im <a href="/explorer">Daten-Explorer</a>. Jede Zahl mit Quelle, bis auf die PDF-Seite genau.
 	</p>
@@ -430,18 +497,39 @@
 <section class="section">
 	<AnchorHeading level={3} id="eppertshausen">Warum zahlt Eppertshausen nur 480 %?</AnchorHeading>
 	<p class="answer-lead">
-		Weil Eppertshausen in fast allem anders ist: anderer Landkreis, ein Viertel der Einwohner,
-		andere Struktur. Und auch dort steigen die Sätze, bei tiefroten Zahlen.
+		Ein Teil ist Struktur: anderer Landkreis, ein Viertel der Einwohner. Der wichtigere Teil:
+		Eppertshausen hat noch Erspartes und stopft sein Defizit aus der Rücklage. Pro Einwohner ist
+		das Loch dort sogar größer als in Rödermark.
 	</p>
 	<p class="explainer-prose">
-		Keine fünf Kilometer von Ober-Roden, aber haushaltstechnisch eine andere Welt. Eppertshausen
-		liegt im <strong>Landkreis Darmstadt-Dieburg</strong>: anderes Umlagesystem, kein
-		Kreis-Offenbach-Schuldenberg. Rund 6.500 Einwohner statt 28.700. Andere Grundstücke, anderes
-		Gewerbe. Und selbst dort: Der Hebesatz stieg 2026 von 400 auf 480&nbsp;%, einstimmig
-		beschlossen. Trotzdem meldet die Lokalpresse einen „tiefroten Etat". Der Bund der
-		Steuerzahler zählt im ganzen Kreis Darmstadt-Dieburg eine Erhöhungswelle. <strong>Der
-		günstige Nachbar ist kein Gegenbeweis. Er ist dieselbe Entwicklung, nur mit besserem
-		Startpunkt.</strong>
+		Ja, für dasselbe Haus zahlt man in Eppertshausen wirklich deutlich weniger, der
+		<a href="#musterhaus">Musterhaus-Vergleich</a> rechnet es offen vor. Das liegt aber nicht an
+		besserem Wirtschaften, sondern an einer anderen Ausgangslage: ein anderer Landkreis mit
+		eigenem Umlagesystem, rund 6.500 Einwohner statt 28.700, andere Grundstücke, anderes Gewerbe
+		(<a href="#vergleichbarkeit">warum Hebesätze nichts übers Rathaus verraten</a>).
+	</p>
+	<p class="explainer-prose">
+		Der entscheidende Unterschied ist aber die Kasse. Eppertshausen plant für 2026 ein Defizit
+		von 3,7&nbsp;Mio.&nbsp;€, hat aber noch rund 9,5&nbsp;Mio.&nbsp;€ „auf dem Festgeldkonto".
+		So wörtlich der CDU-Fraktionschef, als die Gemeindevertretung ihren
+		„<a href="https://www.rheinmainverlag.de/2026/02/06/eppertshausen-tiefroter-etat-trotz-hoeherer-steuern/" target="_blank" rel="noopener noreferrer">tiefroten Etat</a>"
+		beschloss. Damit kann die Gemeinde das Loch rechnerisch noch gut zweieinhalb Jahre stopfen.
+		Ohne Kredite, ohne volle Erhöhung. Rödermark hatte diesen Puffer auch mal. Er ist
+		<a href="#zu-einfach">aufgebraucht</a>. Und wirken 3,7&nbsp;Mio. Defizit klein gegen
+		Rödermarks 13,8? Eppertshausen hat auch nur ein Viertel der Einwohner. Hochgerechnet auf
+		Rödermarks Größe wären es gut 16&nbsp;Mio. Pro Einwohner ist das Loch dort sogar größer:
+		rund 570&nbsp;€ im Jahr gegen rund 480&nbsp;€ hier.
+	</p>
+	<p class="explainer-prose">
+		Auch die Richtung ist dieselbe: Der Kreis Darmstadt-Dieburg steckt in
+		<a href="#umlagen">derselben Zange</a> wie Offenbach. 2025 stellte Eppertshausen exakt
+		<a href="#erhoehung-2025">aufkommensneutral</a> um und senkte von 435 auf 400&nbsp;%
+		(Landesempfehlung: 400,57&nbsp;%). 2026 kam die erste echte Erhöhung: Grundsteuer B auf
+		480&nbsp;%, einstimmig, dazu die Gewerbesteuer von 380 auf 390. Der Bund der Steuerzahler
+		<a href="https://www.steuerzahler-hessen.de/neuigkeiten/artikel/massive-steuererhoehungswelle-im-kreis-darmstadt-dieburg/" target="_blank" rel="noopener noreferrer">zählt im ganzen Kreis Darmstadt-Dieburg eine Erhöhungswelle</a>.
+		Man kann Eppertshausens Weg schonend finden oder riskant: Wer erst die Rücklage leert, muss
+		am Ende umso härter erhöhen. Genau das erlebt Rödermark gerade. <strong>Der günstige Nachbar
+		hat nur einen größeren Vorsprung, keine andere Strecke.</strong>
 	</p>
 </section>
 
@@ -619,13 +707,69 @@
 	</p>
 </section>
 
+<!-- F12b: Trotz Erhöhung nicht ausgeglichen -->
+<section class="section">
+	<AnchorHeading level={3} id="nicht-ausgeglichen">„Trotz der Erhöhung ist der Haushalt doch gar nicht ausgeglichen!"</AnchorHeading>
+	<p class="answer-lead">
+		Stimmt. Auch mit 1.327&nbsp;% und allen 97 Maßnahmen fehlen 2026 noch rund
+		{fmtEurMio(hskRest.get(2026) ?? 0)}. Ein Plus steht erst ab
+		{data.hsk.ausgleichJahr} im Plan.
+	</p>
+	<p class="explainer-prose">
+		Wer das kritisiert, hat die Zahlen auf seiner Seite. Sie stehen im
+		<a href="/hsk2026">Haushaltssicherungskonzept</a> selbst: Nach allen Maßnahmen bleiben 2026
+		rund {fmtEurMio(hskRest.get(2026) ?? 0)} Minus, 2027 noch
+		{fmtEurMio(hskRest.get(2027) ?? 0)}, 2028 noch {fmtEurMio(hskRest.get(2028) ?? 0)}. Erst ab
+		{data.hsk.ausgleichJahr} rechnet das Konzept mit einem Überschuss.
+	</p>
+	<p class="explainer-prose">
+		Warum nicht sofort ausgleichen? Weil das Loch dafür zu groß ist. Ein Ausgleich schon 2026
+		hieße: den Hebesatz rechnerisch auf über 2.000&nbsp;% treiben, oder
+		<a href="#verschwendung">alles Freiwillige</a> komplett streichen, und selbst das reichte
+		nicht. Viele Sparmaßnahmen brauchen außerdem Anlaufzeit. Deshalb läuft die Sanierung über
+		mehrere Jahre. Ob dieser Pfad glaubwürdig ist, prüft gerade die Kommunalaufsicht:
+		Genehmigt ist das Konzept noch nicht.
+	</p>
+</section>
+
+<!-- F12c: Geht es weiter rauf? -->
+<section class="section">
+	<AnchorHeading level={3} id="weiter-rauf">War es das jetzt, oder geht es weiter rauf?</AnchorHeading>
+	{#if data.hsk.stufe2Jahr !== null && data.hsk.stufe2Hebesatz !== null}
+		<p class="answer-lead">
+			Ehrliche Antwort: Das Sicherungskonzept rechnet ab {data.hsk.stufe2Jahr} mit einer
+			zweiten Stufe, rechnerisch etwa {fmtHS(data.hsk.stufe2Hebesatz)}&nbsp;%. Beschlossen ist
+			davon nichts.
+		</p>
+		<p class="explainer-prose">
+			Diese Zahl steht so nicht im Konzept, aber sie steckt in den Zahlen: Die
+			Grundsteuer-B-Maßnahme ist 2026 und 2027 mit {fmtEurMio(data.hsk.stufe1Mehr)}
+			Mehreinnahme eingeplant, ab {data.hsk.stufe2Jahr} mit
+			{fmtEurMio(data.hsk.stufe2Mehr)}. Mehr Einnahme bei gleicher Berechnungsbasis heißt:
+			höherer Hebesatz. Rechnet man ihn hoch, landet man bei etwa
+			{fmtHS(data.hsk.stufe2Hebesatz)}&nbsp;% (Näherung; die Herleitung steht auf der
+			<a href="/hsk2026">Seite zur Haushaltssicherung</a>).
+		</p>
+		<p class="explainer-prose">
+			Was heißt das? Beschlossen sind heute nur die 1.327&nbsp;%. Über eine zweite Stufe
+			müsste die Stadtverordnetenversammlung neu abstimmen. Läuft es besser als geplant
+			(niedrigere Umlagen, mehr Gewerbesteuer, Hilfe von Land oder Bund), kann sie kleiner
+			ausfallen oder ganz entfallen. Läuft es schlechter, auch das Gegenteil.
+		</p>
+	{:else}
+		<p class="answer-lead">
+			Im aktuellen Sicherungskonzept ist keine weitere Grundsteuer-Stufe eingeplant. Eine
+			Garantie ist das nicht: Über Hebesätze wird jedes Jahr neu entschieden.
+		</p>
+	{/if}
+</section>
+
 <!-- F13: Was tun -->
 <section class="section">
 	<AnchorHeading level={3} id="was-tun">Was kann man überhaupt tun?</AnchorHeading>
 	<div class="info-box info-box-blue">
 		<div>
-			<strong>Einordnung:</strong> Alles bis hierhin waren belegbare Zahlen und Fakten. Was jetzt
-			folgt, ist meine <strong>persönliche Einschätzung</strong> (Christian Engel; dieses Portal
+			Jetzt folgt meine <strong>persönliche Einschätzung</strong> (Christian Engel; dieses Portal
 			ist ein privates Projekt und keine Seite der Stadt, siehe
 			<a href="/impressum">Impressum</a>). Man kann das politisch durchaus anders bewerten.
 		</div>
@@ -646,24 +790,28 @@
 		streicht, spart wenig. Und verliert viel von dem, was Rödermark lebenswert macht.
 	</p>
 	<p class="explainer-prose">
-		<strong>Langfristig, Strukturen verschieben:</strong> Gewerbeentwicklung bleibt der einzige
-		echte Ausweg aus dem Grundproblem, mit allen
-		<a href="#gewerbe-ansiedeln">Grenzen von oben</a>. Realistisch heißt das: Bestandspflege
-		statt Ansiedlungs-Träume, vielleicht interkommunale Gewerbegebiete mit den Nachbarn. Aber
-		das wirkt in Jahrzehnten. Nicht in Haushaltsjahren.
+		<strong>Langfristig, Strukturen verschieben:</strong> Mehr Gewerbe wäre der einzige Hebel am
+		Grundproblem selbst. Ich mache mir da aber keine Illusionen. Um auf Neu-Isenburg-Niveau zu
+		kommen, müsste Rödermark seine Gewerbesteuer auf rund das {gewFaktor}-Fache steigern. Von
+		jedem zusätzlichen Euro bliebe zudem nur ein Teil hier: Die Gewerbesteuerumlage geht an Bund
+		und Land, mit der Steuerkraft wächst später die Kreisumlage, die Schlüsselzuweisungen
+		sinken. Und es bräuchte Flächen, die eine gewachsene Wohnstadt kaum hat, plus Firmen, die
+		in dieser Wirtschaftslage überhaupt <a href="#gewerbe-ansiedeln">kommen wollen</a>.
+		Realistisch heißt das: Bestandspflege statt Ansiedlungs-Träume, vielleicht interkommunale
+		Gewerbegebiete mit den Nachbarn. Das wirkt in Jahrzehnten. Nicht in Haushaltsjahren.
 	</p>
 	<p class="explainer-prose">
-		<strong>Der größte Hebel liegt nicht im Rathaus:</strong> Die Kreisumlage hängt am
-		Schuldenberg des Kreises Offenbach. Die Kostenlast hängt an Gesetzen, die Bund und Land
-		beschließen, ohne sie voll zu bezahlen, Stichwort Kita-Rechtsanspruch. Wer das ändern will,
-		muss den Druck nach Wiesbaden und Berlin richten. Nicht auf die Stadtverordneten, die neben
-		einem an der Supermarktkasse stehen.
+		<strong>Der größte Hebel liegt nicht im Rathaus:</strong> Die Kreisumlage hängt an den
+		Sozial- und Transferkosten, die <a href="#umlagen">beim Kreis auflaufen</a>. Und die folgen
+		aus Gesetzen, die Bund und Land beschließen, ohne sie voll zu bezahlen, Stichwort
+		Kita-Rechtsanspruch. Wer das ändern will, muss den Druck nach Wiesbaden und Berlin richten.
+		Nicht auf die Stadtverordneten, die neben einem an der Supermarktkasse stehen.
 	</p>
 	<p class="explainer-prose">
 		<strong>Und die Bürger?</strong> Können mehr tun, als Hebesätze zu googeln: zur
 		Haushaltsdebatte gehen, bei den Prioritäten mitreden (welche freiwilligen Leistungen sind
-		sie uns wert?) und kontrollieren, was mit dem Geld passiert. Die Missmanagement-These hält
-		den Daten nicht stand. Die Kontrolle bleibt trotzdem Bürgeraufgabe. <strong>Genau dafür gibt
+		sie uns wert?), <a href="https://petition-page.vercel.app/">Petitionen einreichen und unterzeichnen</a>, sich politisch engagieren. Die Missmanagement-These hält
+		den Daten nicht stand. Wir können trotzdem alle Beitragen. <strong>Genau dafür gibt
 		es dieses Portal.</strong>
 	</p>
 </section>
@@ -674,6 +822,13 @@
 	<p class="answer-lead">
 		Das hängt von Wohnfläche und Grundstück ab. Der Rechner schätzt Ihre persönliche
 		Mehrbelastung in einer Minute, auch ohne Bescheid zur Hand.
+	</p>
+	<p class="explainer-prose">
+		Zur Einordnung: Das <a href="#musterhaus">Musterhaus</a> von oben
+		({data.musterhausSpec.wohnflaeche}&nbsp;m² Wohnfläche,
+		{data.musterhausSpec.grundflaeche}&nbsp;m² Grundstück) zahlt durch den Schritt von 990 auf
+		1.327&nbsp;% rund 230&nbsp;€ mehr im Jahr, knapp 20&nbsp;€ im Monat. Für manche ist das
+		verkraftbar, für andere richtig Geld. Ihre eigene Zahl liefert der Rechner.
 	</p>
 	<a href="/grundsteuer-rechner" class="link-box">
 		<Calculator class="link-box-icon" />
@@ -760,10 +915,14 @@
 		<li>Hessen-Durchschnitt (~400&nbsp;% 2025, ~396&nbsp;% 2024): Bund der Steuerzahler Hessen, Hebesatzumfragen.</li>
 		<li>Gewerbesteuereinnahmen und Einwohnerzahlen: IHK Offenbach Gemeindesteckbriefe 2025 (Ist 2024).</li>
 		<li>Steuerquellen-Mix 2026 (Einkommensteuer-/Umsatzsteuer-Anteil, Gewerbe- und Grundsteuer, Konten 5500–5559): jeweilige Haushaltspläne 2026 (Finanzstatusbericht-Anlagen bzw. Teilergebnishaushalte), mit Seitenangabe je Kommune in der <a href="/data/steuermix_2026.json" target="_blank" rel="noopener noreferrer">Datendatei</a>; gegen die ausgewiesenen Summenzeilen validiert. Dietzenbach weist die Gewerbesteuer in der Sammelzeile „Sonst. Kommunalsteuern" aus (Ist 2024 deckungsgleich mit dem IHK-Gewerbesteuerwert).</li>
-		<li>Kreis- und Schulumlage, Steuer-Planzahlen Rödermark (Grundsteuer B, Gewerbesteuer, Einkommensteuer-Anteil, Ansätze 2025/2026) und Defizit: Haushaltsplan Rödermark 2026 (Entwurf) und Haushaltssicherungskonzept 2026; Gewerbesteuer-Ist 2023/2024: IHK Offenbach Gemeindesteckbrief 2025.</li>
+		<li>Kreis- und Schulumlage, Steuer-Planzahlen Rödermark (Grundsteuer B, Gewerbesteuer, Einkommensteuer-Anteil, Ansätze 2025/2026) und Defizit: Haushaltsplan Rödermark 2026 (Entwurf) und Haushaltssicherungskonzept 2026; Zuschussbedarf Kultur, Sport und Vereine (rund 5,2&nbsp;Mio.&nbsp;€: Teilhaushalt 5, Jahresergebnis nach internen Leistungsbeziehungen, Haushaltsplan 2026 Entwurf, S.&nbsp;393); Gewerbesteuer-Ist 2023/2024: IHK Offenbach Gemeindesteckbrief 2025.</li>
+		<li>Kreishaushalt Offenbach 2026 (Transferleistungen 516,5&nbsp;Mio.&nbsp;€, kommunaler Zuschussbedarf rund 230&nbsp;Mio.&nbsp;€, Defizit 24&nbsp;Mio.&nbsp;€): <a href="https://of-news.de/kreis-offenbach/haushalt-2026-kreis-offenbach-haelt-umlagen-stabil-defizit-wird-aus-ruecklagen-gedeckt-165207/" target="_blank" rel="noopener noreferrer">of-news.de, 02.12.2025</a>; <a href="https://www.op-online.de/region/dietzenbach/trotz-24-millionen-euro-defizit-bleiben-die-umlagen-stabil-94067704.html" target="_blank" rel="noopener noreferrer">op-online.de, 04.12.2025</a>.</li>
+		<li>Regionales Muster der Nachbarkreise (Darmstadt-Dieburg: ~38&nbsp;Mio.&nbsp;€ Defizit trotz 33&nbsp;Mio.&nbsp;€ Einsparungen, Schulumlage erhöht; Groß-Gerau: Umlagen +7,5&nbsp;Prozentpunkte, Bürgermeister-Brandbrief „Es reicht!“): <a href="https://www.fr.de/rhein-main/darmstadt/haushalte-der-kreise-darmstadt-dieburg-und-gross-gerau-mit-zaehneknirschen-beschlossen-93661280.html" target="_blank" rel="noopener noreferrer">Frankfurter Rundschau, 01.04.2025</a>.</li>
 		<li>Aufkommensneutraler Hebesatz Rödermark (803,51&nbsp;%): <a href="https://finanzamt.hessen.de/grundsteuerreform/hebesatzempfehlungen" target="_blank" rel="noopener noreferrer">Hebesatzempfehlungen der Hessischen Steuerverwaltung</a>; Einordnung und Beschluss-Chronik 2024/25: <a href="https://www.rm-news.de/?p=272680" target="_blank" rel="noopener noreferrer">rm-news.de</a>.</li>
 		<li>Beschluss der Hebesatz-Anhebung 2026 (Grundsteuer B 990 → 1.327&nbsp;%, Grundsteuer A 175 → 900&nbsp;%, rückwirkend zum 01.01.2026, namentliche Abstimmung 20:16): <a href="https://www.rheinmainverlag.de/2026/06/25/die-grundsteuer-in-roedermark-geht-weiter-rauf/" target="_blank" rel="noopener noreferrer">Rhein-Main-Verlag, 25.06.2026</a>.</li>
-		<li>Eppertshausen (Hebesatz 480&nbsp;%, Erhöhung von 400&nbsp;%, Defizit trotz Steuererhöhung): <a href="https://www.rheinmainverlag.de/2026/02/06/eppertshausen-tiefroter-etat-trotz-hoeherer-steuern/" target="_blank" rel="noopener noreferrer">Rhein-Main-Verlag, 06.02.2026</a>; Erhöhungswelle im Kreis Darmstadt-Dieburg: <a href="https://www.steuerzahler-hessen.de/neuigkeiten/artikel/massive-steuererhoehungswelle-im-kreis-darmstadt-dieburg/" target="_blank" rel="noopener noreferrer">Bund der Steuerzahler Hessen</a>.</li>
+		<li>Eppertshausen (Grundsteuer B 400 → 480&nbsp;%, Gewerbesteuer 380 → 390, Defizit 3,7&nbsp;Mio.&nbsp;€ bei 16,6&nbsp;Mio.&nbsp;€ Erträgen, rund 9,5&nbsp;Mio.&nbsp;€ Rücklagen laut Etat-Debatte): <a href="https://www.rheinmainverlag.de/2026/02/06/eppertshausen-tiefroter-etat-trotz-hoeherer-steuern/" target="_blank" rel="noopener noreferrer">Rhein-Main-Verlag, 06.02.2026</a>; aufkommensneutrale Landesempfehlung Eppertshausen (400,57&nbsp;%, alter Satz 435&nbsp;%): <a href="https://finanzamt.hessen.de/sites/finanzamt.hessen.de/files/2024-08/hebesatzempfehlungen_aktualisierung_nach_landkreisen_sortiert_stand_30-06-2024.pdf" target="_blank" rel="noopener noreferrer">Hebesatzempfehlungen der Hessischen Steuerverwaltung (PDF, Stand 30.06.2024)</a>; Erhöhungswelle im Kreis Darmstadt-Dieburg: <a href="https://www.steuerzahler-hessen.de/neuigkeiten/artikel/massive-steuererhoehungswelle-im-kreis-darmstadt-dieburg/" target="_blank" rel="noopener noreferrer">Bund der Steuerzahler Hessen</a>.</li>
+		<li>HSK-Abbaupfad (Restdefizite 2026–2028, Überschuss ab 2029) und Grundsteuer-B-Mehreinnahmen (3,1&nbsp;Mio.&nbsp;€ in 2026/27, 6,8&nbsp;Mio.&nbsp;€ ab 2028): Haushaltssicherungskonzept 2026, S.&nbsp;15 und 18. Der Hebesatz der zweiten Stufe ist daraus linear abgeleitet (Näherung, Methode erklärt auf der <a href="/hsk2026">HSK-Seite</a>).</li>
+		<li>Grundsteuer C: Prüfauftrag einer Fraktion (November 2023) und bedingter Ansatz von 60.000&nbsp;€ („Sollte die Einführung beschlossen werden&nbsp;…"): Haushaltsplan 2024/2025 (Beschluss), Vorbericht S.&nbsp;27. Ansatz 2026: 0&nbsp;€ (Konto 555250) und keine Grundsteuer C in der Haushaltssatzung (§&nbsp;5): Haushaltsplan Rödermark 2026 (Entwurf), S.&nbsp;142 bzw. S.&nbsp;4. Prüfergebnis der Verwaltung (99 private / 7 gewerbliche Grundstücke, Empfehlung des Hessischen Städtetags gegen eine Einführung) und zweiter Antrag zur Erhöhung auf 1.327&nbsp;% (Fünffacher Hebesatz, rund 120.000&nbsp;€, im Ausschuss gestoppt, in der Versammlung zurückgezogen): Bürgerinformationssystem der Stadt Rödermark, <a href="https://www.roedermark.sitzung-online.de/public/vo020?VOLFDNR=1000820" target="_blank" rel="noopener noreferrer">Vorlage DS/136/26</a> und <a href="https://www.roedermark.sitzung-online.de/public/vo020?VOLFDNR=1000849" target="_blank" rel="noopener noreferrer">Änderungsantrag DS/136/26-1</a>. Einführung ab 2025 grundsätzlich möglich: <a href="https://finanzamt.hessen.de/grundsteuerreform/faq-grundsteuer/hebesatzempfehlungen" target="_blank" rel="noopener noreferrer">FAQ der Hessischen Steuerverwaltung</a>.</li>
 		<li>Berechnungsmodell Musterhaus: Hessisches Grundsteuergesetz (Flächen-Faktor-Verfahren).</li>
 		{#each data.kommunen.filter((k) => k.plan_2026_grundsteuer_b) as k (k.kommune)}
 			<li><strong>{k.kommune}</strong> (Planzahl 2026): {k.plan_2026_grundsteuer_b!.quelle}</li>

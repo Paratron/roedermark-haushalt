@@ -64,6 +64,19 @@ interface SteuermixFile {
 	kommunen: SteuermixRow[];
 }
 
+/** Minimaler Ausschnitt aus hsk_2026.json, den diese Seite braucht. */
+interface HskFile {
+	narrative: Record<string, { value: number | string; text: string; page: number }>;
+	abbaupfad: { year: number; ergebnis_nach_hsk: number }[];
+	massnahmen: { is_grundsteuer_b?: boolean; werte: Record<string, number> }[];
+}
+
+// Hebesätze für die Ableitung der zweiten HSK-Stufe (gleiche Methode wie auf
+// /hsk2026): Die Grundsteuer ist linear im Hebesatz, also liefert Schritt 1
+// (990 → 1.327 % = bekannte Mehreinnahme) den €-Wert je Hebesatzpunkt.
+const GRST_B_VOR_HSK = 990;
+const GRST_B_SCHRITT_1 = 1327;
+
 /** Row for the Musterhaus comparison chart. */
 export interface MusterhausRow {
 	kommune: string;
@@ -103,10 +116,11 @@ function dedupLatest(items: LineItem[]): LineItem[] {
 }
 
 export const load: PageLoad = async ({ fetch }) => {
-	const [hebesaetze, kreisvergleichRaw, steuermixRaw, allItems] = await Promise.all([
+	const [hebesaetze, kreisvergleichRaw, steuermixRaw, hskRaw, allItems] = await Promise.all([
 		loadHebesaetzeGrundsteuerB(fetch),
 		fetch('/data/grundsteuer_kreisvergleich.json').then((r) => r.json()) as Promise<KreisvergleichFile>,
 		fetch('/data/steuermix_2026.json').then((r) => r.json()) as Promise<SteuermixFile>,
+		fetch('/data/hsk_2026.json').then((r) => r.json()) as Promise<HskFile>,
 		loadLineItems(fetch)
 	]);
 
@@ -220,7 +234,39 @@ export const load: PageLoad = async ({ fetch }) => {
 		Math.abs(umlageItems.find((i) => i.year === umlagenErstesJahr && i.bezeichnung === 'Kreisumlage')?.amount ?? 0) +
 		Math.abs(umlageItems.find((i) => i.year === umlagenErstesJahr && i.bezeichnung === 'Schulumlage')?.amount ?? 0);
 
+	// HSK-Abbaupfad (Restdefizite nach allen Maßnahmen) und die im Konzept
+	// eingeplante zweite Grundsteuer-Stufe: Die Grundsteuer-B-Maßnahme springt
+	// ab einem Jahr auf eine deutlich höhere Mehreinnahme; den zugehörigen
+	// Hebesatz leiten wir linear ab (Näherung, wie auf /hsk2026 erklärt).
+	const grstBMassnahme = hskRaw.massnahmen.find((m) => m.is_grundsteuer_b);
+	const stufe1Mehr = Math.abs(grstBMassnahme?.werte['2026'] ?? 0);
+	let stufe2Jahr: number | null = null;
+	let stufe2Mehr = 0;
+	for (const [jahr, wert] of Object.entries(grstBMassnahme?.werte ?? {}).sort()) {
+		const v = Math.abs(wert);
+		if (stufe1Mehr > 0 && v > stufe1Mehr * 1.05) {
+			stufe2Jahr = Number(jahr);
+			stufe2Mehr = v;
+			break;
+		}
+	}
+	const stufe2Hebesatz =
+		stufe2Jahr !== null
+			? Math.round(
+					GRST_B_VOR_HSK + stufe2Mehr / (stufe1Mehr / (GRST_B_SCHRITT_1 - GRST_B_VOR_HSK))
+				)
+			: null;
+	const hsk = {
+		abbaupfad: hskRaw.abbaupfad.map((r) => ({ jahr: r.year, rest: r.ergebnis_nach_hsk })),
+		ausgleichJahr: Number(hskRaw.narrative?.ausgleich_ab_jahr?.value ?? 0) || null,
+		stufe1Mehr,
+		stufe2Jahr,
+		stufe2Mehr,
+		stufe2Hebesatz
+	};
+
 	return {
+		hsk,
 		roedermarkHistory,
 		hasDecimals,
 		fmtHS,
