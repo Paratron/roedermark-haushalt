@@ -8,6 +8,7 @@
 	import SourceCitation from '$lib/components/SourceCitation.svelte';
 	import AnchorHeading from '$lib/components/AnchorHeading.svelte';
 	import SocialMeta from '$lib/components/SocialMeta.svelte';
+	import HebesatzHistoryChart from '$lib/components/HebesatzHistoryChart.svelte';
 	import { Receipt, Info, SlidersHorizontal, ShieldCheck, ArrowRight } from '@lucide/svelte';
 	import { page } from '$app/stores';
 	import { goto } from '$app/navigation';
@@ -262,10 +263,12 @@
 			: []
 	);
 
-	let maxHistGewerbesteuer = $derived(
-		roedermarkGewerbesteuerHistory.length > 0
-			? Math.max(...roedermarkGewerbesteuerHistory.map((d) => d.hebesatz))
-			: 1
+	let roedermarkGrundsteuerBHistory = $derived(
+		hebesaetzeGrundsteuerB
+			? hebesaetzeGrundsteuerB.data
+					.filter((d) => d.kommune === 'Rödermark')
+					.sort((a, b) => a.year - b.year)
+			: []
 	);
 </script>
 
@@ -350,52 +353,36 @@
 	</div>
 </section>
 
-<!-- Grundsteuer B: ausgelagert nach /grundsteuer -->
+<!-- Grundsteuer B: Vertiefung auf /grundsteuer -->
 <section class="section">
 	<a href="/grundsteuer" class="hsk-link-box">
 		<Info class="hsk-link-icon" />
 		<div class="hsk-link-body">
-			<strong>Grundsteuer B: Mechanik, Entwicklung und Kreisvergleich</strong>
-			Wie die Grundsteuer funktioniert, wie sich Rödermarks Hebesatz entwickelt hat und warum der
-			Hebesatz allein wenig über die tatsächliche Belastung aussagt – auf einer eigenen Seite.
+			<strong>Grundsteuer B: die ganze Geschichte</strong>
+			Warum der Hebesatz so hoch ist, wie er im Kreis dasteht und warum er allein wenig über die
+			tatsächliche Belastung aussagt – ausführlich auf der Grundsteuer-Seite.
 		</div>
 		<ArrowRight class="hsk-link-arrow" />
 	</a>
 </section>
 
-<!-- Hebesatz Development Rödermark: Gewerbesteuer -->
+<!-- Hebesatz Development Rödermark: Grundsteuer B + Gewerbesteuer -->
 <section class="section">
-	<AnchorHeading level={3} id="hebesatz-entwicklung">Hebesatz-Entwicklung Rödermark – Gewerbesteuer</AnchorHeading>
+	<AnchorHeading level={3} id="hebesatz-entwicklung">Hebesatz-Entwicklung Rödermark</AnchorHeading>
 	<div class="hebesatz-history-grid">
 		<div class="card card-padded">
+			<h4 class="card-subtitle">Grundsteuer B</h4>
+			<HebesatzHistoryChart
+				history={roedermarkGrundsteuerBHistory}
+				split={{ year: 2025, neutral: 800 }}
+				newSystemFrom={2025}
+			/>
+		</div>
+		<div class="card card-padded">
 			<h4 class="card-subtitle">Gewerbesteuer</h4>
-			<div class="vbar-chart">
-				{#each roedermarkGewerbesteuerHistory as entry, i (entry.year)}
-					{@const prev = i > 0 ? roedermarkGewerbesteuerHistory[i - 1] : null}
-					{@const changed = prev && prev.hebesatz !== entry.hebesatz}
-					{@const went_up = changed && entry.hebesatz > (prev?.hebesatz ?? 0)}
-					{@const went_down = changed && entry.hebesatz < (prev?.hebesatz ?? 0)}
-					<div class="vbar-col">
-						{#if changed}
-							<span class="vbar-delta" class:vbar-delta-up={went_up} class:vbar-delta-down={went_down}>
-								{went_up ? '▲' : '▼'}{Math.abs(entry.hebesatz - (prev?.hebesatz ?? 0))}
-							</span>
-						{/if}
-						<span class="vbar-label" class:vbar-label-up={went_up} class:vbar-label-down={went_down}>
-							{fmtHS(entry.hebesatz, gewerbesteuerHasDecimals)}
-						</span>
-						<div class="vbar-track">
-							<div
-								class="vbar-fill"
-								class:vbar-fill-up={went_up}
-								class:vbar-fill-down={went_down}
-								style="height: {(entry.hebesatz / maxHistGewerbesteuer) * 100}%"
-							></div>
-						</div>
-						<span class="vbar-year">{entry.year}</span>
-					</div>
-				{/each}
-			</div>
+			<HebesatzHistoryChart
+				history={roedermarkGewerbesteuerHistory}
+			/>
 		</div>
 	</div>
 </section>
@@ -665,42 +652,8 @@
 		display: grid; gap: 1.5rem; grid-template-columns: 1fr;
 		min-width: 0;
 	}
-	.vbar-chart {
-		display: flex; align-items: flex-end; gap: 0.125rem;
-		overflow-x: auto; padding-bottom: 0.25rem;
-	}
-	.vbar-col {
-		display: flex; flex-direction: column; align-items: center;
-		flex: 1 1 0; min-width: 2rem;
-	}
-	.vbar-label {
-		font-size: 0.625rem; font-weight: 600; color: var(--gray-500);
-		margin-bottom: 0.125rem; white-space: nowrap;
-	}
-	.vbar-label-up { color: var(--red-600, #dc2626); }
-	.vbar-label-down { color: var(--green-600, #16a34a); }
-	.vbar-delta {
-		font-size: 0.5625rem; font-weight: 600; margin-bottom: 0.125rem;
-		white-space: nowrap;
-	}
-	.vbar-delta-up { color: var(--red-500, #ef4444); }
-	.vbar-delta-down { color: var(--green-500, #22c55e); }
-	.vbar-track {
-		width: 100%; height: 8rem;
-		background: var(--gray-50); border-radius: 0.25rem 0.25rem 0 0;
-		display: flex; align-items: flex-end;
-	}
-	.vbar-fill {
-		width: 100%; background: var(--brand-400, #60a5fa);
-		border-radius: 0.25rem 0.25rem 0 0;
-		transition: height 0.3s ease;
-		min-height: 2px;
-	}
-	.vbar-fill-up { background: var(--red-400, #f87171); }
-	.vbar-fill-down { background: var(--green-400, #4ade80); }
-	.vbar-year {
-		font-size: 0.625rem; color: var(--gray-400);
-		margin-top: 0.25rem; white-space: nowrap;
+	@media (min-width: 640px) {
+		.hebesatz-history-grid { grid-template-columns: 1fr 1fr; }
 	}
 
 	/* Comparison bars */

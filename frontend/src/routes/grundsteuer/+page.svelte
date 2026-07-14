@@ -2,6 +2,7 @@
 	import type { PageData } from './$types';
 	import AnchorHeading from '$lib/components/AnchorHeading.svelte';
 	import SocialMeta from '$lib/components/SocialMeta.svelte';
+	import HebesatzHistoryChart from '$lib/components/HebesatzHistoryChart.svelte';
 	import { Landmark, Calculator, ArrowRight, ShieldCheck, ChevronDown } from '@lucide/svelte';
 	import { browser } from '$app/environment';
 
@@ -17,9 +18,6 @@
 	}
 
 	let roedermarkHistory = $derived(data.roedermarkHistory);
-	let maxHist = $derived(
-		roedermarkHistory.length > 0 ? Math.max(...roedermarkHistory.map((d) => d.hebesatz)) : 1
-	);
 
 	let musterhausRoedermark = $derived(data.musterhaus.find((m) => m.kommune === 'Rödermark'));
 	let musterhausGuenstigste = $derived(data.musterhaus[data.musterhaus.length - 1]);
@@ -102,6 +100,7 @@
 	title="Grundsteuer: Fragen und Antworten"
 	description="Zahlt Rödermark wirklich 2,5-mal so viel Grundsteuer wie der Rest von Deutschland? Die häufigsten Fragen zur Grundsteuer B, beantwortet mit belegten Zahlen."
 	path="/grundsteuer"
+	image="share-grundsteuer.jpg"
 />
 
 <AnchorHeading level={2} id="grundsteuer"><Landmark /> Grundsteuer: Fragen und Antworten</AnchorHeading>
@@ -272,8 +271,9 @@
 <section class="section">
 	<AnchorHeading level={3} id="stadtkasse">Warum braucht Rödermark einen so hohen Hebesatz?</AnchorHeading>
 	<p class="answer-lead">
-		Zwei Gründe: Außer den Einwohnern zahlt hier kaum jemand ein. Und Rödermarks
-		Grundsteuer-Basis ist die kleinste im ganzen Kreis.
+		Zwei Dinge treiben die Höhe. Erstens steckt Rödermark im Defizit und muss es – anders als
+		manche Nachbarn – mit echten Einnahmen schließen, nicht mit neuen Schulden. Zweitens hat die
+		Stadt die kleinste Steuerbasis im Kreis: Jeder Hebesatz-Punkt bringt hier am wenigsten.
 	</p>
 	<p class="explainer-prose">
 		Woher kommt das Geld einer Stadt? In Rödermark vor allem vom
@@ -284,10 +284,9 @@
 		und Grundsteuer&nbsp;B ({fmtEurMio(data.umlagen.grundsteuerBPlan)}).
 	</p>
 	<p class="explainer-prose">
-		Moment, alle reden doch über die Grundsteuer! Was hat die Gewerbesteuer damit zu tun? Alles.
-		Denn sie entscheidet, wie tief eine Stadt ihren Bürgern in die Tasche greifen muss. Der
-		Steuer-Mix der Kommunen zeigt es: Die grünen Segmente (Einkommensteuer) sind überall ähnlich
-		lang. <strong>Der Unterschied zwischen arm und reich ist fast nur das gelbe
+		Wer den Löwenanteil trägt, hängt vor allem an der Gewerbesteuer. Der Steuer-Mix der Kommunen
+		zeigt es: Die grünen Segmente (Einkommensteuer) sind überall ähnlich lang.
+		<strong>Der Unterschied zwischen den Kommunen ist fast nur das gelbe
 		Gewerbesteuer-Segment:</strong>
 	</p>
 	<div class="card card-padded">
@@ -332,34 +331,56 @@
 		Gewerbesteuer <em>pro Einwohner</em>. Das ist rund das {gewFaktor}-Fache von Rödermark
 		({fmtEur(mixRoedermark?.gewerbesteuer_pro_kopf ?? 0)}). Zahlen die Bürger dort weniger, weil
 		ihre Stadt besser wirtschaftet? Nein. <strong>Es zahlt einfach jemand anderes für sie
-		mit</strong>: die Firmen rund um Flughafen und Autobahnkreuz. Rödermark hat die nicht.
-		Und das Muster gilt im ganzen Kreis: Die höchsten Grundsteuer-Hebesätze (Mühlheim,
-		Heusenstamm, Rödermark, Egelsbach) haben genau die Kommunen mit dem wenigsten Gewerbe.
+		mit</strong>: die Firmen rund um Flughafen und Autobahnkreuz. Rödermark hat die nicht, also
+		bleibt die Last bei den Einwohnern.
+	</p>
+	<p class="explainer-prose">
+		Aber Vorsicht: <strong>Wie hoch der Hebesatz ist, entscheidet das Gewerbe nicht.</strong> Im
+		Defizit steckt im Kreis fast jede Kommune, die Umlage-Zange trifft alle. Viel Gewerbe schützt
+		nicht: Die Kreisumlage bemisst sich an der Steuerkraft, ein großer Teil des Vorsprungs fließt
+		gleich wieder ab, weshalb selbst das gewerbestarke Neu-Isenburg 2026 rund 29&nbsp;Mio.&nbsp;€
+		Minus plant. Und wenig Gewerbe zwingt nicht automatisch zu hohen Sätzen: Hainburg nimmt sogar
+		<em>weniger</em> Gewerbesteuer ein als Rödermark, hält die Grundsteuer aber bei 615&nbsp;% –
+		weil es sein Defizit lieber mit neuen Krediten stopft.
+	</p>
+	<p class="explainer-prose">
+		Und genau hier liegt Rödermarks Unterschied: Andere können ihr Minus noch vor sich
+		herschieben. Neu-Isenburg und der Kreis zehren von <strong>Rücklagen</strong>, Hainburg nimmt
+		neue <strong>Kredite</strong> auf. Rödermark hat diese Puffer weitgehend aufgebraucht: Ende
+		2025 nur noch rund 11&nbsp;Mio.&nbsp;€ liquide Mittel, bei fast 14&nbsp;Mio.&nbsp;€ Defizit im
+		Jahr. Wer so klamm ist, muss ein <strong>Haushaltssicherungskonzept</strong> vorlegen, und
+		dann verlangt die Kommunalaufsicht verlässliche Einnahmen statt neuer Schulden. Bleibt der
+		einzige Hebel, den die Stadt selbst in der Hand hat: die Grundsteuer.
 	</p>
 	<p class="explainer-prose">
 		Heißt das, Rödermark hat bei der Gewerbeansiedlung versagt? So einfach ist es nicht
 		(<a href="#gewerbe-ansiedeln">nächste Frage</a>). Die Wohnstadt ist kein Unfall.
-		Jahrzehntelang wollten die meisten hier genau das: Wohnen statt Gewerbegebiete. Die Kehrseite
-		steht heute auf dem Grundsteuerbescheid. Und Gewerbesteuer ist auch kein sicheres Geld:
+		Jahrzehntelang wollten die meisten hier genau das: Wohnen statt Gewerbegebiete. Und lange ging
+		die Rechnung auf. Erst als die Kreisumlage und die Pflichtausgaben in den letzten Jahren
+		stark anstiegen, wurde die dünne Gewerbebasis zum Problem, das heute auf dem Grundsteuerbescheid
+		landet. Und Gewerbesteuer ist auch kein sicheres Geld:
 		Egelsbach plant für 2026 ein Drittel weniger als im Vorjahr (8,5 statt
 		12,5&nbsp;Mio.&nbsp;€). Der Einkommensteuer-Anteil einer Wohnstadt fließt dagegen
 		verlässlich. <strong>Stabil, aber knapp. Das ist Rödermarks Deal.</strong>
 	</p>
 	<p class="explainer-prose">
-		<strong>Grund zwei: die Grundsteuer-Basis selbst.</strong> Der Hebesatz ist nur ein Bruch:
-		benötigtes Geld geteilt durch die Steuersubstanz aller Grundstücke der Stadt. Viel Substanz,
-		niedriger Satz. Wenig Substanz, hoher Satz. Und Rödermark hat die
-		<strong>kleinste Grundsteuer-Basis im ganzen Kreis</strong>: rund
-		{Math.round(basisRoedermark?.basis ?? 0)}&nbsp;€ Messbetrag je Einwohner.
-		{basisSpitze?.kommune} hat gut 40&nbsp;% mehr ({Math.round(basisSpitze?.basis ?? 0)}&nbsp;€)
-		und braucht für dasselbe Geld eben einen gut 40&nbsp;% niedrigeren Hebesatz. Wenig Gewerbe,
-		wenig Substanz: Deshalb hat ausgerechnet die ruhige Wohnstadt die höchsten Sätze (mehr dazu:
+		<strong>Der zweite Grund: Hier gibt es wenig zu besteuern.</strong> Die Grundsteuer einer Stadt
+		verteilt sich auf alle Grundstücke im Ort. Jeder Quadratmeter Boden und Wohnfläche zählt
+		mit, auch Fabrikhallen und Bürogebäude. Wo viel zusammenkommt, reicht ein niedriger
+		Hebesatz für dieselbe Summe. In Rödermark kommt <strong>pro Einwohner am wenigsten zusammen
+		im ganzen Kreis</strong>. Spitzenreiter {basisSpitze?.kommune} hat gut 40&nbsp;% mehr zu
+		besteuern. Für dasselbe Geld je Einwohner braucht Rödermark also einen gut 40&nbsp;%
+		höheren Hebesatz. Vor jedem Defizit, vor jeder Sparfrage, einfach wegen der Fläche. Wenig
+		Gewerbe heißt eben auch: kaum Hallen und Büros, die still mitzahlen. Zusammen mit dem
+		erzwungenen Defizitabbau ergibt das die Spitzensätze der ruhigen Wohnstadt (mehr dazu:
 		<a href="#vergleichbarkeit">Kann man Hebesätze überhaupt vergleichen?</a>).
 	</p>
 	<p class="chart-note">
-		Grundsteuer-Basis als Näherung rückgerechnet: Ist-Einnahmen 2024 ÷ (Hebesatz&nbsp;÷&nbsp;100),
-		je Einwohner (IHK-Gemeindesteckbriefe). Kein amtlicher Messbetrag, aber für den Vergleich der
-		Größenordnungen belastbar.
+		In Zahlen, als Näherung rückgerechnet aus Ist-Einnahmen 2024 ÷ (Hebesatz&nbsp;÷&nbsp;100),
+		je Einwohner (IHK-Gemeindesteckbriefe): Rödermark rund
+		{Math.round(basisRoedermark?.basis ?? 0)}&nbsp;€ Messbetrag je Einwohner,
+		{basisSpitze?.kommune} rund {Math.round(basisSpitze?.basis ?? 0)}&nbsp;€. Kein amtlicher
+		Messbetrag, aber für den Vergleich der Größenordnungen belastbar.
 	</p>
 </section>
 
@@ -400,7 +421,7 @@
 		und Rodgau. Viel mehr geht kaum. Und es würde auch kaum etwas bringen.
 	</p>
 	<p class="explainer-prose">
-		Das Problem ist die Mathematik: Rödermarks Gewerbesteuer-Basis ist klein. Zehn Punkte mehr
+		Das Problem ist die Mathematik: Es gibt zu wenig Gewerbe, auf das der Satz wirkt. Zehn Punkte mehr
 		(400 → 410&nbsp;%) brächten nur rund 450.000&nbsp;€ im Jahr. Die Grundsteuer-Erhöhung bringt
 		rund 3&nbsp;Millionen. <strong>Pro Jahr.</strong> Um das über die Gewerbesteuer zu holen,
 		müsste der Satz auf etwa 470&nbsp;% steigen. Zum Vergleich: Der höchste Satz im ganzen Kreis
@@ -408,9 +429,9 @@
 		weit und breit.
 	</p>
 	<p class="explainer-prose">
-		Dazu kommen zwei Risiken. Erstens ist die Gewerbesteuer-Basis klein: Ein sehr hoher Satz auf
-		wenige Betriebe kann Unternehmen zur Abwanderung bewegen und damit gerade die Einnahmen
-		gefährden, die man sichern will. Zweitens schwankt die Gewerbesteuer stark, das zeigt
+		Dazu kommen zwei Risiken. Erstens lastet ein höherer Satz auf wenigen Betrieben: Er kann
+		Unternehmen zur Abwanderung bewegen und damit gerade die Einnahmen gefährden, die man
+		sichern will. Zweitens schwankt die Gewerbesteuer stark, das zeigt
 		Rödermark gerade selbst: 2023 kamen noch 18,9&nbsp;Mio.&nbsp;€ herein, 2024 nur noch 16,8.
 		Für 2026 plant die Stadt mit 17,8&nbsp;Mio.&nbsp;€, zwei Millionen <em>weniger</em> als der
 		Ansatz fürs Vorjahr, <em>trotz</em> des höheren Hebesatzes. Für das Sparprogramm <strong>verlangt
@@ -470,7 +491,7 @@
 	</p>
 	<p class="explainer-prose">
 		Die Belege stehen oben: Die <a href="#umlagen">Rechnung vom Kreis</a> frisst mehr, als die
-		ganze Grundsteuer einbringt. Die <a href="#stadtkasse">Gewerbesteuer-Basis</a> ist dünn. Und
+		ganze Grundsteuer einbringt. Die <a href="#stadtkasse">Gewerbesteuer</a> ist dünn. Und
 		<a href="#hessen-schnitt">der ganze Kreis</a> liegt im Schnitt bei rund
 		{(Math.round(data.avgHebesatz2026 / 10) * 10).toLocaleString('de-DE')}&nbsp;%. Ein
 		Rödermark-Verschwendungsproblem sähe anders aus. Dazu kommt: Der Großteil der Ausgaben ist
@@ -583,33 +604,11 @@
 		13,8&nbsp;Mio.&nbsp;€.
 	</p>
 	<div class="card card-padded">
-		<div class="vbar-chart">
-			{#each roedermarkHistory as entry, i (entry.year)}
-				{@const prev = i > 0 ? roedermarkHistory[i - 1] : null}
-				{@const changed = prev && prev.hebesatz !== entry.hebesatz}
-				{@const went_up = changed && entry.hebesatz > (prev?.hebesatz ?? 0)}
-				{@const went_down = changed && entry.hebesatz < (prev?.hebesatz ?? 0)}
-				<div class="vbar-col">
-					{#if changed}
-						<span class="vbar-delta" class:vbar-delta-up={went_up} class:vbar-delta-down={went_down}>
-							{went_up ? '▲' : '▼'}{Math.abs(entry.hebesatz - (prev?.hebesatz ?? 0))}
-						</span>
-					{/if}
-					<span class="vbar-label" class:vbar-label-up={went_up} class:vbar-label-down={went_down}>
-						{fmtHS(entry.hebesatz, data.hasDecimals)}
-					</span>
-					<div class="vbar-track">
-						<div
-							class="vbar-fill"
-							class:vbar-fill-up={went_up}
-							class:vbar-fill-down={went_down}
-							style="height: {(entry.hebesatz / maxHist) * 100}%"
-						></div>
-					</div>
-					<span class="vbar-year">{entry.year}</span>
-				</div>
-			{/each}
-		</div>
+		<HebesatzHistoryChart
+			history={roedermarkHistory}
+			split={{ year: 2025, neutral: 800 }}
+			newSystemFrom={2025}
+		/>
 	</div>
 	<p class="chart-note">
 		Rödermarks Grundsteuer-B-Hebesatz über die Jahre, in Prozent (v. H.).
@@ -745,7 +744,7 @@
 			Diese Zahl steht so nicht im Konzept, aber sie steckt in den Zahlen: Die
 			Grundsteuer-B-Maßnahme ist 2026 und 2027 mit {fmtEurMio(data.hsk.stufe1Mehr)}
 			Mehreinnahme eingeplant, ab {data.hsk.stufe2Jahr} mit
-			{fmtEurMio(data.hsk.stufe2Mehr)}. Mehr Einnahme bei gleicher Berechnungsbasis heißt:
+			{fmtEurMio(data.hsk.stufe2Mehr)}. Mehr Einnahme aus denselben Grundstücken heißt:
 			höherer Hebesatz. Rechnet man ihn hoch, landet man bei etwa
 			{fmtHS(data.hsk.stufe2Hebesatz)}&nbsp;% (Näherung; die Herleitung steht auf der
 			<a href="/hsk2026">Seite zur Haushaltssicherung</a>).
@@ -921,6 +920,8 @@
 		<li>Kreis- und Schulumlage, Steuer-Planzahlen Rödermark (Grundsteuer B, Gewerbesteuer, Einkommensteuer-Anteil, Ansätze 2025/2026) und Defizit: Haushaltsplan Rödermark 2026 (Entwurf) und Haushaltssicherungskonzept 2026; Zuschussbedarf Kultur, Sport und Vereine (rund 5,2&nbsp;Mio.&nbsp;€: Teilhaushalt 5, Jahresergebnis nach internen Leistungsbeziehungen, Haushaltsplan 2026 Entwurf, S.&nbsp;393); Gewerbesteuer-Ist 2023/2024: IHK Offenbach Gemeindesteckbrief 2025.</li>
 		<li>Kreishaushalt Offenbach 2026 (Transferleistungen 516,5&nbsp;Mio.&nbsp;€, kommunaler Zuschussbedarf rund 230&nbsp;Mio.&nbsp;€, Defizit 24&nbsp;Mio.&nbsp;€): <a href="https://of-news.de/kreis-offenbach/haushalt-2026-kreis-offenbach-haelt-umlagen-stabil-defizit-wird-aus-ruecklagen-gedeckt-165207/" target="_blank" rel="noopener noreferrer">of-news.de, 02.12.2025</a>; <a href="https://www.op-online.de/region/dietzenbach/trotz-24-millionen-euro-defizit-bleiben-die-umlagen-stabil-94067704.html" target="_blank" rel="noopener noreferrer">op-online.de, 04.12.2025</a>.</li>
 		<li>Regionales Muster der Nachbarkreise (Darmstadt-Dieburg: ~38&nbsp;Mio.&nbsp;€ Defizit trotz 33&nbsp;Mio.&nbsp;€ Einsparungen, Schulumlage erhöht; Groß-Gerau: Umlagen +7,5&nbsp;Prozentpunkte, Bürgermeister-Brandbrief „Es reicht!“): <a href="https://www.fr.de/rhein-main/darmstadt/haushalte-der-kreise-darmstadt-dieburg-und-gross-gerau-mit-zaehneknirschen-beschlossen-93661280.html" target="_blank" rel="noopener noreferrer">Frankfurter Rundschau, 01.04.2025</a>.</li>
+		<li>Neu-Isenburg (Defizit 2026 rund 29&nbsp;Mio.&nbsp;€, Anhebung von Grund- und Gewerbesteuer ab 2026): <a href="https://www.op-online.de/region/neu-isenburg/trotz-29-millionen-defizit-neu-isenburg-verabschiedet-den-haushalt-2026-94079820.html" target="_blank" rel="noopener noreferrer">op-online.de, 2025</a>; <a href="https://of-news.de/neu-isenburg/neu-isenburg-erhoeht-grund-und-gewerbesteuerhebesaetze-ab-2026-165549/" target="_blank" rel="noopener noreferrer">of-news.de, 2025</a>.</li>
+		<li>Hainburg (Defizit rund 2,05&nbsp;Mio.&nbsp;€ (2025) bzw. 2,5&nbsp;Mio.&nbsp;€ (2026), gedeckt über neue Kredite; Grundsteuer B unverändert bei 615&nbsp;%): <a href="https://www.op-online.de/region/hainburg/hainburger-haushalt-defizit-von-ueber-zwei-millionen-euro-droht-94055019.html" target="_blank" rel="noopener noreferrer">op-online.de, 26.11.2025</a>.</li>
 		<li>Aufkommensneutraler Hebesatz Rödermark (803,51&nbsp;%): <a href="https://finanzamt.hessen.de/grundsteuerreform/hebesatzempfehlungen" target="_blank" rel="noopener noreferrer">Hebesatzempfehlungen der Hessischen Steuerverwaltung</a>; Einordnung und Beschluss-Chronik 2024/25: <a href="https://www.rm-news.de/?p=272680" target="_blank" rel="noopener noreferrer">rm-news.de</a>.</li>
 		<li>Beschluss der Hebesatz-Anhebung 2026 (Grundsteuer B 990 → 1.327&nbsp;%, Grundsteuer A 175 → 900&nbsp;%, rückwirkend zum 01.01.2026, namentliche Abstimmung 20:16): <a href="https://www.rheinmainverlag.de/2026/06/25/die-grundsteuer-in-roedermark-geht-weiter-rauf/" target="_blank" rel="noopener noreferrer">Rhein-Main-Verlag, 25.06.2026</a>.</li>
 		<li>Eppertshausen (Grundsteuer B 400 → 480&nbsp;%, Gewerbesteuer 380 → 390, Defizit 3,7&nbsp;Mio.&nbsp;€ bei 16,6&nbsp;Mio.&nbsp;€ Erträgen, rund 9,5&nbsp;Mio.&nbsp;€ Rücklagen laut Etat-Debatte): <a href="https://www.rheinmainverlag.de/2026/02/06/eppertshausen-tiefroter-etat-trotz-hoeherer-steuern/" target="_blank" rel="noopener noreferrer">Rhein-Main-Verlag, 06.02.2026</a>; aufkommensneutrale Landesempfehlung Eppertshausen (400,57&nbsp;%, alter Satz 435&nbsp;%): <a href="https://finanzamt.hessen.de/sites/finanzamt.hessen.de/files/2024-08/hebesatzempfehlungen_aktualisierung_nach_landkreisen_sortiert_stand_30-06-2024.pdf" target="_blank" rel="noopener noreferrer">Hebesatzempfehlungen der Hessischen Steuerverwaltung (PDF, Stand 30.06.2024)</a>; Erhöhungswelle im Kreis Darmstadt-Dieburg: <a href="https://www.steuerzahler-hessen.de/neuigkeiten/artikel/massive-steuererhoehungswelle-im-kreis-darmstadt-dieburg/" target="_blank" rel="noopener noreferrer">Bund der Steuerzahler Hessen</a>.</li>
@@ -1127,21 +1128,6 @@
 	}
 	.mix-total-highlight { color: var(--brand-700, #1d4ed8); font-weight: 700; }
 	.mix-total-leer { color: var(--gray-300); }
-
-	/* Vertical bar chart (Hebesatz-Historie) */
-	.vbar-chart { display: flex; align-items: flex-end; gap: 0.125rem; overflow-x: auto; padding-bottom: 0.25rem; }
-	.vbar-col { display: flex; flex-direction: column; align-items: center; flex: 1 1 0; min-width: 2rem; }
-	.vbar-label { font-size: 0.625rem; font-weight: 600; color: var(--gray-500); margin-bottom: 0.125rem; white-space: nowrap; }
-	.vbar-label-up { color: var(--red-600, #dc2626); }
-	.vbar-label-down { color: var(--green-600, #16a34a); }
-	.vbar-delta { font-size: 0.5625rem; font-weight: 600; margin-bottom: 0.125rem; white-space: nowrap; }
-	.vbar-delta-up { color: var(--red-500, #ef4444); }
-	.vbar-delta-down { color: var(--green-500, #22c55e); }
-	.vbar-track { width: 100%; height: 8rem; background: var(--gray-50); border-radius: 0.25rem 0.25rem 0 0; display: flex; align-items: flex-end; }
-	.vbar-fill { width: 100%; background: var(--brand-400, #60a5fa); border-radius: 0.25rem 0.25rem 0 0; transition: height 0.3s ease; min-height: 2px; }
-	.vbar-fill-up { background: var(--red-400, #f87171); }
-	.vbar-fill-down { background: var(--green-400, #4ade80); }
-	.vbar-year { font-size: 0.625rem; color: var(--gray-400); margin-top: 0.25rem; white-space: nowrap; }
 
 	/* Link boxes (HSK, Rechner) */
 	.link-box {
