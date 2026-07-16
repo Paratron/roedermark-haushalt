@@ -1,0 +1,97 @@
+{
+  "beschreibung": "Höchstbeträge der Kassen-/Liquiditätskredite gemäß § 4 der jeweiligen Haushaltssatzung. Es handelt sich um jährliche Kreditrahmen (Ermächtigungen zur kurzfristigen Liquiditätssicherung), NICHT um die tatsächlich aufgenommenen oder zum Jahresende ausstehenden Beträge.",
+  "einheit": "EUR",
+  "hinweis_2026_entwurf": "Für 2026 liegt nur der Haushaltsentwurf vor; der Wert kann sich mit dem Beschluss noch ändern.",
+  "entries": [
+    {
+      "year": 2017,
+      "hoechstbetrag": 37000000,
+      "status": "festgesetzt",
+      "begriff": "Kassenkredite",
+      "document_id": "haushaltsplan_2017_2018",
+      "page": 5,
+      "ist_entwurf": false
+    },
+    {
+      "year": 2018,
+      "hoechstbetrag": 37000000,
+      "status": "festgesetzt",
+      "begriff": "Kassenkredite",
+      "document_id": "haushaltsplan_2017_2018",
+      "page": 5,
+      "ist_entwurf": false
+    },
+    {
+      "year": 2019,
+      "hoechstbetrag": null,
+      "status": "scan_nicht_lesbar",
+      "begriff": "Kassenkredite",
+      "document_id": "haushaltsplan_2019",
+      "page": 4,
+      "ist_entwurf": false
+    },
+    {
+      "year": 2020,
+      "hoechstbetrag": 10000000,
+      "status": "festgesetzt",
+      "begriff": "Liquiditätskredite",
+      "document_id": "haushaltsplan_2020_2021_beschluss",
+      "page": 5,
+      "ist_entwurf": false
+    },
+    {
+      "year": 2021,
+      "hoechstbetrag": 5000000,
+      "status": "festgesetzt",
+      "begriff": "Liquiditätskredite",
+      "document_id": "haushaltsplan_2020_2021_anpassung",
+      "page": 5,
+      "ist_entwurf": false
+    },
+    {
+      "year": 2022,
+      "hoechstbetrag": 0,
+      "status": "nicht_beansprucht",
+      "begriff": "Liquiditätskredite",
+      "document_id": "haushaltsplan_2022_beschluss",
+      "page": 5,
+      "ist_entwurf": false
+    },
+    {
+      "year": 2023,
+      "hoechstbetrag": 0,
+      "status": "nicht_beansprucht",
+      "begriff": "Liquiditätskredite",
+      "document_id": "haushaltsplan_2023_beschluss",
+      "page": 5,
+      "ist_entwurf": false
+    },
+    {
+      "year": 2024,
+      "hoechstbetrag": 0,
+      "status": "nicht_beansprucht",
+      "begriff": "Liquiditätskredite",
+      "document_id": "haushaltsplan_2024_2025_beschluss",
+      "page": 5,
+      "ist_entwurf": false
+    },
+    {
+      "year": 2025,
+      "hoechstbetrag": 0,
+      "status": "nicht_beansprucht",
+      "begriff": "Liquiditätskredite",
+      "document_id": "haushaltsplan_2024_2025_beschluss",
+      "page": 5,
+      "ist_entwurf": false
+    },
+    {
+      "year": 2026,
+      "hoechstbetrag": 10000000,
+      "status": "festgesetzt",
+      "begriff": "Liquiditätskredite",
+      "document_id": "haushaltsplan_2026_entwurf",
+      "page": 4,
+      "ist_entwurf": true
+    }
+  ]
+}

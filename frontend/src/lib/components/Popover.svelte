@@ -12,6 +12,8 @@
 		direction?: 'up' | 'down';
 		/** Max width of the popover panel */
 		maxWidth?: string;
+		/** Also open on mouse hover (desktop). Click/tap always works. */
+		hover?: boolean;
 	}
 
 	let {
@@ -19,6 +21,7 @@
 		children,
 		direction = 'down',
 		maxWidth = '18rem',
+		hover = false,
 	}: Props = $props();
 
 	const instanceId = Symbol();
@@ -56,7 +59,11 @@
 		let left = rect.left + rect.width / 2 - pw / 2;
 		left = Math.max(8, Math.min(left, window.innerWidth - pw - 8));
 
-		popoverStyle = `top:${top}px;left:${left}px;--popover-max-w:${maxWidth}`;
+		// Arrow points at the trigger center, relative to the clamped panel.
+		let arrowLeft = rect.left + rect.width / 2 - left;
+		arrowLeft = Math.max(14, Math.min(arrowLeft, pw - 14));
+
+		popoverStyle = `top:${top}px;left:${left}px;--popover-max-w:${maxWidth};--arrow-left:${arrowLeft}px`;
 		popoverEl.dataset.dir = goUp ? 'up' : 'down';
 	}
 
@@ -82,12 +89,23 @@
 	function handleScroll() {
 		if (open) setOpenId(null);
 	}
+
+	async function handleEnter() {
+		if (!hover) return;
+		setOpenId(instanceId);
+		await tick();
+		position();
+	}
+	function handleLeave() {
+		if (!hover) return;
+		setOpenId(null);
+	}
 </script>
 
 <svelte:document onclick={handleClickOutside} onscroll={handleScroll} />
 <svelte:window onresize={handleScroll} />
 
-<button type="button" class="popover-trigger" bind:this={triggerEl} onclick={toggle}>
+<button type="button" class="popover-trigger" bind:this={triggerEl} onclick={toggle} onmouseenter={handleEnter} onmouseleave={handleLeave}>
 	{@render trigger()}
 </button>
 
@@ -129,4 +147,20 @@
 		overflow-wrap: break-word;
 		white-space: normal;
 	}
+	/* Speech-bubble arrow pointing at the trigger */
+	.popover::before,
+	.popover::after {
+		content: '';
+		position: absolute;
+		width: 0;
+		height: 0;
+		left: var(--arrow-left, 50%);
+		transform: translateX(-50%);
+		border-left: 8px solid transparent;
+		border-right: 8px solid transparent;
+	}
+	.popover[data-dir='up']::before { bottom: -8px; border-top: 8px solid var(--gray-200); }
+	.popover[data-dir='up']::after { bottom: -6.5px; border-top: 8px solid #fff; }
+	.popover[data-dir='down']::before { top: -8px; border-bottom: 8px solid var(--gray-200); }
+	.popover[data-dir='down']::after { top: -6.5px; border-bottom: 8px solid #fff; }
 </style>

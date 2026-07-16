@@ -62,6 +62,45 @@
 		return (Math.abs(pk) / maxAbsPK) * 100;
 	}
 
+	// ─── Steuer-Mix (Plan 2026) ───
+	const steuermix = data.steuermix;
+	const maxSteuermixProKopf = data.maxSteuermixProKopf;
+	const steuermixFehlend = data.steuermixFehlend;
+	const grstHebesatz = data.grstHebesatz;
+
+	const MIX_SEGMENTE = [
+		{ key: 'einkommensteuer', label: 'Einkommensteuer-Anteil', color: '#10b981' },
+		{ key: 'grundsteuer', label: 'Grundsteuer A+B', color: '#3b82f6' },
+		{ key: 'gewerbesteuer', label: 'Gewerbesteuer', color: '#f59e0b' },
+		{ key: 'sonstige', label: 'Sonstige (u. a. Umsatzsteuer-Anteil)', color: '#d1d5db' }
+	] as const;
+	type MixKey = (typeof MIX_SEGMENTE)[number]['key'];
+	let mixSortKey = $state<MixKey | null>(null);
+	let mixSegmente = $derived(
+		mixSortKey
+			? [...MIX_SEGMENTE.filter((s) => s.key === mixSortKey), ...MIX_SEGMENTE.filter((s) => s.key !== mixSortKey)]
+			: [...MIX_SEGMENTE]
+	);
+	let steuermixSortiert = $derived.by(() => {
+		const key = mixSortKey;
+		if (!key) return steuermix;
+		return [...steuermix].sort(
+			(a, b) => (b[`${key}_pro_kopf`] ?? 0) - (a[`${key}_pro_kopf`] ?? 0)
+		);
+	});
+
+	function fmtEur(v: number): string {
+		return Math.round(v).toLocaleString('de-DE') + '\u00a0€';
+	}
+	function fmtEurMio(v: number): string {
+		return (v / 1_000_000).toLocaleString('de-DE', { minimumFractionDigits: 1, maximumFractionDigits: 1 }) + '\u00a0Mio.\u00a0€';
+	}
+	function fmtHS(v: number): string {
+		return Number.isInteger(v)
+			? v.toLocaleString('de-DE')
+			: v.toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+	}
+
 </script>
 
 <SocialMeta
@@ -146,6 +185,84 @@
 	<p class="chart-note">
 		Karte: <a href="https://commons.wikimedia.org/wiki/File:Municipalities_in_OF_(district).svg" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a>, Public Domain (CC0).
 		Graue Flächen: Offenbach am Main (kreisfreie Stadt) und angrenzende Kommunen anderer Landkreise.
+	</p>
+</section>
+
+<!-- Steuer-Mix -->
+<section class="chart-section">
+	<AnchorHeading level={3} id="steuer-mix">Wer nimmt wie ein? Der Steuer-Mix je Einwohner</AnchorHeading>
+	<p class="mix-desc">
+		So unterschiedlich generieren die Kommunen ihr Geld: Einkommensteuer-Anteil, Gewerbesteuer,
+		Grundsteuer und Sonstige – je Einwohner (Plan 2026). Klick auf einen Balken zeigt alle Werte,
+		Klick auf die Legende sortiert eine Steuerart nach vorn.
+	</p>
+	<div class="mix-card">
+		<div class="mix-legend">
+			{#each MIX_SEGMENTE as s (s.key)}
+				<button
+					type="button"
+					class="mix-legend-item"
+					class:mix-legend-active={mixSortKey === s.key}
+					onclick={() => (mixSortKey = mixSortKey === s.key ? null : s.key)}
+					title="Diese Steuerart in den Balken nach vorne sortieren"
+				>
+					<span class="mix-swatch" style="background: {s.color}"></span>{s.label}
+				</button>
+			{/each}
+		</div>
+		<div class="mix-chart">
+			{#each steuermixSortiert as r (r.kommune)}
+				{@const isRoedermark = r.kommune === 'Rödermark'}
+				<div class="mix-row">
+					<span class="mix-label" class:mix-label-highlight={isRoedermark}>{r.kommune.replace(' am Main', '')}</span>
+					<Popover direction="up" maxWidth="24rem" hover={true}>
+						{#snippet trigger()}
+							<span class="mix-track">
+								{#each mixSegmente as s (s.key)}
+									{@const wert = r[`${s.key}_pro_kopf`]}
+									<span class="mix-seg" style="width: {(wert / maxSteuermixProKopf) * 100}%; background: {s.color}"></span>
+								{/each}
+							</span>
+						{/snippet}
+						<div class="mix-pop">
+							<div class="mix-pop-head">
+								<strong>{r.kommune}</strong>
+								<span>{r.einwohner.toLocaleString('de-DE')} Einwohner · Plan {r.jahr}</span>
+							</div>
+							<table class="mix-pop-table">
+								<thead>
+									<tr><th></th><th>je Einw.</th><th>gesamt</th></tr>
+								</thead>
+								<tbody>
+									{#each mixSegmente as s (s.key)}
+										<tr>
+											<td><span class="mix-swatch" style="background: {s.color}"></span><span class="mix-pop-name">{s.label}{#if s.key === 'grundsteuer' && grstHebesatz[r.kommune] != null} <span class="mix-pop-hs">{fmtHS(grstHebesatz[r.kommune])}&thinsp;%</span>{/if}</span></td>
+											<td>{fmtEur(r[`${s.key}_pro_kopf`])}</td>
+											<td>{fmtEurMio(r[s.key])}</td>
+										</tr>
+									{/each}
+								</tbody>
+								<tfoot>
+									<tr><td>Gesamt</td><td>{fmtEur(r.summe_pro_kopf)}</td><td>{fmtEurMio(r.summe)}</td></tr>
+								</tfoot>
+							</table>
+						</div>
+					</Popover>
+					<span class="mix-total" class:mix-total-highlight={isRoedermark}>{fmtEur(r.summe_pro_kopf)}</span>
+				</div>
+			{/each}
+			{#each steuermixFehlend as f (f.kommune)}
+				<div class="mix-row">
+					<span class="mix-label">{f.kommune.replace(' am Main', '')}</span>
+					<div class="mix-track mix-track-leer" title={f.grund}>Haushaltsplan 2026 noch nicht veröffentlicht</div>
+					<span class="mix-total mix-total-leer">–</span>
+				</div>
+			{/each}
+		</div>
+	</div>
+	<p class="chart-note">
+		Steuerträge je Einwohner, Planwerte 2026 aus den jeweiligen Haushaltsplänen (Konten
+		5500–5559).
 	</p>
 </section>
 
@@ -336,4 +453,37 @@
 	/* Quellenlist */
 	.src-list { display: flex; flex-direction: column; gap: 0.35rem; font-size: 0.8125rem; color: var(--gray-600); line-height: 1.5; padding: 0; }
 	.src-list a { color: var(--brand-600); text-decoration: underline; text-underline-offset: 2px; }
+
+	/* Steuer-Mix */
+	.mix-card { background: #fff; border-radius: 0.75rem; box-shadow: var(--shadow-sm); outline: 1px solid var(--gray-100); outline-offset: -1px; padding: 1rem 1.25rem; }
+	.mix-desc { font-size: 0.9rem; color: var(--gray-600); line-height: 1.5; margin-bottom: 1rem; }
+	.mix-legend { display: flex; flex-wrap: wrap; gap: 0.375rem 1.25rem; margin-bottom: 0.875rem; font-size: 0.75rem; color: var(--gray-600); }
+	.mix-legend-item { display: inline-flex; align-items: center; gap: 0.375rem; background: none; border: none; margin: 0; padding: 0.1rem 0.3rem; font: inherit; color: inherit; cursor: pointer; border-radius: 0.25rem; line-height: 1.2; }
+	.mix-legend-item:hover { background: var(--gray-100); }
+	.mix-legend-active { background: var(--gray-100); font-weight: 700; color: var(--gray-800); }
+	.mix-swatch { width: 0.75rem; height: 0.75rem; border-radius: 0.1875rem; flex-shrink: 0; }
+	.mix-row :global(.popover-trigger) { flex: 1 1 auto; min-width: 0; display: flex; cursor: pointer; }
+	.mix-pop { font-size: 0.75rem; color: var(--gray-700); }
+	.mix-pop-head { display: flex; flex-direction: column; gap: 0.05rem; margin-bottom: 0.5rem; }
+	.mix-pop-head strong { color: var(--gray-900); font-size: 0.85rem; }
+	.mix-pop-head span { color: var(--gray-500); font-size: 0.7rem; }
+	.mix-pop-table { width: 100%; border-collapse: collapse; }
+	.mix-pop-table th { font-size: 0.65rem; font-weight: 600; color: var(--gray-400); text-align: right; padding: 0 0 0.15rem 0.5rem; }
+	.mix-pop-table th:first-child { text-align: left; }
+	.mix-pop-table td { padding: 0.12rem 0; }
+	.mix-pop-table td:first-child { display: flex; align-items: center; gap: 0.35rem; padding-right: 0.75rem; }
+	.mix-pop-table td:not(:first-child) { text-align: right; font-variant-numeric: tabular-nums; padding-left: 0.5rem; white-space: nowrap; }
+	.mix-pop-name { min-width: 0; }
+	.mix-pop-hs { color: var(--gray-400); font-weight: 400; white-space: nowrap; }
+	.mix-chart { display: flex; flex-direction: column; gap: 2px; }
+	.mix-row { display: flex; align-items: center; gap: 0.5rem; }
+	.mix-label { flex: 0 0 6.5rem; min-width: 0; font-size: 0.75rem; color: var(--gray-500); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+	@media (min-width: 640px) { .mix-label { flex-basis: 8rem; font-size: 0.8125rem; } }
+	.mix-label-highlight { color: var(--brand-700, #1d4ed8); font-weight: 600; }
+	.mix-track { position: relative; flex: 1; height: 24px; min-width: 0; display: flex; gap: 2px; border-radius: 4px; overflow: hidden; }
+	.mix-seg { height: 100%; flex-shrink: 0; }
+	.mix-track-leer { border: 1px dashed var(--gray-200); overflow: hidden; align-items: center; padding: 0 0.5rem; font-size: 0.6875rem; font-style: italic; color: var(--gray-400); white-space: nowrap; text-overflow: ellipsis; display: block; line-height: 22px; }
+	.mix-total { flex: 0 0 4.5rem; text-align: right; font-size: 0.8125rem; color: var(--gray-600); white-space: nowrap; font-variant-numeric: tabular-nums; }
+	.mix-total-highlight { color: var(--brand-700, #1d4ed8); font-weight: 700; }
+	.mix-total-leer { color: var(--gray-300); }
 </style>

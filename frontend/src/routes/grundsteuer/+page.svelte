@@ -33,21 +33,14 @@
 	let basisRoedermark = $derived(basisRows.find((r) => r.kommune === 'Rödermark'));
 	let basisSpitze = $derived(basisRows[0]);
 
-	// Steuermix: Segmente in fester Reihenfolge und mit festen Farben
-	// (identisch zur Steuern-Seite: EkSt grün, GewSt amber, GrSt blau).
-	const MIX_SEGMENTE = [
-		{ key: 'einkommensteuer', label: 'Einkommensteuer-Anteil', color: '#10b981' },
-		{ key: 'grundsteuer', label: 'Grundsteuer A+B', color: '#3b82f6' },
-		{ key: 'gewerbesteuer', label: 'Gewerbesteuer', color: '#f59e0b' },
-		{ key: 'sonstige', label: 'Sonstige (u. a. Umsatzsteuer-Anteil)', color: '#d1d5db' }
-	] as const;
-	let mixRoedermark = $derived(data.steuermix.find((r) => r.kommune === 'Rödermark'));
-	let mixSpitze = $derived(data.steuermix[0]);
-	let gewFaktor = $derived(
-		mixRoedermark && mixSpitze && mixRoedermark.gewerbesteuer_pro_kopf > 0
-			? Math.round(mixSpitze.gewerbesteuer_pro_kopf / mixRoedermark.gewerbesteuer_pro_kopf)
-			: 0
-	);
+	// Faktor, um Rödermarks Gewerbesteuer/Kopf auf das Kreis-Maximum zu heben (für #was-tun).
+	let gewFaktor = $derived.by(() => {
+		const roe = data.steuermix.find((r) => r.kommune === 'Rödermark');
+		const top = data.steuermix[0];
+		return roe && top && roe.gewerbesteuer_pro_kopf > 0
+			? Math.round(top.gewerbesteuer_pro_kopf / roe.gewerbesteuer_pro_kopf)
+			: 0;
+	});
 
 	// HSK-Abbaupfad: Restdefizit je Jahr nach allen Maßnahmen (positiv = Minus).
 	let hskRest = $derived(new Map(data.hsk.abbaupfad.map((r) => [r.jahr, r.rest])));
@@ -123,16 +116,14 @@
 <p class="page-intro">
 	Sie haben den neuen Grundsteuerbescheid geöffnet und sind sauer? Verständlich. Es geht um
 	echtes Geld, jedes Jahr. Diese Seite beantwortet die Fragen, die dazu gerade überall in
-	Rödermark diskutiert werden. Jede Antwort beginnt mit dem Ergebnis. Belege und Details folgen.
-	Und jede Frage lässt sich einzeln verlinken.
+	Rödermark diskutiert werden. Sie ist das Ergebnis von umfangreichen Recherchen, da ich mir all diese Fragen auch selbst gestellt habe.
 </p>
 
 <!-- F1: Bundesvergleich -->
 <section class="section">
 	<AnchorHeading level={3} id="bundesvergleich">Zahlen wir wirklich 2,5-mal so viel wie der Rest von Deutschland?</AnchorHeading>
 	<p class="answer-lead">
-		Nein. Die Rechnung klingt logisch, ist aber falsch. Und trotzdem steckt ein wahrer Kern
-		drin.
+		Nein. Die Rechnung klingt logisch, ist aber falsch.
 	</p>
 	<blockquote class="claim">
 		Der Durchschnittshebesatz in Deutschland liegt bei rund 500&nbsp;%. Rödermark verlangt
@@ -161,6 +152,15 @@
 		im Jahr. Fast dreimal so viel wie in {musterhausGuenstigste?.kommune}
 		({fmtEur(musterhausGuenstigste?.grundsteuer_eur ?? 0)}).
 	</p>
+	<p class="explainer-prose">
+		Fast dreimal so viel wie im günstigsten Nachbarort, das wirkt erst mal ungerecht. Aber der
+		Hebesatz allein verrät noch nicht, ob eine Stadt schlecht wirtschaftet. Warum Rödermarks Satz
+		so hoch ist, und dass es <strong>nicht</strong> an Verschwendung liegt, klären die nächsten
+		Fragen: <a href="#umlagen">wohin das Geld fließt</a>,
+		<a href="#stadtkasse">warum die Stadtkasse so knapp ist</a> und
+		<a href="#eppertshausen">was der günstige Nachbar wirklich anders macht</a>.
+	</p>
+	<br />
 	<p class="section-desc">
 		Gerechnet für ein Musterhaus ({data.musterhausSpec.grundflaeche}&nbsp;m² Grundstück,
 		{data.musterhausSpec.wohnflaeche}&nbsp;m² Wohnfläche, mittlere Lage, Messbetrag nach
@@ -212,8 +212,8 @@
 	<p class="explainer-prose">
 		Der Hintergrund: Jede Stadt muss an ihren Landkreis zahlen. <strong>Kreisumlage</strong>
 		(für Jugendamt und Soziales) und <strong>Schulumlage</strong> (für die Schulgebäude). Keine
-		Verhandlung, keine Wahl: Der Kreis setzt fest, die Stadt überweist. Warum die Rechnung so hoch
-		ist? Über die Hälfte des Kreishaushalts sind gesetzlich vorgeschriebene Sozialleistungen. Die
+		Verhandlung, keine Wahl: Der Kreis setzt fest, die Stadt überweist. Warum ist die Rechnung so hoch?
+		Über die Hälfte des Kreishaushalts sind gesetzlich vorgeschriebene Sozialleistungen. Die
 		größten Brocken: Eingliederungshilfe für Menschen mit Behinderung, Unterkunftskosten und
 		Kinder- und Jugendhilfe. Zusammen 2026 rund 516&nbsp;Mio.&nbsp;€, doppelt so viel wie 2019.
 		Diese Aufgaben schreiben Bund und Land vor, finanzieren sie aber nur zum Teil. Rund
@@ -254,10 +254,10 @@
 		Schulumlage. Groß-Gerau hob die Umlagen sogar um 7,5&nbsp;Prozentpunkte an; die Bürgermeister
 		protestierten mit einem parteiübergreifenden Brandbrief unter dem Motto „Es reicht!“. Am Ende
 		bleibt den Städten überall dieselbe Wahl: freiwillige Leistungen kürzen oder die Grundsteuer
-		anheben. Rödermark ist da kein Ausreißer, sondern Teil einer Welle.
+		anheben. Oft sogar Beides. Rödermark ist da kein Ausreißer, sondern Teil einer Welle.
 	</p>
 	<p class="explainer-prose">
-		Und der Rest? Ist größtenteils verplant, bevor irgendwer Wünsche äußern darf. Denn als
+		Und der Rest vom Geld? Ist größtenteils verplant, bevor irgendwer Wünsche äußern darf. Denn als
 		Nächstes kommen die <strong>Pflichtaufgaben</strong>: Kita-Plätze (Rechtsanspruch!),
 		Feuerwehr, Straßen, Verwaltung. Alles gesetzlich vorgeschrieben. Was die Stadt sich
 		freiwillig leistet, etwa Vereinsförderung, Kulturbüro oder Badehaus, ist dagegen nur ein
@@ -271,108 +271,35 @@
 <section class="section">
 	<AnchorHeading level={3} id="stadtkasse">Warum braucht Rödermark einen so hohen Hebesatz?</AnchorHeading>
 	<p class="answer-lead">
-		Zwei Dinge treiben die Höhe. Erstens steckt Rödermark im Defizit und muss es – anders als
-		manche Nachbarn – mit echten Einnahmen schließen, nicht mit neuen Schulden. Zweitens hat die
-		Stadt die kleinste Steuerbasis im Kreis: Jeder Hebesatz-Punkt bringt hier am wenigsten.
+		Im Grunde ist der Hebesatz nur eins: die Lücke zwischen dem, was die Stadt ausgeben muss, und
+		dem, was sonst reinkommt – geteilt durch das, was es hier überhaupt zu besteuern gibt.
+		Rödermarks Lücke ist groß, seine Basis klein.
 	</p>
 	<p class="explainer-prose">
-		Woher kommt das Geld einer Stadt? In Rödermark vor allem vom
-		<strong>Einkommensteuer-Anteil</strong>: rund
-		{fmtEurMio(data.steuerquellen.einkommensteuer)} ({data.steuerquellen.jahr}). Das ist ein
-		fester Anteil an der Einkommensteuer der Einwohner. Jede Wohnstadt bekommt ihn, keine kann
-		ihn beeinflussen. Dahinter: Gewerbesteuer ({fmtEurMio(data.steuerquellen.gewerbesteuer)})
-		und Grundsteuer&nbsp;B ({fmtEurMio(data.umlagen.grundsteuerBPlan)}).
+		Den größten Ausgabenposten setzt nicht mal Rödermark
+		selbst: Die <a href="#umlagen">Kreisumlage</a>. Dazu die Pflichtaufgaben: Kitas
+		(Rechtsanspruch), Feuerwehr, Straßen, Verwaltung. Dem gegenüber stehen die eigenen Einnahmen,
+		vor allem der Einkommensteuer-Anteil (rund {fmtEurMio(data.steuerquellen.einkommensteuer)}) und
+		die Gewerbesteuer ({fmtEurMio(data.steuerquellen.gewerbesteuer)}). Sie reichen nicht aus. Das, was
+		übrig bleibt, müsste die Grundsteuer bringen.
 	</p>
 	<p class="explainer-prose">
-		Wer den Löwenanteil trägt, hängt vor allem an der Gewerbesteuer. Der Steuer-Mix der Kommunen
-		zeigt es: Die grünen Segmente (Einkommensteuer) sind überall ähnlich lang.
-		<strong>Der Unterschied zwischen den Kommunen ist fast nur das gelbe
-		Gewerbesteuer-Segment:</strong>
-	</p>
-	<div class="card card-padded">
-		<div class="mix-legend">
-			{#each MIX_SEGMENTE as s (s.key)}
-				<span class="mix-legend-item"><span class="mix-swatch" style="background: {s.color}"></span>{s.label}</span>
-			{/each}
-		</div>
-		<div class="mix-chart">
-			{#each data.steuermix as r (r.kommune)}
-				{@const isRoedermark = r.kommune === 'Rödermark'}
-				<div class="mix-row">
-					<span class="mix-label" class:mix-label-highlight={isRoedermark}>{r.kommune.replace(' am Main', '')}</span>
-					<div class="mix-track">
-						{#each MIX_SEGMENTE as s (s.key)}
-							{@const wert = r[`${s.key}_pro_kopf`]}
-							<div
-								class="mix-seg"
-								style="width: {(wert / data.maxSteuermixProKopf) * 100}%; background: {s.color}"
-								title="{r.kommune} – {s.label}: {fmtEur(wert)} je Einwohner ({fmtEurMio(r[s.key])} gesamt, Plan {r.jahr})"
-							></div>
-						{/each}
-					</div>
-					<span class="mix-total" class:mix-total-highlight={isRoedermark}>{fmtEur(r.summe_pro_kopf)}</span>
-				</div>
-			{/each}
-			{#each data.steuermixFehlend as f (f.kommune)}
-				<div class="mix-row">
-					<span class="mix-label">{f.kommune.replace(' am Main', '')}</span>
-					<div class="mix-track mix-track-leer" title={f.grund}>Haushaltsplan 2026 noch nicht veröffentlicht</div>
-					<span class="mix-total mix-total-leer">–</span>
-				</div>
-			{/each}
-		</div>
-	</div>
-	<p class="chart-note">
-		Steuererträge je Einwohner, Planwerte 2026 aus den jeweiligen Haushaltsplänen (Konten
-		5500–5559). Details je Segment per Maus.
+		<strong>Allerdings: die Lücke muss nicht <em>sofort</em> über die Grundsteuer gedeckt werden.</strong>
+		Andere schieben sie vor sich her: Neu-Isenburg zehrt von Rücklagen, Hainburg nimmt neue Kredite auf.
+		Rödermark kann das nicht mehr: Die Puffer sind
+		weitgehend aufgebraucht (Ende 2025 nur noch rund 11&nbsp;Mio.&nbsp;€ liquide Mittel, bei fast
+		14&nbsp;Mio.&nbsp;€ Defizit im Jahr). Wer so klamm ist, muss ein
+		<strong>Haushaltssicherungskonzept</strong> vorlegen, und dann verlangt die Kommunalaufsicht
+		verlässliche Einnahmen statt neuer Schulden. Der einzige große Hebel, den die Stadt dann noch selbst in
+		der Hand hat: die Grundsteuer.
 	</p>
 	<p class="explainer-prose">
-		In {mixSpitze?.kommune} zahlen die Firmen {fmtEur(mixSpitze?.gewerbesteuer_pro_kopf ?? 0)}
-		Gewerbesteuer <em>pro Einwohner</em>. Das ist rund das {gewFaktor}-Fache von Rödermark
-		({fmtEur(mixRoedermark?.gewerbesteuer_pro_kopf ?? 0)}). Zahlen die Bürger dort weniger, weil
-		ihre Stadt besser wirtschaftet? Nein. <strong>Es zahlt einfach jemand anderes für sie
-		mit</strong>: die Firmen rund um Flughafen und Autobahnkreuz. Rödermark hat die nicht, also
-		bleibt die Last bei den Einwohnern.
-	</p>
-	<p class="explainer-prose">
-		Aber Vorsicht: <strong>Wie hoch der Hebesatz ist, entscheidet das Gewerbe nicht.</strong> Im
-		Defizit steckt im Kreis fast jede Kommune, die Umlage-Zange trifft alle. Viel Gewerbe schützt
-		nicht: Die Kreisumlage bemisst sich an der Steuerkraft, ein großer Teil des Vorsprungs fließt
-		gleich wieder ab, weshalb selbst das gewerbestarke Neu-Isenburg 2026 rund 29&nbsp;Mio.&nbsp;€
-		Minus plant. Und wenig Gewerbe zwingt nicht automatisch zu hohen Sätzen: Hainburg nimmt sogar
-		<em>weniger</em> Gewerbesteuer ein als Rödermark, hält die Grundsteuer aber bei 615&nbsp;% –
-		weil es sein Defizit lieber mit neuen Krediten stopft.
-	</p>
-	<p class="explainer-prose">
-		Und genau hier liegt Rödermarks Unterschied: Andere können ihr Minus noch vor sich
-		herschieben. Neu-Isenburg und der Kreis zehren von <strong>Rücklagen</strong>, Hainburg nimmt
-		neue <strong>Kredite</strong> auf. Rödermark hat diese Puffer weitgehend aufgebraucht: Ende
-		2025 nur noch rund 11&nbsp;Mio.&nbsp;€ liquide Mittel, bei fast 14&nbsp;Mio.&nbsp;€ Defizit im
-		Jahr. Wer so klamm ist, muss ein <strong>Haushaltssicherungskonzept</strong> vorlegen, und
-		dann verlangt die Kommunalaufsicht verlässliche Einnahmen statt neuer Schulden. Bleibt der
-		einzige Hebel, den die Stadt selbst in der Hand hat: die Grundsteuer.
-	</p>
-	<p class="explainer-prose">
-		Heißt das, Rödermark hat bei der Gewerbeansiedlung versagt? So einfach ist es nicht
-		(<a href="#gewerbe-ansiedeln">nächste Frage</a>). Die Wohnstadt ist kein Unfall.
-		Jahrzehntelang wollten die meisten hier genau das: Wohnen statt Gewerbegebiete. Und lange ging
-		die Rechnung auf. Erst als die Kreisumlage und die Pflichtausgaben in den letzten Jahren
-		stark anstiegen, wurde die dünne Gewerbebasis zum Problem, das heute auf dem Grundsteuerbescheid
-		landet. Und Gewerbesteuer ist auch kein sicheres Geld:
-		Egelsbach plant für 2026 ein Drittel weniger als im Vorjahr (8,5 statt
-		12,5&nbsp;Mio.&nbsp;€). Der Einkommensteuer-Anteil einer Wohnstadt fließt dagegen
-		verlässlich. <strong>Stabil, aber knapp. Das ist Rödermarks Deal.</strong>
-	</p>
-	<p class="explainer-prose">
-		<strong>Der zweite Grund: Hier gibt es wenig zu besteuern.</strong> Die Grundsteuer einer Stadt
-		verteilt sich auf alle Grundstücke im Ort. Jeder Quadratmeter Boden und Wohnfläche zählt
-		mit, auch Fabrikhallen und Bürogebäude. Wo viel zusammenkommt, reicht ein niedriger
-		Hebesatz für dieselbe Summe. In Rödermark kommt <strong>pro Einwohner am wenigsten zusammen
-		im ganzen Kreis</strong>. Spitzenreiter {basisSpitze?.kommune} hat gut 40&nbsp;% mehr zu
-		besteuern. Für dasselbe Geld je Einwohner braucht Rödermark also einen gut 40&nbsp;%
-		höheren Hebesatz. Vor jedem Defizit, vor jeder Sparfrage, einfach wegen der Fläche. Wenig
-		Gewerbe heißt eben auch: kaum Hallen und Büros, die still mitzahlen. Zusammen mit dem
-		erzwungenen Defizitabbau ergibt das die Spitzensätze der ruhigen Wohnstadt (mehr dazu:
+		<strong>Allerdings gibt es hier wenig zu besteuern.</strong> Die Grundsteuer verteilt sich auf
+		alle Grundstücke im Ort – Boden, Wohnfläche, auch Hallen und Büros. Wo viel zusammenkommt,
+		reicht ein niedriger Hebesatz für dieselbe Summe. In Rödermark kommt <strong>pro Einwohner am
+		wenigsten zusammen im ganzen Kreis</strong>. Spitzenreiter {basisSpitze?.kommune} hat gut
+		40&nbsp;% mehr zu besteuern – für dasselbe Geld je Einwohner braucht Rödermark also einen gut
+		40&nbsp;% höheren Satz, rein strukturell (mehr dazu:
 		<a href="#vergleichbarkeit">Kann man Hebesätze überhaupt vergleichen?</a>).
 	</p>
 	<p class="chart-note">
@@ -396,9 +323,12 @@
 		<strong>Egelsbach</strong> liegt im begehrten Westkorridor, direkt neben Langen und Dreieich.
 		Gewerbesteuer pro Kopf? Kaum mehr als Rödermark. Das kleine Mainhausen am östlichen Kreisrand
 		holt dagegen überdurchschnittlich viel, weil dort ein paar größere Betriebe sitzen. Ein
-		Bürgermeister kann Firmen nicht herbeibeschließen. Ob Rödermark vor Jahrzehnten mehr hätte
-		tun sollen? Legitime Debatte. Aber der heutige Hebesatz ist die Folge gewachsener Struktur.
-		Nicht von Verschwendung im Rathaus.
+		Bürgermeister kann Firmen nicht herbeibeschließen. Und Rödermark steht gewerblich gar nicht
+		schlecht da: Bei der Gewerbesteuer je Einwohner liegt es im Kreis-Mittelfeld, nicht am Ende.
+		Das Problem ist also nicht „keine Firmen", sondern die
+		<a href="#stadtkasse">große Lücke bei kleiner Steuerbasis</a>. Ob Rödermark vor Jahrzehnten
+		mehr hätte tun sollen? Legitime Debatte. Aber der heutige Hebesatz ist die Folge gewachsener
+		Struktur. Nicht von Verschwendung im Rathaus.
 	</p>
 	<p class="explainer-prose">
 		Und selbst wenn Firmen kommen: Es zählt, <strong>was</strong> kommt. Beispiel Rechenzentren,
@@ -417,8 +347,8 @@
 <section class="section">
 	<AnchorHeading level={3} id="gewerbesteuer-erhoehen">Warum erhöht die Stadt nicht einfach die Gewerbesteuer?</AnchorHeading>
 	<p class="answer-lead">
-		Hat sie: 2025 ging der Satz von 380 auf 400&nbsp;%. Das ist Kreisspitze, gleichauf mit Heusenstamm
-		und Rodgau. Viel mehr geht kaum. Und es würde auch kaum etwas bringen.
+		Hat sie: 2025 ging der Satz von 380 auf 400&nbsp;%. Das ist nahezu Kreisspitze, gleichauf mit Heusenstamm
+		und Rodgau. Viel mehr geht kaum- nur Dietzenbach liegt mit 405&nbsp;% darüber. Und es würde auch kaum etwas bringen.
 	</p>
 	<p class="explainer-prose">
 		Das Problem ist die Mathematik: Es gibt zu wenig Gewerbe, auf das der Satz wirkt. Zehn Punkte mehr
@@ -496,6 +426,15 @@
 		{(Math.round(data.avgHebesatz2026 / 10) * 10).toLocaleString('de-DE')}&nbsp;%. Ein
 		Rödermark-Verschwendungsproblem sähe anders aus. Dazu kommt: Der Großteil der Ausgaben ist
 		gesetzliche Pflicht. Frei entscheiden kann die Stadt nur über einen kleinen Rest.
+	</p>
+	<p class="explainer-prose">
+		<strong>Und das Rathaus selbst?</strong> Der zentrale Verwaltungsapparat kostet die Stadt
+		rund 4,4&nbsp;Mio.&nbsp;€ im Jahr. Das sind gut 4&nbsp;% von allem, was die Stadt ausgibt.
+		Davon wiederum sind rund 60&nbsp;% Gehälter: Standesamt, Kämmerei, Bürgerbüro,
+		Personalstelle. Ohne diese Leute ist die Stadt nicht handlungsfähig, kein Pass, keine
+		Baugenehmigung, keine bezahlte Rechnung, keine Ansprechpartner für die Bürger. Es ist Arbeit,
+		die jemand machen muss, zu Löhnen, die der Tarifvertrag vorgibt. Und selbst wer diesen ganzen
+		Apparat abschaffte, hätte damit nicht einmal ein Drittel des Defizits gedeckt.
 	</p>
 	<p class="explainer-prose">
 		Genau dieser Rest ist der eigentliche Spielraum: freiwillige Leistungen wie Vereinsförderung,
@@ -918,7 +857,8 @@
 		<li>Gewerbesteuereinnahmen und Einwohnerzahlen: IHK Offenbach Gemeindesteckbriefe 2025 (Ist 2024).</li>
 		<li>Steuerquellen-Mix 2026 (Einkommensteuer-/Umsatzsteuer-Anteil, Gewerbe- und Grundsteuer, Konten 5500–5559): jeweilige Haushaltspläne 2026 (Finanzstatusbericht-Anlagen bzw. Teilergebnishaushalte), mit Seitenangabe je Kommune in der <a href="/data/steuermix_2026.json" target="_blank" rel="noopener noreferrer">Datendatei</a>; gegen die ausgewiesenen Summenzeilen validiert. Dietzenbach weist die Gewerbesteuer in der Sammelzeile „Sonst. Kommunalsteuern" aus (Ist 2024 deckungsgleich mit dem IHK-Gewerbesteuerwert).</li>
 		<li>Kreis- und Schulumlage, Steuer-Planzahlen Rödermark (Grundsteuer B, Gewerbesteuer, Einkommensteuer-Anteil, Ansätze 2025/2026) und Defizit: Haushaltsplan Rödermark 2026 (Entwurf) und Haushaltssicherungskonzept 2026; Zuschussbedarf Kultur, Sport und Vereine (rund 5,2&nbsp;Mio.&nbsp;€: Teilhaushalt 5, Jahresergebnis nach internen Leistungsbeziehungen, Haushaltsplan 2026 Entwurf, S.&nbsp;393); Gewerbesteuer-Ist 2023/2024: IHK Offenbach Gemeindesteckbrief 2025.</li>
-		<li>Kreishaushalt Offenbach 2026 (Transferleistungen 516,5&nbsp;Mio.&nbsp;€, kommunaler Zuschussbedarf rund 230&nbsp;Mio.&nbsp;€, Defizit 24&nbsp;Mio.&nbsp;€): <a href="https://of-news.de/kreis-offenbach/haushalt-2026-kreis-offenbach-haelt-umlagen-stabil-defizit-wird-aus-ruecklagen-gedeckt-165207/" target="_blank" rel="noopener noreferrer">of-news.de, 02.12.2025</a>; <a href="https://www.op-online.de/region/dietzenbach/trotz-24-millionen-euro-defizit-bleiben-die-umlagen-stabil-94067704.html" target="_blank" rel="noopener noreferrer">op-online.de, 04.12.2025</a>.</li>
+		<li>Kosten der zentralen Verwaltung (Teilhaushalt „Zentrale Dienste“: rund 4,4&nbsp;Mio.&nbsp;€ ordentliche Aufwendungen, davon rund 60&nbsp;% Personalaufwand; gut 4&nbsp;% der ordentlichen Gesamtaufwendungen von rund 105&nbsp;Mio.&nbsp;€): Haushaltsplan Rödermark 2026 (Entwurf), Teilergebnishaushalt „Zentrale Dienste“ S.&nbsp;163 bzw. Gesamt-Ergebnishaushalt S.&nbsp;155.</li>
+			<li>Kreishaushalt Offenbach 2026 (Transferleistungen 516,5&nbsp;Mio.&nbsp;€, kommunaler Zuschussbedarf rund 230&nbsp;Mio.&nbsp;€, Defizit 24&nbsp;Mio.&nbsp;€): <a href="https://of-news.de/kreis-offenbach/haushalt-2026-kreis-offenbach-haelt-umlagen-stabil-defizit-wird-aus-ruecklagen-gedeckt-165207/" target="_blank" rel="noopener noreferrer">of-news.de, 02.12.2025</a>; <a href="https://www.op-online.de/region/dietzenbach/trotz-24-millionen-euro-defizit-bleiben-die-umlagen-stabil-94067704.html" target="_blank" rel="noopener noreferrer">op-online.de, 04.12.2025</a>.</li>
 		<li>Regionales Muster der Nachbarkreise (Darmstadt-Dieburg: ~38&nbsp;Mio.&nbsp;€ Defizit trotz 33&nbsp;Mio.&nbsp;€ Einsparungen, Schulumlage erhöht; Groß-Gerau: Umlagen +7,5&nbsp;Prozentpunkte, Bürgermeister-Brandbrief „Es reicht!“): <a href="https://www.fr.de/rhein-main/darmstadt/haushalte-der-kreise-darmstadt-dieburg-und-gross-gerau-mit-zaehneknirschen-beschlossen-93661280.html" target="_blank" rel="noopener noreferrer">Frankfurter Rundschau, 01.04.2025</a>.</li>
 		<li>Neu-Isenburg (Defizit 2026 rund 29&nbsp;Mio.&nbsp;€, Anhebung von Grund- und Gewerbesteuer ab 2026): <a href="https://www.op-online.de/region/neu-isenburg/trotz-29-millionen-defizit-neu-isenburg-verabschiedet-den-haushalt-2026-94079820.html" target="_blank" rel="noopener noreferrer">op-online.de, 2025</a>; <a href="https://of-news.de/neu-isenburg/neu-isenburg-erhoeht-grund-und-gewerbesteuerhebesaetze-ab-2026-165549/" target="_blank" rel="noopener noreferrer">of-news.de, 2025</a>.</li>
 		<li>Hainburg (Defizit rund 2,05&nbsp;Mio.&nbsp;€ (2025) bzw. 2,5&nbsp;Mio.&nbsp;€ (2026), gedeckt über neue Kredite; Grundsteuer B unverändert bei 615&nbsp;%): <a href="https://www.op-online.de/region/hainburg/hainburger-haushalt-defizit-von-ueber-zwei-millionen-euro-droht-94055019.html" target="_blank" rel="noopener noreferrer">op-online.de, 26.11.2025</a>.</li>
@@ -1091,43 +1031,6 @@
 	.emph-value-hover { opacity: 0; transition: opacity 0.12s ease; }
 	.emph-track:hover .emph-value-hover { opacity: 1; }
 	.status-geplant { font-weight: 600; color: var(--amber-600, #d97706); }
-
-	/* Steuermix: gestapelte Balken (Segmente mit 2px Weißraum getrennt),
-	   Gesamtwert absolut positioniert wie beim Emphasis-Chart. */
-	.mix-legend {
-		display: flex; flex-wrap: wrap; gap: 0.375rem 1.25rem;
-		margin-bottom: 0.875rem; font-size: 0.75rem; color: var(--gray-600);
-	}
-	.mix-legend-item { display: inline-flex; align-items: center; gap: 0.375rem; }
-	.mix-swatch { width: 0.75rem; height: 0.75rem; border-radius: 0.1875rem; flex-shrink: 0; }
-	.mix-chart { display: flex; flex-direction: column; gap: 2px; }
-	.mix-row { display: flex; align-items: center; gap: 0.5rem; }
-	.mix-label {
-		flex: 0 0 6.5rem; min-width: 0;
-		font-size: 0.75rem; color: var(--gray-500);
-		overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
-	}
-	@media (min-width: 640px) { .mix-label { flex-basis: 8rem; font-size: 0.8125rem; } }
-	.mix-label-highlight { color: var(--brand-700, #1d4ed8); font-weight: 600; }
-	.mix-track {
-		position: relative; flex: 1; height: 24px; min-width: 0;
-		display: flex; gap: 2px;
-		border-radius: 4px; overflow: hidden;
-	}
-	.mix-seg { height: 100%; flex-shrink: 0; }
-	.mix-track-leer {
-		border: 1px dashed var(--gray-200); overflow: hidden;
-		align-items: center; padding: 0 0.5rem;
-		font-size: 0.6875rem; font-style: italic; color: var(--gray-400);
-		white-space: nowrap; text-overflow: ellipsis; display: block; line-height: 22px;
-	}
-	.mix-total {
-		flex: 0 0 4.5rem; text-align: right;
-		font-size: 0.8125rem; color: var(--gray-600);
-		white-space: nowrap; font-variant-numeric: tabular-nums;
-	}
-	.mix-total-highlight { color: var(--brand-700, #1d4ed8); font-weight: 700; }
-	.mix-total-leer { color: var(--gray-300); }
 
 	/* Link boxes (HSK, Rechner) */
 	.link-box {

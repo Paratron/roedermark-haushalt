@@ -138,11 +138,11 @@
     "plan_jahr": 2026,
     "gesamteinnahmen_eur": null,
     "gesamtausgaben_eur": null,
-    "jahresergebnis_eur": 2272907,
+    "jahresergebnis_eur": -2272907,
     "url": "https://www.hainburg.de/rathaus-politik/politik/haushalt-und-finanzen/hh-plan-2025-2026-nach-anderung.pdf?cid=3ie",
     "quelle": "Doppelhaushalt Hainburg 2025/2026, Ergebnishaushalt Zeile 30 (Jahresergebnis 2026), Seite 2",
-    "anmerkung": "Doppelhaushalt 2025/2026 – nur Jahresergebnis verfügbar, keine Einzelsummen in Haushaltssatzung",
-    "jahresergebnis_pro_kopf_eur": 153.57
+    "anmerkung": "Doppelhaushalt 2025/2026 (Fassung nach Änderungssatzung) – Jahresfehlbetrag 2026; nur Jahresergebnis verfügbar, keine Einzelsummen in Haushaltssatzung. Presseberichte nennen für die geänderte Planung Defizite von rund 2,05 Mio. € (2025) und 2,5 Mio. € (2026), gedeckt durch neue Kredite (op-online.de, 26.11.2025).",
+    "jahresergebnis_pro_kopf_eur": -153.57
   },
   {
     "kommune": "Dietzenbach",

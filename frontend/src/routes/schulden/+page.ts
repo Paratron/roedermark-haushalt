@@ -19,6 +19,34 @@ export interface SchuldenstatistikEntry {
 	source_page?: number;
 }
 
+export interface KassenkreditRahmenEntry {
+	year: number;
+	hoechstbetrag: number | null;
+	status: 'festgesetzt' | 'nicht_beansprucht' | 'scan_nicht_lesbar';
+	begriff: string;
+	document_id: string;
+	page: number;
+	ist_entwurf: boolean;
+}
+
+interface KassenkreditRahmenFile {
+	beschreibung: string;
+	einheit: string;
+	hinweis_2026_entwurf: string;
+	entries: KassenkreditRahmenEntry[];
+}
+
+/** Display-ready row for the §4 Kreditrahmen overview. */
+export interface KassenkreditRahmenRow {
+	year: number;
+	/** Formatted ceiling text, e.g. "37 Mio. €", "5 Mio. €", "0 € (nicht beansprucht)", "k. A. (Scan)". */
+	display: string;
+	status: KassenkreditRahmenEntry['status'];
+	begriff: string;
+	ist_entwurf: boolean;
+	source: SourceLink | null;
+}
+
 /**
  * Deduplicate line items: keep only the row from the most recent document
  * for each (nr, year, amount_type) combination.
@@ -59,13 +87,18 @@ function bestValueForYear(items: LineItem[], year: number): number {
 }
 
 export const load: PageLoad = async ({ fetch }) => {
-	const [allItems, summary, schuldenstatistikRaw, documents] = await Promise.all([
-		loadLineItems(fetch),
-		loadSummary(fetch),
-		fetch('/data/schuldenstatistik.json').then((r) => r.json()) as Promise<SchuldenstatistikEntry[]>,
-		loadDocuments(fetch)
-	]);
-
+	const [allItems, summary, schuldenstatistikRaw, kassenkreditRahmenRaw, documents] =
+		await Promise.all([
+			loadLineItems(fetch),
+			loadSummary(fetch),
+			fetch('/data/schuldenstatistik.json').then((r) => r.json()) as Promise<
+				SchuldenstatistikEntry[]
+			>,
+			fetch('/data/kassenkredit_rahmen.json').then((r) => r.json()) as Promise<
+				KassenkreditRahmenFile
+			>,
+			loadDocuments(fetch)
+		]);
 	const fhOverview = overviewItems(allItems).filter((i) => i.haushalt_type === 'finanzhaushalt');
 
 	// Deduplicate per year/type (use most recent document)
@@ -89,6 +122,78 @@ export const load: PageLoad = async ({ fetch }) => {
 	const zinsSeries = toSeries(zinsen160, 'Zinsen')
 		.map((p) => ({ ...p, amount: Math.abs(p.amount) }))
 		.sort((a, b) => a.year - b.year || a.amount_type.localeCompare(b.amount_type));
+
+	// ─── Kassen-/Liquiditätskredite (kurzfristige Liquiditätssicherung) ───
+	// Getrennt von den Investitionskrediten: Nr. 301 = Aufnahme von Kassenkrediten,
+	// Nr. 361 = Tilgung/Rückzahlung. Rödermark hat diese kurzfristigen Kredite
+	// 2017/2018 im Zuge des Hessenkasse-Beitritts abgebaut.
+	const kassenAufnahme = dedup(fhOverview.filter((i) => i.nr === '301'));
+	const kassenTilgung = dedup(fhOverview.filter((i) => i.nr === '361'));
+	const kassenkreditSeries = [
+		...toSeries(kassenAufnahme, 'Aufnahme'),
+		...toSeries(kassenTilgung, 'Tilgung / Rückzahlung')
+	].sort((a, b) => a.year - b.year || a.amount_type.localeCompare(b.amount_type));
+	const kassenkreditSourceLinks = sourceLinksFromItems(
+		[...kassenAufnahme, ...kassenTilgung],
+		documents
+	);
+	const hasKassenkredite = kassenkreditSeries.length > 0;
+
+	// ─── Hessenkasse-Eigenbeitrag (jährliche Rückzahlung an das Sondervermögen) ───
+	// Mit dem Beitritt zur Hessenkasse (2018) hat das Land Hessen die Kassenkredite
+	// der Stadt übernommen; im Gegenzug zahlt Rödermark einen festen jährlichen
+	// Eigenbeitrag zurück. Diese Position liegt in den Detail-/Strukturtabellen
+	// des Finanzhaushalts (nicht in der Übersicht), daher direkt aus allItems
+	// selektiert. Es gibt nur Plan-Werte.
+	const hessenkasseRaw = dedup(
+		allItems.filter((i) => i.bezeichnung === 'AZ an das Sondervermögen Hessenkasse' && i.amount !== 0)
+	);
+	const hessenkasseSeries = toSeries(hessenkasseRaw, 'Hessenkasse-Eigenbeitrag')
+		.map((p) => ({ ...p, amount: Math.abs(p.amount) }))
+		.sort((a, b) => a.year - b.year);
+	const hessenkasseSourceLinks = sourceLinksFromItems(hessenkasseRaw, documents);
+	// Jüngster ausgewiesener Eigenbeitrag (höchstes Jahr) als KPI.
+	const hessenkasseAktuell = hessenkasseSeries.length
+		? hessenkasseSeries.reduce((a, b) => (b.year >= a.year ? b : a)).amount
+		: 0;
+
+	// ─── Kassen-/Liquiditätskredit-Höchstbeträge gemäß § 4 der Haushaltssatzung ───
+	// Diese Werte sind KREDITRAHMEN (Ermächtigungen), nicht der tatsächliche Bestand.
+	// Sie stehen im Satzungstext (§ 4) jedes Haushaltsplans, nicht in den
+	// extrahierten Ergebnis-/Finanztabellen. Quelle: kassenkredit_rahmen.json.
+	const eur = new Intl.NumberFormat('de-DE');
+	const rahmenDisplay = (e: KassenkreditRahmenEntry): string => {
+		if (e.status === 'scan_nicht_lesbar') return 'k.\u00a0A. (Satzungsseite nur als Scan)';
+		if (e.status === 'nicht_beansprucht') return 'wird nicht beansprucht (0\u00a0\u20ac)';
+		const v = e.hoechstbetrag ?? 0;
+		const mio = v / 1_000_000;
+		const nice = Number.isInteger(mio) ? `${mio}\u00a0Mio.\u00a0\u20ac` : `${eur.format(v)}\u00a0\u20ac`;
+		return nice;
+	};
+	const kassenkreditRahmen: KassenkreditRahmenRow[] = kassenkreditRahmenRaw.entries
+		.slice()
+		.sort((a, b) => a.year - b.year)
+		.map((e) => {
+			const doc = documents.find((d) => d.document_id === e.document_id);
+			const source: SourceLink | null =
+				doc?.filename && e.status !== 'scan_nicht_lesbar'
+					? {
+							label: `${shortDocLabel(e.document_id)}, §\u00a04 / S.\u00a0${e.page}`,
+							href: `/pdfs/${doc.filename}#page=${e.page}`,
+							document_id: e.document_id,
+							page: e.page
+					  }
+					: null;
+			return {
+				year: e.year,
+				display: rahmenDisplay(e),
+				status: e.status,
+				begriff: e.begriff,
+				ist_entwurf: e.ist_entwurf,
+				source
+			};
+		});
+	const kassenkreditRahmenHinweis = kassenkreditRahmenRaw.beschreibung;
 
 	// TH14 financing items (Kredit/Tilgung/Darlehen projects)
 	const financing = financingItems(allItems);
@@ -183,6 +288,11 @@ export const load: PageLoad = async ({ fetch }) => {
 		financing,
 		schuldenPlanOnlyYears,
 		schuldenLastIstYear,
+		kassenkreditSeries,
+		hasKassenkredite,
+		hessenkasseSeries,
+		kassenkreditRahmen,
+		kassenkreditRahmenHinweis,
 		kpis: {
 			lastIstYear: lastIstYear,
 			kreditaufnahme: kreditIst,
@@ -190,12 +300,15 @@ export const load: PageLoad = async ({ fetch }) => {
 			nettoNeuverschuldung,
 			zinsen: zinsenIst,
 			schuldenstandAktuell,
-			proKopfAktuell
+			proKopfAktuell,
+			hessenkasseAktuell
 		},
 		sourceLinks: {
 			kreditTilgung: kreditTilgungSourceLinks,
 			zinsen: zinsenSourceLinks,
-			schuldenstatistik: schuldenSourceLinks
+			schuldenstatistik: schuldenSourceLinks,
+			kassenkredite: kassenkreditSourceLinks,
+			hessenkasse: hessenkasseSourceLinks
 		}
 	};
 };
