@@ -33,10 +33,10 @@
 	let basisRoedermark = $derived(basisRows.find((r) => r.kommune === 'Rödermark'));
 	let basisSpitze = $derived(basisRows[0]);
 
-	// Faktor, um Rödermarks Gewerbesteuer/Kopf auf das Kreis-Maximum zu heben (für #was-tun).
+	// Faktor, um Rödermarks Gewerbesteuer/Kopf auf Neu-Isenburg-Niveau zu heben (für #was-tun).
 	let gewFaktor = $derived.by(() => {
 		const roe = data.steuermix.find((r) => r.kommune === 'Rödermark');
-		const top = data.steuermix[0];
+		const top = data.steuermix.find((r) => r.kommune === 'Neu-Isenburg');
 		return roe && top && roe.gewerbesteuer_pro_kopf > 0
 			? Math.round(top.gewerbesteuer_pro_kopf / roe.gewerbesteuer_pro_kopf)
 			: 0;
@@ -62,7 +62,10 @@
 		{ id: 'zu-einfach', label: 'Macht es sich die Stadt zu einfach?' },
 		{ id: 'nicht-ausgeglichen', label: 'Trotzdem nicht ausgeglichen?' },
 		{ id: 'weiter-rauf', label: 'War es das jetzt?' },
+		{ id: 'nicht-erhoehen', label: 'Und wenn wir einfach nicht erhöhen?' },
+		{ id: 'opposition', label: 'Was schlägt die Opposition vor?' },
 		{ id: 'was-tun', label: 'Was kann man überhaupt tun?' },
+		{ id: 'lokalpolitik', label: 'Was tut die Lokalpolitik dagegen?' },
 		{ id: 'rechner', label: 'Was heißt das für mich konkret?' },
 		{ id: 'tabelle', label: 'Alle Zahlen im Überblick' },
 		{ id: 'quellen-grundsteuer', label: 'Quellen' }
@@ -139,8 +142,7 @@
 		Heißt: Dasselbe Haus bekommt in Hessen einen ganz anderen Messbetrag als in Bayern oder NRW.
 		500&nbsp;% dort und 500&nbsp;% hier: Das sind völlig verschiedene Beträge auf dem Bescheid.
 		Ein „Bundesdurchschnitt der Hebesätze" vergleicht Äpfel mit Birnen. <strong>Nur innerhalb
-		Hessens gilt überall dieselbe Formel.</strong> Da ist der Vergleich fair. Und den rechnen
-		wir jetzt durch.
+		Hessens gilt überall dieselbe Formel.</strong> Da ist der Vergleich mathematisch möglich, aber nicht unbedingt fair, wie wir gleich sehen.
 	</p>
 </section>
 
@@ -254,7 +256,7 @@
 		Schulumlage. Groß-Gerau hob die Umlagen sogar um 7,5&nbsp;Prozentpunkte an; die Bürgermeister
 		protestierten mit einem parteiübergreifenden Brandbrief unter dem Motto „Es reicht!“. Am Ende
 		bleibt den Städten überall dieselbe Wahl: freiwillige Leistungen kürzen oder die Grundsteuer
-		anheben. Oft sogar Beides. Rödermark ist da kein Ausreißer, sondern Teil einer Welle.
+		anheben. Oft sogar beides. Rödermark ist da kein Ausreißer, sondern Teil einer Welle.
 	</p>
 	<p class="explainer-prose">
 		Und der Rest vom Geld? Ist größtenteils verplant, bevor irgendwer Wünsche äußern darf. Denn als
@@ -272,7 +274,7 @@
 	<AnchorHeading level={3} id="stadtkasse">Warum braucht Rödermark einen so hohen Hebesatz?</AnchorHeading>
 	<p class="answer-lead">
 		Im Grunde ist der Hebesatz nur eins: die Lücke zwischen dem, was die Stadt ausgeben muss, und
-		dem, was sonst reinkommt – geteilt durch das, was es hier überhaupt zu besteuern gibt.
+		dem, was sonst reinkommt; geteilt durch das, was es hier überhaupt zu besteuern gibt.
 		Rödermarks Lücke ist groß, seine Basis klein.
 	</p>
 	<p class="explainer-prose">
@@ -295,10 +297,10 @@
 	</p>
 	<p class="explainer-prose">
 		<strong>Allerdings gibt es hier wenig zu besteuern.</strong> Die Grundsteuer verteilt sich auf
-		alle Grundstücke im Ort – Boden, Wohnfläche, auch Hallen und Büros. Wo viel zusammenkommt,
+		alle Grundstücke im Ort: Boden, Wohnfläche, auch Hallen und Büros. Wo viel zusammenkommt,
 		reicht ein niedriger Hebesatz für dieselbe Summe. In Rödermark kommt <strong>pro Einwohner am
 		wenigsten zusammen im ganzen Kreis</strong>. Spitzenreiter {basisSpitze?.kommune} hat gut
-		40&nbsp;% mehr zu besteuern – für dasselbe Geld je Einwohner braucht Rödermark also einen gut
+		40&nbsp;% mehr zu besteuern. Für dasselbe Geld je Einwohner braucht Rödermark also einen gut
 		40&nbsp;% höheren Satz, rein strukturell (mehr dazu:
 		<a href="#vergleichbarkeit">Kann man Hebesätze überhaupt vergleichen?</a>).
 	</p>
@@ -321,14 +323,13 @@
 		Firmen suchen sich ihren Standort aus, nicht umgekehrt. Autobahn, Flächen, Fachkräfte, die
 		Konkurrenz der Nachbarn: alles entscheidet mit. Der Beweis steht im eigenen Kreis:
 		<strong>Egelsbach</strong> liegt im begehrten Westkorridor, direkt neben Langen und Dreieich.
-		Gewerbesteuer pro Kopf? Kaum mehr als Rödermark. Das kleine Mainhausen am östlichen Kreisrand
-		holt dagegen überdurchschnittlich viel, weil dort ein paar größere Betriebe sitzen. Ein
-		Bürgermeister kann Firmen nicht herbeibeschließen. Und Rödermark steht gewerblich gar nicht
-		schlecht da: Bei der Gewerbesteuer je Einwohner liegt es im Kreis-Mittelfeld, nicht am Ende.
-		Das Problem ist also nicht „keine Firmen", sondern die
+		Gewerbesteuer pro Kopf? Sogar etwas weniger als Rödermark. Das kleine Mainhausen am östlichen
+		Kreisrand holt dagegen überdurchschnittlich viel, weil dort ein paar größere Betriebe sitzen.
+		Ein Bürgermeister kann Firmen nicht herbeibeschließen. Rödermark selbst liegt bei der
+		Gewerbesteuer je Einwohner im unteren Mittelfeld des Kreises, vor Egelsbach, Mühlheim und
+		Hainburg. Das Problem ist also nicht „keine Firmen", sondern die
 		<a href="#stadtkasse">große Lücke bei kleiner Steuerbasis</a>. Ob Rödermark vor Jahrzehnten
-		mehr hätte tun sollen? Legitime Debatte. Aber der heutige Hebesatz ist die Folge gewachsener
-		Struktur. Nicht von Verschwendung im Rathaus.
+		mehr hätte tun sollen? Legitime Debatte. Aber der heutige Hebesatz ist die Folge von Kostendynamik der letzten Jahre. Nicht von Verschwendung im Rathaus.
 	</p>
 	<p class="explainer-prose">
 		Und selbst wenn Firmen kommen: Es zählt, <strong>was</strong> kommt. Beispiel Rechenzentren,
@@ -339,7 +340,7 @@
 		Beschäftigten bringt seiner Kommune deshalb oft nur einen Bruchteil dessen, was das
 		Riesengebäude vermuten lässt. Die Fläche ist trotzdem für immer belegt. Frankfurt, Europas
 		größter Rechenzentrums-Standort, streitet über genau das seit Jahren. Für die Stadtkasse
-		zählt nicht die Größe der Halle. Sondern Jobs und Gewinne vor Ort.
+		zählt nicht die Größe der Halle. Sondern Jobs vor Ort.
 	</p>
 </section>
 
@@ -348,7 +349,7 @@
 	<AnchorHeading level={3} id="gewerbesteuer-erhoehen">Warum erhöht die Stadt nicht einfach die Gewerbesteuer?</AnchorHeading>
 	<p class="answer-lead">
 		Hat sie: 2025 ging der Satz von 380 auf 400&nbsp;%. Das ist nahezu Kreisspitze, gleichauf mit Heusenstamm
-		und Rodgau. Viel mehr geht kaum- nur Dietzenbach liegt mit 405&nbsp;% darüber. Und es würde auch kaum etwas bringen.
+		und Rodgau. Viel mehr geht kaum: Nur Dietzenbach liegt mit 405&nbsp;% darüber. Und es würde auch kaum etwas bringen.
 	</p>
 	<p class="explainer-prose">
 		Das Problem ist die Mathematik: Es gibt zu wenig Gewerbe, auf das der Satz wirkt. Zehn Punkte mehr
@@ -462,8 +463,11 @@
 		das Loch dort sogar größer als in Rödermark.
 	</p>
 	<p class="explainer-prose">
-		Ja, für dasselbe Haus zahlt man in Eppertshausen wirklich deutlich weniger, der
-		<a href="#musterhaus">Musterhaus-Vergleich</a> rechnet es offen vor. Das liegt aber nicht an
+		Ja, für dasselbe Haus zahlt man in Eppertshausen wirklich deutlich weniger: Das
+		<a href="#musterhaus">Musterhaus von oben</a> käme dort mit 480&nbsp;% auf rund
+		{fmtEur(data.musterhausMessbetrag * 4.8)} im Jahr statt
+		{fmtEur(musterhausRoedermark?.grundsteuer_eur ?? 0)} in Rödermark (gleiche hessische Formel,
+		nur der Hebesatz unterscheidet sich). Das liegt aber nicht an
 		besserem Wirtschaften, sondern an einer anderen Ausgangslage: ein anderer Landkreis mit
 		eigenem Umlagesystem, rund 6.500 Einwohner statt 28.700, andere Grundstücke, anderes Gewerbe
 		(<a href="#vergleichbarkeit">warum Hebesätze nichts übers Rathaus verraten</a>).
@@ -550,7 +554,9 @@
 		/>
 	</div>
 	<p class="chart-note">
-		Rödermarks Grundsteuer-B-Hebesatz über die Jahre, in Prozent (v. H.).
+		Rödermarks Grundsteuer-B-Hebesatz über die Jahre, in Prozent (v. H.). Für 2025 stehen zwei
+		Balken: der zunächst beschlossene, praktisch aufkommensneutrale Satz von 800&nbsp;% (blau)
+		und die Erhöhung auf 990&nbsp;% noch im selben Jahr (rot).
 	</p>
 	<p class="explainer-prose">
 		<strong>Schritt 1, die Reform-Umstellung (1. Januar 2025):</strong> Die Grundsteuerreform
@@ -702,6 +708,134 @@
 	{/if}
 </section>
 
+<!-- F12d: Nicht erhöhen? -->
+<section class="section">
+	<AnchorHeading level={3} id="nicht-erhoehen">Und wenn wir die Grundsteuer einfach nicht erhöhen?</AnchorHeading>
+	<p class="answer-lead">
+		Die Kommune verliert sofort jegliche Handlungsmöglichkeit bei freiwilligen Leistungen: Ohne
+		genehmigten Haushalt greift unmittelbar die vorläufige Haushaltsführung, neue freiwillige
+		Leistungen und Investitionen sind gesperrt. Das Defizit ist damit nicht weg, es wächst, und die
+		Entscheidung darüber wandert aus dem Rathaus zur Kommunalaufsicht, die die Erhöhung am Ende
+		auch anordnen kann, dann ohne jeden Gestaltungsspielraum.
+	</p>
+	<blockquote class="claim">
+		Dann lasst den Hebesatz doch einfach, wie er ist. Die Stadt muss eben mit dem Geld auskommen,
+		das sie hat. Wo ist das Problem?
+	</blockquote>
+	<p class="explainer-prose">
+		<strong>Das Loch bleibt.</strong> Die 13,8&nbsp;Mio.&nbsp;€, die 2026 fehlen, verschwinden
+		nicht, wenn man den Hebesatz in Ruhe lässt. Sie fehlen dann trotzdem, nur eben ungedeckt.
+		Ohne Gegenmaßnahmen summiert sich das Minus bis 2030 auf rund 69&nbsp;Millionen. Und die
+		Rücklage, die das früher abgefedert hat, ist praktisch leer: Ende 2025 noch
+		11,1&nbsp;Mio.&nbsp;€, weniger als ein einziges Jahresdefizit.
+	</p>
+	<p class="explainer-prose">
+		<strong>Ein solcher Haushalt ist nicht genehmigungsfähig.</strong> Eine Stadt darf ihren
+		Haushalt nicht einfach im Minus beschließen und laufen lassen. Bei einem Defizit dieser Größe
+		genehmigt die Kommunalaufsicht den Haushalt nur zusammen mit einem
+		<a href="/hsk2026">Haushaltssicherungskonzept</a>, das einen glaubwürdigen Weg zurück in die
+		schwarze Null zeigt. Streicht man die größte Einzelmaßnahme ersatzlos, die Grundsteuer trägt
+		44&nbsp;% des Volumens, trägt der Abbaupfad nicht mehr, und die Genehmigung bleibt aus.
+	</p>
+	<p class="explainer-prose">
+		<strong>Ohne Genehmigung: vorläufige Haushaltsführung.</strong> Dann greift ein Notprogramm,
+		das die Hessische Gemeindeordnung vorschreibt. Die Stadt darf nur noch ausgeben, wozu sie
+		rechtlich verpflichtet ist oder was zur Weiterführung laufender Aufgaben zwingend nötig ist.
+		Konkret: keine neuen freiwilligen Leistungen, keine neuen Investitionen außer vertraglich
+		gebundenen. Genau die <a href="#verschwendung">Dinge, die Rödermark lebenswert machen</a>,
+		stünden zuerst still.
+	</p>
+	<p class="explainer-prose">
+		<strong>Und teurer wird es auch.</strong> Fehlt das Geld in der Kasse, muss die Stadt die
+		Lücke über kurzfristige Kassenkredite überbrücken, also laufend Geld leihen, nur um
+		zahlungsfähig zu bleiben. Deren Zinsen fressen weiteres Geld und vergrößern das Defizit
+		zusätzlich.
+	</p>
+	<p class="explainer-prose">
+		<strong>Am Ende kommt die Erhöhung trotzdem.</strong> Handelt die Stadt nicht selbst, kann die
+		Aufsicht sie zwingen, ihre Einnahmemöglichkeiten auszuschöpfen, und dazu gehört die
+		Grundsteuer. Dann wird der Hebesatz faktisch von oben angeordnet, ohne dass die
+		Stadtverordneten noch über Höhe oder Ausgestaltung mitreden. „Nicht erhöhen" ist damit keine
+		Alternative zur Erhöhung, sondern nur der Weg, der teurer wird und den Bürgern am wenigsten
+		Mitsprache lässt.
+	</p>
+</section>
+
+<!-- F12e: Oppositionsansätze -->
+<section class="section">
+	<AnchorHeading level={3} id="opposition">Was schlagen SPD, Freie Wähler und FDP stattdessen vor?</AnchorHeading>
+	<p class="answer-lead">
+		Keine der Oppositionsfraktionen hat die Erhöhung mitgetragen, beschlossen wurde sie allein mit
+		den Stimmen der Koalition aus CDU und AL/Die&nbsp;Grünen. Was die Fraktionen als Alternative
+		anbieten, unterscheidet sich aber stark: von konkreten Forderungen bis zu einem Fragenkatalog
+		ohne eigenes Sparkonzept.
+	</p>
+	<div class="info-box info-box-blue">
+		<div>
+			Auch hier gilt der Transparenzhinweis von oben: Der Autor ist bei AL/Die&nbsp;Grünen aktiv.
+			Für diesen Abschnitt habe ich die Aussagen der Fraktionen aus deren eigenen
+			Veröffentlichungen zusammengetragen, jeweils mit Link zum Original. Die Bewertung der
+			einzelnen Punkte stammt von mir und ist als persönliche Einschätzung zu lesen, nicht als
+			neutrale Analyse. Prüfen Sie die verlinkten Quellen gern selbst.
+		</div>
+	</div>
+	<p class="explainer-prose">
+		<strong>SPD.</strong> Die Fraktion
+		<a href="https://www.spd-roedermark.de/2026/06/27/trotz-steuererhoehungen-stadt-weiter-in-geldnot/" target="_blank" rel="noopener noreferrer">nennt die Erhöhung „sozial unausgewogen"</a>
+		und lehnte sie ab. Über die
+		<a href="#lokalpolitik">parteiübergreifend getragene Grundrechtsklage</a> hinaus, die auch die
+		SPD als „den richtigen Weg" bezeichnet, benennt sie in ihrer Stellungnahme aber kein eigenes,
+		beziffertes Konzept, wie die 13,8&nbsp;Mio.&nbsp;€ stattdessen gedeckt werden sollen.
+	</p>
+	<p class="explainer-prose">
+		<strong>Freie Wähler (FWR).</strong> Ihre Erklärung vom Juni 2026 trägt den Titel
+		<a href="https://freiewaehler-roedermark.de/pressemitteilung/" target="_blank" rel="noopener noreferrer">„Ja zur Konsolidierung, Nein zum Blindflug"</a>:
+		Sie erkennen die Sparbemühungen an und wollen sich „einer notwendigen Konsolidierung nicht
+		verweigern", stimmten am 25. Juni aber trotzdem gegen die Erhöhung, weil ein „schlüssiges
+		Gesamtkonzept" fehle. Ein Wortbruch ist das nicht (ihr Ja war an dieses Konzept geknüpft),
+		versöhnlicher Ton und klares Nein passen aber nicht recht zusammen.
+	</p>
+	<p class="explainer-prose">
+		Konkret fordern sie eine <a href="#grundsteuer-c">Grundsteuer&nbsp;C</a>, mehr
+		<a href="#gewerbe-ansiedeln">Gewerbeflächen</a> („Germania&nbsp;Nord"), eine gedeckelte
+		Staffelung künftiger Erhöhungen (schon 2025 per
+		<a href="https://freiewaehler-roedermark.de/wp-content/uploads/2025/11/2025-01-20-DS_032_25-Begrenzung-Erhoehung-VO.pdf" target="_blank" rel="noopener noreferrer">Antrag DS/032/25</a>
+		versucht, abgelehnt) sowie einen „Alternativplan", wie die Stadt ab 2028 ohne weitere
+		Grundsteuer&nbsp;B auskommt. Das zielt in die richtige Richtung, schließt die akute Lücke aber
+		nicht: Die Grundsteuer&nbsp;C bringt <a href="#grundsteuer-c">nur einen Bruchteil</a>, mehr
+		Gewerbe wirkt erst in Jahren, und der geforderte Alternativplan ist selbst kein Vorschlag,
+		sondern ein Auftrag an die Verwaltung, an dem sie mit dem
+		<a href="/hsk2026">Sicherungskonzept</a> ohnehin arbeitet, nur eben mit dem Ergebnis, dass es
+		ohne die Grundsteuer nicht geht. Ein bezifferter Gegenentwurf, der die 13,8&nbsp;Mio.&nbsp;€
+		ohne diese Einnahme deckt, liegt nicht vor.
+	</p>
+	<p class="explainer-prose">
+		<strong>FDP.</strong> Sie hat keinen Grundsteuer-spezifischen Gegenvorschlag vorgelegt, sondern
+		einen
+		<a href="https://fdp-roedermark.de/wp-content/uploads/sites/173/2026/06/Fragen_Haushalt_Stavo_2026_FDP_090626_Beantwortung-ALLE-1.pdf" target="_blank" rel="noopener noreferrer">Katalog mit 33 Kontrollfragen</a>
+		zum Gesamthaushalt und HSK, den die Verwaltung beantwortet hat. Die Begriffe „Grundsteuer",
+		„Hebesatz" oder „Steuererhöhung" kommen darin nicht vor, es geht um Kita-Plätze, freiwillige
+		Zuschüsse, Förderprojekte und die Wieder-Eingliederung des Eigenbetriebs KBR. Die meisten der
+		aufgeworfenen Verdachtsmomente beantwortet die Verwaltung mit nachvollziehbaren Begründungen.
+		Ein Punkt sei erwähnt: Die FDP behauptet, das HSK belaste die Bürger zu 62&nbsp;% und die
+		Verwaltung nur zu 38&nbsp;%, legt den Rechenweg dazu aber nicht offen. Meine eigene Rechnung
+		aus den Maßnahmenwerten des HSK kommt eher auf rund 48&nbsp;% Einnahmenseite (Steuern und
+		Gebühren) zu 52&nbsp;% Ausgabenseite (Einsparungen der Stadt).
+	</p>
+	<p class="explainer-prose">
+		Für die <strong>AfD</strong>-Fraktion liegt keine öffentlich dokumentierte eigene Position oder
+		ein alternatives Konzept zur Grundsteuererhöhung vor.
+	</p>
+	<p class="explainer-prose">
+		Zusammengefasst: Am ausführlichsten haben die FWR Alternativen benannt, jede einzelne zielt
+		aber auf mittel- bis langfristige Wirkung oder bringt zu wenig, um die akute Lücke 2026 zu
+		schließen. SPD und FDP üben Kritik bzw. Kontrolle, ohne einen eigenen, bezifferten Weg zur
+		Deckung der 13,8&nbsp;Mio.&nbsp;€ vorzulegen. Ein konkreter Gegenentwurf, der ohne die
+		Grundsteuererhöhung auskommt und trotzdem genehmigungsfähig wäre, liegt von keiner Fraktion
+		vor.
+	</p>
+</section>
+
 <!-- F13: Was tun -->
 <section class="section">
 	<AnchorHeading level={3} id="was-tun">Was kann man überhaupt tun?</AnchorHeading>
@@ -733,7 +867,7 @@
 		kommen, müsste Rödermark seine Gewerbesteuer auf rund das {gewFaktor}-Fache steigern. Von
 		jedem zusätzlichen Euro bliebe zudem nur ein Teil hier: Die Gewerbesteuerumlage geht an Bund
 		und Land, mit der Steuerkraft wächst später die Kreisumlage, die Schlüsselzuweisungen
-		sinken. Und es hätte einen Preis: Flächen hat eine gewachsene Wohnstadt kaum. Eine
+		sinken. Und es hätte einen Preis: Flächen hat eine gewachsene Wohnstadt kaum. Schon eine
 		Verdopplung des Gewerbes hieße neue Gewerbegebiete auf heutigen Feldern und Grünflächen, zu
 		Lasten von Natur und Stadtbild, und damit genau der Wohnqualität, für die viele überhaupt
 		hier wohnen. Dazu bräuchte es Firmen, die in dieser Wirtschaftslage überhaupt
@@ -752,8 +886,62 @@
 		<strong>Und die Bürger?</strong> Können mehr tun, als Hebesätze zu googeln: zur
 		Haushaltsdebatte gehen, bei den Prioritäten mitreden (welche freiwilligen Leistungen sind
 		sie uns wert?), <a href="https://petition-page.vercel.app/">Petitionen einreichen und unterzeichnen</a>, sich politisch engagieren. Die Missmanagement-These hält
-		den Daten nicht stand. Wir können trotzdem alle Beitragen. <strong>Genau dafür gibt
+		den Daten nicht stand. Wir können trotzdem alle etwas beitragen. <strong>Genau dafür gibt
 		es dieses Portal.</strong>
+	</p>
+</section>
+
+<!-- F14: Lokalpolitik -->
+<section class="section">
+	<AnchorHeading level={3} id="lokalpolitik">Was tut die Lokalpolitik gerade dagegen?</AnchorHeading>
+	<p class="answer-lead">
+		Mehr, als es von außen wirkt. Zwei Hebel zielen nicht auf das Symptom (die klamme Kasse),
+		sondern auf die Ursache: die Unterfinanzierung durch Land und Bund. Eine parteiübergreifend
+		getragene Grundrechtsklage und eine Petition an den Hessischen Landtag. Beide sind wichtig,
+		aber keine schnelle Rettung.
+	</p>
+	<div class="info-box info-box-blue">
+		<div>
+			Transparenzhinweis: Der Autor dieses Portals (Christian Engel) ist in der Rödermärker
+			Kommunalpolitik für AL/Die&nbsp;Grünen aktiv, die diese Initiativen mit vorantreiben.
+			Deshalb sind die folgenden Angaben bewusst nur mit belegbaren Quellen dargestellt, damit
+			Sie sich ein eigenes Bild machen können.
+		</div>
+	</div>
+	<p class="explainer-prose">
+		<strong>Die Grundrechtsklage.</strong> Mehrere Fraktionen wollen den Weg vor Gericht gehen und
+		die strukturelle Unterfinanzierung der Kommunen grundsätzlich angreifen, Stichwort
+		Konnexitätsprinzip: Wer Aufgaben vorgibt, muss sie auch bezahlen. Bemerkenswert ist die
+		Breite über die Fraktionsgrenzen hinweg: Vorgeschlagen hat die Grundrechtsklage der
+		CDU-Fraktionsvorsitzende, die SPD nennt sie „den richtigen Weg", und auch AL/Die&nbsp;Grünen
+		treiben sie seit längerem. Dass ausgerechnet die lokale CDU eine Klage stützt, die sich am
+		Ende gegen eine CDU-geführte Landesregierung richtet, zeigt, wie einig sich die Fraktionen in
+		einem Punkt sind: Die Ursache liegt nicht im Rathaus.
+	</p>
+	<p class="explainer-prose">
+		<strong>Die Petition an den Hessischen Landtag.</strong> Parallel richtet sich eine Petition
+		aus Rödermark direkt an den Landtag. Sie fordert eine ehrliche Prüfung der
+		Kommunalfinanzierung und eine faire Kostenverteilung, damit nicht am Ende immer die
+		Bürgerinnen und Bürger vor Ort die Lücke schließen müssen.
+	</p>
+	<a href="https://petition-page.vercel.app/" target="_blank" rel="noopener noreferrer" class="link-box">
+		<ShieldCheck class="link-box-icon" />
+		<div class="link-box-body">
+			<strong>Zur Petition „13,8 Millionen fehlen"</strong>
+			Die Rödermärker Petition an den Hessischen Landtag, mit dem Argument des
+			Konnexitätsprinzips: Wer bestellt, bezahlt.
+		</div>
+		<ArrowRight class="link-box-arrow" />
+	</a>
+	<p class="explainer-prose">
+		<strong>Aber: Das rettet den Haushalt nicht kurzfristig.</strong> So wichtig beide Schritte
+		sind, man muss ehrlich bleiben. Eine Grundrechtsklage kann sich über Jahre ziehen, und ihr
+		Ausgang ist offen: Ein für die Kommunen positives Urteil ist keineswegs garantiert. Und selbst
+		ein Erfolg käme spät und müsste von Land und Bund erst in echte Euro übersetzt werden. Bis
+		dahin braucht Rödermark eine Lösung, die heute trägt, und das ist derzeit das
+		<a href="/hsk2026">Haushaltssicherungskonzept</a> samt Grundsteuer. Klage und Petition setzen
+		an der Ursache an, das Sicherungskonzept hält die Stadt in der Zwischenzeit zahlungsfähig. Es
+		braucht beides.
 	</p>
 </section>
 
@@ -864,6 +1052,11 @@
 		<li>Hainburg (Defizit rund 2,05&nbsp;Mio.&nbsp;€ (2025) bzw. 2,5&nbsp;Mio.&nbsp;€ (2026), gedeckt über neue Kredite; Grundsteuer B unverändert bei 615&nbsp;%): <a href="https://www.op-online.de/region/hainburg/hainburger-haushalt-defizit-von-ueber-zwei-millionen-euro-droht-94055019.html" target="_blank" rel="noopener noreferrer">op-online.de, 26.11.2025</a>.</li>
 		<li>Aufkommensneutraler Hebesatz Rödermark (803,51&nbsp;%): <a href="https://finanzamt.hessen.de/grundsteuerreform/hebesatzempfehlungen" target="_blank" rel="noopener noreferrer">Hebesatzempfehlungen der Hessischen Steuerverwaltung</a>; Einordnung und Beschluss-Chronik 2024/25: <a href="https://www.rm-news.de/?p=272680" target="_blank" rel="noopener noreferrer">rm-news.de</a>.</li>
 		<li>Beschluss der Hebesatz-Anhebung 2026 (Grundsteuer B 990 → 1.327&nbsp;%, Grundsteuer A 175 → 900&nbsp;%, rückwirkend zum 01.01.2026, namentliche Abstimmung 20:16): <a href="https://www.rheinmainverlag.de/2026/06/25/die-grundsteuer-in-roedermark-geht-weiter-rauf/" target="_blank" rel="noopener noreferrer">Rhein-Main-Verlag, 25.06.2026</a>.</li>
+		<li>Position der SPD-Fraktion zur Erhöhung („sozial unausgewogen", Ablehnung) sowie die parteiübergreifend getragene Grundrechtsklage (vom CDU-Fraktionsvorsitzenden vorgeschlagen, von der SPD als „der richtige Weg" bezeichnet): <a href="https://www.spd-roedermark.de/2026/06/27/trotz-steuererhoehungen-stadt-weiter-in-geldnot/" target="_blank" rel="noopener noreferrer">SPD Rödermark, 27.06.2026</a>.</li>
+		<li>Position der Freien Wähler (FWR) zur Erhöhung 2026 („Ja zur Konsolidierung, Nein zum Blindflug"; Forderung nach Grundsteuer C, Alternativplan ab 2028, beschleunigter Gewerbeerschließung „Germania Nord", Staffelung mit Endpunkt, Personalpolitik über natürliche Fluktuation): <a href="https://freiewaehler-roedermark.de/pressemitteilung/" target="_blank" rel="noopener noreferrer">Pressemitteilung FWR, 08.06.2026</a>; frühere Presseerklärung (Personalaufwuchs, Investitionsdarstellung): <a href="https://freiewaehler-roedermark.de/wp-content/uploads/2025/06/Presserklaerung-der-FWR_140525_Grundsteuer.pdf" target="_blank" rel="noopener noreferrer">FWR, 14.05.2025</a>; Antrag DS/032/25 (Deckelung der Grundsteuer-B-Erhöhung auf max. 20&nbsp;% des Ausgangs-Hebesatzes, abgelehnt 11.02.2025): <a href="https://freiewaehler-roedermark.de/wp-content/uploads/2025/11/2025-01-20-DS_032_25-Begrenzung-Erhoehung-VO.pdf" target="_blank" rel="noopener noreferrer">Antrag DS/032/25, FWR, 20.01.2025</a>. Dass die Erhöhung allein mit den Stimmen von CDU und AL/Die&nbsp;Grünen beschlossen wurde: <a href="https://www.spd-roedermark.de/2026/06/27/trotz-steuererhoehungen-stadt-weiter-in-geldnot/" target="_blank" rel="noopener noreferrer">SPD Rödermark, 27.06.2026</a>.</li>
+		<li>Fragenkatalog der FDP-Fraktion zum Haushalt 2026 und HSK (33 Fragen mit Antworten der Verwaltung, 09.06.2026): <a href="https://fdp-roedermark.de/wp-content/uploads/sites/173/2026/06/Fragen_Haushalt_Stavo_2026_FDP_090626_Beantwortung-ALLE-1.pdf" target="_blank" rel="noopener noreferrer">FDP Rödermark, PDF</a>.</li>
+		<li>Petition an den Hessischen Landtag zur Kommunalfinanzierung (Konnexitätsprinzip „Wer bestellt, bezahlt"): <a href="https://petition-page.vercel.app/" target="_blank" rel="noopener noreferrer">„13,8 Millionen fehlen", Petition aus Rödermark</a>.</li>
+		<li>Vorläufige Haushaltsführung und Genehmigung des Haushalts durch die Kommunalaufsicht: Hessische Gemeindeordnung (HGO); Genehmigungsbedürftigkeit des Sicherungskonzepts und Abbaupfad: Haushaltssicherungskonzept 2026 der Stadt Rödermark.</li>
 		<li>Eppertshausen (Grundsteuer B 400 → 480&nbsp;%, Gewerbesteuer 380 → 390, Defizit 3,7&nbsp;Mio.&nbsp;€ bei 16,6&nbsp;Mio.&nbsp;€ Erträgen, rund 9,5&nbsp;Mio.&nbsp;€ Rücklagen laut Etat-Debatte): <a href="https://www.rheinmainverlag.de/2026/02/06/eppertshausen-tiefroter-etat-trotz-hoeherer-steuern/" target="_blank" rel="noopener noreferrer">Rhein-Main-Verlag, 06.02.2026</a>; aufkommensneutrale Landesempfehlung Eppertshausen (400,57&nbsp;%, alter Satz 435&nbsp;%): <a href="https://finanzamt.hessen.de/sites/finanzamt.hessen.de/files/2024-08/hebesatzempfehlungen_aktualisierung_nach_landkreisen_sortiert_stand_30-06-2024.pdf" target="_blank" rel="noopener noreferrer">Hebesatzempfehlungen der Hessischen Steuerverwaltung (PDF, Stand 30.06.2024)</a>; Erhöhungswelle im Kreis Darmstadt-Dieburg: <a href="https://www.steuerzahler-hessen.de/neuigkeiten/artikel/massive-steuererhoehungswelle-im-kreis-darmstadt-dieburg/" target="_blank" rel="noopener noreferrer">Bund der Steuerzahler Hessen</a>.</li>
 		<li>HSK-Abbaupfad (Restdefizite 2026–2028, Überschuss ab 2029) und Grundsteuer-B-Mehreinnahmen (3,1&nbsp;Mio.&nbsp;€ in 2026/27, 6,8&nbsp;Mio.&nbsp;€ ab 2028): Haushaltssicherungskonzept 2026, S.&nbsp;15 und 18. Der Hebesatz der zweiten Stufe ist daraus linear abgeleitet (Näherung, Methode erklärt auf der <a href="/hsk2026">HSK-Seite</a>).</li>
 		<li>Grundsteuer C: Prüfauftrag einer Fraktion (November 2023) und bedingter Ansatz von 60.000&nbsp;€ („Sollte die Einführung beschlossen werden&nbsp;…"): Haushaltsplan 2024/2025 (Beschluss), Vorbericht S.&nbsp;27. Ansatz 2026: 0&nbsp;€ (Konto 555250) und keine Grundsteuer C in der Haushaltssatzung (§&nbsp;5): Haushaltsplan Rödermark 2026 (Entwurf), S.&nbsp;142 bzw. S.&nbsp;4. Prüfergebnis der Verwaltung (99 private / 7 gewerbliche Grundstücke, Empfehlung des Hessischen Städtetags gegen eine Einführung) und zweiter Antrag zur Erhöhung auf 1.327&nbsp;% (Fünffacher Hebesatz, rund 120.000&nbsp;€, im Ausschuss gestoppt, in der Versammlung zurückgezogen): Bürgerinformationssystem der Stadt Rödermark, <a href="https://www.roedermark.sitzung-online.de/public/vo020?VOLFDNR=1000820" target="_blank" rel="noopener noreferrer">Vorlage DS/136/26</a> und <a href="https://www.roedermark.sitzung-online.de/public/vo020?VOLFDNR=1000849" target="_blank" rel="noopener noreferrer">Änderungsantrag DS/136/26-1</a>. Einführung ab 2025 grundsätzlich möglich: <a href="https://finanzamt.hessen.de/grundsteuerreform/faq-grundsteuer/hebesatzempfehlungen" target="_blank" rel="noopener noreferrer">FAQ der Hessischen Steuerverwaltung</a>.</li>

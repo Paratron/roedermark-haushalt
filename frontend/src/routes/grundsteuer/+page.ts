@@ -162,13 +162,11 @@ export const load: PageLoad = async ({ fetch }) => {
 	const avgHebesatzVorReform =
 		mitIst.reduce((s, k) => s + k.ist_2024!.hebesatz, 0) / mitIst.length;
 
-	// "Wer füllt die Stadtkasse": Steuerquellen-Mix je Einwohner (Plan 2026),
-	// absteigend nach Gesamt-Steuerkraft pro Kopf.
+	// Steuerquellen-Mix (Plan 2026), hier nur für den Gewerbesteuer-Faktor in
+	// #was-tun genutzt; das Stapel-Chart dazu lebt auf /kreisvergleich.
 	const steuermix = steuermixRaw.kommunen
 		.slice()
 		.sort((a, b) => b.summe_pro_kopf - a.summe_pro_kopf);
-	const maxSteuermixProKopf = Math.max(...steuermix.map((r) => r.summe_pro_kopf));
-	const steuermixFehlend = steuermixRaw.meta.fehlend;
 
 	// "Wohin fließt das Geld": Rödermarks Kreis- und Schulumlage sowie die
 	// geplante Grundsteuer B aus den eigenen Haushaltsdaten (Beträge negativ
@@ -276,8 +274,6 @@ export const load: PageLoad = async ({ fetch }) => {
 		maxMusterhaus,
 		musterhausMessbetrag: messbetrag,
 		steuermix,
-		maxSteuermixProKopf,
-		steuermixFehlend,
 		avgHebesatz2026,
 		avgHebesatzVorReform,
 		umlagen: {
