@@ -766,9 +766,10 @@
 	<AnchorHeading level={3} id="opposition">Was schlagen SPD, Freie Wähler und FDP stattdessen vor?</AnchorHeading>
 	<p class="answer-lead">
 		Keine der Oppositionsfraktionen hat die Erhöhung mitgetragen, beschlossen wurde sie allein mit
-		den Stimmen der Koalition aus CDU und AL/Die&nbsp;Grünen. Was die Fraktionen als Alternative
-		anbieten, unterscheidet sich aber stark: von konkreten Forderungen bis zu einem Fragenkatalog
-		ohne eigenes Sparkonzept.
+		den Stimmen der Koalition aus CDU und AL/Die&nbsp;Grünen. Alternativen benennen die Fraktionen
+		durchaus, von der Grundsteuer&nbsp;C bis zu mehr Gewerbe. Aber einen bezifferten Vorschlag,
+		der die fehlenden 13,8&nbsp;Mio.&nbsp;€ ohne die Grundsteuererhöhung deckt, hat keine
+		vorgelegt.
 	</p>
 	<div class="info-box info-box-blue">
 		<div>
@@ -830,9 +831,7 @@
 		Zusammengefasst: Am ausführlichsten haben die FWR Alternativen benannt, jede einzelne zielt
 		aber auf mittel- bis langfristige Wirkung oder bringt zu wenig, um die akute Lücke 2026 zu
 		schließen. SPD und FDP üben Kritik bzw. Kontrolle, ohne einen eigenen, bezifferten Weg zur
-		Deckung der 13,8&nbsp;Mio.&nbsp;€ vorzulegen. Ein konkreter Gegenentwurf, der ohne die
-		Grundsteuererhöhung auskommt und trotzdem genehmigungsfähig wäre, liegt von keiner Fraktion
-		vor.
+		Deckung der 13,8&nbsp;Mio.&nbsp;€ vorzulegen.
 	</p>
 </section>
 
