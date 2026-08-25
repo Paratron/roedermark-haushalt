@@ -1,7 +1,11 @@
-import { loadSummary, loadDocuments } from '$lib/data';
+import { loadSummary, loadDocuments, loadHsk } from '$lib/data';
 import type { PageLoad } from './$types';
 
 export const load: PageLoad = async () => {
-	const [summary, documents] = await Promise.all([loadSummary(), loadDocuments()]);
-	return { summary, documents };
+	const [summary, documents, hsk] = await Promise.all([
+		loadSummary(),
+		loadDocuments(),
+		loadHsk()
+	]);
+	return { summary, documents, hsk };
 };

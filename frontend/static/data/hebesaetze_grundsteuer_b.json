@@ -2,7 +2,7 @@
   "meta": {
     "description": "Grundsteuer B Hebesätze der Kommunen im Kreis Offenbach",
     "unit": "Prozent",
-    "note": "Datenquellen: IHK Offenbach Gemeindesteckbriefe 2025 (Umfrage der IHK, alle Kommunen im Kreis Offenbach, 2013–2025) sowie Haushaltssatzungen der Stadt Rödermark."
+    "note": "Datenquellen: IHK Gießen-Friedberg, Hebesatzumfrage 2026 (Hebesätze ab 01.01.2026, Stand 29.05.2026) für die aktuellen 2026-Werte aller Kommunen im Kreis Offenbach; IHK Offenbach Gemeindesteckbriefe (Umfrage der IHK, 2013–2025) für die Vorjahre; Haushaltssatzungen der Stadt Rödermark sowie einzeln belegte Beschlussvorlagen für geplante Erhöhungen 2026 (siehe Quellenangabe je Eintrag)."
   },
   "data": [
     {
@@ -84,6 +84,13 @@
       "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Dietzenbach_2025.pdf"
     },
     {
+      "kommune": "Dietzenbach",
+      "year": 2026,
+      "hebesatz": 950,
+      "quelle": "IHK Gießen-Friedberg, Hebesatzumfrage 2026 – Hebesätze ab 01.01.2026 (Stand 29.05.2026)",
+      "quelle_url": "https://www.ihk.de/giessen-friedberg/geschaeftsbereiche/recht-und-steuern/steuern/hebesatz-2025-7031788"
+    },
+    {
       "kommune": "Dreieich",
       "year": 2013,
       "hebesatz": 370,
@@ -160,6 +167,13 @@
       "year": 2025,
       "hebesatz": 708.93,
       "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Dreieich_2025.pdf"
+    },
+    {
+      "kommune": "Dreieich",
+      "year": 2026,
+      "hebesatz": 900,
+      "quelle": "IHK Gießen-Friedberg, Hebesatzumfrage 2026 – Hebesätze ab 01.01.2026 (Stand 29.05.2026)",
+      "quelle_url": "https://www.ihk.de/giessen-friedberg/geschaeftsbereiche/recht-und-steuern/steuern/hebesatz-2025-7031788"
     },
     {
       "kommune": "Egelsbach",
@@ -240,6 +254,13 @@
       "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Egelsbach_2025.pdf"
     },
     {
+      "kommune": "Egelsbach",
+      "year": 2026,
+      "hebesatz": 1066,
+      "quelle": "IHK Gießen-Friedberg, Hebesatzumfrage 2026 – Hebesätze ab 01.01.2026 (Stand 29.05.2026)",
+      "quelle_url": "https://www.ihk.de/giessen-friedberg/geschaeftsbereiche/recht-und-steuern/steuern/hebesatz-2025-7031788"
+    },
+    {
       "kommune": "Hainburg",
       "year": 2013,
       "hebesatz": 290,
@@ -316,6 +337,13 @@
       "year": 2025,
       "hebesatz": 615,
       "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Hainburg_2025.pdf"
+    },
+    {
+      "kommune": "Hainburg",
+      "year": 2026,
+      "hebesatz": 615,
+      "quelle": "IHK Gießen-Friedberg, Hebesatzumfrage 2026 – Hebesätze ab 01.01.2026 (Stand 29.05.2026)",
+      "quelle_url": "https://www.ihk.de/giessen-friedberg/geschaeftsbereiche/recht-und-steuern/steuern/hebesatz-2025-7031788"
     },
     {
       "kommune": "Heusenstamm",
@@ -396,6 +424,13 @@
       "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Heusenstamm_2025.pdf"
     },
     {
+      "kommune": "Heusenstamm",
+      "year": 2026,
+      "hebesatz": 1327,
+      "quelle": "IHK Gießen-Friedberg, Hebesatzumfrage 2026 – Hebesätze ab 01.01.2026 (Stand 29.05.2026)",
+      "quelle_url": "https://www.ihk.de/giessen-friedberg/geschaeftsbereiche/recht-und-steuern/steuern/hebesatz-2025-7031788"
+    },
+    {
       "kommune": "Langen",
       "year": 2013,
       "hebesatz": 450,
@@ -474,6 +509,13 @@
       "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Langen_2025.pdf"
     },
     {
+      "kommune": "Langen",
+      "year": 2026,
+      "hebesatz": 1268.77,
+      "quelle": "IHK Gießen-Friedberg, Hebesatzumfrage 2026 – Hebesätze ab 01.01.2026 (Stand 29.05.2026)",
+      "quelle_url": "https://www.ihk.de/giessen-friedberg/geschaeftsbereiche/recht-und-steuern/steuern/hebesatz-2025-7031788"
+    },
+    {
       "kommune": "Mainhausen",
       "year": 2013,
       "hebesatz": 290,
@@ -550,6 +592,13 @@
       "year": 2025,
       "hebesatz": 800,
       "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Mainhausen_2025.pdf"
+    },
+    {
+      "kommune": "Mainhausen",
+      "year": 2026,
+      "hebesatz": 800,
+      "quelle": "IHK Gießen-Friedberg, Hebesatzumfrage 2026 – Hebesätze ab 01.01.2026 (Stand 29.05.2026)",
+      "quelle_url": "https://www.ihk.de/giessen-friedberg/geschaeftsbereiche/recht-und-steuern/steuern/hebesatz-2025-7031788"
     },
     {
       "kommune": "Mühlheim am Main",
@@ -630,6 +679,14 @@
       "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Muehlheim_2025.pdf"
     },
     {
+      "kommune": "Mühlheim am Main",
+      "year": 2026,
+      "hebesatz": 1450,
+      "quelle": "Haushaltssicherungskonzept 2026 (Entwurf), Beschluss vorgesehen 25.06.2026; aktuell gültig sind 983,35 %; op-online.de, 12.06.2026",
+      "status": "geplant",
+      "quelle_url": "https://www.op-online.de/region/muehlheim/details-zum-haushaltssicherungskonzept-bekannt-stadt-muehlheim-plant-massive-grundsteuererhoehung-94347937.html"
+    },
+    {
       "kommune": "Neu-Isenburg",
       "year": 2013,
       "hebesatz": 250,
@@ -708,6 +765,13 @@
       "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Neu-Isenburg_2025.pdf"
     },
     {
+      "kommune": "Neu-Isenburg",
+      "year": 2026,
+      "hebesatz": 495,
+      "quelle": "IHK Gießen-Friedberg, Hebesatzumfrage 2026 – Hebesätze ab 01.01.2026 (Stand 29.05.2026)",
+      "quelle_url": "https://www.ihk.de/giessen-friedberg/geschaeftsbereiche/recht-und-steuern/steuern/hebesatz-2025-7031788"
+    },
+    {
       "kommune": "Obertshausen",
       "year": 2013,
       "hebesatz": 330,
@@ -758,32 +822,39 @@
     {
       "kommune": "Obertshausen",
       "year": 2021,
-      "hebesatz": 431,
+      "hebesatz": 495,
       "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Obertshausen_2025.pdf"
     },
     {
       "kommune": "Obertshausen",
       "year": 2022,
-      "hebesatz": 431,
+      "hebesatz": 600,
       "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Obertshausen_2025.pdf"
     },
     {
       "kommune": "Obertshausen",
       "year": 2023,
-      "hebesatz": 431,
+      "hebesatz": 600,
       "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Obertshausen_2025.pdf"
     },
     {
       "kommune": "Obertshausen",
       "year": 2024,
-      "hebesatz": 431,
+      "hebesatz": 600,
       "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Obertshausen_2025.pdf"
     },
     {
       "kommune": "Obertshausen",
       "year": 2025,
-      "hebesatz": 431,
+      "hebesatz": 998,
       "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Obertshausen_2025.pdf"
+    },
+    {
+      "kommune": "Obertshausen",
+      "year": 2026,
+      "hebesatz": 1107,
+      "quelle": "IHK Gießen-Friedberg, Hebesatzumfrage 2026 – Hebesätze ab 01.01.2026 (Stand 29.05.2026)",
+      "quelle_url": "https://www.ihk.de/giessen-friedberg/geschaeftsbereiche/recht-und-steuern/steuern/hebesatz-2025-7031788"
     },
     {
       "kommune": "Offenbach am Main",
@@ -864,6 +935,13 @@
       "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Offenbach_am_Main_2025.pdf"
     },
     {
+      "kommune": "Offenbach am Main",
+      "year": 2026,
+      "hebesatz": 1230,
+      "quelle": "IHK Gießen-Friedberg, Hebesatzumfrage 2026 – Hebesätze ab 01.01.2026 (Stand 29.05.2026)",
+      "quelle_url": "https://www.ihk.de/giessen-friedberg/geschaeftsbereiche/recht-und-steuern/steuern/hebesatz-2025-7031788"
+    },
+    {
       "kommune": "Rodgau",
       "year": 2013,
       "hebesatz": 330,
@@ -940,6 +1018,14 @@
       "year": 2025,
       "hebesatz": 800,
       "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Rodgau_2025.pdf"
+    },
+    {
+      "kommune": "Rodgau",
+      "year": 2026,
+      "hebesatz": 1250,
+      "quelle": "Beschlussvorlage DS-0134/2026 (Hebesatzsatzung), Entscheidung Stadtverordnetenversammlung 22.06.2026; aktuell gültig sind 990 %",
+      "status": "geplant",
+      "quelle_url": "https://www.rodgau.sitzung-online.de/public/vo020?VOLFDNR=1003031&refresh=false&TOLFDNR=1009607"
     },
     {
       "kommune": "Rödermark",
@@ -1022,8 +1108,10 @@
     {
       "kommune": "Rödermark",
       "year": 2026,
-      "hebesatz": 990,
-      "quelle": "Haushaltssatzung in Haushaltsplan 2026 (Entwurf), S. 4"
+      "hebesatz": 1327,
+      "quelle": "Beschluss der Stadtverordnetenversammlung (Juni 2026, namentlich 20:16), rückwirkend zum 01.01.2026 von 990 auf 1.327 %; HSK-Maßnahme „Erhöhung Hebesatz Grundsteuer B“ Schritt 1",
+      "status": "beschlossen",
+      "quelle_url": "https://www.rheinmainverlag.de/2026/06/25/die-grundsteuer-in-roedermark-geht-weiter-rauf/"
     },
     {
       "kommune": "Seligenstadt",
@@ -1108,6 +1196,13 @@
       "year": 2025,
       "hebesatz": 850,
       "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Seligenstadt_2025.pdf"
+    },
+    {
+      "kommune": "Seligenstadt",
+      "year": 2026,
+      "hebesatz": 850,
+      "quelle": "IHK Gießen-Friedberg, Hebesatzumfrage 2026 – Hebesätze ab 01.01.2026 (Stand 29.05.2026)",
+      "quelle_url": "https://www.ihk.de/giessen-friedberg/geschaeftsbereiche/recht-und-steuern/steuern/hebesatz-2025-7031788"
     }
   ]
 }

@@ -44,6 +44,7 @@
 			'gesamtabschluss': 'Gesamtabschluss',
 			'nachtrag': 'Nachtragshaushalt',
 			'haushaltssatzung': 'Haushaltssatzung',
+			'haushaltssicherungskonzept': 'Haushaltssicherungskonzept',
 			'haushaltsrede': 'Haushaltsrede',
 			'beteiligungsbericht': 'Beteiligungsbericht',
 			'konsolidierung': 'Konsolidierungsbericht',

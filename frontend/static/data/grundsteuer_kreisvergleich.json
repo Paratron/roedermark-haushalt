@@ -1,0 +1,394 @@
+{
+  "meta": {
+    "beschreibung": "Grundsteuer-B-Vergleich Kreis Offenbach: Einnahmen/Bemessungsgrundlage pro Kopf (2024, Ist) und Hebesätze/Planzahlen (2026).",
+    "methodik_pro_kopf": "Bemessungsgrundlage pro Kopf ist keine amtliche Größe, sondern rückgerechnet aus Ist-Einnahmen ÷ (Hebesatz/100), geteilt durch Einwohnerzahl. Ein Näherungswert zur Einordnung, kein Messbetrag des Finanzamts.",
+    "methodik_plan_2026": "Planzahlen 2026 stammen aus dem 'Finanzstatusbericht' (Konto 5552, Land-Hessen-Pflichtanlage jedes Haushaltsplans). Nur für Kommunen aufgeführt, bei denen diese Anlage im vorliegenden PDF eindeutig gefunden wurde – für die übrigen ist der Wert null, nicht geschätzt.",
+    "generiert_am": "2026-07-12"
+  },
+  "kommunen": [
+    {
+      "kommune": "Dietzenbach",
+      "ist_2024": {
+        "jahr": 2024,
+        "hebesatz": 800,
+        "einnahmen_eur": 11069000,
+        "einwohner": 35567,
+        "einnahmen_pro_kopf_eur": 311.2,
+        "bemessungsgrundlage_pro_kopf_eur": 38.9,
+        "gewerbesteuer": {
+          "jahr": 2024,
+          "einnahmen_eur": 26556000,
+          "pro_kopf_eur": 746.6
+        },
+        "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Dietzenbach_2025.pdf",
+        "anmerkung": null
+      },
+      "hebesatz_2026": {
+        "jahr": 2026,
+        "hebesatz": 950,
+        "status": null,
+        "quelle": "IHK Gießen-Friedberg, Hebesatzumfrage 2026 – Hebesätze ab 01.01.2026 (Stand 29.05.2026)",
+        "quelle_url": "https://www.ihk.de/giessen-friedberg/geschaeftsbereiche/recht-und-steuern/steuern/hebesatz-2025-7031788"
+      },
+      "plan_2026_grundsteuer_b": null
+    },
+    {
+      "kommune": "Dreieich",
+      "ist_2024": {
+        "jahr": 2024,
+        "hebesatz": 500,
+        "einnahmen_eur": 11169000,
+        "einwohner": 41816,
+        "einnahmen_pro_kopf_eur": 267.1,
+        "bemessungsgrundlage_pro_kopf_eur": 53.4,
+        "gewerbesteuer": {
+          "jahr": 2024,
+          "einnahmen_eur": 60961000,
+          "pro_kopf_eur": 1457.8
+        },
+        "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Dreieich_2025.pdf",
+        "anmerkung": null
+      },
+      "hebesatz_2026": {
+        "jahr": 2026,
+        "hebesatz": 900,
+        "status": null,
+        "quelle": "IHK Gießen-Friedberg, Hebesatzumfrage 2026 – Hebesätze ab 01.01.2026 (Stand 29.05.2026)",
+        "quelle_url": "https://www.ihk.de/giessen-friedberg/geschaeftsbereiche/recht-und-steuern/steuern/hebesatz-2025-7031788"
+      },
+      "plan_2026_grundsteuer_b": {
+        "betrag_eur": 13998000,
+        "quelle": "Haushaltsplan Dreieich 2026 Band 1, Finanzstatusbericht (Konto 5552), S. 409",
+        "document": "dreieich_2026_band1.pdf",
+        "page": 409
+      }
+    },
+    {
+      "kommune": "Egelsbach",
+      "ist_2024": {
+        "jahr": 2024,
+        "hebesatz": 815,
+        "einnahmen_eur": 4660000,
+        "einwohner": 10958,
+        "einnahmen_pro_kopf_eur": 425.3,
+        "bemessungsgrundlage_pro_kopf_eur": 52.2,
+        "gewerbesteuer": {
+          "jahr": 2024,
+          "einnahmen_eur": 6327000,
+          "pro_kopf_eur": 577.4
+        },
+        "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Egelsbach_2025.pdf",
+        "anmerkung": null
+      },
+      "hebesatz_2026": {
+        "jahr": 2026,
+        "hebesatz": 1066,
+        "status": null,
+        "quelle": "IHK Gießen-Friedberg, Hebesatzumfrage 2026 – Hebesätze ab 01.01.2026 (Stand 29.05.2026)",
+        "quelle_url": "https://www.ihk.de/giessen-friedberg/geschaeftsbereiche/recht-und-steuern/steuern/hebesatz-2025-7031788"
+      },
+      "plan_2026_grundsteuer_b": {
+        "betrag_eur": 4621000,
+        "quelle": "Haushaltsplan Egelsbach 2026, Finanzstatusbericht (Konto 5552), S. 417",
+        "document": "egelsbach.pdf",
+        "page": 417
+      }
+    },
+    {
+      "kommune": "Hainburg",
+      "ist_2024": {
+        "jahr": 2024,
+        "hebesatz": 496,
+        "einnahmen_eur": 2941000,
+        "einwohner": 14440,
+        "einnahmen_pro_kopf_eur": 203.7,
+        "bemessungsgrundlage_pro_kopf_eur": 41.1,
+        "gewerbesteuer": {
+          "jahr": 2024,
+          "einnahmen_eur": 3717000,
+          "pro_kopf_eur": 257.4
+        },
+        "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Hainburg_2025.pdf",
+        "anmerkung": null
+      },
+      "hebesatz_2026": {
+        "jahr": 2026,
+        "hebesatz": 615,
+        "status": null,
+        "quelle": "IHK Gießen-Friedberg, Hebesatzumfrage 2026 – Hebesätze ab 01.01.2026 (Stand 29.05.2026)",
+        "quelle_url": "https://www.ihk.de/giessen-friedberg/geschaeftsbereiche/recht-und-steuern/steuern/hebesatz-2025-7031788"
+      },
+      "plan_2026_grundsteuer_b": null
+    },
+    {
+      "kommune": "Heusenstamm",
+      "ist_2024": {
+        "jahr": 2024,
+        "hebesatz": 950,
+        "einnahmen_eur": 9252000,
+        "einwohner": 19146,
+        "einnahmen_pro_kopf_eur": 483.2,
+        "bemessungsgrundlage_pro_kopf_eur": 50.9,
+        "gewerbesteuer": {
+          "jahr": 2024,
+          "einnahmen_eur": 12166000,
+          "pro_kopf_eur": 635.4
+        },
+        "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Heusenstamm_2025.pdf",
+        "anmerkung": null
+      },
+      "hebesatz_2026": {
+        "jahr": 2026,
+        "hebesatz": 1327,
+        "status": null,
+        "quelle": "IHK Gießen-Friedberg, Hebesatzumfrage 2026 – Hebesätze ab 01.01.2026 (Stand 29.05.2026)",
+        "quelle_url": "https://www.ihk.de/giessen-friedberg/geschaeftsbereiche/recht-und-steuern/steuern/hebesatz-2025-7031788"
+      },
+      "plan_2026_grundsteuer_b": {
+        "betrag_eur": 8900000,
+        "quelle": "Haushaltsplan Heusenstamm 2026/2027, Finanzstatusbericht (Konto 5552), S. 514",
+        "document": "heusenstamm.pdf",
+        "page": 514
+      }
+    },
+    {
+      "kommune": "Langen",
+      "ist_2024": {
+        "jahr": 2024,
+        "hebesatz": 850,
+        "einnahmen_eur": 14939000,
+        "einwohner": 38671,
+        "einnahmen_pro_kopf_eur": 386.3,
+        "bemessungsgrundlage_pro_kopf_eur": 45.4,
+        "gewerbesteuer": {
+          "jahr": 2024,
+          "einnahmen_eur": 28213000,
+          "pro_kopf_eur": 729.6
+        },
+        "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Langen_2025.pdf",
+        "anmerkung": null
+      },
+      "hebesatz_2026": {
+        "jahr": 2026,
+        "hebesatz": 1268.77,
+        "status": null,
+        "quelle": "IHK Gießen-Friedberg, Hebesatzumfrage 2026 – Hebesätze ab 01.01.2026 (Stand 29.05.2026)",
+        "quelle_url": "https://www.ihk.de/giessen-friedberg/geschaeftsbereiche/recht-und-steuern/steuern/hebesatz-2025-7031788"
+      },
+      "plan_2026_grundsteuer_b": {
+        "betrag_eur": 14271008,
+        "quelle": "Haushaltsplan Langen 2026, Finanzstatusbericht (Konto 5552), S. 749",
+        "document": "langen.pdf",
+        "page": 749,
+        "hebesatz_basis": null,
+        "anmerkung": "Die Steuerhebesätze-Tabelle im selben Dokument zeigt für 2026 fälschlich die Nivellierungshebesätze (Fließtext-Extraktion ohne Spaltenstruktur, nicht übernommen). Der amtliche 2026-Hebesatz laut IHK Gießen-Friedberg beträgt 1.268,77 %."
+      }
+    },
+    {
+      "kommune": "Mainhausen",
+      "ist_2024": {
+        "jahr": 2024,
+        "hebesatz": 494,
+        "einnahmen_eur": 2316000,
+        "einwohner": 9499,
+        "einnahmen_pro_kopf_eur": 243.8,
+        "bemessungsgrundlage_pro_kopf_eur": 49.4,
+        "gewerbesteuer": {
+          "jahr": 2024,
+          "einnahmen_eur": 8083000,
+          "pro_kopf_eur": 850.9
+        },
+        "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Mainhausen_2025.pdf",
+        "anmerkung": null
+      },
+      "hebesatz_2026": {
+        "jahr": 2026,
+        "hebesatz": 800,
+        "status": null,
+        "quelle": "IHK Gießen-Friedberg, Hebesatzumfrage 2026 – Hebesätze ab 01.01.2026 (Stand 29.05.2026)",
+        "quelle_url": "https://www.ihk.de/giessen-friedberg/geschaeftsbereiche/recht-und-steuern/steuern/hebesatz-2025-7031788"
+      },
+      "plan_2026_grundsteuer_b": {
+        "betrag_eur": 2970000,
+        "quelle": "Haushaltsplan Mainhausen 2026, Finanzstatusbericht (Konto 5552), S. 376",
+        "document": "mainhausen.pdf",
+        "page": 376
+      }
+    },
+    {
+      "kommune": "Mühlheim am Main",
+      "ist_2024": {
+        "jahr": 2024,
+        "hebesatz": 800,
+        "einnahmen_eur": 9495000,
+        "einwohner": 29105,
+        "einnahmen_pro_kopf_eur": 326.2,
+        "bemessungsgrundlage_pro_kopf_eur": 40.8,
+        "gewerbesteuer": {
+          "jahr": 2024,
+          "einnahmen_eur": 11898000,
+          "pro_kopf_eur": 408.8
+        },
+        "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Muehlheim_2025.pdf",
+        "anmerkung": null
+      },
+      "hebesatz_2026": {
+        "jahr": 2026,
+        "hebesatz": 1450,
+        "status": "geplant",
+        "quelle": "Haushaltssicherungskonzept 2026 (Entwurf), Beschluss vorgesehen 25.06.2026; aktuell gültig sind 983,35 %; op-online.de, 12.06.2026",
+        "quelle_url": "https://www.op-online.de/region/muehlheim/details-zum-haushaltssicherungskonzept-bekannt-stadt-muehlheim-plant-massive-grundsteuererhoehung-94347937.html"
+      },
+      "plan_2026_grundsteuer_b": null
+    },
+    {
+      "kommune": "Neu-Isenburg",
+      "ist_2024": {
+        "jahr": 2024,
+        "hebesatz": 350,
+        "einnahmen_eur": 7033000,
+        "einwohner": 37879,
+        "einnahmen_pro_kopf_eur": 185.7,
+        "bemessungsgrundlage_pro_kopf_eur": 53.0,
+        "gewerbesteuer": {
+          "jahr": 2024,
+          "einnahmen_eur": 105434000,
+          "pro_kopf_eur": 2783.4
+        },
+        "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Neu-Isenburg_2025.pdf",
+        "anmerkung": null
+      },
+      "hebesatz_2026": {
+        "jahr": 2026,
+        "hebesatz": 495,
+        "status": null,
+        "quelle": "IHK Gießen-Friedberg, Hebesatzumfrage 2026 – Hebesätze ab 01.01.2026 (Stand 29.05.2026)",
+        "quelle_url": "https://www.ihk.de/giessen-friedberg/geschaeftsbereiche/recht-und-steuern/steuern/hebesatz-2025-7031788"
+      },
+      "plan_2026_grundsteuer_b": null
+    },
+    {
+      "kommune": "Obertshausen",
+      "ist_2024": {
+        "jahr": 2024,
+        "hebesatz": 600,
+        "einnahmen_eur": 6566000,
+        "einwohner": 25288,
+        "einnahmen_pro_kopf_eur": 259.6,
+        "bemessungsgrundlage_pro_kopf_eur": 43.3,
+        "gewerbesteuer": {
+          "jahr": 2024,
+          "einnahmen_eur": 17564000,
+          "pro_kopf_eur": 694.6
+        },
+        "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Obertshausen_2025.pdf",
+        "anmerkung": null
+      },
+      "hebesatz_2026": {
+        "jahr": 2026,
+        "hebesatz": 1107,
+        "status": null,
+        "quelle": "IHK Gießen-Friedberg, Hebesatzumfrage 2026 – Hebesätze ab 01.01.2026 (Stand 29.05.2026)",
+        "quelle_url": "https://www.ihk.de/giessen-friedberg/geschaeftsbereiche/recht-und-steuern/steuern/hebesatz-2025-7031788"
+      },
+      "plan_2026_grundsteuer_b": {
+        "betrag_eur": 8575000,
+        "quelle": "Haushaltsplan Obertshausen 2026, Finanzstatusbericht (Konto 5552), S. 416",
+        "document": "obertshausen.pdf",
+        "page": 416
+      }
+    },
+    {
+      "kommune": "Rodgau",
+      "ist_2024": {
+        "jahr": 2023,
+        "hebesatz": 700,
+        "einnahmen_eur": 13721000,
+        "einwohner": 45070,
+        "einnahmen_pro_kopf_eur": 304.4,
+        "bemessungsgrundlage_pro_kopf_eur": 43.5,
+        "gewerbesteuer": {
+          "jahr": 2024,
+          "einnahmen_eur": 27879000,
+          "pro_kopf_eur": 618.6
+        },
+        "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Rodgau_2025.pdf",
+        "anmerkung": "2024 zeigt einen nicht plausiblen Einbruch der Grundsteuer-A/B-Einnahmen (vermutlich Kassenwirksamkeits-Effekt der Grundsteuerreform); 2023 als letzter plausibler Wert verwendet."
+      },
+      "hebesatz_2026": {
+        "jahr": 2026,
+        "hebesatz": 1250,
+        "status": "geplant",
+        "quelle": "Beschlussvorlage DS-0134/2026 (Hebesatzsatzung), Entscheidung Stadtverordnetenversammlung 22.06.2026; aktuell gültig sind 990 %",
+        "quelle_url": "https://www.rodgau.sitzung-online.de/public/vo020?VOLFDNR=1003031&refresh=false&TOLFDNR=1009607"
+      },
+      "plan_2026_grundsteuer_b": {
+        "betrag_eur": 14500000,
+        "betrag_eur_angepasst": 20650000,
+        "quelle": "Haushaltsplan Rodgau 2026 (Einbringung 09.02.2026), Finanzstatusbericht (Konto 5552), S. 448",
+        "document": "rodgau.pdf",
+        "page": 448,
+        "hebesatz_basis": 877.5,
+        "hebesatz_aktuell": 1250,
+        "anmerkung": "Planzahl beruht auf dem Hebesatz der Einbringung (877,5 %). Der später beschlossene Hebesatz (1.250 %, Beschlussvorlage DS-0134/2026, SVV 22.06.2026) liegt darüber – linear angepasster Wert: 20,65 Mio. € (14,5 Mio. € × 1.250/877,5). Gleiches Haushaltsjahr, daher zulässige Anpassung (keine neue Bemessungsgrundlage wie beim Sprung 2024→2025)."
+      }
+    },
+    {
+      "kommune": "Rödermark",
+      "ist_2024": {
+        "jahr": 2024,
+        "hebesatz": 715,
+        "einnahmen_eur": 7666000,
+        "einwohner": 28716,
+        "einnahmen_pro_kopf_eur": 267.0,
+        "bemessungsgrundlage_pro_kopf_eur": 37.3,
+        "gewerbesteuer": {
+          "jahr": 2024,
+          "einnahmen_eur": 16762000,
+          "pro_kopf_eur": 583.7
+        },
+        "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Roedermark_2025.pdf",
+        "anmerkung": null
+      },
+      "hebesatz_2026": {
+        "jahr": 2026,
+        "hebesatz": 1327,
+        "status": "beschlossen",
+        "quelle": "Beschluss der Stadtverordnetenversammlung (Juni 2026, namentlich 20:16), rückwirkend zum 01.01.2026 von 990 auf 1.327 %; HSK-Maßnahme „Erhöhung Hebesatz Grundsteuer B“ Schritt 1",
+        "quelle_url": "https://www.rheinmainverlag.de/2026/06/25/die-grundsteuer-in-roedermark-geht-weiter-rauf/"
+      },
+      "plan_2026_grundsteuer_b": null
+    },
+    {
+      "kommune": "Seligenstadt",
+      "ist_2024": {
+        "jahr": 2024,
+        "hebesatz": 431,
+        "einnahmen_eur": 4400000,
+        "einwohner": 21288,
+        "einnahmen_pro_kopf_eur": 206.7,
+        "bemessungsgrundlage_pro_kopf_eur": 48.0,
+        "gewerbesteuer": {
+          "jahr": 2024,
+          "einnahmen_eur": 14626000,
+          "pro_kopf_eur": 687.1
+        },
+        "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Seligenstadt_2025.pdf",
+        "anmerkung": null
+      },
+      "hebesatz_2026": {
+        "jahr": 2026,
+        "hebesatz": 850,
+        "status": null,
+        "quelle": "IHK Gießen-Friedberg, Hebesatzumfrage 2026 – Hebesätze ab 01.01.2026 (Stand 29.05.2026)",
+        "quelle_url": "https://www.ihk.de/giessen-friedberg/geschaeftsbereiche/recht-und-steuern/steuern/hebesatz-2025-7031788"
+      },
+      "plan_2026_grundsteuer_b": {
+        "betrag_eur": 6585000,
+        "quelle": "Haushaltsplan Seligenstadt 2026, Finanzstatusbericht (Konto 5552), S. 707",
+        "document": "seligenstadt.pdf",
+        "page": 707
+      }
+    }
+  ]
+}

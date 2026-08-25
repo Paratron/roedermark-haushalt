@@ -2,7 +2,7 @@
   "meta": {
     "description": "Grundsteuer A Hebesätze der Kommunen im Kreis Offenbach",
     "unit": "Prozent",
-    "note": "Datenquellen: IHK Offenbach Gemeindesteckbriefe 2025 (Umfrage der IHK, alle Kommunen im Kreis Offenbach, 2013–2025) sowie Haushaltssatzungen der Stadt Rödermark."
+    "note": "Datenquellen: IHK Gießen-Friedberg, Hebesatzumfrage 2026 (Hebesätze ab 01.01.2026, Stand 29.05.2026) für die aktuellen 2026-Werte aller Kommunen im Kreis Offenbach; IHK Offenbach Gemeindesteckbriefe (Umfrage der IHK, 2013–2025) für die Vorjahre; Haushaltssatzungen der Stadt Rödermark sowie einzeln belegte Beschlussvorlagen für geplante Erhöhungen 2026 (siehe Quellenangabe je Eintrag)."
   },
   "data": [
     {
@@ -708,6 +708,84 @@
       "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Neu-Isenburg_2025.pdf"
     },
     {
+      "kommune": "Obertshausen",
+      "year": 2013,
+      "hebesatz": 330,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Obertshausen_2025.pdf"
+    },
+    {
+      "kommune": "Obertshausen",
+      "year": 2014,
+      "hebesatz": 330,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Obertshausen_2025.pdf"
+    },
+    {
+      "kommune": "Obertshausen",
+      "year": 2015,
+      "hebesatz": 431,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Obertshausen_2025.pdf"
+    },
+    {
+      "kommune": "Obertshausen",
+      "year": 2016,
+      "hebesatz": 431,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Obertshausen_2025.pdf"
+    },
+    {
+      "kommune": "Obertshausen",
+      "year": 2017,
+      "hebesatz": 431,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Obertshausen_2025.pdf"
+    },
+    {
+      "kommune": "Obertshausen",
+      "year": 2018,
+      "hebesatz": 431,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Obertshausen_2025.pdf"
+    },
+    {
+      "kommune": "Obertshausen",
+      "year": 2019,
+      "hebesatz": 431,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Obertshausen_2025.pdf"
+    },
+    {
+      "kommune": "Obertshausen",
+      "year": 2020,
+      "hebesatz": 431,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Obertshausen_2025.pdf"
+    },
+    {
+      "kommune": "Obertshausen",
+      "year": 2021,
+      "hebesatz": 431,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Obertshausen_2025.pdf"
+    },
+    {
+      "kommune": "Obertshausen",
+      "year": 2022,
+      "hebesatz": 431,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Obertshausen_2025.pdf"
+    },
+    {
+      "kommune": "Obertshausen",
+      "year": 2023,
+      "hebesatz": 431,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Obertshausen_2025.pdf"
+    },
+    {
+      "kommune": "Obertshausen",
+      "year": 2024,
+      "hebesatz": 431,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Obertshausen_2025.pdf"
+    },
+    {
+      "kommune": "Obertshausen",
+      "year": 2025,
+      "hebesatz": 431,
+      "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Obertshausen_2025.pdf"
+    },
+    {
       "kommune": "Offenbach am Main",
       "year": 2013,
       "hebesatz": 250,
@@ -864,6 +942,14 @@
       "quelle": "IHK Offenbach, Gemeindesteckbrief 2025 (Umfrage der IHK), Gemeindesteckbrief_Rodgau_2025.pdf"
     },
     {
+      "kommune": "Rodgau",
+      "year": 2026,
+      "hebesatz": 760,
+      "quelle": "Beschlussvorlage DS-0134/2026 (Hebesatzsatzung), Entscheidung Stadtverordnetenversammlung 22.06.2026",
+      "status": "geplant",
+      "quelle_url": "https://www.rodgau.sitzung-online.de/public/vo020?VOLFDNR=1003031&refresh=false&TOLFDNR=1009607"
+    },
+    {
       "kommune": "Rödermark",
       "year": 2013,
       "hebesatz": 200,
@@ -944,8 +1030,10 @@
     {
       "kommune": "Rödermark",
       "year": 2026,
-      "hebesatz": 175,
-      "quelle": "Haushaltssatzung in Haushaltsplan 2026 (Entwurf), S. 4"
+      "hebesatz": 900,
+      "quelle": "Beschluss der Stadtverordnetenversammlung (Juni 2026), rückwirkend zum 01.01.2026 von 175 auf 900 %",
+      "status": "beschlossen",
+      "quelle_url": "https://www.rheinmainverlag.de/2026/06/25/die-grundsteuer-in-roedermark-geht-weiter-rauf/"
     },
     {
       "kommune": "Seligenstadt",

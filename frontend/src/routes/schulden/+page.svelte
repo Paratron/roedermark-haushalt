@@ -97,8 +97,11 @@
 	<HandCoins /> Schulden &amp; Zinsen
 </AnchorHeading>
 <p class="page-intro">
-	Wie hoch ist die Verschuldung der Stadt Rödermark? Diese Seite zeigt Kreditaufnahme, Tilgung
-	und Zinsbelastung im Zeitverlauf – basierend auf den Finanzhaushaltsdaten.
+	Wie hoch ist die Verschuldung der Stadt Rödermark? Rödermark hat <strong>drei Arten von Schulden</strong>,
+	die hier getrennt dargestellt werden: langfristige <em>Investitionskredite</em>, kurzfristige
+	<em>Kassen-/Liquiditätskredite</em> und die Rückzahlung an die <em>Hessenkasse</em>. Diese Seite
+	zeigt Kreditaufnahme, Tilgung und Zinsbelastung im Zeitverlauf – basierend auf den
+	Finanzhaushaltsdaten.
 </p>
 
 <!-- KPI Cards -->
@@ -131,18 +134,44 @@
 		</p>
 		<p class="kpi-sub">Ist {kpis.lastIstYear} · Zinszahlungen gesamt</p>
 	</div>
+	{#if kpis.hessenkasseAktuell > 0}
+		<div class="kpi-card">
+			<p class="kpi-label">Hessenkasse-Eigenbeitrag</p>
+			<p class="kpi-value">
+				{formatAmount(kpis.hessenkasseAktuell)}
+			</p>
+			<p class="kpi-sub">pro Jahr · Rückzahlung übernommener Kassenkredite</p>
+		</div>
+	{/if}
 </section>
 
 <!-- Info Box -->
 <div class="info-box info-box-amber section-lg">
 	<Info class="info-icon" />
 	<div>
-		<strong>Zur Einordnung:</strong> Der Schuldenstand umfasst nur <em>Investitionskredite</em> (inkl. KBR)
-		und stammt aus der offiziellen Schuldenstatistik der Haushaltspläne.
-		Rödermark hat 2013 den <a href="https://finanzen.hessen.de/kommunen/kommunaler-schutzschirm" target="_blank"><em>Schutzschirmvertrag</em> mit dem Land Hessen <ExternalLink style="display: inline-block" size={12} /></a> geschlossen,
-		der die Stadt zu Haushaltskonsolidierung verpflichtet und Entschuldungshilfen gewährt.
-		Der Schuldenabbau 2012–2017 ist Folge dieses Vertrags.
-		Die Plan-Werte ab {summary.plan_only_years?.[0] ?? 2025} spiegeln geplante Kreditaufnahmen für Großprojekte wider
+		<strong>Drei Arten von Schulden – und was diese Seite zeigt:</strong>
+		<ul class="debt-types">
+			<li>
+				<strong>Investitionskredite</strong> (langfristig, für Schulen, Straßen, Gebäude):
+				vollständig erfasst – der Schuldenstand unten zeigt diese Kredite inkl. KBR seit 1986.
+			</li>
+			<li>
+				<strong>Kassen-/Liquiditätskredite</strong> (kurzfristig, zur Überbrückung von
+				Zahlungsengpässen – vergleichbar mit einem Dispo): nur als jährliche Aufnahme/Tilgung
+				erfasst. 2017/2018 hat Rödermark diese im Zuge des Hessenkasse-Beitritts abgebaut.
+				Ein laufender <em>Bestand</em> dieser Kredite liegt nicht in den ausgewerteten Tabellen.
+			</li>
+			<li>
+				<strong>Hessenkasse</strong>: Das Land Hessen hat 2018 die Kassenkredite übernommen;
+				Rödermark zahlt dafür einen festen jährlichen Eigenbeitrag zurück.
+			</li>
+		</ul>
+		Der <strong>Schuldenstand</strong> unten umfasst daher nur die <em>Investitionskredite</em>
+		(inkl. KBR) aus der offiziellen Schuldenstatistik der Haushaltspläne. Rödermark hat 2013 den
+		<a href="https://finanzen.hessen.de/kommunen/kommunaler-schutzschirm" target="_blank"><em>Schutzschirmvertrag</em> mit dem Land Hessen <ExternalLink style="display: inline-block" size={12} /></a>
+		geschlossen, der die Stadt zu Haushaltskonsolidierung verpflichtet und Entschuldungshilfen gewährt.
+		Der Schuldenabbau 2012–2017 ist Folge dieses Vertrags. Die Plan-Werte ab
+		{summary.plan_only_years?.[0] ?? 2025} spiegeln geplante Kreditaufnahmen für Großprojekte wider
 		(u.&thinsp;a. Schulneubauten), deren Finanzierung teils noch nicht abschließend gesichert ist.
 	</div>
 </div>
@@ -211,6 +240,102 @@
 		description="Finanzhaushalt, Nr. 160 (Zinsen und ähnliche Auszahlungen)"
 		links={data.sourceLinks.zinsen}
 	/>
+</section>
+
+<!-- Kassen-/Liquiditätskredite & Hessenkasse -->
+<section class="chart-section">
+	<AnchorHeading level={3} id="kassenkredite">Kassen-/Liquiditätskredite & Hessenkasse</AnchorHeading>
+	<p class="section-sub">
+		Neben den Investitionskrediten nutzt eine Stadt <strong>Kassenkredite</strong> zur kurzfristigen
+		Überbrückung von Zahlungsengpässen – ähnlich einem Dispokredit. Hohe Kassenkredite gelten als
+		Warnzeichen, weil laufende Ausgaben dann nicht aus laufenden Einnahmen gedeckt sind.
+	</p>
+
+	{#if data.hasKassenkredite}
+		<div class="chart-card">
+			<TimeSeriesChart
+				title="Kassenkredite: Aufnahme und Tilgung"
+				series={data.kassenkreditSeries}
+				yLabel="Mio. €"
+				multiSeries={true}
+			/>
+		</div>
+		<p class="chart-note">
+			Aufnahme = neu aufgenommene Kassenkredite (FH Nr. 301), Tilgung/Rückzahlung = deren Abbau
+			(FH Nr. 361). Gut sichtbar: der Abbau 2017/2018 im Zuge des Hessenkasse-Beitritts. Ein
+			laufender <em>Bestand</em> an Kassenkrediten wird in den Haushaltsplänen nicht als eigene
+			Zeitreihe ausgewiesen – daher hier nur die jährlichen Zu- und Abflüsse.
+		</p>
+		<SourceCitation
+			description="Finanzhaushalt, Nr. 301 (Aufnahme) und Nr. 361 (Tilgung/Rückzahlung) von Kassenkrediten"
+			links={data.sourceLinks.kassenkredite}
+		/>
+	{/if}
+
+	{#if data.kassenkreditRahmen.length > 0}
+		<div class="info-box info-box-amber section">
+			<Info class="info-icon" />
+			<div>
+				<strong>Was die Haushaltssatzung sagt (§ 4):</strong> Jeder Haushaltsplan legt in § 4 einen
+				<strong>Höchstbetrag</strong> für Kassen-/Liquiditätskredite fest – also den Rahmen, bis zu
+				dem die Stadt kurzfristig Geld aufnehmen darf. Das ist eine <em>Ermächtigung</em>, nicht der
+				tatsächlich gezogene Betrag. Aufschlussreich ist der Verlauf: vom hohen Rahmen 2017/2018 bis
+				zu mehreren Jahren, in denen ausdrücklich „keine Liquiditätskredite beansprucht“ wurden.
+			</div>
+		</div>
+		<div class="rahmen-table-wrap">
+			<table class="rahmen-table">
+				<thead>
+					<tr>
+						<th>Jahr</th>
+						<th>Höchstbetrag laut § 4</th>
+						<th>Quelle</th>
+					</tr>
+				</thead>
+				<tbody>
+					{#each data.kassenkreditRahmen as row (row.year)}
+						<tr class:is-null={row.status === 'scan_nicht_lesbar'}>
+							<td class="rahmen-year">
+								{row.year}{#if row.ist_entwurf}<span class="rahmen-tag">Entwurf</span>{/if}
+							</td>
+							<td>{row.display}</td>
+							<td class="rahmen-source">
+								{#if row.source}
+									<a href={row.source.href} target="_blank">{row.source.label}</a>
+								{:else}
+									<span class="rahmen-muted">–</span>
+								{/if}
+							</td>
+						</tr>
+					{/each}
+				</tbody>
+			</table>
+		</div>
+		<p class="chart-note">
+			Höchstbeträge sind <strong>Kreditrahmen (Ermächtigungen)</strong>, nicht der zum Jahresende
+			ausstehende Bestand. „wird nicht beansprucht“ bedeutet, dass die Stadt für dieses Jahr keinen
+			Liquiditätskredit veranschlagt hat. Für 2019 ist die Satzungsseite nur als Scan vorhanden und
+			maschinell nicht auslesbar.
+		</p>
+	{/if}
+
+	{#if kpis.hessenkasseAktuell > 0}
+		<div class="info-box info-box-blue section">
+			<HandCoins class="info-icon" />
+			<div>
+				<strong>Hessenkasse:</strong> Mit dem Beitritt zur
+				<a href="https://finanzen.hessen.de/kommunen/hessenkasse" target="_blank">Hessenkasse <ExternalLink style="display: inline-block" size={12} /></a>
+				hat das Land Hessen 2018 die Kassenkredite der Stadt übernommen. Im Gegenzug zahlt
+				Rödermark einen festen jährlichen Eigenbeitrag zurück – zuletzt
+				<strong>{formatAmount(kpis.hessenkasseAktuell)} pro Jahr</strong>. Dieser Beitrag ist eine
+				laufende Verpflichtung, taucht aber nicht im oben gezeigten Investitionsschuldenstand auf.
+			</div>
+		</div>
+		<SourceCitation
+			description="Finanzhaushalt – Auszahlungen an das Sondervermögen Hessenkasse"
+			links={data.sourceLinks.hessenkasse}
+		/>
+	{/if}
 </section>
 
 <!-- Detail Table: TH14 Financing Projects -->
@@ -347,6 +472,26 @@
 	}
 	.chart-note { margin-top: 0.5rem; font-size: 0.75rem; color: var(--gray-400); }
 	.section-sub { margin-bottom: 1rem; font-size: 0.875rem; color: var(--gray-500); }
+	.debt-types { margin: 0.5rem 0 0.75rem; padding-left: 1.1rem; display: flex; flex-direction: column; gap: 0.35rem; }
+	.debt-types li { line-height: 1.45; }
+	.rahmen-table-wrap { margin-top: 1rem; overflow-x: auto; }
+	.rahmen-table {
+		width: 100%; border-collapse: collapse; font-size: 0.875rem;
+		background: #fff; border: 1px solid var(--gray-100); border-radius: 0.5rem;
+	}
+	.rahmen-table th, .rahmen-table td {
+		text-align: left; padding: 0.5rem 0.75rem; border-bottom: 1px solid var(--gray-100);
+	}
+	.rahmen-table th { font-weight: 600; color: var(--gray-600); background: var(--gray-50); }
+	.rahmen-table tr:last-child td { border-bottom: none; }
+	.rahmen-table tr.is-null td { color: var(--gray-400); }
+	.rahmen-year { font-variant-numeric: tabular-nums; white-space: nowrap; }
+	.rahmen-tag {
+		margin-left: 0.4rem; padding: 0.05rem 0.35rem; font-size: 0.7rem;
+		border-radius: 0.25rem; background: var(--gray-100); color: var(--gray-500);
+	}
+	.rahmen-source { font-size: 0.8rem; }
+	.rahmen-muted { color: var(--gray-400); }
 	.project-list { display: flex; flex-direction: column; gap: 0.5rem; }
 	.chevron { margin-top: 0.125rem; flex-shrink: 0; color: var(--gray-400); }
 	:global(.chevron-icon) { width: 1rem; height: 1rem; }

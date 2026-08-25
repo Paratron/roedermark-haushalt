@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { SourceLink } from '$lib/types';
 	import { FileText } from '@lucide/svelte';
+	import Popover from './Popover.svelte';
 
 	interface Props {
 		/** Description of the data source, e.g. "Finanzhaushalt, Nr. 310 (Kreditaufnahme)" */
@@ -12,60 +13,39 @@
 	}
 
 	let { description, links, condensed = false }: Props = $props();
-	let open = $state(false);
-	let wrapperEl: HTMLDivElement | undefined = $state();
-
-	function toggle(e: MouseEvent) {
-		e.stopPropagation();
-		open = !open;
-	}
-
-	function handleClickOutside(e: MouseEvent) {
-		if (wrapperEl && !wrapperEl.contains(e.target as Node)) {
-			open = false;
-		}
-	}
 </script>
 
-<svelte:document onclick={handleClickOutside} />
-
 {#if links.length > 0}
-	<div class="source-wrapper" class:condensed bind:this={wrapperEl}>
-		<button
-			type="button"
-			class="source-btn"
-			class:source-btn-condensed={condensed}
-			onclick={toggle}
-			title="{links.length} {links.length === 1 ? 'Quelle' : 'Quellen'}"
+	<div class="source-wrapper" class:condensed>
+		<Popover
+			direction={condensed ? 'down' : 'up'}
 		>
-			<FileText class="source-icon" />
-			{#if !condensed}
-				<span>
-					{links.length === 1 ? '1 Quelle' : `${links.length} Quellen`}
+			{#snippet trigger()}
+				<span
+					class="source-btn"
+					class:source-btn-condensed={condensed}
+					title="{links.length} {links.length === 1 ? 'Quelle' : 'Quellen'}"
+				>
+					<FileText class="source-icon" />
+					{#if !condensed}
+						<span>
+							{links.length === 1 ? '1 Quelle' : `${links.length} Quellen`}
+						</span>
+					{/if}
 				</span>
-			{/if}
-		</button>
-
-		{#if open}
-			<div class="popover" class:popover-down={condensed} class:popover-up={!condensed}>
-				{#if !condensed}
-					<div class="popover-arrow popover-arrow-up"></div>
-				{:else}
-					<div class="popover-arrow popover-arrow-down"></div>
-				{/if}
-				<p class="popover-desc">{description}</p>
-				<ul class="popover-list">
-					{#each links as link (link.href)}
-						<li>
-							<a href={link.href} target="_blank" class="popover-link">
-								<FileText class="source-icon-sm" />
-								{link.label}
-							</a>
-						</li>
-					{/each}
-				</ul>
-			</div>
-		{/if}
+			{/snippet}
+			<p class="popover-desc">{description}</p>
+			<ul class="popover-list">
+				{#each links as link (link.href)}
+					<li>
+						<a href={link.href} target="_blank" class="popover-link">
+							<FileText class="source-icon-sm" />
+							{link.label}
+						</a>
+					</li>
+				{/each}
+			</ul>
+		</Popover>
 	</div>
 {/if}
 
@@ -86,8 +66,6 @@
 		gap: 0.375rem;
 		font-size: 0.75rem;
 		color: var(--gray-400);
-		background: none;
-		border: none;
 		cursor: pointer;
 		transition: color 0.15s;
 	}
@@ -116,45 +94,6 @@
 		height: 0.75rem;
 		flex-shrink: 0;
 		color: var(--gray-400);
-	}
-	.popover {
-		position: absolute;
-		z-index: 50;
-		width: 18rem;
-		padding: 0.75rem;
-		background: #fff;
-		border-radius: 0.5rem;
-		box-shadow: var(--shadow-lg);
-		outline: 1px solid var(--gray-200);
-		outline-offset: -1px;
-	}
-	.popover-up {
-		bottom: 100%;
-		left: 0;
-		margin-bottom: 0.5rem;
-	}
-	.popover-down {
-		top: 100%;
-		right: 0;
-		margin-top: 0.5rem;
-	}
-	.popover-arrow {
-		position: absolute;
-		width: 0.75rem;
-		height: 0.75rem;
-		background: #fff;
-		transform: rotate(45deg);
-		outline: 1px solid var(--gray-200);
-	}
-	.popover-arrow-up {
-		bottom: -0.375rem;
-		left: 1rem;
-		clip-path: polygon(100% 0, 100% 100%, 0 100%);
-	}
-	.popover-arrow-down {
-		top: -0.375rem;
-		right: 1rem;
-		clip-path: polygon(0 0, 100% 0, 0 100%);
 	}
 	.popover-desc {
 		margin-bottom: 0.5rem;

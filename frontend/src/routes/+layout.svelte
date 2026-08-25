@@ -15,7 +15,12 @@
 		{ href: '/teilhaushalte', label: 'Teilhaushalte' },
 		{ href: '/investitionen', label: 'Investitionen' },
 		{ href: '/steuern', label: 'Steuern' },
+		//{ href: '/grundsteuer', label: 'Grundsteuer' },
 		{ href: '/schulden', label: 'Schulden & Zinsen' },
+		{ href: '/hsk2026', label: 'Haushaltssicherung 2026' },
+		{ href: '/grundsteuer-rechner', label: 'Grundsteuer-Rechner' },
+		//{ href: '/deckungsluecken', label: 'Deckungslücken' },
+		//{ href: '/kreisvergleich', label: 'Kreisvergleich' },
 		{ href: '/explorer', label: 'Explorer' },
 		{ href: '/quellen', label: 'Quellen' }
 	];

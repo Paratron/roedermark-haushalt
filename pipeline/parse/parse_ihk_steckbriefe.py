@@ -106,14 +106,6 @@ def _parse_hebesatz(val: str | None) -> float | None:
 
 # ── Table identification ─────────────────────────────────────────────────────
 
-def _is_finanzen_table(table: list[list[str | None]]) -> bool:
-    """Check if a table looks like the Gemeindefinanzen table."""
-    if len(table) < 5:
-        return False
-    flat = " ".join(str(cell) for row in table[:3] for cell in row if cell)
-    return "Hebesatz" in flat and ("Gewerbe" in flat or "Grundsteuer" in flat)
-
-
 def _is_bevoelkerung_table(table: list[list[str | None]]) -> bool:
     """Check if a table looks like the Bevölkerung table."""
     if len(table) < 3:
@@ -132,51 +124,63 @@ def _is_kaufkraft_table(table: list[list[str | None]]) -> bool:
 
 # ── Extractors ───────────────────────────────────────────────────────────────
 
+_FINANZEN_NUM = r"(?:\*+|-?[\d.]+(?:,\d+)?\*{0,3})"
+_FINANZEN_ROW_RE = re.compile(
+    rf"^(\d{{4}})\*{{0,3}}\s+({_FINANZEN_NUM})\s+({_FINANZEN_NUM})\s+"
+    rf"({_FINANZEN_NUM})\s+({_FINANZEN_NUM})\s+({_FINANZEN_NUM})\s+({_FINANZEN_NUM})\s*$"
+)
+
+
 def extract_finanzen(
-    table: list[list[str | None]],
+    text: str,
     kommune: str,
     pdf_name: str,
 ) -> list[dict]:
     """
-    Extract Gemeindefinanzen rows from a pdfplumber table.
+    Extract Gemeindefinanzen rows directly from the page text.
 
-    Expected columns (after header rows):
-      [Jahr, Hebesatz Gewerbesteuer, GewSt-Einnahmen T€,
-       Hebesatz GrSt A, Hebesatz GrSt B, Einnahmen GrSt A T€, Einnahmen GrSt B T€]
+    NOTE: This used to run against pdfplumber's `extract_tables()` output,
+    but that bordered-table detection silently drops/shifts columns on some
+    PDFs (observed for Obertshausen: Grundsteuer B hebesatz/einnahmen were
+    read from the wrong columns because the ruling-line table had fewer
+    detected columns than expected). The row layout is fixed-format text
+    ("Jahr HebesatzGew EinnahmenGew HebesatzA HebesatzB EinnahmenA EinnahmenB"),
+    so a line-based regex is both simpler and more robust here.
+
+    Columns per row: [Jahr, Hebesatz Gewerbesteuer, GewSt-Einnahmen T€,
+      Hebesatz GrSt A, Hebesatz GrSt B, Einnahmen GrSt A T€, Einnahmen GrSt B T€]
     """
     rows: list[dict] = []
     quelle = f"{QUELLE_FINANZEN}, {pdf_name}"
 
-    # Find the first data row (starts with a year like "2025**" or "2024")
-    data_start = None
-    for i, row in enumerate(table):
-        if row and row[0] and re.match(r"^\d{4}", str(row[0]).strip()):
-            data_start = i
+    in_table = False
+    data_lines: list[str] = []
+    for line in text.split("\n"):
+        if "Gemeindefinanzen" in line:
+            in_table = True
+            continue
+        if not in_table:
+            continue
+        if "Kaufkraft" in line or "Datenquelle" in line:
             break
+        data_lines.append(line.strip())
 
-    if data_start is None:
+    if not any(_FINANZEN_ROW_RE.match(line) for line in data_lines):
         logger.warning("No data rows found in Finanzen table for %s", kommune)
         return []
 
-    for row in table[data_start:]:
-        if not row or not row[0]:
+    for line in data_lines:
+        m = _FINANZEN_ROW_RE.match(line)
+        if not m:
             continue
+        year = int(m.group(1))
 
-        year_str = re.match(r"(\d{4})", str(row[0]).strip())
-        if not year_str:
-            continue
-        year = int(year_str.group(1))
-
-        # Pad row to 7 columns
-        while len(row) < 7:
-            row.append(None)
-
-        hs_gew = _parse_hebesatz(row[1])
-        einnahmen_gew = _parse_int(row[2])
-        hs_grst_a = _parse_hebesatz(row[3])
-        hs_grst_b = _parse_hebesatz(row[4])
-        einnahmen_grst_a = _parse_int(row[5])
-        einnahmen_grst_b = _parse_int(row[6])
+        hs_gew = _parse_hebesatz(m.group(2))
+        einnahmen_gew = _parse_int(m.group(3))
+        hs_grst_a = _parse_hebesatz(m.group(4))
+        hs_grst_b = _parse_hebesatz(m.group(5))
+        einnahmen_grst_a = _parse_int(m.group(6))
+        einnahmen_grst_b = _parse_int(m.group(7))
 
         entry = {
             "kommune": kommune,
@@ -334,20 +338,23 @@ def parse_steckbrief(pdf_path: Path) -> dict:
             return result
 
         page = pdf.pages[0]
+        page_text = page.extract_text() or ""
         tables = page.extract_tables()
         logger.debug("Found %d tables on page 1 of %s", len(tables), pdf_name)
 
-        for table in tables:
-            if _is_finanzen_table(table):
-                result["finanzen"] = extract_finanzen(table, kommune, pdf_name)
-                logger.info(
-                    "  Finanzen: %d rows (years %s–%s)",
-                    len(result["finanzen"]),
-                    min(r["year"] for r in result["finanzen"]) if result["finanzen"] else "?",
-                    max(r["year"] for r in result["finanzen"]) if result["finanzen"] else "?",
-                )
+        # Gemeindefinanzen: parsed from raw text (see extract_finanzen docstring
+        # for why extract_tables() is unreliable here).
+        result["finanzen"] = extract_finanzen(page_text, kommune, pdf_name)
+        if result["finanzen"]:
+            logger.info(
+                "  Finanzen: %d rows (years %s–%s)",
+                len(result["finanzen"]),
+                min(r["year"] for r in result["finanzen"]),
+                max(r["year"] for r in result["finanzen"]),
+            )
 
-            elif _is_bevoelkerung_table(table):
+        for table in tables:
+            if _is_bevoelkerung_table(table):
                 result["bevoelkerung"] = extract_bevoelkerung(
                     table, kommune, pdf_name,
                 )

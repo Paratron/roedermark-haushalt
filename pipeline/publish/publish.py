@@ -213,13 +213,13 @@ PAGE_DATASETS: dict[str, dict] = {
     "finanzhaushalt": {"slices": ["finanzhaushalt"], "drop": ["line_item_key"]},
     # Die Investitionsseite gruppiert nach line_item_key zu Projekten – der bleibt.
     "investitionen": {"slices": ["investitionen"]},
-    # Die Schuldenseite kennt aus dem Finanzhaushalt drei Positionen: Zinsen (160),
-    # Kreditaufnahme (310) und Tilgung (320). Die Kredit- und Darlehensprojekte holt
-    # sie aus dem Investitionsdatensatz – ihn hier zu wiederholen wären 3,5 MB im
-    # Repository für dieselben Zeilen.
+    # Die Schuldenseite kennt aus dem Finanzhaushalt vier Positionen: Zinsen (160),
+    # Kassenkredite (301), Kreditaufnahme (310) und Tilgung (320). Die Kredit- und
+    # Darlehensprojekte holt sie aus dem Investitionsdatensatz – ihn hier zu
+    # wiederholen wären 3,5 MB im Repository für dieselben Zeilen.
     "schulden": {
         "slices": [
-            {"slice": "finanzhaushalt", "where": {"nr": ["160", "310", "320"]}},
+            {"slice": "finanzhaushalt", "where": {"nr": ["160", "301", "310", "320"]}},
         ]
     },
     # Die Steuerseite kennt genau eine Position: Nr. 50 samt Konto-Aufschlüsselung.
