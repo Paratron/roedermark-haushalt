@@ -3,23 +3,114 @@
 import type { Summary, LineItem, Document, HaushaltType, SourceLink } from './types';
 import { formatDocumentName } from './format';
 
+/**
+ * Die Daten liegen im Quellbaum, nicht in static/ – und werden importiert, nicht
+ * per fetch geholt.
+ *
+ * static/ landet bei adapter-vercel auf dem CDN; eine Serverless-Funktion kann von
+ * dort nichts lesen, sie müsste sich die eigene Seite per HTTP zurückholen. Was in
+ * src/lib/ liegt, bündelt Vite dagegen mit und splittet es pro Datei: jede Seite
+ * zieht genau die Datei, die sie anzeigt, und keine andere.
+ */
+const PAGE_DATA = import.meta.glob<{ default: LineItem[] }>('./data/pages/**/*.json');
+
+function pagePath(page: string, key?: string | number): string {
+	return key === undefined ? `./data/pages/${page}.json` : `./data/pages/${page}/${key}.json`;
+}
+
+/** Die Positionen einer Seite – bei aufgeteilten Datensätzen die eines Schlüssels. */
+export async function loadPageItems(page: string, key?: string | number): Promise<LineItem[]> {
+	const path = pagePath(page, key);
+	const load = PAGE_DATA[path];
+	if (!load) throw new Error(`Kein Datensatz ${path} – Pipeline gelaufen?`);
+	return (await load()).default;
+}
+
+/** Ob es für diesen Schlüssel überhaupt einen Datensatz gibt. */
+export function hasPageItems(page: string, key: string | number): boolean {
+	return pagePath(page, key) in PAGE_DATA;
+}
+
+/**
+ * Wonach ein Datensatz aufgeteilt ist – die Liste, aus der prerender entries()
+ * die zu erzeugenden Seiten ableitet. Einträge mit führendem _ sind Beiwerk
+ * (z.B. _index.json), keine Schlüssel.
+ */
+export function pageDataKeys(page: string): string[] {
+	const prefix = `./data/pages/${page}/`;
+	return Object.keys(PAGE_DATA)
+		.filter((p) => p.startsWith(prefix) && !p.slice(prefix.length).startsWith('_'))
+		.map((p) => p.slice(prefix.length, -'.json'.length))
+		.sort();
+}
+
+/** Ein Eintrag der Übersicht über einen aufgeteilten Datensatz. */
+export interface PageIndexEntry {
+	key: string;
+	name: string;
+	counts: Record<string, number>;
+}
+
+/** Die Übersicht über einen aufgeteilten Datensatz (Name und Umfang je Schlüssel). */
+export async function loadPageIndex(page: string): Promise<PageIndexEntry[]> {
+	const load = PAGE_DATA[`./data/pages/${page}/_index.json`] as unknown as
+		| (() => Promise<{ default: PageIndexEntry[] }>)
+		| undefined;
+	if (!load) throw new Error(`Keine Übersicht für ${page} – Pipeline gelaufen?`);
+	return (await load()).default;
+}
+
+/**
+ * Das Jahr, das eine Seite ohne ?year= zeigt: das laufende Kalenderjahr.
+ *
+ * Vorher war das der jüngste Jahresabschluss – wer die Seite aufmachte, landete
+ * beim letzten abgeschlossenen Haushalt statt beim laufenden. Liegt das aktuelle
+ * Jahr außerhalb der Daten, gewinnt das nächstgelegene.
+ */
+export function defaultYear(available: number[], today: Date = new Date()): number {
+	if (available.length === 0) return today.getFullYear();
+	const now = today.getFullYear();
+	if (available.includes(now)) return now;
+	return available.reduce((best, year) =>
+		Math.abs(year - now) < Math.abs(best - now) ? year : best
+	);
+}
+
 /** Load summary.json */
-export async function loadSummary(fetch: typeof globalThis.fetch): Promise<Summary> {
-	const res = await fetch('/data/summary.json');
-	return res.json();
+export async function loadSummary(): Promise<Summary> {
+	return (await import('./data/summary.json')).default as unknown as Summary;
 }
 
 /** Load documents.json */
-export async function loadDocuments(fetch: typeof globalThis.fetch): Promise<Document[]> {
-	const res = await fetch('/data/documents.json');
-	return res.json();
+export async function loadDocuments(): Promise<Document[]> {
+	return (await import('./data/documents.json')).default as unknown as Document[];
 }
 
-/** Load and parse line_items.csv into typed objects */
+/**
+ * Load and parse the complete line_items.csv.
+ *
+ * Nur für den Explorer, der tatsächlich alles durchsuchbar macht und deshalb
+ * clientseitig lädt. Alle anderen Seiten importieren ihren Ausschnitt – siehe
+ * loadPageItems.
+ */
 export async function loadLineItems(fetch: typeof globalThis.fetch): Promise<LineItem[]> {
 	const res = await fetch('/data/line_items.csv');
 	const text = await res.text();
 	return parseCSV(text);
+}
+
+/**
+ * Load the values a newer Fassung has replaced.
+ *
+ * Bewusst getrennt von line_items.csv: die verdrängten Werte verdoppeln die Datei
+ * fast, und gebraucht werden sie nur in den Vergleichsansichten.
+ */
+export async function loadSupersededLineItems(
+	fetch: typeof globalThis.fetch
+): Promise<LineItem[]> {
+	const res = await fetch('/data/line_items_superseded.csv');
+	if (!res.ok) return [];
+	return parseCSV(await res.text());
 }
 
 /** Parse a single CSV line respecting quoted fields (RFC 4180) */
@@ -73,15 +164,12 @@ function parseCSV(csv: string): LineItem[] {
 			year: parseInt(row['year']),
 			amount: parseFloat(row['amount']),
 			amount_type: row['amount_type'] as 'ist' | 'plan',
-			unit: row['unit'] || 'EUR',
 			haushalt_type: row['haushalt_type'] as HaushaltType,
 			nr: row['nr'],
 			bezeichnung: row['bezeichnung'],
 			document_id: row['document_id'],
 			table_id: row['table_id'],
 			page: row['page'] ? parseInt(row['page']) : null,
-			row_idx: parseInt(row['row_idx']),
-			confidence: parseFloat(row['confidence']),
 			konto: row['konto'] || undefined,
 			teilhaushalt_nr: row['teilhaushalt_nr'] || undefined,
 			teilhaushalt_name: row['teilhaushalt_name'] || undefined,
@@ -106,9 +194,39 @@ export function groupBy<T>(items: T[], keyFn: (item: T) => string): Map<string, 
 	return map;
 }
 
-/** Get only overview items (non-struktur tables) */
+/**
+ * Nur die aktuell gültigen Werte: Positionen, die eine neuere Fassung desselben
+ * Jahres ersetzt hat, tragen superseded_by und gehören in die Vergleichsansichten,
+ * nicht in die normale Darstellung.
+ */
+export function currentItems(items: LineItem[]): LineItem[] {
+	return items.filter((i) => !i.superseded_by);
+}
+
+/**
+ * Dokumente, über die noch nicht entschieden wurde, nach Jahr.
+ *
+ * Die Zahlen daraus stehen so im Haushaltsplan, sind aber noch nicht beschlossen –
+ * das muss an der Darstellung dranstehen, sonst behauptet die Seite mehr, als die
+ * Quelle hergibt.
+ */
+export function vorlageHinweise(documents: Document[]): Map<number, Document> {
+	const byYear = new Map<number, Document>();
+	for (const doc of documents) {
+		if (doc.status !== 'vorlage') continue;
+		for (const year of doc.years ?? []) byYear.set(year, doc);
+	}
+	return byYear;
+}
+
+/** Die von einer neueren Fassung verdrängten Werte – Grundlage der Vergleichsansichten */
+export function supersededItems(items: LineItem[]): LineItem[] {
+	return items.filter((i) => !!i.superseded_by);
+}
+
+/** Get only current overview items (non-struktur tables, not superseded) */
 export function overviewItems(items: LineItem[]): LineItem[] {
-	return items.filter((i) => !i.table_id.startsWith('struktur_'));
+	return currentItems(items).filter((i) => !i.table_id.startsWith('struktur_'));
 }
 
 /** Get unique sorted years */
@@ -391,30 +509,22 @@ export function haushaltTypeLabelLong(type: HaushaltType): string {
 
 import type { InvestmentCommentary, InvestmentClassification } from './types';
 
-/** Load investment commentary extracted from Rechenschaftsberichte */
-export async function loadInvestmentCommentary(
-	fetchFn: typeof fetch = fetch
-): Promise<InvestmentCommentary[]> {
-	try {
-		const res = await fetchFn('/data/investment_commentary.json');
-		if (!res.ok) return [];
-		return await res.json();
-	} catch {
-		return [];
-	}
+/**
+ * Load investment commentary extracted from Rechenschaftsberichte.
+ *
+ * Diese Datei stammt aus einem eigenen Skript und liegt weiterhin in static/,
+ * damit sie auch direkt abrufbar bleibt – gelesen wird sie hier per Import, weil
+ * eine Serverless-Funktion static/ nicht im Dateisystem sieht.
+ */
+export async function loadInvestmentCommentary(): Promise<InvestmentCommentary[]> {
+	return (await import('../../static/data/investment_commentary.json'))
+		.default as unknown as InvestmentCommentary[];
 }
 
 /** Load the semantically classified investment entries */
-export async function loadInvestmentClassification(
-	fetchFn: typeof fetch = fetch
-): Promise<InvestmentClassification | null> {
-	try {
-		const res = await fetchFn('/data/investment_classification.json');
-		if (!res.ok) return null;
-		return await res.json();
-	} catch {
-		return null;
-	}
+export async function loadInvestmentClassification(): Promise<InvestmentClassification | null> {
+	return (await import('../../static/data/investment_classification.json'))
+		.default as unknown as InvestmentClassification;
 }
 
 // ─── Hebesatz Data ───
@@ -422,29 +532,30 @@ export async function loadInvestmentClassification(
 import type { HebesatzData } from './types';
 
 /** Load Grundsteuer B Hebesätze for Kreis Offenbach */
-export async function loadHebesaetzeGrundsteuerB(
-	fetchFn: typeof fetch = fetch
-): Promise<HebesatzData | null> {
-	try {
-		const res = await fetchFn('/data/hebesaetze_grundsteuer_b.json');
-		if (!res.ok) return null;
-		return await res.json();
-	} catch {
-		return null;
-	}
+export async function loadHebesaetzeGrundsteuerB(): Promise<HebesatzData | null> {
+	return (await import('../../static/data/hebesaetze_grundsteuer_b.json'))
+		.default as unknown as HebesatzData;
 }
 
 /** Load Gewerbesteuer Hebesätze for Kreis Offenbach */
-export async function loadHebesaetzeGewerbesteuer(
-	fetchFn: typeof fetch = fetch
-): Promise<HebesatzData | null> {
-	try {
-		const res = await fetchFn('/data/hebesaetze_gewerbesteuer.json');
-		if (!res.ok) return null;
-		return await res.json();
-	} catch {
-		return null;
-	}
+export async function loadHebesaetzeGewerbesteuer(): Promise<HebesatzData | null> {
+	return (await import('../../static/data/hebesaetze_gewerbesteuer.json'))
+		.default as unknown as HebesatzData;
+}
+
+/** Ein Eintrag der Schuldenstatistik aus den Haushaltsplänen (Schuldenstand ab 1986) */
+export interface SchuldenstatistikEntry {
+	year: number;
+	schuldenstand: number;
+	pro_kopf: number | null;
+	source_document?: string;
+	source_page?: number;
+}
+
+/** Load the Schuldenstatistik table extracted from the Haushaltspläne */
+export async function loadSchuldenstatistik(): Promise<SchuldenstatistikEntry[]> {
+	return (await import('../../static/data/schuldenstatistik.json'))
+		.default as unknown as SchuldenstatistikEntry[];
 }
 
 // ─── Provenance / Source Citation Utilities ───
@@ -452,7 +563,7 @@ export async function loadHebesaetzeGewerbesteuer(
 /** Short label for a document, e.g. "HH 2026 Entwurf" */
 export function shortDocLabel(documentId: string): string {
 	const m =
-		/^(haushaltsplan|jahresabschluss|gesamtabschluss|haushaltsrede|beteiligungsbericht|konsolidierung|praesentation|nachtragshaushalt|haushaltssatzung)_(\d{4})(?:_(\d{4}))?(?:_(beschluss|entwurf|anpassung))?$/.exec(
+		/^(haushaltsplan|jahresabschluss|gesamtabschluss|haushaltsrede|beteiligungsbericht|konsolidierung|praesentation|nachtragshaushalt|haushaltssatzung)_(\d{4})(?:_(\d{4}))?(?:_(beschluss|entwurf|anpassung|neufassung))?$/.exec(
 			documentId
 		);
 	if (!m) return formatDocumentName(documentId);
@@ -471,7 +582,8 @@ export function shortDocLabel(documentId: string): string {
 	const suffixLabel: Record<string, string> = {
 		beschluss: 'Beschluss',
 		entwurf: 'Entwurf',
-		anpassung: 'Anpassung'
+		anpassung: 'Anpassung',
+		neufassung: 'Neufassung'
 	};
 
 	const prefix = typeAbbrev[m[1]] ?? m[1];

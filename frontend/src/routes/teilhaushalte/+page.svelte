@@ -1,8 +1,8 @@
 <script lang="ts">
+	import { formatNumber } from '$lib/format';
+	import { haushaltTypeLabelLong, sourceLinksFromItems, sourceLinksPerYear } from '$lib/data';
+	import type { HaushaltType } from '$lib/types';
 	import type { PageData } from './$types';
-	import { formatAmount, formatNumber, amountTypeLabel } from '$lib/format';
-	import { groupBy, haushaltTypeLabelLong, sourceLinksFromItems, sourceLinksPerYear } from '$lib/data';
-	import type { LineItem, HaushaltType } from '$lib/types';
 	import TimeSeriesChart from '$lib/components/TimeSeriesChart.svelte';
 	import SourceCitation from '$lib/components/SourceCitation.svelte';
 	import HaushaltTable from '$lib/components/HaushaltTable.svelte';
@@ -15,29 +15,27 @@
 
 	// Read initial selections from URL
 	function initParams() {
-		if (!browser) return { th: data.teilhaushalte[0]?.nr ?? '', typ: 'teilergebnishaushalt' as HaushaltType, nr: '' };
+		if (!browser) return { typ: 'teilergebnishaushalt' as HaushaltType, nr: '' };
 		const params = new URLSearchParams(window.location.search);
-		const th = params.get('th');
 		const typ = params.get('typ');
-		const nr = params.get('nr');
 		return {
-			th: th && data.teilhaushalte.some((t) => t.nr === th) ? th : (data.teilhaushalte[0]?.nr ?? ''),
 			typ: (typ === 'teilergebnishaushalt' || typ === 'teilfinanzhaushalt') ? typ : 'teilergebnishaushalt' as HaushaltType,
-			nr: nr ?? '',
+			nr: params.get('nr') ?? '',
 		};
 	}
 
 	const _init = initParams();
 
 	// ─── State ───
-	let selectedTh = $state<string>(_init.th);
+	// Der Teilhaushalt kommt aus ?th= und wird vom Server ausgewertet: die Seite lädt
+	// nur noch den einen, den sie anzeigt – vorher lagen alle vierzehn im Payload.
+	let selectedTh = $derived(data.th);
 	let selectedSubType = $state<HaushaltType>(_init.typ);
 
 	// Sync selections to URL
 	$effect(() => {
 		if (!browser) return;
 		const url = new URL(window.location.href);
-		url.searchParams.set('th', selectedTh);
 		if (selectedSubType !== 'teilergebnishaushalt') {
 			url.searchParams.set('typ', selectedSubType);
 		} else {
@@ -56,13 +54,7 @@
 		data.teilhaushalte.find((t) => t.nr === selectedTh)?.name ?? ''
 	);
 
-	let filteredItems = $derived(
-		data.items.filter(
-			(i) =>
-				i.teilhaushalt_nr === selectedTh &&
-				i.haushalt_type === selectedSubType
-		)
-	);
+	let filteredItems = $derived(data.items.filter((i) => i.haushalt_type === selectedSubType));
 
 	// Build positions list (unique nr + bezeichnung)
 	let positions = $derived.by(() => {
@@ -139,19 +131,11 @@
 	});
 
 	let yearSourceLinks = $derived(sourceLinksPerYear(data.items, data.documents, selectedSubType));
-	let thSummary = $derived.by(() => {
-		const byTh = groupBy(data.items, (i) => i.teilhaushalt_nr ?? '');
-		const result: { nr: string; name: string; countTE: number; countTF: number }[] = [];
-		for (const th of data.teilhaushalte) {
-			result.push(th);
-		}
-		return result;
-	});
 </script>
 
 <SocialMeta
-	title="Teilhaushalte"
-	description="Teilergebnis- und Teilfinanzhaushalte nach Fachbereichen – Budgets für Verwaltung, Bildung, Soziales und mehr."
+	title="Teilhaushalt {selectedTh} – {selectedThName}"
+	description="Teilergebnis- und Teilfinanzhaushalt {selectedTh} ({selectedThName}) der Stadt Rödermark: Erträge, Aufwendungen und Zahlungen je Jahr."
 	path="/teilhaushalte"
 />
 
@@ -168,10 +152,10 @@
 <section class="section">
 	<div class="th-grid">
 		{#each data.teilhaushalte as th (th.nr)}
-			<button
-				type="button"
+			<a
+				href="?th={th.nr}"
 				class="th-card {selectedTh === th.nr ? 'th-card-active' : ''}"
-				onclick={() => { selectedTh = th.nr; }}
+				aria-current={selectedTh === th.nr ? 'page' : undefined}
 			>
 				<p class="th-card-nr">Teilhaushalt {th.nr}</p>
 				<p class="th-card-name">{th.name}</p>
@@ -179,7 +163,7 @@
 					<span>{formatNumber(th.countTE)} TEH</span>
 					<span>{formatNumber(th.countTF)} TFH</span>
 				</div>
-			</button>
+			</a>
 		{/each}
 	</div>
 </section>
@@ -255,10 +239,11 @@
 	.page-intro { margin-bottom: 2rem; max-width: 48rem; color: var(--gray-600); }
 	.section { margin-bottom: 2rem; }
 	.th-card {
-		padding: 1rem; text-align: left; border-radius: 0.75rem;
+		display: block; padding: 1rem; text-align: left; border-radius: 0.75rem;
 		box-shadow: var(--shadow-sm); border: none; cursor: pointer;
 		outline: 1px solid var(--gray-100); outline-offset: -1px;
 		background: white; transition: box-shadow 0.15s;
+		color: inherit; text-decoration: none;
 	}
 	.th-card:hover { box-shadow: var(--shadow-md); }
 	.th-card-active { background: var(--brand-50); outline-color: var(--brand-300); }

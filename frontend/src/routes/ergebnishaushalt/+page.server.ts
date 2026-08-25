@@ -1,11 +1,11 @@
-import { loadSummary, loadLineItems, loadDocuments, overviewItems } from '$lib/data';
-import type { PageLoad } from './$types';
+import { loadSummary, loadPageItems, loadDocuments, overviewItems } from '$lib/data';
+import type { PageServerLoad } from './$types';
 
-export const load: PageLoad = async ({ fetch }) => {
+export const load: PageServerLoad = async () => {
 	const [summary, allItems, documents] = await Promise.all([
-		loadSummary(fetch),
-		loadLineItems(fetch),
-		loadDocuments(fetch)
+		loadSummary(),
+		loadPageItems('ergebnishaushalt'),
+		loadDocuments()
 	]);
 
 	const overview = overviewItems(allItems).filter((i) => i.haushalt_type === 'ergebnishaushalt');

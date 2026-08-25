@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { PageData } from './$types';
-	import type { TaxItem, TaxTimeSeries } from './+page.ts';
+	import type { TaxItem, TaxTimeSeries } from './+page.server.ts';
 	import type { CategorySlice } from '$lib/data';
 	import { formatAmount } from '$lib/format';
 	import DonutChart from '$lib/components/DonutChart.svelte';
@@ -9,6 +9,7 @@
 	import SocialMeta from '$lib/components/SocialMeta.svelte';
 	import { Receipt, Info, SlidersHorizontal } from '@lucide/svelte';
 	import { page } from '$app/stores';
+	import { browser } from '$app/environment';
 	import { goto } from '$app/navigation';
 
 	/** Format a Hebesatz value: German locale. If forceDecimals is true, always show 2 decimal places. */
@@ -30,14 +31,16 @@
 	let taxKeys = $derived(data.taxKeys);
 
 	// ─── State ───
-	let latestYear = $derived(taxYears[taxYears.length - 1] ?? 2026);
-	let selectedYear = $state(0);
-	// Initialize from query param or default to latest year
-	$effect(() => {
-		if (selectedYear !== 0) return;
-		const qYear = Number($page.url.searchParams.get('jahr'));
-		selectedYear = qYear && taxYears.includes(qYear) ? qYear : latestYear;
-	});
+	let latestYear = $derived(data.defaultYear);
+
+	// Das Jahr steht schon beim Rendern fest, nicht erst nach der Hydration.
+	function initYear(): number {
+		if (!browser) return data.defaultYear;
+		const q = Number(new URLSearchParams(window.location.search).get('jahr'));
+		return taxYears.includes(q) ? q : data.defaultYear;
+	}
+
+	let selectedYear = $state(initYear());
 
 	function setYear(y: number) {
 		selectedYear = y;
@@ -207,6 +210,36 @@
 			: 0
 	);
 	let gewerbesteuerDiff = $derived(simulatedGewerbesteuer - gewerbesteuerRevenue);
+
+	// ─── Slider context hints ───
+	let minGrundsteuerBKreis = $derived(
+		grundsteuerBComparison.length > 0
+			? Math.min(...grundsteuerBComparison.map((d) => d.hebesatz))
+			: 0
+	);
+	let minGewerbesteuerKreis = $derived(
+		gewerbesteuerComparison.length > 0
+			? Math.min(...gewerbesteuerComparison.map((d) => d.hebesatz))
+			: 0
+	);
+
+	let grundsteuerBHint = $derived.by((): { type: string; text: string } | null => {
+		if (sliderGrundsteuerB > maxGrundsteuerB)
+			return { type: 'warn', text: `Höher als jede Kommune im Kreis Offenbach (max. ${fmtHS(maxGrundsteuerB, grundsteuerBHasDecimals)}\u00a0%)` };
+		if (grundsteuerBComparison.length > 0 && sliderGrundsteuerB < minGrundsteuerBKreis)
+			return { type: 'info', text: `Niedriger als jede Kommune im Kreis Offenbach (min. ${fmtHS(minGrundsteuerBKreis, grundsteuerBHasDecimals)}\u00a0%)` };
+		return null;
+	});
+
+	let gewerbesteuerHint = $derived.by((): { type: string; text: string } | null => {
+		if (sliderGewerbesteuer < 200)
+			return { type: 'error', text: 'Unter dem gesetzlichen Mindesthebesatz von 200\u00a0% (§\u00a016 Abs.\u00a04 GewStG)' };
+		if (sliderGewerbesteuer > maxGewerbesteuer)
+			return { type: 'warn', text: `Höher als jede Kommune im Kreis Offenbach (max. ${fmtHS(maxGewerbesteuer, gewerbesteuerHasDecimals)}\u00a0%)` };
+		if (gewerbesteuerComparison.length > 0 && sliderGewerbesteuer < minGewerbesteuerKreis)
+			return { type: 'info', text: `Niedriger als jede Kommune im Kreis Offenbach (min. ${fmtHS(minGewerbesteuerKreis, gewerbesteuerHasDecimals)}\u00a0%)` };
+		return null;
+	});
 
 	// ─── Time series: Rödermark Hebesatz history ───
 	let roedermarkGrundsteuerBHistory = $derived(
@@ -465,6 +498,12 @@
 					</span>
 				</div>
 			</div>
+		{#if grundsteuerBHint}
+			<div class="slider-hint slider-hint-{grundsteuerBHint.type}">
+				<Info size={14} />
+				<span>{grundsteuerBHint.text}</span>
+			</div>
+		{/if}
 		</div>
 
 		<!-- Gewerbesteuer Slider -->
@@ -499,6 +538,12 @@
 					</span>
 				</div>
 			</div>
+		{#if gewerbesteuerHint}
+			<div class="slider-hint slider-hint-{gewerbesteuerHint.type}">
+				<Info size={14} />
+				<span>{gewerbesteuerHint.text}</span>
+			</div>
+		{/if}
 		</div>
 	</div>
 
@@ -511,6 +556,44 @@
 			Wirkung hängt von vielen Faktoren ab.
 		</div>
 	</div>
+
+	<details class="info-details">
+		<summary class="info-details-summary">
+			<span>Gut zu wissen: Wie werden Hebesätze festgelegt?</span>
+		</summary>
+		<div class="info-details-content">
+			<p>
+				Jede Gemeinde in Deutschland legt ihre Hebesätze für Grund- und Gewerbesteuer
+				eigenständig fest (Art.&nbsp;106 Abs.&nbsp;6 GG). Die gesetzlichen Vorgaben lassen dabei viel Spielraum:
+			</p>
+			<ul>
+				<li>
+					<strong>Gewerbesteuer:</strong> Der Mindesthebesatz beträgt 200&nbsp;%
+					(<a href="https://www.gesetze-im-internet.de/gewstg/__16.html" target="_blank" rel="noopener">§&nbsp;16 Abs.&nbsp;4 GewStG</a>).
+					Eine gesetzliche Obergrenze gibt es weder im Bundesrecht noch im hessischen Landesrecht.
+				</li>
+				<li>
+					<strong>Grundsteuer:</strong> Weder das Grundsteuergesetz noch hessisches Landesrecht
+					schreiben einen Mindest- oder Höchsthebesatz vor
+					(<a href="https://www.gesetze-im-internet.de/grstg_1973/__25.html" target="_blank" rel="noopener">§&nbsp;25 GrStG</a>).
+				</li>
+				<li>
+					<strong>Verfassungsrechtliche Grenze:</strong> Eine Steuer darf nicht
+					„erdrosselnd" wirken (ständige Rechtsprechung des BVerfG)&nbsp;– sie darf die
+					Steuerpflichtigen also nicht unverhältnismäßig belasten. Eine konkrete Prozentzahl
+					ergibt sich daraus allerdings nicht.
+				</li>
+			</ul>
+			<p>
+				In der Praxis orientieren sich Gemeinden stark an den Sätzen vergleichbarer Kommunen.
+				Im Kreis Offenbach liegt die Grundsteuer&nbsp;B aktuell zwischen
+				{fmtHS(minGrundsteuerBKreis, grundsteuerBHasDecimals)}&nbsp;% und {fmtHS(maxGrundsteuerB, grundsteuerBHasDecimals)}&nbsp;%,
+				die Gewerbesteuer zwischen
+				{fmtHS(minGewerbesteuerKreis, gewerbesteuerHasDecimals)}&nbsp;% und {fmtHS(maxGewerbesteuer, gewerbesteuerHasDecimals)}&nbsp;%.
+				Sprunghafte Erhöhungen um mehrere hundert Prozentpunkte kommen in der kommunalen Praxis nicht vor.
+			</p>
+		</div>
+	</details>
 </section>
 
 <!-- Tax Revenue Time Series -->
@@ -744,6 +827,61 @@
 	}
 	.slider-diff.is-positive { color: var(--green-600, #16a34a); }
 	.slider-diff.is-negative { color: var(--red-600, #dc2626); }
+
+	/* Slider hints */
+	.slider-hint {
+		display: flex; align-items: center; gap: 0.375rem;
+		margin-top: 0.5rem; padding: 0.375rem 0.625rem;
+		border-radius: 0.375rem; font-size: 0.75rem;
+		animation: hint-fade-in 0.2s ease;
+	}
+	@keyframes hint-fade-in {
+		from { opacity: 0; transform: translateY(-0.25rem); }
+		to { opacity: 1; transform: translateY(0); }
+	}
+	.slider-hint-warn {
+		background: #fef3c7; color: #92400e; border: 1px solid #fde68a;
+	}
+	.slider-hint-info {
+		background: #dbeafe; color: #1e40af; border: 1px solid #bfdbfe;
+	}
+	.slider-hint-error {
+		background: #fee2e2; color: #991b1b; border: 1px solid #fecaca;
+	}
+
+	/* Educational details */
+	.info-details {
+		margin-top: 1rem;
+		border: 1px solid var(--gray-200, #e5e7eb);
+		border-radius: 0.5rem;
+		overflow: hidden;
+	}
+	.info-details-summary {
+		display: flex; align-items: center; gap: 0.5rem;
+		padding: 0.75rem 1rem;
+		font-size: 0.875rem; font-weight: 500;
+		color: var(--gray-600);
+		cursor: pointer;
+		background: var(--gray-50);
+		list-style: none;
+	}
+	.info-details-summary::-webkit-details-marker { display: none; }
+	.info-details-summary::before {
+		content: '▸'; font-size: 0.75rem; color: var(--gray-400);
+		transition: transform 0.2s ease;
+	}
+	.info-details[open] .info-details-summary::before { transform: rotate(90deg); }
+	.info-details-content {
+		padding: 0.75rem 1rem; font-size: 0.8125rem; color: var(--gray-600);
+		line-height: 1.6; border-top: 1px solid var(--gray-200, #e5e7eb);
+	}
+	.info-details-content p { margin: 0 0 0.5rem; }
+	.info-details-content p:last-child { margin-bottom: 0; }
+	.info-details-content ul {
+		margin: 0.5rem 0; padding-left: 1.25rem;
+	}
+	.info-details-content li { margin-bottom: 0.375rem; }
+	.info-details-content a { color: var(--brand-600, #2563eb); text-decoration: underline; }
 
 	:global(.info-icon) {
 		margin-top: 0.125rem; width: 1.25rem; height: 1.25rem; flex-shrink: 0;

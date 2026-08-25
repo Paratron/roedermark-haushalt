@@ -1,7 +1,9 @@
 import {
-	loadLineItems,
+	loadPageItems,
 	loadSummary,
 	loadDocuments,
+	loadSchuldenstatistik,
+	currentItems,
 	overviewItems,
 	financingItems,
 	groupBy,
@@ -9,26 +11,21 @@ import {
 	shortDocLabel
 } from '$lib/data';
 import type { LineItem, TimeSeriesPoint, SourceLink } from '$lib/types';
-import type { PageLoad } from './$types';
-
-export interface SchuldenstatistikEntry {
-	year: number;
-	schuldenstand: number;
-	pro_kopf: number | null;
-	source_document?: string;
-	source_page?: number;
-}
+import type { PageServerLoad } from './$types';
 
 /**
- * Deduplicate line items: keep only the row from the most recent document
- * for each (nr, year, amount_type) combination.
+ * Deduplicate line items for each (nr, year, amount_type) combination.
+ *
+ * Welche Fassung gilt, entscheidet die Pipeline über superseded_by – ein Vergleich
+ * der document_id wäre alphabetisch und würde "..._entwurf" über "..._beschluss"
+ * stellen. Hier bleibt nur der Fall übrig, dass mehrere Positionen desselben
+ * Dokuments auf denselben Schlüssel fallen; da gewinnt die erste, stabil.
  */
 function dedup(items: LineItem[]): LineItem[] {
 	const map = new Map<string, LineItem>();
-	for (const item of items) {
+	for (const item of currentItems(items)) {
 		const key = `${item.nr}_${item.year}_${item.amount_type}`;
-		const existing = map.get(key);
-		if (!existing || item.document_id > existing.document_id) {
+		if (!map.has(key)) {
 			map.set(key, item);
 		}
 	}
@@ -58,13 +55,17 @@ function bestValueForYear(items: LineItem[], year: number): number {
 	return plan?.amount ?? 0;
 }
 
-export const load: PageLoad = async ({ fetch }) => {
-	const [allItems, summary, schuldenstatistikRaw, documents] = await Promise.all([
-		loadLineItems(fetch),
-		loadSummary(fetch),
-		fetch('/data/schuldenstatistik.json').then((r) => r.json()) as Promise<SchuldenstatistikEntry[]>,
-		loadDocuments(fetch)
+export const load: PageServerLoad = async () => {
+	const [fh, investitionen, summary, schuldenstatistikRaw, documents] = await Promise.all([
+		// Zinsen, Kreditaufnahme und Tilgung
+		loadPageItems('schulden'),
+		// Die Kredit- und Darlehensprojekte stehen im Investitionsprogramm
+		loadPageItems('investitionen'),
+		loadSummary(),
+		loadSchuldenstatistik(),
+		loadDocuments()
 	]);
+	const allItems = [...fh, ...investitionen];
 
 	const fhOverview = overviewItems(allItems).filter((i) => i.haushalt_type === 'finanzhaushalt');
 

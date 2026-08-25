@@ -6,12 +6,12 @@
 	import type { PageData } from './$types';
 	import type { SourceLink, InvestmentCommentary, ThemaSummary } from '$lib/types';
 	import { formatAmount, formatEur, formatMio, formatNumber } from '$lib/format';
-	import { groupBy, sourceLinksFromItems, shortDocLabel } from '$lib/data';
+	import { shortDocLabel } from '$lib/data';
 	import SourceCitation from '$lib/components/SourceCitation.svelte';
 	import AnchorHeading from '$lib/components/AnchorHeading.svelte';
 	import SocialMeta from '$lib/components/SocialMeta.svelte';
 	import { Coins, TrendingUp, TrendingDown, AlertTriangle, ChevronDown, ChevronRight, Info, BookOpen } from '@lucide/svelte';
-	import { SvelteSet, SvelteMap } from 'svelte/reactivity';
+	import { SvelteSet } from 'svelte/reactivity';
 
 	let { data }: { data: PageData } = $props();
 
@@ -98,8 +98,8 @@
 	let expandedProjects = $state<SvelteSet<string>>(new SvelteSet());
 
 	// ─── Classification data ───
-	let typeLabels = $derived(cl?.meta.type_labels ?? {});
-	let themaLabels = $derived(cl?.meta.thema_labels ?? {});
+	let typeLabels = $derived(cl?.typeLabels ?? {});
+	let themaLabels = $derived(cl?.themaLabels ?? {});
 
 	// ─── Per-entry volume: ist if available, otherwise plan ───
 	function entryVolume(e: { ist_total: number; plan_total: number }): number {
@@ -211,112 +211,50 @@
 
 
 
-	// ─── Lookup: line_item_key → raw LineItems (for source links) ───
-	let investmentsByKey = $derived.by(() => {
-		const map = new Map<string, typeof data.investments>();
-		for (const item of data.investments) {
-			const k = item.line_item_key;
-			if (!map.has(k)) map.set(k, []);
-			map.get(k)!.push(item);
+	// ─── Quellenlinks je Projekt ───
+	// Der load liefert nur [Dokument-Index, Seite]; Beschriftung und PDF-Pfad stehen
+	// in data.documents und werden erst beim Rendern zusammengesetzt – gerendert
+	// werden nie mehr als 30 Projekte auf einmal.
+	function linksFor(sources: [number, number | null][]): SourceLink[] {
+		const links: SourceLink[] = [];
+		for (const [index, page] of sources) {
+			const doc = data.documents[index];
+			if (!doc?.filename) continue;
+			const label = shortDocLabel(doc.document_id);
+			links.push({
+				label: page ? `${label}, S. ${page}` : label,
+				href: page ? `/pdfs/${doc.filename}#page=${page}` : `/pdfs/${doc.filename}`,
+				document_id: doc.document_id,
+				page
+			});
 		}
-		return map;
-	});
-
-	function sourceLinksForEntry(key: string) {
-		const items = investmentsByKey.get(key) ?? [];
-		return sourceLinksFromItems(items, data.documents);
+		return links;
 	}
 
-	// ──── Project detail view (existing logic, but refactored) ────
-	let filteredInvestments = $derived.by(() => {
-		let items = data.investments;
+	let sourcesByKey = $derived(new Map(data.projects.map((p) => [p.key, p.sources])));
+
+	function sourceLinksForEntry(key: string): SourceLink[] {
+		return linksFor(sourcesByKey.get(key) ?? []);
+	}
+
+	// ──── Project detail view ────
+	// Gefiltert werden die Projekte, nicht die Einzelpositionen: Teilhaushalt und
+	// Bezeichnung gehören zum Projekt, nicht zum einzelnen Haushaltsjahr.
+	let projects = $derived.by(() => {
+		let result = data.projects;
 		if (selectedTh !== 'all') {
-			items = items.filter((i) => i.teilhaushalt_nr === selectedTh);
+			result = result.filter((p) => p.thNr === selectedTh);
 		}
 		if (searchQuery.trim()) {
 			const q = searchQuery.toLowerCase().trim();
-			items = items.filter((i) => i.bezeichnung.toLowerCase().includes(q));
+			result = result.filter((p) => p.bezeichnung.toLowerCase().includes(q));
 		}
-		return items;
-	});
-
-	let istYearsSet = $derived(new Set(data.summary.ist_years));
-
-	interface ProjectSummary {
-		key: string;
-		bezeichnung: string;
-		thNr: string;
-		thName: string;
-		sourceLinks: SourceLink[];
-		totalIst: number;
-		totalPlan: number;
-		comparablePlan: number;
-		comparableIst: number;
-		discrepancy: number;
-		discrepancyPct: number;
-		yearData: SvelteMap<number, { ist: number | null; plan: number | null }>;
-		allYears: number[];
-		hasIst: boolean;
-		hasPlan: boolean;
-		hasComparableData: boolean;
-	}
-
-	let projects = $derived.by(() => {
-		const byKey = groupBy(filteredInvestments, (i) => i.line_item_key);
-		const result: ProjectSummary[] = [];
-
-		for (const [key, items] of byKey) {
-			const sourceLinks = sourceLinksFromItems(items, data.documents);
-			const yearData = new SvelteMap<number, { ist: number | null; plan: number | null }>();
-			let totalIst = 0;
-			let totalPlan = 0;
-			let comparableIst = 0;
-			let comparablePlan = 0;
-			let hasIst = false;
-			let hasPlan = false;
-
-			for (const item of items) {
-				if (!yearData.has(item.year)) {
-					yearData.set(item.year, { ist: null, plan: null });
-				}
-				const yd = yearData.get(item.year)!;
-				if (item.amount_type === 'ist') {
-					yd.ist = item.amount;
-					totalIst += item.amount;
-					hasIst = true;
-				} else {
-					yd.plan = item.amount;
-					totalPlan += item.amount;
-					hasPlan = true;
-					if (istYearsSet.has(item.year)) {
-						comparablePlan += item.amount;
-					}
-				}
-			}
-
-			comparableIst = totalIst;
-			const hasComparableData = hasIst || (hasPlan && comparablePlan !== 0);
-			const discrepancy = hasComparableData && comparablePlan !== 0 ? comparableIst - comparablePlan : 0;
-			const discrepancyPct = comparablePlan !== 0 ? (discrepancy / Math.abs(comparablePlan)) * 100 : 0;
-
-			result.push({
-				key, bezeichnung: items[0].bezeichnung,
-				thNr: items[0].teilhaushalt_nr ?? '', thName: items[0].teilhaushalt_name ?? '',
-				sourceLinks, totalIst, totalPlan, comparableIst, comparablePlan,
-				discrepancy, discrepancyPct, yearData,
-				allYears: [...yearData.keys()].sort((a, b) => a - b),
-				hasIst, hasPlan, hasComparableData
-			});
-		}
-
-		let filtered = result;
 		if (showOnlyDiscrepancies) {
-			filtered = result.filter(
+			result = result.filter(
 				(p) => p.hasComparableData && p.comparablePlan !== 0 && Math.abs(p.discrepancyPct) > 20
 			);
 		}
-		filtered.sort((a, b) => Math.abs(b.discrepancy) - Math.abs(a.discrepancy));
-		return filtered;
+		return result;
 	});
 
 	// ─── Pagination ───
@@ -417,7 +355,7 @@
 <p class="page-intro">
 	Wo investiert Rödermark – und woher kommt das Geld dafür?
 	Die Übersicht zeigt das gesamte Investitionsvolumen: Was bereits ausgegeben wurde (Ist bis {data.summary.last_ist_year})
-	und was noch geplant ist (bis {Math.max(...(cl?.entries.flatMap(e => e.years) ?? [2029]))}).
+	und was noch geplant ist (bis {cl?.lastYear ?? 2029}).
 </p>
 
 {#if cl}
@@ -543,7 +481,7 @@
 											{/if}
 										</td>
 										<td class="text-gray-400 entry-years">
-											{entry.years.length > 0 ? `${Math.min(...entry.years)}–${Math.max(...entry.years)}` : '–'}
+											{entry.yearFrom ? `${entry.yearFrom}–${entry.yearTo}` : '–'}
 										</td>
 									</tr>
 								{/each}
@@ -624,7 +562,7 @@
 						{#if project.thNr}
 							<span class="badge badge-gray" title="Teilhaushalt {project.thNr}">TH {project.thNr}</span>
 						{/if}
-						<SourceCitation description={`Investitionsprojekt: ${project.bezeichnung}`} links={project.sourceLinks} />
+						<SourceCitation description={`Investitionsprojekt: ${project.bezeichnung}`} links={linksFor(project.sources)} />
 					</div>
 					<div class="project-meta">
 						{#if project.hasIst}
@@ -670,16 +608,15 @@
 								</tr>
 							</thead>
 							<tbody>
-								{#each project.allYears as year (year)}
-									{@const yd = project.yearData.get(year)}
-									{@const delta = yd && yd.ist !== null && yd.plan !== null ? yd.ist - yd.plan : null}
+								{#each project.years as [year, ist, plan] (year)}
+									{@const delta = ist !== null && plan !== null ? ist - plan : null}
 									<tr class="{planOnlySet.has(year) ? 'plan-only' : ''}">
 										<td class="tabular-nums" style="font-weight:500">
 											{year}
 											{#if planOnlySet.has(year)}<span class="plan-marker">P</span>{/if}
 										</td>
-										<td class="col-number text-blue-600">{yd?.plan !== null && yd?.plan !== undefined ? formatEur(yd.plan) : '–'}</td>
-										<td class="col-number text-green-700">{yd?.ist !== null && yd?.ist !== undefined ? formatEur(yd.ist) : '–'}</td>
+										<td class="col-number text-blue-600">{plan !== null ? formatEur(plan) : '–'}</td>
+										<td class="col-number text-green-700">{ist !== null ? formatEur(ist) : '–'}</td>
 										<td class="col-number"
 											style="color: {delta !== null ? (delta > 100 ? 'var(--amber-600)' : delta < -100 ? 'var(--red-600)' : 'var(--gray-500)') : 'var(--gray-300)'}; {delta !== null && Math.abs(delta) > 100 ? 'font-weight:500' : ''}">
 											{#if delta !== null}
@@ -692,7 +629,7 @@
 									</tr>
 								{/each}
 							</tbody>
-							{#if project.allYears.length > 1}
+							{#if project.years.length > 1}
 								<tfoot>
 									{#if project.totalPlan !== project.comparablePlan}
 										<tr class="comparable-row">

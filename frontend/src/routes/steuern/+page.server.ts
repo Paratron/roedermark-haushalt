@@ -1,14 +1,16 @@
 import {
-	loadLineItems,
+	loadPageItems,
 	loadSummary,
 	loadDocuments,
 	loadHebesaetzeGrundsteuerB,
 	loadHebesaetzeGewerbesteuer,
+	currentItems,
+	defaultYear,
 	overviewItems,
 	sourceLinksFromItems,
 } from '$lib/data';
 import type { LineItem } from '$lib/types';
-import type { PageLoad } from './$types';
+import type { PageServerLoad } from './$types';
 
 /** Tax categories we extract from position Nr. 50 (struktur) */
 const TAX_KEYS = [
@@ -40,29 +42,34 @@ export interface TaxTimeSeries {
 }
 
 /**
- * Deduplicate: keep only the row from the most recent document
- * for each (bezeichnung, year) combination.
+ * Deduplicate for each (bezeichnung, year) combination.
+ *
+ * Welche Fassung gilt, entscheidet die Pipeline über superseded_by – ein Vergleich
+ * der document_id wäre alphabetisch und würde "..._entwurf" über "..._beschluss"
+ * stellen. Hier bleibt nur der Fall übrig, dass mehrere Positionen desselben
+ * Dokuments auf denselben Schlüssel fallen; da gewinnt die erste, stabil.
  */
 function dedup(items: LineItem[]): LineItem[] {
 	const map = new Map<string, LineItem>();
-	for (const item of items) {
+	for (const item of currentItems(items)) {
 		const key = `${item.bezeichnung}_${item.year}`;
-		const existing = map.get(key);
-		if (!existing || item.document_id > existing.document_id) {
+		if (!map.has(key)) {
 			map.set(key, item);
 		}
 	}
 	return [...map.values()];
 }
 
-export const load: PageLoad = async ({ fetch }) => {
+export const load: PageServerLoad = async () => {
+	// Der Datensatz enthält nur noch Position Nr. 50 samt Konto-Aufschlüsselung –
+	// mehr zeigt die Seite nicht, geladen wurde bisher der ganze Ergebnishaushalt.
 	const [allItems, summary, documents, hebesaetzeGrundsteuerB, hebesaetzeGewerbesteuer] =
 		await Promise.all([
-			loadLineItems(fetch),
-			loadSummary(fetch),
-			loadDocuments(fetch),
-			loadHebesaetzeGrundsteuerB(fetch),
-			loadHebesaetzeGewerbesteuer(fetch),
+			loadPageItems('steuern'),
+			loadSummary(),
+			loadDocuments(),
+			loadHebesaetzeGrundsteuerB(),
+			loadHebesaetzeGewerbesteuer(),
 		]);
 
 	// Get detail tax items (Nr. 50, struktur_ tables contain the breakdown)
@@ -101,6 +108,9 @@ export const load: PageLoad = async ({ fetch }) => {
 	return {
 		summary,
 		documents,
+		// Ohne ?jahr= das laufende Jahr. Bisher setzte die Komponente das erst nach
+		// der Hydration – im ausgelieferten HTML stand "Steuereinnahmen 0".
+		defaultYear: defaultYear(taxYears),
 		taxDetailItems,
 		overviewTaxItems,
 		taxYears,

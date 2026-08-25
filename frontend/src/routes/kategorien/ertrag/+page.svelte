@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { PageData } from './$types';
+	import type { LineItem } from '$lib/types';
 	import {
 		buildCategoryBreakdown,
 		bestDataType,
@@ -8,6 +9,8 @@
 		sourceLinksFromItems,
 		buildSubItems,
 		subItemYears,
+		loadPageItems,
+		hasPageItems,
 	} from '$lib/data';
 	import { formatAmount } from '$lib/format';
 	import DonutChart from '$lib/components/DonutChart.svelte';
@@ -23,19 +26,19 @@
 	const { items, summary, documents } = data;
 
 	// ─── State ───
-	const istYears = summary.ist_years.filter(
-		(y) => items.some((i) => i.year === y && i.amount_type === 'ist' && i.nr === '100')
-	);
+	const istYears = summary.ist_years;
 	const allYears = summary.years;
 
+	// Ohne ?year= das laufende Jahr – vorher stand die Seite auf dem jüngsten
+	// Jahresabschluss und damit zwei Jahre in der Vergangenheit.
 	function initYear(): number {
-		if (!browser) return summary.last_ist_year ?? istYears[istYears.length - 1] ?? allYears[allYears.length - 1];
+		if (!browser) return data.defaultYear;
 		const y = new URLSearchParams(window.location.search).get('year');
 		if (y) {
 			const yn = Number.parseInt(y);
 			if (allYears.includes(yn)) return yn;
 		}
-		return summary.last_ist_year ?? istYears[istYears.length - 1] ?? allYears[allYears.length - 1];
+		return data.defaultYear;
 	}
 
 	let selectedYear = $state(initYear());
@@ -46,8 +49,7 @@
 	$effect(() => {
 		if (!browser) return;
 		const url = new URL(window.location.href);
-		const defaultYear = summary.last_ist_year ?? istYears[istYears.length - 1];
-		if (selectedYear !== defaultYear) {
+		if (selectedYear !== data.defaultYear) {
 			url.searchParams.set('year', String(selectedYear));
 		} else {
 			url.searchParams.delete('year');
@@ -99,8 +101,29 @@
 	);
 
 	// ─── Sub-items drill-down ───
+	// Die Konto-Ebene hängt an der angeklickten Ertragsart. Sie im Seitenpayload
+	// mitzuliefern hieß, für zwanzig Kategorien 800 KB auszuliefern, damit eine
+	// davon aufklappbar ist – der Browser holt jetzt die eine nach.
+	let subItemSource = $state<LineItem[]>([]);
+
+	$effect(() => {
+		const nr = selectedNr;
+		if (!nr || !hasPageItems('ertrag_konten', nr)) {
+			subItemSource = [];
+			return;
+		}
+		let aktuell = true;
+		loadPageItems('ertrag_konten', nr).then((rows) => {
+			// Die Nr. steht nicht mehr in den Zeilen – sie ist der Dateiname.
+			if (aktuell) subItemSource = rows.map((r) => ({ ...r, nr }));
+		});
+		return () => {
+			aktuell = false;
+		};
+	});
+
 	let availableSubItemYears = $derived(
-		selectedNr ? subItemYears(items, selectedNr) : []
+		selectedNr ? subItemYears(subItemSource, selectedNr) : []
 	);
 
 	let subItemYear = $state<number | null>(null);
@@ -118,15 +141,13 @@
 	});
 
 	let selectedSubItems = $derived(
-		selectedNr && subItemYear ? buildSubItems(items, selectedNr, subItemYear) : []
+		selectedNr && subItemYear ? buildSubItems(subItemSource, selectedNr, subItemYear) : []
 	);
 
 	let subItemSourceLinks = $derived(
 		selectedNr && subItemYear
 			? sourceLinksFromItems(
-					items.filter(
-						(i) => i.table_id.startsWith('struktur_') && i.nr === selectedNr && i.year === subItemYear
-					),
+					subItemSource.filter((i) => i.year === subItemYear),
 					documents
 				)
 			: []

@@ -13,15 +13,14 @@ export interface LineItem {
 	year: number;
 	amount: number;
 	amount_type: 'ist' | 'plan';
-	unit: string;
 	haushalt_type: HaushaltType;
 	nr: string;
 	bezeichnung: string;
 	document_id: string;
+	/** document_id der Fassung, die diesen Wert ersetzt – null, wenn dies der aktuelle Wert ist */
+	superseded_by?: string | null;
 	table_id: string;
 	page: number | null;
-	row_idx: number;
-	confidence: number;
 	konto?: string;
 	teilhaushalt_nr?: string;
 	teilhaushalt_name?: string;
@@ -43,6 +42,12 @@ export interface Document {
 	size_bytes?: number;
 	fetched_at?: string;
 	local_path?: string;
+	/** 'vorlage' = noch nicht beschlossen; Zahlen daraus sind vorläufig */
+	status?: string;
+	/** Erläuterung zum Status, z. B. Datum der Entscheidung */
+	status_note?: string;
+	/** Link auf die Vorlage im Ratsinformationssystem */
+	status_url?: string;
 }
 
 export interface TimeSeriesPoint {
@@ -155,8 +160,7 @@ export interface HebesatzEntry {
 export interface HebesatzData {
 	meta: {
 		description: string;
-		unit: string;
-		note: string;
+			note: string;
 	};
 	data: HebesatzEntry[];
 }

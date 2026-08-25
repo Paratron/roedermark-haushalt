@@ -17,40 +17,45 @@
 	import SourceCitation from '$lib/components/SourceCitation.svelte';
 	import { PieChart, Info, LayoutGrid, Columns3, ChartPie, ChevronsDown } from '@lucide/svelte';
 	import { browser } from '$app/environment';
+	import { goto } from '$app/navigation';
 	import AnchorHeading from '$lib/components/AnchorHeading.svelte';
 	import SocialMeta from '$lib/components/SocialMeta.svelte';
 
 	let { data }: { data: PageData } = $props();
 
-	const { items, summary, documents } = data;
+	let items = $derived(data.items);
+	let summary = $derived(data.summary);
+	let documents = $derived(data.documents);
 
 	// ─── State ───
-	const allYears = summary.years;
-	const istYears = summary.ist_years;
+	let allYears = $derived(data.years);
+	let istYears = $derived(summary.ist_years);
 
-	function initYear(): number {
-		if (!browser) return summary.last_ist_year ?? istYears[istYears.length - 1] ?? allYears[allYears.length - 1];
-		const y = new URLSearchParams(window.location.search).get('year');
-		if (y) {
-			const yn = Number.parseInt(y);
-			if (allYears.includes(yn)) return yn;
-		}
-		return summary.last_ist_year ?? istYears[istYears.length - 1] ?? allYears[allYears.length - 1];
+	// Das Jahr kommt aus ?year= und wird vom Server ausgewertet – die Seite lädt nur
+	// noch das gewählte und das Vorjahr statt aller fünfzehn.
+	let selectedYear = $derived(data.year);
+	// Der Aufgabenbereich stand bisher zwar in der URL, wurde beim Laden aber nie
+	// gelesen – ein geteilter Link öffnete die Seite ohne Auswahl.
+	function initTask(): string | null {
+		if (!browser) return null;
+		const id = new URLSearchParams(window.location.search).get('task');
+		return id && TASK_CATEGORIES.some((t) => t.id === id) ? id : null;
 	}
 
-	let selectedYear = $state(initYear());
-	let selectedTaskId = $state<string | null>(null);
+	let selectedTaskId = $state<string | null>(initTask());
 
-	// Sync to URL
+	// Der Jahreswechsel ist jetzt eine Navigation: die Daten für das Jahr holt der
+	// Server, nicht mehr der Browser aus einem Vorrat aller Jahrgänge.
+	function selectYear(year: number) {
+		selectedTaskId = null;
+		goto(`?year=${year}`, { noScroll: true, keepFocus: true });
+	}
+
+	// Der Aufgabenbereich bleibt ein Query-Parameter: er wechselt nur den Ausschnitt
+	// derselben Daten, es muss nichts nachgeladen werden.
 	$effect(() => {
 		if (!browser) return;
 		const url = new URL(window.location.href);
-		const defaultYear = summary.last_ist_year ?? istYears[istYears.length - 1];
-		if (selectedYear !== defaultYear) {
-			url.searchParams.set('year', String(selectedYear));
-		} else {
-			url.searchParams.delete('year');
-		}
 		if (selectedTaskId) {
 			url.searchParams.set('task', selectedTaskId);
 		} else {
@@ -96,7 +101,7 @@
 	});
 
 	// Previous year for comparison
-	let prevYear = $derived(allYears.includes(selectedYear - 1) ? selectedYear - 1 : null);
+	let prevYear = $derived(data.prevYear);
 	let prevDataType = $derived(prevYear ? bestDataType(items, prevYear) : 'plan' as const);
 	let prevTaskSlices = $derived(prevYear ? buildTaskBreakdown(items, prevYear, prevDataType) : []);
 	let prevAmountMap = $derived.by(() => {
@@ -206,8 +211,8 @@
 <section class="section">
 	<div class="year-selector">
 		<label for="year-select" class="field-label">Jahr auswählen</label>
-		<select id="year-select" bind:value={selectedYear} class="form-select form-select-compact"
-			onchange={() => { selectedTaskId = null; }}>
+		<select id="year-select" value={selectedYear} class="form-select form-select-compact"
+			onchange={(e) => selectYear(Number(e.currentTarget.value))}>
 			{#each [...allYears].reverse() as y}
 				<option value={y}>
 					{y} {istYears.includes(y) ? '(Ist)' : '(Plan)'}

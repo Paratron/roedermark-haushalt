@@ -7,8 +7,23 @@
 	import AnchorHeading from '$lib/components/AnchorHeading.svelte';
 	import SocialMeta from '$lib/components/SocialMeta.svelte';
 	import { Search } from '@lucide/svelte';
+	import { onMount } from 'svelte';
+	import { loadLineItems } from '$lib/data';
+	import type { LineItem } from '$lib/types';
 
 	let { data }: { data: PageData } = $props();
+
+	// Die Positionen kommen erst im Browser dazu – siehe +page.ts.
+	let alleItems = $state<LineItem[]>([]);
+	let laedt = $state(true);
+
+	onMount(async () => {
+		try {
+			alleItems = await loadLineItems(fetch);
+		} finally {
+			laedt = false;
+		}
+	});
 
 	const docMap = new Map(data.documents.map(d => [d.document_id, d]));
 
@@ -33,11 +48,11 @@
 	let sortDir = $state<'asc' | 'desc'>('asc');
 
 	// Available years
-	const allYears = [...new Set(data.items.map((i) => i.year))].sort((a, b) => a - b);
+	let allYears = $derived([...new Set(alleItems.map((i) => i.year))].sort((a, b) => a - b));
 	const planOnlySet = new Set(data.planOnlyYears ?? []);
 
 	let filtered = $derived.by(() => {
-		let items = data.items;
+		let items = alleItems;
 
 		// Filter detail/overview
 		if (!showDetail) {
@@ -132,7 +147,7 @@
 
 <AnchorHeading level={2} id="daten-explorer"><Search /> Daten-Explorer</AnchorHeading>
 <p class="page-intro">
-	Durchsuche und filtere alle {data.items.length.toLocaleString('de-DE')} Haushaltspositionen.
+	Durchsuche und filtere alle {alleItems.length.toLocaleString('de-DE')} Haushaltspositionen.
 </p>
 
 <!-- Filters -->
@@ -185,7 +200,7 @@
 
 <!-- Results count -->
 <div class="results-bar">
-	<span>{filtered.length.toLocaleString('de-DE')} Ergebnisse</span>
+	<span>{laedt ? 'Daten werden geladen …' : `${filtered.length.toLocaleString('de-DE')} Ergebnisse`}</span>
 	{#if totalPages > 1}
 		<span>Seite {page + 1} von {totalPages}</span>
 	{/if}
