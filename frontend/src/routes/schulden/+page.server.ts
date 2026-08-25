@@ -83,23 +83,24 @@ function bestValueForYear(items: LineItem[], year: number): number {
 	return plan?.amount ?? 0;
 }
 
-export const load: PageServerLoad = async () => {
+export const load: PageServerLoad = async ({ fetch }) => {
 	const [fh, investitionen, summary, schuldenstatistikRaw, documents] = await Promise.all([
 		// Zinsen, Kassenkredite, Kreditaufnahme und Tilgung
 		loadPageItems('schulden'),
 		// Die Kredit- und Darlehensprojekte stehen im Investitionsprogramm
 		loadPageItems('investitionen'),
 		loadSummary(),
-		loadSchuldenstatistik(),
+		loadSchuldenstatistik(fetch),
 		loadDocuments()
 	]);
 	const allItems = [...fh, ...investitionen];
 
 	// Der Kreditrahmen nach §4 der Haushaltssatzung stammt aus einem eigenen Skript
-	// und liegt weiterhin in static/ – gelesen wird er hier per Import, weil eine
-	// Serverless-Funktion static/ nicht im Dateisystem sieht.
-	const kassenkreditRahmenRaw = (await import('../../../static/data/kassenkredit_rahmen.json'))
-		.default as unknown as KassenkreditRahmenFile;
+	// und liegt weiterhin in static/ – hier per fetch geholt, da die Seite komplett
+	// prerendert ist.
+	const kassenkreditRahmenRaw = (await (
+		await fetch('/data/kassenkredit_rahmen.json')
+	).json()) as KassenkreditRahmenFile;
 
 	const fhOverview = overviewItems(allItems).filter((i) => i.haushalt_type === 'finanzhaushalt');
 

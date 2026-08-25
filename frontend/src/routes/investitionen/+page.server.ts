@@ -179,13 +179,13 @@ function buildTeilhaushalte(projects: ProjectSummary[]) {
 	return [...thMap.values()].sort((a, b) => Number.parseFloat(a.nr) - Number.parseFloat(b.nr));
 }
 
-export const load: PageServerLoad = async () => {
+export const load: PageServerLoad = async ({ fetch }) => {
 	const [allItems, summary, documents, commentary, classification] = await Promise.all([
 		loadPageItems('investitionen'),
 		loadSummary(),
 		loadDocuments(),
-		loadInvestmentCommentary(),
-		loadInvestmentClassification()
+		loadInvestmentCommentary(fetch),
+		loadInvestmentClassification(fetch)
 	]);
 
 	const projects = buildProjects(investitionItems(allItems), documents, summary.ist_years ?? []);

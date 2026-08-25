@@ -512,39 +512,48 @@ import type { InvestmentCommentary, InvestmentClassification } from './types';
 /**
  * Load investment commentary extracted from Rechenschaftsberichte.
  *
- * Diese Datei stammt aus einem eigenen Skript und liegt weiterhin in static/,
- * damit sie auch direkt abrufbar bleibt – gelesen wird sie hier per Import, weil
- * eine Serverless-Funktion static/ nicht im Dateisystem sieht.
+ * Diese Datei liegt in static/ und wird wie die übrigen static/data-Dateien
+ * per fetch geholt – die Seite ist komplett prerendert, sodass das schon beim
+ * Build läuft und keine Serverless-Funktion braucht.
  */
-export async function loadInvestmentCommentary(): Promise<InvestmentCommentary[]> {
-	return (await import('../../static/data/investment_commentary.json'))
-		.default as unknown as InvestmentCommentary[];
+export async function loadInvestmentCommentary(
+	fetch: typeof globalThis.fetch
+): Promise<InvestmentCommentary[]> {
+	const res = await fetch('/data/investment_commentary.json');
+	return (await res.json()) as InvestmentCommentary[];
 }
 
 /** Load the semantically classified investment entries */
-export async function loadInvestmentClassification(): Promise<InvestmentClassification | null> {
-	return (await import('../../static/data/investment_classification.json'))
-		.default as unknown as InvestmentClassification;
+export async function loadInvestmentClassification(
+	fetch: typeof globalThis.fetch
+): Promise<InvestmentClassification | null> {
+	const res = await fetch('/data/investment_classification.json');
+	return (await res.json()) as InvestmentClassification;
 }
 
 /** Load the Haushaltssicherungskonzept 2026 dataset */
-export async function loadHsk(): Promise<HskData | null> {
-	return (await import('../../static/data/hsk_2026.json')).default as unknown as HskData;
+export async function loadHsk(fetch: typeof globalThis.fetch): Promise<HskData | null> {
+	const res = await fetch('/data/hsk_2026.json');
+	return (await res.json()) as HskData;
 }
 
 // ─── Hebesatz Data ───
 
 import type { HebesatzData, HskData } from './types';
 /** Load Grundsteuer B Hebesätze for Kreis Offenbach */
-export async function loadHebesaetzeGrundsteuerB(): Promise<HebesatzData | null> {
-	return (await import('../../static/data/hebesaetze_grundsteuer_b.json'))
-		.default as unknown as HebesatzData;
+export async function loadHebesaetzeGrundsteuerB(
+	fetch: typeof globalThis.fetch
+): Promise<HebesatzData | null> {
+	const res = await fetch('/data/hebesaetze_grundsteuer_b.json');
+	return (await res.json()) as HebesatzData;
 }
 
 /** Load Gewerbesteuer Hebesätze for Kreis Offenbach */
-export async function loadHebesaetzeGewerbesteuer(): Promise<HebesatzData | null> {
-	return (await import('../../static/data/hebesaetze_gewerbesteuer.json'))
-		.default as unknown as HebesatzData;
+export async function loadHebesaetzeGewerbesteuer(
+	fetch: typeof globalThis.fetch
+): Promise<HebesatzData | null> {
+	const res = await fetch('/data/hebesaetze_gewerbesteuer.json');
+	return (await res.json()) as HebesatzData;
 }
 
 /** Ein Eintrag der Schuldenstatistik aus den Haushaltsplänen (Schuldenstand ab 1986) */
@@ -557,9 +566,11 @@ export interface SchuldenstatistikEntry {
 }
 
 /** Load the Schuldenstatistik table extracted from the Haushaltspläne */
-export async function loadSchuldenstatistik(): Promise<SchuldenstatistikEntry[]> {
-	return (await import('../../static/data/schuldenstatistik.json'))
-		.default as unknown as SchuldenstatistikEntry[];
+export async function loadSchuldenstatistik(
+	fetch: typeof globalThis.fetch
+): Promise<SchuldenstatistikEntry[]> {
+	const res = await fetch('/data/schuldenstatistik.json');
+	return (await res.json()) as SchuldenstatistikEntry[];
 }
 
 // ─── Provenance / Source Citation Utilities ───

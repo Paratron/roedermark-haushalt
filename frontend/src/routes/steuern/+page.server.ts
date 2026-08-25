@@ -60,7 +60,7 @@ function dedup(items: LineItem[]): LineItem[] {
 	return [...map.values()];
 }
 
-export const load: PageServerLoad = async () => {
+export const load: PageServerLoad = async ({ fetch }) => {
 	// Der Datensatz enthält nur noch Position Nr. 50 samt Konto-Aufschlüsselung –
 	// mehr zeigt die Seite nicht, geladen wurde bisher der ganze Ergebnishaushalt.
 	const [allItems, summary, documents, hebesaetzeGrundsteuerB, hebesaetzeGewerbesteuer] =
@@ -68,8 +68,8 @@ export const load: PageServerLoad = async () => {
 			loadPageItems('steuern'),
 			loadSummary(),
 			loadDocuments(),
-			loadHebesaetzeGrundsteuerB(),
-			loadHebesaetzeGewerbesteuer(),
+			loadHebesaetzeGrundsteuerB(fetch),
+			loadHebesaetzeGewerbesteuer(fetch),
 		]);
 
 	// Get detail tax items (Nr. 50, struktur_ tables contain the breakdown)

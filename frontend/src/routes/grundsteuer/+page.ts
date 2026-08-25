@@ -117,7 +117,7 @@ function dedupLatest(items: LineItem[]): LineItem[] {
 
 export const load: PageLoad = async ({ fetch }) => {
 	const [hebesaetze, kreisvergleichRaw, steuermixRaw, hskRaw, allItems] = await Promise.all([
-		loadHebesaetzeGrundsteuerB(),
+		loadHebesaetzeGrundsteuerB(fetch),
 		fetch('/data/grundsteuer_kreisvergleich.json').then((r) => r.json()) as Promise<KreisvergleichFile>,
 		fetch('/data/steuermix_2026.json').then((r) => r.json()) as Promise<SteuermixFile>,
 		fetch('/data/hsk_2026.json').then((r) => r.json()) as Promise<HskFile>,

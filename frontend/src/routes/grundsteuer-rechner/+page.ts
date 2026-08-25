@@ -6,8 +6,8 @@ import type { PageLoad } from './$types';
  * Hebesatz für Rödermark aus dem Hebesatz-Datensatz – damit der Rechner keine
  * Werte hartcodiert, sondern der Datenquelle folgt.
  */
-export const load: PageLoad = async () => {
-	const hebesaetze = await loadHebesaetzeGrundsteuerB();
+export const load: PageLoad = async ({ fetch }) => {
+	const hebesaetze = await loadHebesaetzeGrundsteuerB(fetch);
 	const roe = (hebesaetze?.data ?? [])
 		.filter((e) => e.kommune === 'Rödermark')
 		.sort((a, b) => a.year - b.year);
