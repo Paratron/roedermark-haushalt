@@ -8983,3 +8983,3151 @@ tables:
   - Finanz- plan 2019
   - Finanz- plan 2020/ 2021
   - Bisher bereit- gestellt
+- table_id: ergebnishaushalt_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Ergebnishaushalt 2026 Neufassung – Gesamtübersicht
+  pages:
+  - 3
+  - 4
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Ergebnishaushalt
+    skip_repeated_headers: true
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ergebnis 2024
+  - Ansatz 2025
+  - Ansatz 2026
+  - Plan 2027
+  - Plan 2028
+  - Plan 2029
+- table_id: finanzhaushalt_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Finanzhaushalt 2026 Neufassung – Gesamtübersicht
+  pages:
+  - 6
+  - 7
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Finanzhaushalt
+    skip_repeated_headers: true
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ergebnis 2024
+  - Ansatz 2025
+  - Ansatz 2026
+  - Plan 2027
+  - Plan 2028
+  - Plan 2029
+- table_id: teilergebnishaushalt_1_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilergebnishaushalt 1 Zentrale Dienste
+  pages:
+  - 11
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilergebnishaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: '1'
+    teilhaushalt_name: Zentrale Dienste
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Plan 2027
+  - Plan 2028
+  - Plan 2029
+- table_id: teilfinanzhaushalt_1_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilfinanzhaushalt 1 Zentrale Dienste
+  pages:
+  - 12
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilfinanzhaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: '1'
+    teilhaushalt_name: Zentrale Dienste
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Verpflichtungs- Ermächtigungen
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Gesamtausgabe- /- einnahmebedarf
+  - Bish. bereitgest. (bis VJ)
+- table_id: investitionen_1_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Investitionen 1 Zentrale Dienste
+  pages:
+  - 13
+  - 14
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Investitionen
+    skip_repeated_headers: true
+    teilhaushalt_nr: '1'
+    teilhaushalt_name: Zentrale Dienste
+  expected_columns:
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Jahres- ergebnis 2024
+  - Verpflichtungs- Ermächtigungen
+  - Finanzplan 2027
+  - Finanzplan 2028/2029
+  - Bisher bereit- gestellt
+- table_id: teilergebnishaushalt_2_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilergebnishaushalt 2 Finanzen
+  pages:
+  - 79
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilergebnishaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: '2'
+    teilhaushalt_name: Finanzen
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Plan 2027
+  - Plan 2028
+  - Plan 2029
+- table_id: teilfinanzhaushalt_2_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilfinanzhaushalt 2 Finanzen
+  pages:
+  - 80
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilfinanzhaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: '2'
+    teilhaushalt_name: Finanzen
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Verpflichtungs- Ermächtigungen
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Gesamtausgabe- /- einnahmebedarf
+  - Bish. bereitgest. (bis VJ)
+- table_id: investitionen_2_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Investitionen 2 Finanzen
+  pages:
+  - 81
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Investitionen
+    skip_repeated_headers: true
+    teilhaushalt_nr: '2'
+    teilhaushalt_name: Finanzen
+  expected_columns:
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Jahres- ergebnis 2024
+  - Verpflichtungs- Ermächtigungen
+  - Finanzplan 2027
+  - Finanzplan 2028/2029
+  - Bisher bereit- gestellt
+- table_id: teilergebnishaushalt_3_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilergebnishaushalt 3 Bürgerservice, Öffentliche Sicherheit u. Ordnung
+  pages:
+  - 105
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilergebnishaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: '3'
+    teilhaushalt_name: Bürgerservice, Öffentliche Sicherheit u. Ordnung
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Plan 2027
+  - Plan 2028
+  - Plan 2029
+- table_id: teilfinanzhaushalt_3_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilfinanzhaushalt 3 Bürgerservice, Öffentliche Sicherheit u. Ordnung
+  pages:
+  - 106
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilfinanzhaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: '3'
+    teilhaushalt_name: Bürgerservice, Öffentliche Sicherheit u. Ordnung
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Verpflichtungs- Ermächtigungen
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Gesamtausgabe- /- einnahmebedarf
+  - Bish. bereitgest. (bis VJ)
+- table_id: investitionen_3_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Investitionen 3 Bürgerservice, Öffentliche Sicherheit u. Ordnung
+  pages:
+  - 107
+  - 108
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Investitionen
+    skip_repeated_headers: true
+    teilhaushalt_nr: '3'
+    teilhaushalt_name: Bürgerservice, Öffentliche Sicherheit u. Ordnung
+  expected_columns:
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Jahres- ergebnis 2024
+  - Verpflichtungs- Ermächtigungen
+  - Finanzplan 2027
+  - Finanzplan 2028/2029
+  - Bisher bereit- gestellt
+- table_id: teilergebnishaushalt_4_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilergebnishaushalt 4 Soziales
+  pages:
+  - 165
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilergebnishaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: '4'
+    teilhaushalt_name: Soziales
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Plan 2027
+  - Plan 2028
+  - Plan 2029
+- table_id: teilfinanzhaushalt_4_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilfinanzhaushalt 4 Soziales
+  pages:
+  - 166
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilfinanzhaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: '4'
+    teilhaushalt_name: Soziales
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Verpflichtungs- Ermächtigungen
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Gesamtausgabe- /- einnahmebedarf
+  - Bish. bereitgest. (bis VJ)
+- table_id: investitionen_4_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Investitionen 4 Soziales
+  pages:
+  - 167
+  - 168
+  - 169
+  - 170
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Investitionen
+    skip_repeated_headers: true
+    teilhaushalt_nr: '4'
+    teilhaushalt_name: Soziales
+  expected_columns:
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Jahres- ergebnis 2024
+  - Verpflichtungs- Ermächtigungen
+  - Finanzplan 2027
+  - Finanzplan 2028/2029
+  - Bisher bereit- gestellt
+- table_id: teilergebnishaushalt_5_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilergebnishaushalt 5 Kultur und Sport
+  pages:
+  - 233
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilergebnishaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: '5'
+    teilhaushalt_name: Kultur und Sport
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Plan 2027
+  - Plan 2028
+  - Plan 2029
+- table_id: teilfinanzhaushalt_5_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilfinanzhaushalt 5 Kultur und Sport
+  pages:
+  - 234
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilfinanzhaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: '5'
+    teilhaushalt_name: Kultur und Sport
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Verpflichtungs- Ermächtigungen
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Gesamtausgabe- /- einnahmebedarf
+  - Bish. bereitgest. (bis VJ)
+- table_id: investitionen_5_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Investitionen 5 Kultur und Sport
+  pages:
+  - 235
+  - 236
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Investitionen
+    skip_repeated_headers: true
+    teilhaushalt_nr: '5'
+    teilhaushalt_name: Kultur und Sport
+  expected_columns:
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Jahres- ergebnis 2024
+  - Verpflichtungs- Ermächtigungen
+  - Finanzplan 2027
+  - Finanzplan 2028/2029
+  - Bisher bereit- gestellt
+- table_id: teilergebnishaushalt_6_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilergebnishaushalt 6 Stadtentwicklung
+  pages:
+  - 273
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilergebnishaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: '6'
+    teilhaushalt_name: Stadtentwicklung
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Plan 2027
+  - Plan 2028
+  - Plan 2029
+- table_id: teilfinanzhaushalt_6_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilfinanzhaushalt 6 Stadtentwicklung
+  pages:
+  - 274
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilfinanzhaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: '6'
+    teilhaushalt_name: Stadtentwicklung
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Verpflichtungs- Ermächtigungen
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Gesamtausgabe- /- einnahmebedarf
+  - Bish. bereitgest. (bis VJ)
+- table_id: investitionen_6_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Investitionen 6 Stadtentwicklung
+  pages:
+  - 275
+  - 276
+  - 277
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Investitionen
+    skip_repeated_headers: true
+    teilhaushalt_nr: '6'
+    teilhaushalt_name: Stadtentwicklung
+  expected_columns:
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Jahres- ergebnis 2024
+  - Verpflichtungs- Ermächtigungen
+  - Finanzplan 2027
+  - Finanzplan 2028/2029
+  - Bisher bereit- gestellt
+- table_id: teilergebnishaushalt_7_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilergebnishaushalt 7 Hoch- und Tiefbau, Entsorgung
+  pages:
+  - 319
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilergebnishaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: '7'
+    teilhaushalt_name: Hoch- und Tiefbau, Entsorgung
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Plan 2027
+  - Plan 2028
+  - Plan 2029
+- table_id: teilfinanzhaushalt_7_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilfinanzhaushalt 7 Hoch- und Tiefbau, Entsorgung
+  pages:
+  - 320
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilfinanzhaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: '7'
+    teilhaushalt_name: Hoch- und Tiefbau, Entsorgung
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Verpflichtungs- Ermächtigungen
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Gesamtausgabe- /- einnahmebedarf
+  - Bish. bereitgest. (bis VJ)
+- table_id: investitionen_7_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Investitionen 7 Hoch- und Tiefbau, Entsorgung
+  pages:
+  - 321
+  - 322
+  - 323
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Investitionen
+    skip_repeated_headers: true
+    teilhaushalt_nr: '7'
+    teilhaushalt_name: Hoch- und Tiefbau, Entsorgung
+  expected_columns:
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Jahres- ergebnis 2024
+  - Verpflichtungs- Ermächtigungen
+  - Finanzplan 2027
+  - Finanzplan 2028/2029
+  - Bisher bereit- gestellt
+- table_id: teilergebnishaushalt_14_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilergebnishaushalt 14 Sonderbudget Allgemeine Finanzmittel
+  pages:
+  - 381
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilergebnishaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: '14'
+    teilhaushalt_name: Sonderbudget Allgemeine Finanzmittel
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Plan 2027
+  - Plan 2028
+  - Plan 2029
+- table_id: teilfinanzhaushalt_14_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilfinanzhaushalt 14 Sonderbudget Allgemeine Finanzmittel
+  pages:
+  - 382
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilfinanzhaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: '14'
+    teilhaushalt_name: Sonderbudget Allgemeine Finanzmittel
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Verpflichtungs- Ermächtigungen
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Gesamtausgabe- /- einnahmebedarf
+  - Bish. bereitgest. (bis VJ)
+- table_id: investitionen_14_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Investitionen 14 Sonderbudget Allgemeine Finanzmittel
+  pages:
+  - 383
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Investitionen
+    skip_repeated_headers: true
+    teilhaushalt_nr: '14'
+    teilhaushalt_name: Sonderbudget Allgemeine Finanzmittel
+  expected_columns:
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Jahres- ergebnis 2024
+  - Verpflichtungs- Ermächtigungen
+  - Finanzplan 2027
+  - Finanzplan 2028/2029
+  - Bisher bereit- gestellt
+- table_id: teilergebnishaushalt_1_1_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilergebnishaushalt 1.1 Personal
+  pages:
+  - 18
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilergebnishaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: '1.1'
+    teilhaushalt_name: Personal
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Plan 2027
+  - Plan 2028
+  - Plan 2029
+- table_id: teilfinanzhaushalt_1_1_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilfinanzhaushalt 1.1 Personal
+  pages:
+  - 19
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilfinanzhaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: '1.1'
+    teilhaushalt_name: Personal
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Verpflichtungs- Ermächtigungen
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Gesamtausgabe- /- einnahmebedarf
+  - Bish. bereitgest. (bis VJ)
+- table_id: teilergebnishaushalt_01_1_01_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilergebnishaushalt 01.1.01 Personalmanagement
+  pages:
+  - 23
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilergebnishaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: 01.1.01
+    teilhaushalt_name: Personalmanagement
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Plan 2027
+  - Plan 2028
+  - Plan 2029
+- table_id: teilergebnishaushalt_01_1_02_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilergebnishaushalt 01.1.02 Personalrat
+  pages:
+  - 25
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilergebnishaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: 01.1.02
+    teilhaushalt_name: Personalrat
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Plan 2027
+  - Plan 2028
+  - Plan 2029
+- table_id: teilergebnishaushalt_01_1_03_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilergebnishaushalt 01.1.03 Frauenbeauftragte intern
+  pages:
+  - 27
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilergebnishaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: 01.1.03
+    teilhaushalt_name: Frauenbeauftragte intern
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Plan 2027
+  - Plan 2028
+  - Plan 2029
+- table_id: teilergebnishaushalt_01_1_04_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilergebnishaushalt 01.1.04 Verwaltungssteuerung, Organisation
+  pages:
+  - 29
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilergebnishaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: 01.1.04
+    teilhaushalt_name: Verwaltungssteuerung, Organisation
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Plan 2027
+  - Plan 2028
+  - Plan 2029
+- table_id: teilergebnishaushalt_1_2_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilergebnishaushalt 1.2 Recht
+  pages:
+  - 32
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilergebnishaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: '1.2'
+    teilhaushalt_name: Recht
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Plan 2027
+  - Plan 2028
+  - Plan 2029
+- table_id: teilfinanzhaushalt_1_2_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilfinanzhaushalt 1.2 Recht
+  pages:
+  - 33
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilfinanzhaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: '1.2'
+    teilhaushalt_name: Recht
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Verpflichtungs- Ermächtigungen
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Gesamtausgabe- /- einnahmebedarf
+  - Bish. bereitgest. (bis VJ)
+- table_id: teilergebnishaushalt_01_2_01_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilergebnishaushalt 01.2.01 Ortsrecht
+  pages:
+  - 37
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilergebnishaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: 01.2.01
+    teilhaushalt_name: Ortsrecht
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Plan 2027
+  - Plan 2028
+  - Plan 2029
+- table_id: teilergebnishaushalt_01_2_02_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilergebnishaushalt 01.2.02 Zentrale Dienstleistungen
+  pages:
+  - 39
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilergebnishaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: 01.2.02
+    teilhaushalt_name: Zentrale Dienstleistungen
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Plan 2027
+  - Plan 2028
+  - Plan 2029
+- table_id: teilergebnishaushalt_01_2_03_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilergebnishaushalt 01.2.03 Vergabeberatung
+  pages:
+  - 41
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilergebnishaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: 01.2.03
+    teilhaushalt_name: Vergabeberatung
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Plan 2027
+  - Plan 2028
+  - Plan 2029
+- table_id: teilergebnishaushalt_1_3_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilergebnishaushalt 1.3 Gremien
+  pages:
+  - 44
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilergebnishaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: '1.3'
+    teilhaushalt_name: Gremien
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Plan 2027
+  - Plan 2028
+  - Plan 2029
+- table_id: teilfinanzhaushalt_1_3_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilfinanzhaushalt 1.3 Gremien
+  pages:
+  - 45
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilfinanzhaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: '1.3'
+    teilhaushalt_name: Gremien
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Verpflichtungs- Ermächtigungen
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Gesamtausgabe- /- einnahmebedarf
+  - Bish. bereitgest. (bis VJ)
+- table_id: teilergebnishaushalt_01_3_03_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilergebnishaushalt 01.3.03 Betreuung der städtischen Gremien
+  pages:
+  - 49
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilergebnishaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: 01.3.03
+    teilhaushalt_name: Betreuung der städtischen Gremien
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Plan 2027
+  - Plan 2028
+  - Plan 2029
+- table_id: teilergebnishaushalt_1_4_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilergebnishaushalt 1.4 IT-Dienste
+  pages:
+  - 52
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilergebnishaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: '1.4'
+    teilhaushalt_name: IT-Dienste
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Plan 2027
+  - Plan 2028
+  - Plan 2029
+- table_id: teilfinanzhaushalt_1_4_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilfinanzhaushalt 1.4 IT-Dienste
+  pages:
+  - 53
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilfinanzhaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: '1.4'
+    teilhaushalt_name: IT-Dienste
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Verpflichtungs- Ermächtigungen
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Gesamtausgabe- /- einnahmebedarf
+  - Bish. bereitgest. (bis VJ)
+- table_id: teilergebnishaushalt_01_4_01_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilergebnishaushalt 01.4.01 Anwendungsmanagement
+  pages:
+  - 57
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilergebnishaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: 01.4.01
+    teilhaushalt_name: Anwendungsmanagement
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Plan 2027
+  - Plan 2028
+  - Plan 2029
+- table_id: teilergebnishaushalt_01_4_02_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilergebnishaushalt 01.4.02 Kundenbetreuung und Benutzerservice
+  pages:
+  - 59
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilergebnishaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: 01.4.02
+    teilhaushalt_name: Kundenbetreuung und Benutzerservice
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Plan 2027
+  - Plan 2028
+  - Plan 2029
+- table_id: teilergebnishaushalt_1_5_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilergebnishaushalt 1.5 Digitalisierung
+  pages:
+  - 62
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilergebnishaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: '1.5'
+    teilhaushalt_name: Digitalisierung
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Plan 2027
+  - Plan 2028
+  - Plan 2029
+- table_id: teilfinanzhaushalt_1_5_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilfinanzhaushalt 1.5 Digitalisierung
+  pages:
+  - 63
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilfinanzhaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: '1.5'
+    teilhaushalt_name: Digitalisierung
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Verpflichtungs- Ermächtigungen
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Gesamtausgabe- /- einnahmebedarf
+  - Bish. bereitgest. (bis VJ)
+- table_id: teilergebnishaushalt_01_5_01_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilergebnishaushalt 01.5.01 Digitalisierung und Datenschutz
+  pages:
+  - 67
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilergebnishaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: 01.5.01
+    teilhaushalt_name: Digitalisierung und Datenschutz
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Plan 2027
+  - Plan 2028
+  - Plan 2029
+- table_id: teilergebnishaushalt_1_6_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilergebnishaushalt 1.6 Wirtschaftsförderung und Kommunikation
+  pages:
+  - 70
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilergebnishaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: '1.6'
+    teilhaushalt_name: Wirtschaftsförderung und Kommunikation
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Plan 2027
+  - Plan 2028
+  - Plan 2029
+- table_id: teilfinanzhaushalt_1_6_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilfinanzhaushalt 1.6 Wirtschaftsförderung und Kommunikation
+  pages:
+  - 71
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilfinanzhaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: '1.6'
+    teilhaushalt_name: Wirtschaftsförderung und Kommunikation
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Verpflichtungs- Ermächtigungen
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Gesamtausgabe- /- einnahmebedarf
+  - Bish. bereitgest. (bis VJ)
+- table_id: teilergebnishaushalt_01_6_01_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilergebnishaushalt 01.6.01 Wirtschaftsförderung und Kommunikation
+  pages:
+  - 75
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilergebnishaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: 01.6.01
+    teilhaushalt_name: Wirtschaftsförderung und Kommunikation
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Plan 2027
+  - Plan 2028
+  - Plan 2029
+- table_id: teilergebnishaushalt_2_1_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilergebnishaushalt 2.1 Finanzen/ Controlling
+  pages:
+  - 84
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilergebnishaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: '2.1'
+    teilhaushalt_name: Finanzen/ Controlling
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Plan 2027
+  - Plan 2028
+  - Plan 2029
+- table_id: teilfinanzhaushalt_2_1_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilfinanzhaushalt 2.1 Finanzen/ Controlling
+  pages:
+  - 85
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilfinanzhaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: '2.1'
+    teilhaushalt_name: Finanzen/ Controlling
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Verpflichtungs- Ermächtigungen
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Gesamtausgabe- /- einnahmebedarf
+  - Bish. bereitgest. (bis VJ)
+- table_id: teilergebnishaushalt_02_1_01_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilergebnishaushalt 02.1.01 Haushaltswirtschaft
+  pages:
+  - 89
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilergebnishaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: 02.1.01
+    teilhaushalt_name: Haushaltswirtschaft
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Plan 2027
+  - Plan 2028
+  - Plan 2029
+- table_id: teilergebnishaushalt_02_1_02_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilergebnishaushalt 02.1.02 Controlling
+  pages:
+  - 91
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilergebnishaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: 02.1.02
+    teilhaushalt_name: Controlling
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Plan 2027
+  - Plan 2028
+  - Plan 2029
+- table_id: teilergebnishaushalt_2_2_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilergebnishaushalt 2.2 Finanzbuchhaltung und Steuern
+  pages:
+  - 94
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilergebnishaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: '2.2'
+    teilhaushalt_name: Finanzbuchhaltung und Steuern
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Plan 2027
+  - Plan 2028
+  - Plan 2029
+- table_id: teilfinanzhaushalt_2_2_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilfinanzhaushalt 2.2 Finanzbuchhaltung und Steuern
+  pages:
+  - 95
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilfinanzhaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: '2.2'
+    teilhaushalt_name: Finanzbuchhaltung und Steuern
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Verpflichtungs- Ermächtigungen
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Gesamtausgabe- /- einnahmebedarf
+  - Bish. bereitgest. (bis VJ)
+- table_id: teilergebnishaushalt_02_2_01_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilergebnishaushalt 02.2.01 Buchhaltung, Jahresabschluss
+  pages:
+  - 99
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilergebnishaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: 02.2.01
+    teilhaushalt_name: Buchhaltung, Jahresabschluss
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Plan 2027
+  - Plan 2028
+  - Plan 2029
+- table_id: teilergebnishaushalt_02_2_02_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilergebnishaushalt 02.2.02 Steuern, Gebühren, Beiträge
+  pages:
+  - 101
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilergebnishaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: 02.2.02
+    teilhaushalt_name: Steuern, Gebühren, Beiträge
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Plan 2027
+  - Plan 2028
+  - Plan 2029
+- table_id: teilergebnishaushalt_3_1_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilergebnishaushalt 3.1 Öffentliche Sicherheit und Ordnung
+  pages:
+  - 112
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilergebnishaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: '3.1'
+    teilhaushalt_name: Öffentliche Sicherheit und Ordnung
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Plan 2027
+  - Plan 2028
+  - Plan 2029
+- table_id: teilfinanzhaushalt_3_1_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilfinanzhaushalt 3.1 Öffentliche Sicherheit und Ordnung
+  pages:
+  - 113
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilfinanzhaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: '3.1'
+    teilhaushalt_name: Öffentliche Sicherheit und Ordnung
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Verpflichtungs- Ermächtigungen
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Gesamtausgabe- /- einnahmebedarf
+  - Bish. bereitgest. (bis VJ)
+- table_id: teilergebnishaushalt_03_1_01_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilergebnishaushalt 03.1.01 Gefahrenabwehr
+  pages:
+  - 117
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilergebnishaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: 03.1.01
+    teilhaushalt_name: Gefahrenabwehr
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Plan 2027
+  - Plan 2028
+  - Plan 2029
+- table_id: teilergebnishaushalt_3_2_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilergebnishaushalt 3.2 Verkehr
+  pages:
+  - 120
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilergebnishaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: '3.2'
+    teilhaushalt_name: Verkehr
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Plan 2027
+  - Plan 2028
+  - Plan 2029
+- table_id: teilfinanzhaushalt_3_2_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilfinanzhaushalt 3.2 Verkehr
+  pages:
+  - 121
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilfinanzhaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: '3.2'
+    teilhaushalt_name: Verkehr
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Verpflichtungs- Ermächtigungen
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Gesamtausgabe- /- einnahmebedarf
+  - Bish. bereitgest. (bis VJ)
+- table_id: teilergebnishaushalt_03_2_01_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilergebnishaushalt 03.2.01 Straßenverkehr, Verkehrsausstattung
+  pages:
+  - 125
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilergebnishaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: 03.2.01
+    teilhaushalt_name: Straßenverkehr, Verkehrsausstattung
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Plan 2027
+  - Plan 2028
+  - Plan 2029
+- table_id: teilergebnishaushalt_03_2_02_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilergebnishaushalt 03.2.02 Öffentlicher Personennahverkehr
+  pages:
+  - 127
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilergebnishaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: 03.2.02
+    teilhaushalt_name: Öffentlicher Personennahverkehr
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Plan 2027
+  - Plan 2028
+  - Plan 2029
+- table_id: teilergebnishaushalt_03_2_03_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilergebnishaushalt 03.2.03 Vollzugsdienst
+  pages:
+  - 129
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilergebnishaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: 03.2.03
+    teilhaushalt_name: Vollzugsdienst
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Plan 2027
+  - Plan 2028
+  - Plan 2029
+- table_id: teilergebnishaushalt_03_2_04_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilergebnishaushalt 03.2.04 Gefahrgutüberwachung
+  pages:
+  - 131
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilergebnishaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: 03.2.04
+    teilhaushalt_name: Gefahrgutüberwachung
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Plan 2027
+  - Plan 2028
+  - Plan 2029
+- table_id: teilergebnishaushalt_3_3_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilergebnishaushalt 3.3 Standesamt
+  pages:
+  - 134
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilergebnishaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: '3.3'
+    teilhaushalt_name: Standesamt
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Plan 2027
+  - Plan 2028
+  - Plan 2029
+- table_id: teilfinanzhaushalt_3_3_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilfinanzhaushalt 3.3 Standesamt
+  pages:
+  - 135
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilfinanzhaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: '3.3'
+    teilhaushalt_name: Standesamt
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Verpflichtungs- Ermächtigungen
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Gesamtausgabe- /- einnahmebedarf
+  - Bish. bereitgest. (bis VJ)
+- table_id: teilergebnishaushalt_03_3_01_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilergebnishaushalt 03.3.01 Friedhofsbetrieb
+  pages:
+  - 139
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilergebnishaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: 03.3.01
+    teilhaushalt_name: Friedhofsbetrieb
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Plan 2027
+  - Plan 2028
+  - Plan 2029
+- table_id: teilergebnishaushalt_03_3_02_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilergebnishaushalt 03.3.02 Personenstandsangelegenheiten
+  pages:
+  - 141
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilergebnishaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: 03.3.02
+    teilhaushalt_name: Personenstandsangelegenheiten
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Plan 2027
+  - Plan 2028
+  - Plan 2029
+- table_id: teilergebnishaushalt_3_4_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilergebnishaushalt 3.4 Bürgerservice
+  pages:
+  - 144
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilergebnishaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: '3.4'
+    teilhaushalt_name: Bürgerservice
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Plan 2027
+  - Plan 2028
+  - Plan 2029
+- table_id: teilfinanzhaushalt_3_4_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilfinanzhaushalt 3.4 Bürgerservice
+  pages:
+  - 145
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilfinanzhaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: '3.4'
+    teilhaushalt_name: Bürgerservice
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Verpflichtungs- Ermächtigungen
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Gesamtausgabe- /- einnahmebedarf
+  - Bish. bereitgest. (bis VJ)
+- table_id: teilergebnishaushalt_03_4_01_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilergebnishaushalt 03.4.01 Bürgerservice
+  pages:
+  - 149
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilergebnishaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: 03.4.01
+    teilhaushalt_name: Bürgerservice
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Plan 2027
+  - Plan 2028
+  - Plan 2029
+- table_id: teilergebnishaushalt_03_4_02_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilergebnishaushalt 03.4.02 Wahlen
+  pages:
+  - 151
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilergebnishaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: 03.4.02
+    teilhaushalt_name: Wahlen
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Plan 2027
+  - Plan 2028
+  - Plan 2029
+- table_id: teilergebnishaushalt_3_5_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilergebnishaushalt 3.5 Brand- und Katastrophenschutz
+  pages:
+  - 154
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilergebnishaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: '3.5'
+    teilhaushalt_name: Brand- und Katastrophenschutz
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Plan 2027
+  - Plan 2028
+  - Plan 2029
+- table_id: teilfinanzhaushalt_3_5_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilfinanzhaushalt 3.5 Brand- und Katastrophenschutz
+  pages:
+  - 155
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilfinanzhaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: '3.5'
+    teilhaushalt_name: Brand- und Katastrophenschutz
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Verpflichtungs- Ermächtigungen
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Gesamtausgabe- /- einnahmebedarf
+  - Bish. bereitgest. (bis VJ)
+- table_id: teilergebnishaushalt_03_5_01_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilergebnishaushalt 03.5.01 Feuerwehr
+  pages:
+  - 159
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilergebnishaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: 03.5.01
+    teilhaushalt_name: Feuerwehr
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Plan 2027
+  - Plan 2028
+  - Plan 2029
+- table_id: teilergebnishaushalt_03_5_02_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilergebnishaushalt 03.5.02 Dienstleistungen Feuerwehr
+  pages:
+  - 161
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilergebnishaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: 03.5.02
+    teilhaushalt_name: Dienstleistungen Feuerwehr
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Plan 2027
+  - Plan 2028
+  - Plan 2029
+- table_id: teilergebnishaushalt_4_1_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilergebnishaushalt 4.1 Kinder
+  pages:
+  - 174
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilergebnishaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: '4.1'
+    teilhaushalt_name: Kinder
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Plan 2027
+  - Plan 2028
+  - Plan 2029
+- table_id: teilfinanzhaushalt_4_1_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilfinanzhaushalt 4.1 Kinder
+  pages:
+  - 175
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilfinanzhaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: '4.1'
+    teilhaushalt_name: Kinder
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Verpflichtungs- Ermächtigungen
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Gesamtausgabe- /- einnahmebedarf
+  - Bish. bereitgest. (bis VJ)
+- table_id: teilergebnishaushalt_04_1_01_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilergebnishaushalt 04.1.01 Kinderkrippen
+  pages:
+  - 179
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilergebnishaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: 04.1.01
+    teilhaushalt_name: Kinderkrippen
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Plan 2027
+  - Plan 2028
+  - Plan 2029
+- table_id: teilergebnishaushalt_04_1_02_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilergebnishaushalt 04.1.02 Kindergarten
+  pages:
+  - 181
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilergebnishaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: 04.1.02
+    teilhaushalt_name: Kindergarten
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Plan 2027
+  - Plan 2028
+  - Plan 2029
+- table_id: teilergebnishaushalt_04_1_04_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilergebnishaushalt 04.1.04 Mittagsverpflegung Kitas
+  pages:
+  - 183
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilergebnishaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: 04.1.04
+    teilhaushalt_name: Mittagsverpflegung Kitas
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Plan 2027
+  - Plan 2028
+  - Plan 2029
+- table_id: teilergebnishaushalt_04_1_06_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilergebnishaushalt 04.1.06 Administration Kinderbetreuung
+  pages:
+  - 185
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilergebnishaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: 04.1.06
+    teilhaushalt_name: Administration Kinderbetreuung
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Plan 2027
+  - Plan 2028
+  - Plan 2029
+- table_id: teilergebnishaushalt_4_2_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilergebnishaushalt 4.2 Jugend
+  pages:
+  - 188
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilergebnishaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: '4.2'
+    teilhaushalt_name: Jugend
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Plan 2027
+  - Plan 2028
+  - Plan 2029
+- table_id: teilfinanzhaushalt_4_2_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilfinanzhaushalt 4.2 Jugend
+  pages:
+  - 189
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilfinanzhaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: '4.2'
+    teilhaushalt_name: Jugend
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Verpflichtungs- Ermächtigungen
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Gesamtausgabe- /- einnahmebedarf
+  - Bish. bereitgest. (bis VJ)
+- table_id: teilergebnishaushalt_04_2_01_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilergebnishaushalt 04.2.01 Jugendarbeit in Einrichtungen
+  pages:
+  - 193
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilergebnishaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: 04.2.01
+    teilhaushalt_name: Jugendarbeit in Einrichtungen
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Plan 2027
+  - Plan 2028
+  - Plan 2029
+- table_id: teilergebnishaushalt_04_2_02_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilergebnishaushalt 04.2.02 Jugendarbeit, Jugendhilfeplanung
+  pages:
+  - 195
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilergebnishaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: 04.2.02
+    teilhaushalt_name: Jugendarbeit, Jugendhilfeplanung
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Plan 2027
+  - Plan 2028
+  - Plan 2029
+- table_id: teilergebnishaushalt_04_2_03_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilergebnishaushalt 04.2.03 Jugendsozialarbeit
+  pages:
+  - 197
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilergebnishaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: 04.2.03
+    teilhaushalt_name: Jugendsozialarbeit
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Plan 2027
+  - Plan 2028
+  - Plan 2029
+- table_id: teilergebnishaushalt_4_3_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilergebnishaushalt 4.3 Soziale Stadt
+  pages:
+  - 200
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilergebnishaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: '4.3'
+    teilhaushalt_name: Soziale Stadt
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Plan 2027
+  - Plan 2028
+  - Plan 2029
+- table_id: teilfinanzhaushalt_4_3_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilfinanzhaushalt 4.3 Soziale Stadt
+  pages:
+  - 201
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilfinanzhaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: '4.3'
+    teilhaushalt_name: Soziale Stadt
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Verpflichtungs- Ermächtigungen
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Gesamtausgabe- /- einnahmebedarf
+  - Bish. bereitgest. (bis VJ)
+- table_id: teilergebnishaushalt_04_3_01_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilergebnishaushalt 04.3.01 Sozial- und Lebensberatung
+  pages:
+  - 205
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilergebnishaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: 04.3.01
+    teilhaushalt_name: Sozial- und Lebensberatung
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Plan 2027
+  - Plan 2028
+  - Plan 2029
+- table_id: teilergebnishaushalt_04_3_02_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilergebnishaushalt 04.3.02 Seniorenarbeit
+  pages:
+  - 207
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilergebnishaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: 04.3.02
+    teilhaushalt_name: Seniorenarbeit
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Plan 2027
+  - Plan 2028
+  - Plan 2029
+- table_id: teilergebnishaushalt_04_3_03_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilergebnishaushalt 04.3.03 Wohnungssicherung
+  pages:
+  - 209
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilergebnishaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: 04.3.03
+    teilhaushalt_name: Wohnungssicherung
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Plan 2027
+  - Plan 2028
+  - Plan 2029
+- table_id: teilergebnishaushalt_04_3_04_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilergebnishaushalt 04.3.04 Quartiersarbeit
+  pages:
+  - 211
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilergebnishaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: 04.3.04
+    teilhaushalt_name: Quartiersarbeit
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Plan 2027
+  - Plan 2028
+  - Plan 2029
+- table_id: teilergebnishaushalt_04_3_06_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilergebnishaushalt 04.3.06 Förderung der Integration
+  pages:
+  - 213
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilergebnishaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: 04.3.06
+    teilhaushalt_name: Förderung der Integration
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Plan 2027
+  - Plan 2028
+  - Plan 2029
+- table_id: teilergebnishaushalt_04_3_07_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilergebnishaushalt 04.3.07 Frauenbeauftragte extern
+  pages:
+  - 215
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilergebnishaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: 04.3.07
+    teilhaushalt_name: Frauenbeauftragte extern
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Plan 2027
+  - Plan 2028
+  - Plan 2029
+- table_id: teilergebnishaushalt_4_4_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilergebnishaushalt 4.4 Freie Träger/Schulkindbetreuung
+  pages:
+  - 218
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilergebnishaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: '4.4'
+    teilhaushalt_name: Freie Träger/Schulkindbetreuung
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Plan 2027
+  - Plan 2028
+  - Plan 2029
+- table_id: teilfinanzhaushalt_4_4_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilfinanzhaushalt 4.4 Freie Träger/Schulkindbetreuung
+  pages:
+  - 219
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilfinanzhaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: '4.4'
+    teilhaushalt_name: Freie Träger/Schulkindbetreuung
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Verpflichtungs- Ermächtigungen
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Gesamtausgabe- /- einnahmebedarf
+  - Bish. bereitgest. (bis VJ)
+- table_id: teilergebnishaushalt_04_4_01_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilergebnishaushalt 04.4.01 Schulbetreuung
+  pages:
+  - 223
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilergebnishaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: 04.4.01
+    teilhaushalt_name: Schulbetreuung
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Plan 2027
+  - Plan 2028
+  - Plan 2029
+- table_id: teilergebnishaushalt_04_4_02_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilergebnishaushalt 04.4.02 Einrichtungen freier Träger
+  pages:
+  - 225
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilergebnishaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: 04.4.02
+    teilhaushalt_name: Einrichtungen freier Träger
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Plan 2027
+  - Plan 2028
+  - Plan 2029
+- table_id: teilergebnishaushalt_04_4_03_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilergebnishaushalt 04.4.03 Förderung freier Träger
+  pages:
+  - 227
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilergebnishaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: 04.4.03
+    teilhaushalt_name: Förderung freier Träger
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Plan 2027
+  - Plan 2028
+  - Plan 2029
+- table_id: teilergebnishaushalt_04_4_04_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilergebnishaushalt 04.4.04 Grundschulsozialarbeit
+  pages:
+  - 229
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilergebnishaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: 04.4.04
+    teilhaushalt_name: Grundschulsozialarbeit
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Plan 2027
+  - Plan 2028
+  - Plan 2029
+- table_id: teilergebnishaushalt_5_1_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilergebnishaushalt 5.1 Kulturhalle
+  pages:
+  - 240
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilergebnishaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: '5.1'
+    teilhaushalt_name: Kulturhalle
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Plan 2027
+  - Plan 2028
+  - Plan 2029
+- table_id: teilfinanzhaushalt_5_1_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilfinanzhaushalt 5.1 Kulturhalle
+  pages:
+  - 241
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilfinanzhaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: '5.1'
+    teilhaushalt_name: Kulturhalle
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Verpflichtungs- Ermächtigungen
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Gesamtausgabe- /- einnahmebedarf
+  - Bish. bereitgest. (bis VJ)
+- table_id: teilergebnishaushalt_05_1_01_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilergebnishaushalt 05.1.01 Kulturhalle
+  pages:
+  - 245
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilergebnishaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: 05.1.01
+    teilhaushalt_name: Kulturhalle
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Plan 2027
+  - Plan 2028
+  - Plan 2029
+- table_id: teilergebnishaushalt_05_1_02_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilergebnishaushalt 05.1.02 Kulturelle Veranstaltungen
+  pages:
+  - 247
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilergebnishaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: 05.1.02
+    teilhaushalt_name: Kulturelle Veranstaltungen
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Plan 2027
+  - Plan 2028
+  - Plan 2029
+- table_id: teilergebnishaushalt_5_2_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilergebnishaushalt 5.2 Kultur, Sport und Vereine
+  pages:
+  - 250
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilergebnishaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: '5.2'
+    teilhaushalt_name: Kultur, Sport und Vereine
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Plan 2027
+  - Plan 2028
+  - Plan 2029
+- table_id: teilfinanzhaushalt_5_2_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilfinanzhaushalt 5.2 Kultur, Sport und Vereine
+  pages:
+  - 251
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilfinanzhaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: '5.2'
+    teilhaushalt_name: Kultur, Sport und Vereine
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Verpflichtungs- Ermächtigungen
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Gesamtausgabe- /- einnahmebedarf
+  - Bish. bereitgest. (bis VJ)
+- table_id: teilergebnishaushalt_05_2_01_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilergebnishaushalt 05.2.01 Räume für Sport und Vereine
+  pages:
+  - 255
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilergebnishaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: 05.2.01
+    teilhaushalt_name: Räume für Sport und Vereine
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Plan 2027
+  - Plan 2028
+  - Plan 2029
+- table_id: teilergebnishaushalt_05_2_02_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilergebnishaushalt 05.2.02 Stadtbücherei
+  pages:
+  - 257
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilergebnishaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: 05.2.02
+    teilhaushalt_name: Stadtbücherei
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Plan 2027
+  - Plan 2028
+  - Plan 2029
+- table_id: teilergebnishaushalt_05_2_03_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilergebnishaushalt 05.2.03 Vereinsförderung
+  pages:
+  - 259
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilergebnishaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: 05.2.03
+    teilhaushalt_name: Vereinsförderung
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Plan 2027
+  - Plan 2028
+  - Plan 2029
+- table_id: teilergebnishaushalt_05_2_04_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilergebnishaushalt 05.2.04 Kultur- und Heimatpflege
+  pages:
+  - 261
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilergebnishaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: 05.2.04
+    teilhaushalt_name: Kultur- und Heimatpflege
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Plan 2027
+  - Plan 2028
+  - Plan 2029
+- table_id: teilergebnishaushalt_5_3_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilergebnishaushalt 5.3 Badehaus
+  pages:
+  - 264
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilergebnishaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: '5.3'
+    teilhaushalt_name: Badehaus
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Plan 2027
+  - Plan 2028
+  - Plan 2029
+- table_id: teilfinanzhaushalt_5_3_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilfinanzhaushalt 5.3 Badehaus
+  pages:
+  - 265
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilfinanzhaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: '5.3'
+    teilhaushalt_name: Badehaus
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Verpflichtungs- Ermächtigungen
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Gesamtausgabe- /- einnahmebedarf
+  - Bish. bereitgest. (bis VJ)
+- table_id: teilergebnishaushalt_05_3_01_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilergebnishaushalt 05.3.01 Betrieb des Badehauses
+  pages:
+  - 269
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilergebnishaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: 05.3.01
+    teilhaushalt_name: Betrieb des Badehauses
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Plan 2027
+  - Plan 2028
+  - Plan 2029
+- table_id: teilergebnishaushalt_6_1_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilergebnishaushalt 6.1 Stadtplanung
+  pages:
+  - 282
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilergebnishaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: '6.1'
+    teilhaushalt_name: Stadtplanung
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Plan 2027
+  - Plan 2028
+  - Plan 2029
+- table_id: teilfinanzhaushalt_6_1_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilfinanzhaushalt 6.1 Stadtplanung
+  pages:
+  - 283
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilfinanzhaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: '6.1'
+    teilhaushalt_name: Stadtplanung
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Verpflichtungs- Ermächtigungen
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Gesamtausgabe- /- einnahmebedarf
+  - Bish. bereitgest. (bis VJ)
+- table_id: teilergebnishaushalt_06_1_01_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilergebnishaushalt 06.1.01 Städtebau
+  pages:
+  - 287
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilergebnishaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: 06.1.01
+    teilhaushalt_name: Städtebau
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Plan 2027
+  - Plan 2028
+  - Plan 2029
+- table_id: teilergebnishaushalt_06_1_02_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilergebnishaushalt 06.1.02 Bauberatung
+  pages:
+  - 289
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilergebnishaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: 06.1.02
+    teilhaushalt_name: Bauberatung
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Plan 2027
+  - Plan 2028
+  - Plan 2029
+- table_id: teilergebnishaushalt_06_1_03_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilergebnishaushalt 06.1.03 Erhebung von Beiträgen
+  pages:
+  - 291
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilergebnishaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: 06.1.03
+    teilhaushalt_name: Erhebung von Beiträgen
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Plan 2027
+  - Plan 2028
+  - Plan 2029
+- table_id: teilergebnishaushalt_6_2_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilergebnishaushalt 6.2 Flächenmanagement
+  pages:
+  - 294
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilergebnishaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: '6.2'
+    teilhaushalt_name: Flächenmanagement
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Plan 2027
+  - Plan 2028
+  - Plan 2029
+- table_id: teilfinanzhaushalt_6_2_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilfinanzhaushalt 6.2 Flächenmanagement
+  pages:
+  - 295
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilfinanzhaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: '6.2'
+    teilhaushalt_name: Flächenmanagement
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Verpflichtungs- Ermächtigungen
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Gesamtausgabe- /- einnahmebedarf
+  - Bish. bereitgest. (bis VJ)
+- table_id: teilergebnishaushalt_06_2_01_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilergebnishaushalt 06.2.01 Grundstücksverwaltung
+  pages:
+  - 299
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilergebnishaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: 06.2.01
+    teilhaushalt_name: Grundstücksverwaltung
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Plan 2027
+  - Plan 2028
+  - Plan 2029
+- table_id: teilergebnishaushalt_6_4_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilergebnishaushalt 6.4 Umwelt
+  pages:
+  - 302
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilergebnishaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: '6.4'
+    teilhaushalt_name: Umwelt
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Plan 2027
+  - Plan 2028
+  - Plan 2029
+- table_id: teilfinanzhaushalt_6_4_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilfinanzhaushalt 6.4 Umwelt
+  pages:
+  - 303
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilfinanzhaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: '6.4'
+    teilhaushalt_name: Umwelt
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Verpflichtungs- Ermächtigungen
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Gesamtausgabe- /- einnahmebedarf
+  - Bish. bereitgest. (bis VJ)
+- table_id: teilergebnishaushalt_06_4_01_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilergebnishaushalt 06.4.01 Grünflächen und Spielplätze
+  pages:
+  - 307
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilergebnishaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: 06.4.01
+    teilhaushalt_name: Grünflächen und Spielplätze
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Plan 2027
+  - Plan 2028
+  - Plan 2029
+- table_id: teilergebnishaushalt_06_4_02_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilergebnishaushalt 06.4.02 Altablagerungen, Altlasten
+  pages:
+  - 309
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilergebnishaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: 06.4.02
+    teilhaushalt_name: Altablagerungen, Altlasten
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Plan 2027
+  - Plan 2028
+  - Plan 2029
+- table_id: teilergebnishaushalt_06_4_03_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilergebnishaushalt 06.4.03 Umwelt-/Natur-u. Klimaschutz
+  pages:
+  - 311
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilergebnishaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: 06.4.03
+    teilhaushalt_name: Umwelt-/Natur-u. Klimaschutz
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Plan 2027
+  - Plan 2028
+  - Plan 2029
+- table_id: teilergebnishaushalt_06_4_04_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilergebnishaushalt 06.4.04 Stadtwald
+  pages:
+  - 313
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilergebnishaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: 06.4.04
+    teilhaushalt_name: Stadtwald
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Plan 2027
+  - Plan 2028
+  - Plan 2029
+- table_id: teilergebnishaushalt_06_4_05_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilergebnishaushalt 06.4.05 Grabenpflege
+  pages:
+  - 315
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilergebnishaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: 06.4.05
+    teilhaushalt_name: Grabenpflege
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Plan 2027
+  - Plan 2028
+  - Plan 2029
+- table_id: teilergebnishaushalt_7_1_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilergebnishaushalt 7.1 Tiefbau
+  pages:
+  - 328
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilergebnishaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: '7.1'
+    teilhaushalt_name: Tiefbau
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Plan 2027
+  - Plan 2028
+  - Plan 2029
+- table_id: teilfinanzhaushalt_7_1_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilfinanzhaushalt 7.1 Tiefbau
+  pages:
+  - 329
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilfinanzhaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: '7.1'
+    teilhaushalt_name: Tiefbau
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Verpflichtungs- Ermächtigungen
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Gesamtausgabe- /- einnahmebedarf
+  - Bish. bereitgest. (bis VJ)
+- table_id: teilergebnishaushalt_07_1_01_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilergebnishaushalt 07.1.01 Öffentliche Verkehrsflächen
+  pages:
+  - 333
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilergebnishaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: 07.1.01
+    teilhaushalt_name: Öffentliche Verkehrsflächen
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Plan 2027
+  - Plan 2028
+  - Plan 2029
+- table_id: teilergebnishaushalt_7_2_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilergebnishaushalt 7.2 Abwasser
+  pages:
+  - 336
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilergebnishaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: '7.2'
+    teilhaushalt_name: Abwasser
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Plan 2027
+  - Plan 2028
+  - Plan 2029
+- table_id: teilfinanzhaushalt_7_2_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilfinanzhaushalt 7.2 Abwasser
+  pages:
+  - 337
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilfinanzhaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: '7.2'
+    teilhaushalt_name: Abwasser
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Verpflichtungs- Ermächtigungen
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Gesamtausgabe- /- einnahmebedarf
+  - Bish. bereitgest. (bis VJ)
+- table_id: teilergebnishaushalt_07_2_01_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilergebnishaushalt 07.2.01 Betrieb und Unterhaltung Kläranlage
+  pages:
+  - 341
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilergebnishaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: 07.2.01
+    teilhaushalt_name: Betrieb und Unterhaltung Kläranlage
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Plan 2027
+  - Plan 2028
+  - Plan 2029
+- table_id: teilergebnishaushalt_07_2_02_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilergebnishaushalt 07.2.02 Betrieb und Unterhaltung Kanalisation
+  pages:
+  - 343
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilergebnishaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: 07.2.02
+    teilhaushalt_name: Betrieb und Unterhaltung Kanalisation
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Plan 2027
+  - Plan 2028
+  - Plan 2029
+- table_id: teilergebnishaushalt_7_3_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilergebnishaushalt 7.3 Abfall
+  pages:
+  - 346
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilergebnishaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: '7.3'
+    teilhaushalt_name: Abfall
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Plan 2027
+  - Plan 2028
+  - Plan 2029
+- table_id: teilfinanzhaushalt_7_3_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilfinanzhaushalt 7.3 Abfall
+  pages:
+  - 347
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilfinanzhaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: '7.3'
+    teilhaushalt_name: Abfall
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Verpflichtungs- Ermächtigungen
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Gesamtausgabe- /- einnahmebedarf
+  - Bish. bereitgest. (bis VJ)
+- table_id: teilergebnishaushalt_07_3_01_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilergebnishaushalt 07.3.01 Einsammlung und Transport Müll
+  pages:
+  - 351
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilergebnishaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: 07.3.01
+    teilhaushalt_name: Einsammlung und Transport Müll
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Plan 2027
+  - Plan 2028
+  - Plan 2029
+- table_id: teilergebnishaushalt_07_3_02_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilergebnishaushalt 07.3.02 Verwertung und Beseitigung Müll
+  pages:
+  - 353
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilergebnishaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: 07.3.02
+    teilhaushalt_name: Verwertung und Beseitigung Müll
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Plan 2027
+  - Plan 2028
+  - Plan 2029
+- table_id: teilergebnishaushalt_7_4_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilergebnishaushalt 7.4 Bau- und Betriebshof
+  pages:
+  - 356
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilergebnishaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: '7.4'
+    teilhaushalt_name: Bau- und Betriebshof
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Plan 2027
+  - Plan 2028
+  - Plan 2029
+- table_id: teilfinanzhaushalt_7_4_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilfinanzhaushalt 7.4 Bau- und Betriebshof
+  pages:
+  - 357
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilfinanzhaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: '7.4'
+    teilhaushalt_name: Bau- und Betriebshof
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Verpflichtungs- Ermächtigungen
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Gesamtausgabe- /- einnahmebedarf
+  - Bish. bereitgest. (bis VJ)
+- table_id: teilergebnishaushalt_07_4_01_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilergebnishaushalt 07.4.01 Stadtreinigung
+  pages:
+  - 361
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilergebnishaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: 07.4.01
+    teilhaushalt_name: Stadtreinigung
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Plan 2027
+  - Plan 2028
+  - Plan 2029
+- table_id: teilergebnishaushalt_07_4_02_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilergebnishaushalt 07.4.02 Pflege u. Unterhaltung Grünflächen, Spielplätze, Friedhöfe
+  pages:
+  - 363
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilergebnishaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: 07.4.02
+    teilhaushalt_name: Pflege u. Unterhaltung Grünflächen, Spielplätze, Friedhöfe
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Plan 2027
+  - Plan 2028
+  - Plan 2029
+- table_id: teilergebnishaushalt_07_4_03_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilergebnishaushalt 07.4.03 Unterhaltung öffentlicher Verkehrsflächen, Winterdienst
+  pages:
+  - 365
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilergebnishaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: 07.4.03
+    teilhaushalt_name: Unterhaltung öffentlicher Verkehrsflächen, Winterdienst
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Plan 2027
+  - Plan 2028
+  - Plan 2029
+- table_id: teilergebnishaushalt_07_4_04_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilergebnishaushalt 07.4.04 Technische Gebäudeunterhaltung
+  pages:
+  - 367
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilergebnishaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: 07.4.04
+    teilhaushalt_name: Technische Gebäudeunterhaltung
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Plan 2027
+  - Plan 2028
+  - Plan 2029
+- table_id: teilergebnishaushalt_7_5_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilergebnishaushalt 7.5 Liegenschafts- und Gebäudemanagement
+  pages:
+  - 370
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilergebnishaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: '7.5'
+    teilhaushalt_name: Liegenschafts- und Gebäudemanagement
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Plan 2027
+  - Plan 2028
+  - Plan 2029
+- table_id: teilfinanzhaushalt_7_5_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilfinanzhaushalt 7.5 Liegenschafts- und Gebäudemanagement
+  pages:
+  - 371
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilfinanzhaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: '7.5'
+    teilhaushalt_name: Liegenschafts- und Gebäudemanagement
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Verpflichtungs- Ermächtigungen
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Gesamtausgabe- /- einnahmebedarf
+  - Bish. bereitgest. (bis VJ)
+- table_id: teilergebnishaushalt_07_5_01_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilergebnishaushalt 07.5.01 Bewirtschaftung städtischer Gebäude
+  pages:
+  - 375
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilergebnishaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: 07.5.01
+    teilhaushalt_name: Bewirtschaftung städtischer Gebäude
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Plan 2027
+  - Plan 2028
+  - Plan 2029
+- table_id: teilergebnishaushalt_07_5_02_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilergebnishaushalt 07.5.02 Unterbringung von Flüchtlingen
+  pages:
+  - 377
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilergebnishaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: 07.5.02
+    teilhaushalt_name: Unterbringung von Flüchtlingen
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Plan 2027
+  - Plan 2028
+  - Plan 2029
+- table_id: teilergebnishaushalt_14_1_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilergebnishaushalt 14.1 Allgemeine Finanzmittel
+  pages:
+  - 388
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilergebnishaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: '14.1'
+    teilhaushalt_name: Allgemeine Finanzmittel
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Plan 2027
+  - Plan 2028
+  - Plan 2029
+- table_id: teilfinanzhaushalt_14_1_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilfinanzhaushalt 14.1 Allgemeine Finanzmittel
+  pages:
+  - 389
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilfinanzhaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: '14.1'
+    teilhaushalt_name: Allgemeine Finanzmittel
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Verpflichtungs- Ermächtigungen
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Gesamtausgabe- /- einnahmebedarf
+  - Bish. bereitgest. (bis VJ)
+- table_id: teilergebnishaushalt_14_1_01_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilergebnishaushalt 14.1.01 Allgemeine Finanzmittel
+  pages:
+  - 394
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilergebnishaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: 14.1.01
+    teilhaushalt_name: Allgemeine Finanzmittel
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Plan 2027
+  - Plan 2028
+  - Plan 2029
+- table_id: teilergebnishaushalt_14_1_02_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Teilergebnishaushalt 14.1.02 Produktübergreifende Mittel
+  pages:
+  - 399
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: Teilergebnishaushalt
+    skip_repeated_headers: true
+    teilhaushalt_nr: 14.1.02
+    teilhaushalt_name: Produktübergreifende Mittel
+  expected_columns:
+  - Nr.
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Ergebnis 2024
+  - Plan 2027
+  - Plan 2028
+  - Plan 2029

@@ -133,12 +133,24 @@ def classify_year_columns(columns: list[str]) -> list[tuple[str, int, str] | tup
 # ── Stable key generation ────────────────────────────────────────────
 
 def normalize_label(label: str) -> str:
-    """Create a normalized version of a label for stable keying."""
+    """Create a normalized version of a label for stable keying.
+
+    The same position is typeset slightly differently from one Haushaltsplan to the
+    next – "u.- beiträgen" in one, "u.-beiträgen" in the next. Dropping punctuation
+    but keeping the surrounding whitespace turned that into two different keys
+    ("..._u_beitragen" vs "..._ubeitragen"), so the same position competed with
+    itself across documents and the year-over-year comparison read a missing
+    previous value as a 100 % drop.
+
+    Punctuation is therefore removed together with the whitespace around it, and
+    the remaining words are joined without separators: what survives is the letters
+    and digits alone, which is what actually identifies the position.
+    """
     s = label.lower().strip()
-    # Remove special chars, keep alphanumeric + spaces
     s = unicodedata.normalize("NFKD", s)
-    s = re.sub(r"[^\w\s]", "", s)
-    s = re.sub(r"\s+", "_", s)
+    # Diakritika entfernen (ü → u), damit "für"/"fuer" nicht auseinanderfallen
+    s = "".join(c for c in s if not unicodedata.combining(c))
+    s = re.sub(r"[^a-z0-9]+", "", s)
     return s
 
 
@@ -214,7 +226,7 @@ def normalize_table(
     # Load provenance if available
     provenance_rows = {}
     if prov_path.exists():
-        with open(prov_path) as f:
+        with open(prov_path, encoding="utf-8") as f:
             prov_data = json.load(f)
         for i, row_prov in enumerate(prov_data.get("rows", [])):
             provenance_rows[i] = row_prov
@@ -337,47 +349,174 @@ def normalize_table(
     return line_items
 
 
-# ── Deduplication ────────────────────────────────────────────────────
+# ── Document authority ─────────────────────────────────────
 
-def deduplicate_line_items(items: list[dict]) -> list[dict]:
-    """Remove duplicates where the same position×year appears in overlapping tables.
+# Which document wins when the same position×year appears in several documents.
+# Higher rank supersedes lower. Rationale: a plan document is superseded by the
+# decision on it, that in turn by any later amendment, and a planned figure is
+# always superseded by the actual result once the accounts are closed.
+#
+# This used to be an alphabetical comparison of document_id with the comment
+# "alphabetical ≈ chronological for our naming" – which is false for our naming:
+# "..._entwurf" > "..._beschluss" (e after b), so the draft beat the decision for
+# every year where both exist. Keep this table as the single source of truth and
+# override per document via `authority:` in sources.yaml only when unavoidable.
+DOC_TYPE_AUTHORITY: dict[str, int] = {
+    "haushaltsplan_entwurf": 10,
+    "haushaltsplan_neufassung": 15,   # revised draft, not yet decided on
+    "haushaltsplan_beschluss": 20,
+    "haushaltssatzung": 25,
+    "nachtragshaushalt": 30,
+    "anpassungsbeschluss": 40,
+    "jahresabschluss": 50,
+    # Bewusst UNTER dem Jahresabschluss: der Gesamtabschluss ist nicht genauer,
+    # sondern misst etwas anderes – er konsolidiert Eigenbetriebe und Beteiligungen
+    # mit. Für 2021 nennt er 74,4 Mio ordentliche Erträge, der Jahresabschluss
+    # 64,0 Mio. In einer Zeitreihe des Kernhaushalts hat er nichts verloren; ihn
+    # gewinnen zu lassen erzeugt einen Sprung, der wie ein Datenfehler aussieht.
+    # Sauber wäre eine eigene Dimension für den Konsolidierungskreis.
+    "gesamtabschluss": 45,
+}
 
-    When the same (line_item_key, year, amount_type) appears in multiple documents,
-    we keep the one from the latest document (by document priority).
+# Documents we hold for context only must never overwrite a figure from a
+# primary source, whatever their doc_type ranks at.
+SECONDARY_AUTHORITY = -1
 
-    For the same document, keep as-is (no dups expected).
+UNKNOWN_AUTHORITY = 0
+
+
+def document_authority(source_doc: dict) -> int:
+    """Return the supersession rank of a document from sources.yaml.
+
+    An explicit `authority:` in sources.yaml wins; otherwise the rank is derived
+    from `doc_type`. Documents marked `priority: secondary` are pinned below every
+    primary source.
     """
-    # Group by (key, year, amount_type)
-    seen: dict[tuple, dict] = {}
-    dupes = 0
+    explicit = source_doc.get("authority")
+    if explicit is not None:
+        return int(explicit)
+    if source_doc.get("priority") == "secondary":
+        return SECONDARY_AUTHORITY
+    return DOC_TYPE_AUTHORITY.get(source_doc.get("doc_type"), UNKNOWN_AUTHORITY)
+
+
+def build_authority_index(source_docs: dict[str, dict]) -> dict[str, dict]:
+    """Map document_id → {rank, years} for every document in sources.yaml."""
+    return {
+        doc_id: {
+            "rank": document_authority(doc),
+            "years": {int(y) for y in doc.get("years", [])},
+            "doc_type": doc.get("doc_type"),
+        }
+        for doc_id, doc in source_docs.items()
+    }
+
+
+def authority_rank(authority: dict[str, dict], document_id: str, year: int) -> tuple:
+    """Ordering key deciding which document's value for *year* is the current one.
+
+    Sorted by, in order:
+
+    1. Whether the document is *about* that year at all. A Haushaltsplan carries
+       three or four Finanzplanung columns beyond its own budget years; those are
+       projections, and the document that actually budgets the year must win over
+       them however authoritative it is otherwise. Without this, the 2024/2025
+       Beschluss – a plain `haushaltsplan_beschluss` – outranks the Neufassung 2026
+       for the year 2026 and the site shows a two-year-old projection.
+    2. How recent the document is, by the last year it budgets. This only bites for
+       years nobody budgets – the far end of the Finanzplanung – where the newest
+       projection is the best one available. Without it the series switches source
+       document midway (2026 from the Neufassung, 2027 from the two-year-old
+       Beschluss) and jumps from deficit to surplus for no visible reason.
+    3. The doc_type rank (see DOC_TYPE_AUTHORITY): the decision supersedes the
+       draft it decided on, the closed accounts supersede any plan.
+    4. document_id, so ties resolve the same way on every run.
+
+    Note that 1 outranks 2: for a year that two documents budget, the doc_type
+    decides, not recency – a later draft never beats the decision on an earlier one.
+    """
+    info = authority.get(document_id)
+    if info is None:
+        return (0, 0, UNKNOWN_AUTHORITY, document_id)
+    covers = int(year in info["years"])
+    recency = max(info["years"], default=0) if not covers else 0
+    return (covers, recency, info["rank"], document_id)
+
+
+# ── Deduplication ───────────────────────────────────────
+
+def deduplicate_line_items(
+    items: list[dict],
+    authority: dict[str, dict] | None = None,
+) -> list[dict]:
+    """Mark superseded values where the same position×year appears in several documents.
+
+    When the same (line_item_key, year, amount_type) comes from more than one
+    document, the one from the document with the higher authority rank is the
+    current value; every other one keeps its place in the output but carries
+    ``superseded_by`` naming the document that replaced it. Consumers that want
+    "the" number filter on ``superseded_by is None`` (see `current_only`); the
+    comparison views need the losers and would otherwise have nothing to show.
+
+    Ties – and documents missing from *authority* – fall back to comparing
+    document_id, which keeps the ordering stable and reproducible.
+
+    Duplicates from the *same* document are extraction artefacts (a table spanning
+    overlapping page ranges), not alternative versions, and are dropped outright.
+    """
+    authority = authority or {}
+
+    def rank(item: dict) -> tuple:
+        return authority_rank(authority, item["document_id"], item["year"])
+
+    # Group by (key, year, amount_type), keeping one entry per document
+    groups: dict[tuple, dict[str, dict]] = {}
+    same_doc_dupes = 0
     for item in items:
         k = (item["line_item_key"], item["year"], item["amount_type"])
-        if k in seen:
-            existing = seen[k]
-            # Prefer the item from the later/more authoritative document
-            # Simple heuristic: later table_id wins (alphabetical ≈ chronological for our naming)
-            if item["document_id"] > existing["document_id"]:
-                seen[k] = item
-                dupes += 1
-            elif item["document_id"] == existing["document_id"]:
-                # Same doc, same key — could be from overlapping pages, keep first
-                dupes += 1
+        per_doc = groups.setdefault(k, {})
+        if item["document_id"] in per_doc:
+            same_doc_dupes += 1
+            continue
+        per_doc[item["document_id"]] = item
+
+    out: list[dict] = []
+    superseded: dict[tuple[str, str], int] = {}
+    for per_doc in groups.values():
+        winner = max(per_doc.values(), key=rank)
+        for item in per_doc.values():
+            if item is winner:
+                item["superseded_by"] = None
             else:
-                dupes += 1
-        else:
-            seen[k] = item
+                item["superseded_by"] = winner["document_id"]
+                pair = (winner["document_id"], item["document_id"])
+                superseded[pair] = superseded.get(pair, 0) + 1
+            out.append(item)
 
-    if dupes:
-        logger.info("  Dedup: removed %d duplicates, kept %d items", dupes, len(seen))
+    for (win, lose), n in sorted(superseded.items(), key=lambda kv: -kv[1]):
+        logger.info("  Dedup: %s supersedes %s for %d values", win, lose, n)
 
-    return list(seen.values())
+    n_superseded = sum(superseded.values())
+    if same_doc_dupes or n_superseded:
+        logger.info(
+            "  Dedup: dropped %d same-document duplicates, marked %d superseded, "
+            "%d values current",
+            same_doc_dupes, n_superseded, len(out) - n_superseded,
+        )
+
+    return out
+
+
+def current_only(items: list[dict]) -> list[dict]:
+    """Keep only the values that are not superseded by a more authoritative document."""
+    return [i for i in items if not i.get("superseded_by")]
 
 
 # ── Main entry point ─────────────────────────────────────────────────
 
 def load_sources_index(sources_path: Path) -> dict[str, dict]:
     """Load sources.yaml into a dict keyed by document_id."""
-    with open(sources_path) as f:
+    with open(sources_path, encoding="utf-8") as f:
         data = yaml.safe_load(f)
     return {d["document_id"]: d for d in data.get("documents", [])}
 
@@ -388,7 +527,7 @@ def normalize_all(
     sources_path: Path = DEFAULT_SOURCES,
 ) -> pd.DataFrame:
     """Normalize all extracted tables into a single DataFrame of line_items."""
-    with open(tables_path) as f:
+    with open(tables_path, encoding="utf-8") as f:
         tables_data = yaml.safe_load(f)
     table_defs = tables_data.get("tables", [])
     source_docs = load_sources_index(sources_path)
@@ -414,7 +553,7 @@ def normalize_all(
     all_items.extend(produkt_items)
 
     # Deduplicate overlapping year data
-    all_items = deduplicate_line_items(all_items)
+    all_items = deduplicate_line_items(all_items, build_authority_index(source_docs))
 
     # Convert to DataFrame
     df = pd.DataFrame(all_items)
@@ -445,7 +584,7 @@ def normalize_all(
         "normalized_at": datetime.now(timezone.utc).isoformat(),
     }
     stats_path = extracted_dir / "normalize_stats.json"
-    with open(stats_path, "w") as f:
+    with open(stats_path, "w", encoding="utf-8") as f:
         json.dump(stats, f, indent=2, ensure_ascii=False)
     logger.info("Stats → %s", stats_path)
 

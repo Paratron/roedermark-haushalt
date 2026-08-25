@@ -2,12 +2,31 @@
 # Jedes Dokument hat: document_id, doc_type, years, url, priority
 #
 # doc_type:
-#   haushaltsplan_entwurf, haushaltsplan_beschluss, anpassungsbeschluss,
-#   nachtragshaushalt, jahresabschluss, gesamtabschluss,
+#   haushaltsplan_entwurf, haushaltsplan_neufassung, haushaltsplan_beschluss,
+#   anpassungsbeschluss, nachtragshaushalt, jahresabschluss, gesamtabschluss,
 #   beteiligungsbericht, konsolidierung, haushaltsrede, praesentation,
 #   haushaltssatzung, bekanntmachung
 #
 # priority: primary (Zahlenquelle), secondary (Kontext/Beleg)
+#
+# Wenn dieselbe Position für dasselbe Jahr in mehreren Dokumenten steht, entscheidet
+# der Rang des doc_type, welcher Wert angezeigt wird (DOC_TYPE_AUTHORITY in
+# pipeline/normalize/normalize.py):
+#
+#   entwurf 10 < neufassung 15 < beschluss 20 < satzung 25
+#           < nachtrag 30 < anpassung 40 < jahresabschluss 50 < gesamtabschluss 55
+#
+# priority: secondary rangiert grundsätzlich unter allen primary-Quellen. Nur wenn
+# das nicht passt, hier pro Dokument ein `authority: <int>` setzen – das schlägt
+# die Ableitung aus dem doc_type.
+#
+# status/status_note/status_url: optional. `status: vorlage` kennzeichnet ein
+# Dokument, über das noch nicht entschieden wurde – das Frontend weist die daraus
+# stammenden Zahlen entsprechend aus.
+#
+# session_url: nur für Anlagen aus dem Ratsinformationssystem (ALLRIS). Deren
+# Download-Links sind stateful und funktionieren erst, nachdem die Vorlagenseite in
+# derselben Session geladen wurde. session_url ist diese Vorlagenseite.
 
 version: 1
 
@@ -20,6 +39,47 @@ documents:
     years: [2026]
     priority: primary
     url: https://roedermark.de/fileadmin/Stadt_und_Stadtverwaltung/Haushalt___Berichte/Haushaltsplan_HH_2026_Entwurf.pdf
+
+  # ── Neufassung 2026 (Vorlage DS/208/26, Entscheidung StVV 08.09.2026) ─────
+  # Nur im RIS veröffentlicht, nicht auf roedermark.de. Das Zahlenwerk ist bereits
+  # vollständig konsolidiert: Entwurf 13.809.905 − Änderungsliste 634.911
+  # − Konsolidierung (HSK) 7.011.479 = 6.163.515 ordentliches Ergebnis 2026,
+  # mit außerordentlich −58.600 ein Fehlbedarf von 6.104.915 EUR. Die Deltas müssen
+  # also nicht nachgerechnet werden; die Änderungslisten liefern die Begründungen.
+
+  - document_id: haushaltsplan_2026_neufassung
+    doc_type: haushaltsplan_neufassung
+    years: [2026]
+    priority: primary
+    status: vorlage
+    status_note: >-
+      Beschlussvorlage DS/208/26 – von der Stadtverordnetenversammlung noch nicht
+      beschlossen. Entscheidung am 08.09.2026, Vorberatung in den Ausschüssen am
+      25., 26. und 27.08.2026.
+    status_url: https://www.roedermark.sitzung-online.de/public/vo020?VOLFDNR=1000940
+    session_url: https://www.roedermark.sitzung-online.de/public/vo020?VOLFDNR=1000940&refresh=false&TOLFDNR=1003301
+    url: https://www.roedermark.sitzung-online.de/public/vo020?0--anlagenHeaderPanel-attachmentsList-0-attachment-link&VOLFDNR=1000940&refresh=false&TOLFDNR=1003301
+
+  - document_id: haushaltssatzung_2026
+    doc_type: haushaltssatzung
+    years: [2026]
+    priority: secondary
+    session_url: https://www.roedermark.sitzung-online.de/public/vo020?VOLFDNR=1000940&refresh=false&TOLFDNR=1003301
+    url: https://www.roedermark.sitzung-online.de/public/vo020?0--anlagenHeaderPanel-attachmentsList-3-attachment-link&VOLFDNR=1000940&refresh=false&TOLFDNR=1003301
+
+  - document_id: aenderungsliste_2026
+    doc_type: konsolidierung
+    years: [2026, 2027, 2028, 2029]
+    priority: secondary
+    session_url: https://www.roedermark.sitzung-online.de/public/vo020?VOLFDNR=1000940&refresh=false&TOLFDNR=1003301
+    url: https://www.roedermark.sitzung-online.de/public/vo020?0--anlagenHeaderPanel-attachmentsList-1-attachment-link&VOLFDNR=1000940&refresh=false&TOLFDNR=1003301
+
+  - document_id: aenderungsliste_2026_investitionen
+    doc_type: konsolidierung
+    years: [2026, 2027, 2028, 2029]
+    priority: secondary
+    session_url: https://www.roedermark.sitzung-online.de/public/vo020?VOLFDNR=1000940&refresh=false&TOLFDNR=1003301
+    url: https://www.roedermark.sitzung-online.de/public/vo020?0--anlagenHeaderPanel-attachmentsList-2-attachment-link&VOLFDNR=1000940&refresh=false&TOLFDNR=1003301
 
   - document_id: haushaltsplan_2024_2025_beschluss
     doc_type: haushaltsplan_beschluss

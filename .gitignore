@@ -36,3 +36,6 @@ node_modules/
 # Env
 .env
 .env.local
+
+# Claude Code (persönliche Einstellungen, nicht teamweit)
+.claude/settings.local.json
