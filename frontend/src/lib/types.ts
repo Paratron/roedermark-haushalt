@@ -274,3 +274,46 @@ export interface HskData {
 	};
 	investitionen: HskInvestition[];
 }
+
+// ─── Vergleich Entwurf ↔ Neufassung 2026 ───
+
+/** Eine Position, die in beiden Fassungen des Haushalts auf derselben Ebene steht. */
+export interface VergleichPosition {
+	haushalt_type: HaushaltType;
+	nr: string | null;
+	bezeichnung: string;
+	teilhaushalt_nr: string | null;
+	teilhaushalt_name: string | null;
+	/** Wert im Entwurf */
+	alt: number;
+	/** Wert in der Neufassung */
+	neu: number;
+	/** neu − alt: positiv = Verbesserung für die Stadt bei Erträgen, siehe Seite */
+	delta: number;
+	seite_alt: number | null;
+	seite_neu: number | null;
+}
+
+/** Eine Kontozeile innerhalb einer Position, z.B. Grundsteuer B unter Steuern. */
+export interface VergleichKonto {
+	konto: string;
+	bezeichnung: string;
+	alt: number;
+	neu: number;
+	diff: number;
+}
+
+export interface VergleichData {
+	jahr: number;
+	alt_document_id: string;
+	neu_document_id: string;
+	positionen_gesamt: number;
+	positionen_veraendert: number;
+	positionen: VergleichPosition[];
+	/**
+	 * Konto-Aufschlüsselungen je Nr. des Ergebnishaushalts. Enthält nur Gruppen,
+	 * die ihre Summenzeile in beiden Plänen vollständig erklären – siehe
+	 * _konten_vergleich in der Publish-Pipeline.
+	 */
+	konten: Record<string, VergleichKonto[]>;
+}

@@ -1,29 +1,63 @@
 <script lang="ts">
 	import { TrendingUp, TrendingDown, Minus } from '@lucide/svelte';
+	import { formatAmount } from '$lib/format';
 
 	interface Props {
 		/** Absolute difference */
 		diff: number;
 		/** Ratio (e.g. 0.05 = +5%) */
-		ratio: number;
+		ratio: number | null;
+		/**
+		 * Auch den Betrag zeigen, nicht nur den Prozentwert. Die Legende neben dem
+		 * Donut hat dafür keinen Platz, eine Tabellenspalte schon.
+		 */
+		showAmount?: boolean;
+		/**
+		 * Ob ein Anstieg gut ist.
+		 *
+		 * Voreingestellt ist "nein": die Komponente kam von der Ausgabenseite, wo mehr
+		 * schlechter ist. Bei Erträgen ist es umgekehrt – ohne diesen Schalter stünde
+		 * eine Steuererhöhung in Rot und eine gestrichene Einnahme in Grün.
+		 */
+		upIsGood?: boolean;
+		/** Text statt Balken, wenn sich nichts bewegt hat. */
+		unchangedLabel?: string;
 	}
 
-	let { diff, ratio }: Props = $props();
+	let {
+		diff,
+		ratio,
+		showAmount = false,
+		upIsGood = false,
+		unchangedLabel = ''
+	}: Props = $props();
 
+	let unveraendert = $derived(Math.abs(diff) < 0.005);
+	let gut = $derived(upIsGood ? diff > 0 : diff < 0);
 	let sign = $derived(diff > 0 ? '+' : '');
-	let label = $derived(`${sign}${(ratio * 100).toFixed(1)} %`);
 </script>
 
-<span class="change" class:is-up={diff > 0} class:is-down={diff < 0}>
-	{#if diff > 0}
-		<TrendingUp class="change-icon" />
-	{:else if diff < 0}
-		<TrendingDown class="change-icon" />
-	{:else}
-		<Minus class="change-icon" />
-	{/if}
-	{label}
-</span>
+{#if unveraendert && unchangedLabel}
+	<span class="change is-flat">{unchangedLabel}</span>
+{:else}
+	<span class="change" class:is-good={!unveraendert && gut} class:is-bad={!unveraendert && !gut}>
+		{#if diff > 0}
+			<TrendingUp class="change-icon" />
+		{:else if diff < 0}
+			<TrendingDown class="change-icon" />
+		{:else}
+			<Minus class="change-icon" />
+		{/if}
+		{#if showAmount}
+			{sign}{formatAmount(diff)}
+		{/if}
+		{#if ratio !== null}
+			<span class="change-pct">
+				{showAmount ? '(' : ''}{sign}{(ratio * 100).toFixed(1)} %{showAmount ? ')' : ''}
+			</span>
+		{/if}
+	</span>
+{/if}
 
 <style>
 	.change {
@@ -35,11 +69,18 @@
 		color: var(--gray-400);
 		white-space: nowrap;
 	}
-	.change.is-up {
+	.change.is-good {
+		color: var(--green-600, #16a34a);
+	}
+	.change.is-bad {
 		color: var(--red-600, #dc2626);
 	}
-	.change.is-down {
-		color: var(--green-600, #16a34a);
+	.change.is-flat {
+		color: var(--gray-400);
+	}
+	.change-pct {
+		font-weight: 400;
+		opacity: 0.85;
 	}
 	:global(.change-icon) {
 		width: 0.875rem;

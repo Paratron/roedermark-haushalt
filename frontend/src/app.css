@@ -570,3 +570,150 @@ input[type="checkbox"] {
 }
 
 
+
+/* ── Donut mit Aufschlüsselungstabelle ─────────────────────────────────
+   Bisher lagen diese Regeln im Style-Block der Seite "Einnahmen &
+   Ausgaben" und damit auf sie beschränkt – Svelte kapselt Styles pro
+   Komponente. Eine zweite Seite mit demselben Aufbau bekam die Klassen,
+   aber kein CSS dazu: Tabelle ohne Raster, Zeilen ohne cursor:pointer,
+   also scheinbar nicht klickbar. Seitenlokale Regeln gewinnen weiterhin,
+   weil Svelte ihnen eine zusätzliche Klasse anhängt. */
+
+/* Mobile first: untereinander, erst auf breiten Schirmen nebeneinander. */
+.donut-detail-row {
+	display: flex;
+	flex-direction: column;
+	gap: 1.5rem;
+}
+.donut-col {
+	flex-shrink: 0;
+	min-width: 0;
+}
+.detail-col {
+	flex: 1;
+	min-width: 0;
+}
+@media (min-width: 900px) {
+	.donut-detail-row {
+		flex-direction: row;
+		align-items: flex-start;
+	}
+	.donut-col {
+		flex-basis: clamp(15rem, 32%, 20rem);
+	}
+}
+
+/* Auf schmalen Schirmen darf die Tabelle bis an den Kartenrand scrollen. */
+.detail-table-wrap,
+.sub-items-table-wrap {
+	overflow-x: auto;
+	margin-left: -1rem;
+	margin-right: -1rem;
+}
+@media (min-width: 640px) {
+	.detail-table-wrap,
+	.sub-items-table-wrap {
+		margin-left: 0;
+		margin-right: 0;
+	}
+}
+
+/* Spalten, die auf dem Handy keinen Platz haben. */
+@media (max-width: 767px) {
+	.hide-mobile {
+		display: none;
+	}
+	.detail-table td,
+	.sub-items-table td {
+		padding: 0.625rem 0.5rem;
+	}
+}
+.detail-table,
+.sub-items-table {
+	width: 100%;
+	border-collapse: collapse;
+	font-size: 0.8125rem;
+}
+.detail-table th,
+.sub-items-table th {
+	padding: 0.5rem 0.625rem;
+	text-align: left;
+	font-size: 0.75rem;
+	font-weight: 600;
+	color: var(--gray-500);
+	border-bottom: 1px solid var(--gray-200, #e5e7eb);
+	white-space: nowrap;
+}
+.detail-table td,
+.sub-items-table td {
+	padding: 0.5rem 0.625rem;
+	border-bottom: 1px solid var(--gray-100, #f3f4f6);
+	vertical-align: middle;
+}
+.detail-table .col-right,
+.sub-items-table .col-right {
+	text-align: right;
+	font-variant-numeric: tabular-nums;
+	white-space: nowrap;
+}
+
+.detail-row {
+	cursor: pointer;
+	transition: background 0.12s ease;
+}
+.detail-row:hover {
+	background: var(--gray-50);
+}
+.detail-row-active {
+	background: var(--gray-100, #f3f4f6);
+}
+
+.detail-title {
+	margin-bottom: 0.75rem;
+	font-size: 1.0625rem;
+	font-weight: 600;
+}
+
+.cat-dot,
+.cat-dot-lg {
+	display: inline-block;
+	border-radius: 50%;
+	flex-shrink: 0;
+}
+.cat-dot {
+	width: 0.625rem;
+	height: 0.625rem;
+	margin-right: 0.375rem;
+	vertical-align: baseline;
+}
+.cat-dot-lg {
+	width: 0.875rem;
+	height: 0.875rem;
+	margin-right: 0.5rem;
+}
+
+.sub-items-card {
+	margin-top: 1rem;
+}
+.sub-items-title {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	margin-bottom: 0.25rem;
+	font-size: 1rem;
+	font-weight: 600;
+}
+.sub-items-hint {
+	margin-bottom: 0.75rem;
+	font-size: 0.8125rem;
+	color: var(--gray-500);
+}
+.sub-item-label {
+	color: var(--gray-700, #374151);
+}
+.sub-item-konto {
+	margin-right: 0.375rem;
+	font-size: 0.75rem;
+	color: var(--gray-400);
+	font-variant-numeric: tabular-nums;
+}

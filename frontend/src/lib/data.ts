@@ -1,6 +1,13 @@
 /** Data loading utilities – load published data at build time via server load functions. */
 
-import type { Summary, LineItem, Document, HaushaltType, SourceLink } from './types';
+import type {
+	Summary,
+	LineItem,
+	Document,
+	HaushaltType,
+	SourceLink,
+	VergleichData
+} from './types';
 import { formatDocumentName } from './format';
 
 /**
@@ -571,6 +578,17 @@ export async function loadSchuldenstatistik(
 ): Promise<SchuldenstatistikEntry[]> {
 	const res = await fetch('/data/schuldenstatistik.json');
 	return (await res.json()) as SchuldenstatistikEntry[];
+}
+
+/**
+ * Der Positionsvergleich Entwurf ↔ Neufassung 2026.
+ *
+ * Enthält nur die Positionen, die in beiden Plänen auf derselben Ebene stehen –
+ * die Pipeline erklärt in export_vergleich, warum die Differenz der Zeilenzahlen
+ * kein Maß für neue oder entfallene Positionen ist.
+ */
+export async function loadVergleich2026(): Promise<VergleichData> {
+	return (await import('./data/vergleich_2026.json')).default as unknown as VergleichData;
 }
 
 // ─── Provenance / Source Citation Utilities ───
