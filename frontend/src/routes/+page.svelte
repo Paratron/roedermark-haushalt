@@ -9,7 +9,7 @@
 
 	let { data }: { data: PageData } = $props();
 	const { summary, documents } = data;
-	const hsk = $derived(data.hsk);
+	// const hsk = $derived(data.hsk);  // zurück, wenn der HSK-Banner wiederkommt
 
 	// Ist vs Plan year ranges
 	const istYears = summary.ist_years;
@@ -37,6 +37,10 @@
 </section>
 
 
+	<!-- Ausgeblendet: hsk_2026.json stammt aus einer überholten Fassung des
+	     Sicherungskonzepts. Ihr Abbaupfad endet 2026 bei 6,33 Mio., die Neufassung
+	     des Haushaltsplans weist 6,16 Mio. aus. Wieder einblenden, sobald der neue
+	     HSK vorliegt und durch parse_hsk gelaufen ist.
 	{#if hsk}
 		<a href="/hsk2026" class="hsk-banner">
 			<div class="hsk-banner-icon"><ShieldCheck /></div>
@@ -53,6 +57,7 @@
 			</div>
 		</a>
 	{/if}
+	-->
 
 
 <!-- Ergebnishaushalt Overview -->
@@ -135,10 +140,12 @@
 		<h4 class="link-card-title"><Receipt class="link-card-icon" /> Steuern & Hebesätze</h4>
 		<p class="link-card-desc">Grundsteuer, Gewerbesteuer und Hebesätze im Vergleich mit Nachbarkommunen</p>
 	</a>
+	<!-- Ausgeblendet mit dem HSK-Banner oben – siehe Begründung dort.
 	<a href="/hsk2026" class="card card-padded link-card">
 		<h4 class="link-card-title"><ShieldCheck class="link-card-icon" /> Haushaltssicherung (HSK 2026)</h4>
 		<p class="link-card-desc">Wo die Stadt spart, was die Grundsteuer beiträgt und wann der Haushalt ausgeglichen ist</p>
 	</a>
+	-->
 	<a href="/explorer" class="card card-padded link-card">
 		<h4 class="link-card-title"><Search class="link-card-icon" /> Explorer</h4>
 		<p class="link-card-desc">Alle {formatNumber(summary.total_line_items)} Positionen durchsuchen und filtern</p>
