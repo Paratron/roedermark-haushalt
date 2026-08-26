@@ -67,6 +67,11 @@ def parse_german_number(s: str | None) -> float | None:
 
 # ── Column classification ────────────────────────────────────────────
 
+# Kontonummer am Anfang der Bezeichnung: sechsstellig, dann der Name.
+# Die Nummern der Ebene darüber ("050 Steuern und steuerähnliche Erträge") sind
+# dreistellig und dürfen hier nicht hängenbleiben.
+KONTO_PREFIX = re.compile(r"^(\d{6})\s+(.+)$")
+
 # Pattern: "Ergebnis 2021", "Ansatz 2023", "Plan 2024", "Budget 2022"
 YEAR_COL_PATTERN = re.compile(
     r"^(Ergebnis|Ansatz|Plan|Budget)\s+(\d{4})$", re.IGNORECASE
@@ -255,6 +260,15 @@ def normalize_table(
         nr = (row.get("Nr.") or "").strip()
         bezeichnung = (row.get("Bezeichnung") or "").strip()
         konto = (row.get("Konto") or "").strip() if detail else None
+
+        # Konto und Bezeichnung in einer Spalte, z.B. "555200 Grundsteuer B".
+        # Die Neufassung 2026 druckt ihre Konto-Ebene so, der Entwurf in zwei
+        # Spalten – ohne die Aufteilung fiele die Kontonummer in den Namen und
+        # dieselbe Position hieße in beiden Plänen anders.
+        if detail and not konto and bezeichnung:
+            m = KONTO_PREFIX.match(bezeichnung)
+            if m:
+                konto, bezeichnung = m.group(1), m.group(2).strip()
 
         # Skip completely empty rows
         if not nr and not bezeichnung:

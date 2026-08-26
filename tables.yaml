@@ -12131,3 +12131,27 @@ tables:
   - Plan 2027
   - Plan 2028
   - Plan 2029
+
+# Konto-Ebene des Ergebnishaushalts im Sonderbudget Allgemeine Finanzmittel.
+# Hier stehen die einzelnen Steuerarten – Grundsteuer A und B, Gewerbesteuer,
+# Einkommen- und Umsatzsteueranteil. Der Entwurf weist sie in seiner
+# Struktur-Tabelle aus (struktur_ergebnishaushalt_2026, S. 141-148); ohne das
+# Gegenstück aus der Neufassung bleibt der Vergleich bei "Steuern insgesamt"
+# stehen und kann nicht sagen, welche Steuer sich bewegt hat.
+# Konto und Bezeichnung stehen hier in einer Spalte ("555200 Grundsteuer B"),
+# normalize trennt sie über KONTO_PREFIX.
+- table_id: struktur_ergebnishaushalt_2026_neufassung
+  document_id: haushaltsplan_2026_neufassung
+  description: Ergebnishaushalt 14.1.01 nach Konten (u.a. Steuerarten)
+  pages: [390, 391, 392]
+  extraction_hints:
+    tool: pdfplumber
+    header_marker: ERGEBNISHAUSHALT
+    skip_repeated_headers: true
+    teilhaushalt_nr: 14.1.01
+    teilhaushalt_name: Sonderbudget Allgemeine Finanzmittel
+  expected_columns:
+  - Bezeichnung
+  - Ansatz 2026
+  - Ansatz 2025
+  - Ergebnis 2024

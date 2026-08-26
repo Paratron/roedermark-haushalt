@@ -55,6 +55,11 @@ FRONTEND_PDF_DIR = "pdfs"
 
 # ── Data cleaning for publishing ──────────────────────────────────────
 
+# Der eine Haushaltsplan, dessen Investitionstabellen gespiegelte Vorzeichen
+# tragen. Siehe clean_dataframe.
+INVERTED_INVESTMENT_SIGNS = "haushaltsplan_2026_entwurf"
+
+
 def clean_dataframe(df: pd.DataFrame) -> pd.DataFrame:
     """Clean up the DataFrame for publishing."""
     df = df.copy()
@@ -92,7 +97,11 @@ def clean_dataframe(df: pd.DataFrame) -> pd.DataFrame:
     # convert to double").
     for col in ("teilhaushalt_nr", "konto", "fachbereich_nr", "productgroup_nr", "nr"):
         if col in df.columns:
-            df[col] = df[col].astype("string")
+            # Der Cast macht aus einem fehlenden Wert die Zeichenkette "nan", sobald
+            # die Spalte gemischt belegt ist. Der wird dann nicht mehr als Fehlwert
+            # erkannt: export_page_datasets teilte danach eine Datei "nan.json" ab,
+            # und pageDataKeys hätte "nan" als Ertragsart ausgeliefert.
+            df[col] = df[col].astype("string").replace("nan", pd.NA)
 
     # Guarantee the supersession column so every consumer (DuckDB views, summary,
     # frontend) can rely on it, including data normalized before it was introduced.
@@ -107,6 +116,19 @@ def clean_dataframe(df: pd.DataFrame) -> pd.DataFrame:
     if "haushalt_type" in df.columns and "amount" in df.columns:
         eh_mask = df["haushalt_type"] == "ergebnishaushalt"
         df.loc[eh_mask, "amount"] = -df.loc[eh_mask, "amount"]
+
+    # Das Investitionsprogramm im Entwurf 2026 druckt seine Vorzeichen andersherum
+    # als alle anderen elf Haushaltspläne: Auszahlungen positiv, Einzahlungen
+    # negativ (dort stehen "Veräußerung von Grundstücken" und "Verkauf von
+    # Hardware" im Minus). Ungespiegelt erscheinen 87 Bauprojekte auf
+    # /investitionen als Einnahmen, und jeder Vergleich mit der Neufassung meldet
+    # eine Änderung, wo nur die Konvention wechselt – 45.000 gegen -45.000 bei
+    # unveränderter Bausumme.
+    if {"haushalt_type", "document_id", "amount"} <= set(df.columns):
+        inv_mask = (df["haushalt_type"] == "investitionen") & (
+            df["document_id"] == INVERTED_INVESTMENT_SIGNS
+        )
+        df.loc[inv_mask, "amount"] = -df.loc[inv_mask, "amount"]
 
     return df
 
@@ -688,6 +710,167 @@ def export_to_frontend(
     return copied
 
 
+# Der Vergleich Entwurf ↔ Neufassung 2026.
+#
+# Vergleichbar sind nur Positionen, die in beiden Plänen auf derselben Ebene
+# stehen – die 718, bei denen die Neufassung eine Entwurfszeile verdrängt hat.
+# Die schiere Differenz der Zeilenzahlen (1.378 gegen 3.216) taugt dagegen nicht
+# als "neu" und "entfallen": sie stammt daher, dass für den Entwurf 28 Tabellen
+# konfiguriert sind und für die Neufassung 157. Wer sie als Haushaltsentscheidung
+# liest, liest tables.yaml, nicht den Haushalt.
+VERGLEICH = {
+    "jahr": 2026,
+    "alt": "haushaltsplan_2026_entwurf",
+    "neu": "haushaltsplan_2026_neufassung",
+}
+
+# Was eine Vergleichszeile trägt. amount_type bleibt draußen: 2026 ist ein
+# Planjahr, alle 718 Paare sind plan.
+VERGLEICH_COLUMNS = (
+    "haushalt_type",
+    "nr",
+    "bezeichnung",
+    "teilhaushalt_nr",
+    "teilhaushalt_name",
+)
+
+
+# Welche Kontengruppe eine Position des Ergebnishaushalts ausmacht.
+#
+# Über die Nr. ginge es nicht: der Entwurf schreibt sie an jede Kontozeile, die
+# Neufassung hat in ihren Konto-Seiten gar keine Nr.-Spalte. Das Konto selbst
+# steht in beiden. Falsche Zuordnungen fängt die Probe in _konten_vergleich ab –
+# eine Gruppe zählt nur, wenn sie die Summenzeile in beiden Plänen vollständig
+# erklärt. Weitere Einträge lohnen erst, wenn aus der Neufassung mehr als die
+# Konto-Seiten des Sonderbudgets (S. 390-392) extrahiert sind.
+# Die Präfixe leiten sich aus den Kontozeilen des Entwurfs ab, der seine
+# Struktur-Tabelle vollständig ausweist; die Neufassung liefert nur die Konten
+# des Sonderbudgets und trägt dort keine Nr.
+KONTEN_GRUPPEN: dict[str, tuple[str, ...]] = {
+    "50": ("55", "550"),   # Steuern, inkl. Gemeindeanteile an Einkommen-/Umsatzsteuer
+    "60": ("547",),                 # Transfererträge (Familienleistungsausgleich)
+    "160": ("735", "738"),          # Kreis-, Schul-, Heimat-, Verbands-, Gewerbesteuerumlage
+    "220": ("771", "772", "776"),   # Zinsen und ähnliche Aufwendungen
+}
+
+# Wie viel der Summenzeile die Konten erklären müssen, damit die Aufschlüsselung
+# gilt. Nicht auf den Euro: die Neufassung weist ihre Konten je Teilhaushalt aus,
+# und bei den Umlagen liegen 6.990 von 36,3 Mio. außerhalb des Sonderbudgets.
+# Grob falsche Zuordnungen fallen trotzdem durch – bei den Abschreibungen deckten
+# die Konten der Neufassung nur 7 % der Summenzeile ab.
+KONTEN_MIN_ABDECKUNG = 0.995
+
+
+def _konto_nr(serie: pd.Series) -> pd.Series:
+    """Die Kontonummer als reine Ziffernfolge – gespeichert ist sie als "555200.0"."""
+    return serie.astype("string").str.split(".").str[0]
+
+
+def _konten_vergleich(
+    alt_doc: pd.DataFrame, neu_doc: pd.DataFrame, nr: str
+) -> list[dict] | None:
+    """Die Konto-Aufschlüsselung einer Ergebnishaushalts-Position, oder None.
+
+    Nur brauchbar, wenn die Konten in *beiden* Plänen die Summenzeile vollständig
+    erklären. Sonst vergleicht man Zeilen unterschiedlichen Geltungsbereichs: die
+    Neufassung weist ihre Konten je Teilhaushalt aus, der Entwurf stadtweit – bei
+    "Abschreibungen auf Gebäude" stünde dann die Summe der Stadt gegen den Anteil
+    eines einzigen Teilhaushalts, und aus 2,8 Mio. würden scheinbar 3.438 EUR.
+    """
+    praefixe = KONTEN_GRUPPEN.get(nr)
+    if not praefixe:
+        return None
+
+    seiten = []
+    for doc in (alt_doc, neu_doc):
+        # Nur der Ergebnishaushalt: dieselbe Nr. steht auch in den Teilhaushalten,
+        # und über alle Ebenen summiert wäre die Zeile doppelt und dreifach gezählt.
+        df = doc[doc["haushalt_type"] == "ergebnishaushalt"]
+        summe = df[(df["nr"] == nr) & df["konto"].isna()]["amount"].abs().sum()
+        k = df[df["konto"].notna()].copy()
+        if k.empty or summe <= 0:
+            return None
+        k["konto_nr"] = _konto_nr(k["konto"])
+        k = k[k["konto_nr"].str.startswith(praefixe)]
+        if k.empty or k["amount"].abs().sum() / summe < KONTEN_MIN_ABDECKUNG:
+            return None
+        seiten.append(k)
+
+    alt_k, neu_k = seiten
+    paare = alt_k.merge(
+        neu_k[["konto_nr", "amount"]], on="konto_nr", suffixes=("_alt", "_neu")
+    )
+    zeilen = [
+        {
+            "konto": r["konto_nr"],
+            "bezeichnung": str(r["bezeichnung"]),
+            "alt": round(abs(r["amount_alt"]), 2),
+            "neu": round(abs(r["amount_neu"]), 2),
+            "diff": round(abs(r["amount_neu"]) - abs(r["amount_alt"]), 2),
+        }
+        for _, r in paare.iterrows()
+    ]
+    zeilen.sort(key=lambda z: abs(z["diff"]), reverse=True)
+    return zeilen or None
+
+
+def export_vergleich(
+    df: pd.DataFrame,
+    lib_dir: Path = DEFAULT_LIB_DATA_DIR,
+) -> Path:
+    """Schreibe den Positionsvergleich der beiden Fassungen des Haushalts 2026.
+
+    Braucht das ungefilterte DataFrame: die alten Werte sind genau die, die
+    current_for_frontend heraussortiert.
+    """
+    jahr, alt_id, neu_id = VERGLEICH["jahr"], VERGLEICH["alt"], VERGLEICH["neu"]
+    d = df[df["year"] == jahr]
+    alt = d[(d["document_id"] == alt_id) & (d["superseded_by"] == neu_id)]
+    neu = d[(d["document_id"] == neu_id) & d["superseded_by"].isna()]
+
+    key = ["line_item_key", "amount_type"]
+    m = alt.merge(neu[key + ["amount", "page"]], on=key, suffixes=("_alt", "_neu"))
+    m = m.rename(columns={"amount_alt": "alt", "amount_neu": "neu",
+                          "page_alt": "seite_alt", "page_neu": "seite_neu"})
+    m["delta"] = (m["neu"] - m["alt"]).round(2)
+
+    cols = [c for c in VERGLEICH_COLUMNS if c in m.columns]
+    rows = m[cols + ["alt", "neu", "delta", "seite_alt", "seite_neu"]]
+    positionen = json.loads(rows.to_json(orient="records"))
+    veraendert = int((m["delta"].abs() > 0.005).sum())
+
+    # Konto-Aufschlüsselungen, wo beide Pläne sie vollständig hergeben. Heute ist
+    # das die Steuerzeile (Nr. 50) – dort steht die eigentliche Nachricht, denn die
+    # Grundsteuer B steigt stärker, als die Sammelzeile insgesamt zulegt.
+    alt_doc = d[d["document_id"] == alt_id]
+    neu_doc = d[d["document_id"] == neu_id]
+    konten: dict[str, list[dict]] = {}
+    for nr in sorted({str(n) for n in alt_doc["nr"].dropna().unique()}):
+        z = _konten_vergleich(alt_doc, neu_doc, nr)
+        if z:
+            konten[nr] = z
+            logger.info("Vergleich %d: Nr. %s in %d Konten aufgeschlüsselt", jahr, nr, len(z))
+
+    payload = {
+        "jahr": jahr,
+        "alt_document_id": alt_id,
+        "neu_document_id": neu_id,
+        "positionen_gesamt": len(positionen),
+        "positionen_veraendert": veraendert,
+        "positionen": positionen,
+        "konten": konten,
+    }
+
+    lib_dir.mkdir(parents=True, exist_ok=True)
+    path = lib_dir / f"vergleich_{jahr}.json"
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(payload, f, ensure_ascii=False, separators=(",", ":"))
+    logger.info("Vergleich %d: %d Positionen, davon %d verändert → %s (%.0f KB)",
+                jahr, len(positionen), veraendert, path.name,
+                path.stat().st_size / 1024)
+    return path
+
+
 def export_lib_json(
     out_dir: Path = DEFAULT_OUT_DIR,
     lib_dir: Path = DEFAULT_LIB_DATA_DIR,
@@ -759,6 +942,7 @@ def publish_all(
     export_summary(df, out_dir, sources_path)
     export_duckdb(df, out_dir)
     export_lib_json(out_dir)
+    export_vergleich(df)
     if to_frontend:
         export_to_frontend(out_dir, frontend_dir)
         export_pdfs_to_frontend(frontend_dir=frontend_dir)
