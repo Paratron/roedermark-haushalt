@@ -5,7 +5,7 @@
 	import StructuredData from '$lib/components/StructuredData.svelte';
 	import AnchorHeading from '$lib/components/AnchorHeading.svelte';
 	import SocialMeta from '$lib/components/SocialMeta.svelte';
-	import { Info, ClipboardList, Coins, Search, Building2, TrendingUp, Landmark, PieChart, Receipt, ShieldCheck, ArrowRight } from '@lucide/svelte';
+	import { Info, ClipboardList, Coins, Search, Building2, TrendingUp, Landmark, PieChart, Receipt, ShieldCheck, ArrowRight, GitCompareArrows } from '@lucide/svelte';
 
 	let { data }: { data: PageData } = $props();
 	const { summary, documents } = data;
@@ -112,6 +112,10 @@
 
 <!-- Quick Links -->
 <section class="link-grid">
+	<a href="/vergleich-2026" class="card card-padded link-card">
+		<h4 class="link-card-title"><GitCompareArrows class="link-card-icon" /> Haushalt 2026 im Vergleich</h4>
+		<p class="link-card-desc">Entwurf und Neufassung nebeneinander: das geplante Defizit halbiert sich – welche Einnahmen und Ausgaben sich dafür bewegt haben</p>
+	</a>
 	<a href="/kategorien" class="card card-padded link-card">
 		<h4 class="link-card-title"><PieChart class="link-card-icon" /> Einnahmen & Ausgaben</h4>
 		<p class="link-card-desc">Wofür gibt die Stadt Geld aus und woher kommt es? Kategorien im Überblick</p>

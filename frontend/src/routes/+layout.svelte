@@ -9,6 +9,7 @@
 
 	const navItems = [
 		{ href: '/', label: 'Übersicht' },
+		{ href: '/vergleich-2026', label: 'Vergleich 2026' },
 		{ href: '/kategorien', label: 'Einnahmen & Ausgaben' },
 		{ href: '/ergebnishaushalt', label: 'Ergebnishaushalt' },
 		{ href: '/finanzhaushalt', label: 'Finanzhaushalt' },
